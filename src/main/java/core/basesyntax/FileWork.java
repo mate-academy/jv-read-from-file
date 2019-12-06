@@ -19,7 +19,6 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) throws IOException {
         String stringFile = Files.readString(Paths.get(fileName));
-        ;
         String[] temp = stringFile.toLowerCase().replaceAll("[^a-z]+", " ").split(" ");
         List<String> list = new ArrayList<>();
 
