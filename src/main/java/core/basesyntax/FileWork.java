@@ -15,31 +15,25 @@ import java.util.List;
  * Результат: web wide width world</p>
  */
 public class FileWork {
+    public static final String W = "w";
+
     public String[] readFromFile(String fileName) {
+        List<String> result = new ArrayList<>();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
-            List<String> result = new ArrayList<>();
             String fileLine;
             while ((fileLine = bufferedReader.readLine()) != null) {
                 String[] singleLine = fileLine
                         .replaceAll("[^a-zA-Z ]", "")
                         .split("\\s");
                 for (String words : singleLine) {
-                    if (words.toLowerCase().startsWith("w")) {
+                    if (words.toLowerCase().startsWith(W)) {
                         result.add(words.toLowerCase());
                     }
                 }
             }
-            if (result.size() == 0) {
-                return new String[0];
-            }
             Collections.sort(result);
-            String[] resultArray = new String[result.size()];
-            for (int i = 0; i < result.size(); i++) {
-                resultArray[i] = result.get(i);
-            }
-            return resultArray;
         } catch (IOException e) {
-            return new String[0];
         }
+        return  result.toArray(String[]::new);
     }
 }
