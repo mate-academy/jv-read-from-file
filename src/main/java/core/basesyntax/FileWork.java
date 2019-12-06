@@ -15,6 +15,8 @@ import java.util.List;
  * Результат: web wide width world</p>
  */
 public class FileWork {
+    private static final String KEYWORD = "w";
+
     public String[] readFromFile(String fileName) {
         String stringsFromFile = "";
         try {
@@ -24,29 +26,16 @@ public class FileWork {
         }
 
         String[] result = stringsFromFile.toLowerCase().replaceAll("[^A-Za-z]", " ").split(" ");
-        if (result.length < 1) {
-            return result;
-        }
 
         List<String> wordsWithW = new ArrayList<>();
 
         for (String word : result) {
-            if (word.startsWith("w")) {
+            if (word.startsWith(KEYWORD)) {
                 wordsWithW.add(word);
             }
         }
 
         Collections.sort(wordsWithW);
-        result = convertToString(wordsWithW);
-        return result;
-    }
-
-    private String[] convertToString(List<String> arrayList) {
-        String[] strings = new String[arrayList.size()];
-        for (int i = 0; i < arrayList.size(); i++) {
-            strings[i] = arrayList.get(i);
-        }
-        return strings;
-
+        return wordsWithW.toArray(new String[wordsWithW.size()]);
     }
 }
