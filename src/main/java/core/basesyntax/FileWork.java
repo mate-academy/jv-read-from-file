@@ -2,7 +2,6 @@ package core.basesyntax;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,10 +23,10 @@ public class FileWork {
             e.printStackTrace();
         }
         List<String> arrOfWordsW = new ArrayList<String>();
-        for (String element : arrFromFile ){
+        for (String element : arrFromFile) {
             String[] oneLine = element.replaceAll("[^a-zA-Z]", " ").toLowerCase().split(" ");
             for (String innerElement : oneLine) {
-                if (innerElement.startsWith("w")){
+                if (innerElement.startsWith("w")) {
                     arrOfWordsW.add(innerElement);
                 }
             }
