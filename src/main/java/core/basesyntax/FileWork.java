@@ -1,10 +1,11 @@
 package core.basesyntax;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * <p>Дано файл, потрібно прочитати його вміст і вибрати всі слова що починаються на `w`.
@@ -15,26 +16,28 @@ import java.util.Arrays;
  */
 public class FileWork {
     public String[] readFromFile(String fileName) {
-        File file = new File(fileName);
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
-            String result = "";
-            String st;
-            while ((st = bufferedReader.readLine()) != null) {
-                String[] singleLine = st
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
+            List<String> result = new ArrayList<>();
+            String fileLine;
+            while ((fileLine = bufferedReader.readLine()) != null) {
+                String[] singleLine = fileLine
                         .replaceAll("[^a-zA-Z ]", "")
                         .split("\\s");
                 for (String words : singleLine) {
-                    if (words.toLowerCase().charAt(0) == 'w') {
-                        result += words.toLowerCase() + " ";
+                    if (words.toLowerCase().startsWith("w")) {
+                        result.add(words.toLowerCase());
                     }
                 }
             }
-            if (result.length() == 0) {
+            if (result.size() == 0) {
                 return new String[0];
             }
-            String[] arrayResult = result.split("\\s");
-            Arrays.sort(arrayResult);
-            return arrayResult;
+            Collections.sort(result);
+            String[] resultArray = new String[result.size()];
+            for (int i = 0; i < result.size(); i++) {
+                resultArray[i] = result.get(i);
+            }
+            return resultArray;
         } catch (IOException e) {
             return new String[0];
         }
