@@ -33,6 +33,7 @@ public class FileWork {
             }
             Collections.sort(result);
         } catch (IOException e) {
+            e.printStackTrace();
         }
         return  result.toArray(String[]::new);
     }
