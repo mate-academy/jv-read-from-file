@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-//import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -23,13 +22,13 @@ public class FileWork {
             File file = new File(fileName);
             FileReader fileReader = new FileReader(file);
             BufferedReader reader = new BufferedReader(fileReader);
-            String str;
-            while ((str = reader.readLine()) != null) {
-                String[] readedLine = str.toLowerCase().replaceAll("[^a-zA-Z,\" \"]+", "")
+            String readedLine;
+            while ((readedLine = reader.readLine()) != null) {
+                String[] convertedLine = readedLine.toLowerCase().replaceAll("[^a-zA-Z,\" \"]+", "")
                         .split(" ");
-                for (String s : readedLine) {
-                    if (s.startsWith("w")) {
-                        line.add(s);
+                for (String word : convertedLine) {
+                    if (word.startsWith("w")) {
+                        line.add(word);
                     }
                 }
             }
