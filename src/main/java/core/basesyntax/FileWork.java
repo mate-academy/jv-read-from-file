@@ -18,13 +18,13 @@ import java.util.List;
  */
 public class FileWork {
     public String[] readFromFile(String fileName) {
-        String str = "";
+        StringBuilder str = new StringBuilder();
         try {
             File file = new File(fileName);
             FileReader fileReader = new FileReader(file);
             BufferedReader reader = new BufferedReader(fileReader);
             while (reader.ready()) {
-                str += reader.readLine();
+                str.append(reader.readLine());
             }
             reader.close();
         } catch (FileNotFoundException e) {
@@ -32,8 +32,8 @@ public class FileWork {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        str = str.replaceAll("[^\\s a-z A-Z]", "");
-        String[] words = str.split(" ");
+        String string = str.toString().replaceAll("[^\\s a-z A-Z]", "");
+        String[] words = string.split(" ");
         List<String> list = new ArrayList<>();
         for (int i = 0; i < words.length; i++) {
             if (words[i].toLowerCase().startsWith("w")) {
