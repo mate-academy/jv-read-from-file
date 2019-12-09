@@ -13,28 +13,30 @@ import java.util.Arrays;
  * Результат: web wide width world</p>
  */
 public class FileWork {
+    static final char SYMBOL = 'w';
+
     public String[] readFromFile(String fileName) {
         String[] wordsWithSym = {};
-        String text = "";
+        StringBuilder stringBuilder = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String readline = "";
+            String readline;
             while ((readline = reader.readLine()) != null) {
-                text += readline;
+                stringBuilder.append(readline);
             }
         } catch (IOException ex) {
             ex.getStackTrace();
         }
-        wordsWithSym = getWordsBeginningWhithSym(text, 'w');
+        wordsWithSym = getWordsBeginningWhithSym(stringBuilder.toString(), SYMBOL);
         Arrays.sort(wordsWithSym);
         return wordsWithSym;
     }
 
-    public String[] getWordsBeginningWhithSym(String line, char sym) {
+    public String[] getWordsBeginningWhithSym(String line, char symbol) {
         String[] result = {};
         if (line.length() != 0) {
             result = Arrays.stream(line.split(" "))
                     .map(word -> word.toLowerCase()).map(word -> word.replaceAll("[^a-z]", ""))
-                    .filter(word -> word.charAt(0) == sym)
+                    .filter(word -> word.charAt(0) == symbol)
                     .toArray(String[]::new);
         }
         return result;
