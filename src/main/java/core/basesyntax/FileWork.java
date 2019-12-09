@@ -17,6 +17,9 @@ import java.util.List;
  * Результат: web wide width world</p>
  */
 public class FileWork {
+
+    static final String CHECK = "w";
+
     public String[] readFromFile(String fileName) {
         StringBuilder str = new StringBuilder();
         try {
@@ -36,18 +39,13 @@ public class FileWork {
         String[] words = string.split(" ");
         List<String> list = new ArrayList<>();
         for (int i = 0; i < words.length; i++) {
-            if (words[i].toLowerCase().startsWith("w")) {
+            if (words[i].toLowerCase().startsWith(CHECK)) {
                 list.add(words[i].toLowerCase());
             }
         }
-        if (list.isEmpty()) {
-            return new String[0];
-        }
         Collections.sort(list);
-        String[] result = new String[list.size()];
-        for (int i = 0; i < result.length; i++) {
-            result[i] = list.get(i);
-        }
+        String[] result = list.toArray(new String [list.size()]);
+
         return result;
     }
 }
