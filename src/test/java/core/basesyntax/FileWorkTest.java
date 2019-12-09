@@ -3,6 +3,8 @@ package core.basesyntax;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.IOException;
+
 public class FileWorkTest {
     private static final String FIRST_FILE_NAME = "test1";
     private static final String SECOND_FILE_NAME = "test2";
@@ -16,7 +18,7 @@ public class FileWorkTest {
             new String[]{"wall", "wave", "width", "world", "www"};
 
     @Test
-    public void readFromEmptyFile() {
+    public void readFromEmptyFile(){
         FileWork fileWork = new FileWork();
         String[] actualResult = fileWork.readFromFile(FIRST_FILE_NAME);
         Assert.assertArrayEquals("Test failed! You should returned empty array.",
