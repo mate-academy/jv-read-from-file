@@ -3,7 +3,8 @@ package core.basesyntax;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -14,30 +15,26 @@ import java.util.List;
  * Результат: web wide width world</p>
  */
 public class FileWork {
+    public static final String LETTER = "w";
+
     public String[] readFromFile(String fileName) {
         StringBuilder stringBuilder = new StringBuilder();
-
+        ArrayList<String> resultArray = new ArrayList<>();
         try {
-            List<String> stringsList = Files.readAllLines(Paths.get(fileName));
-
-            for (String string : stringsList) {
+            List<String> stringList = Files.readAllLines(Paths.get(fileName));
+            for (String string : stringList) {
                 String[] words = string.toLowerCase().split(" ");
                 for (String word : words) {
-                    if (word.startsWith("w")) {
-                        stringBuilder.append(word.replaceAll("[^a-z]+", "")).append(" ");
+                    if (word.startsWith(LETTER)) {
+                        resultArray.add(word.replaceAll("[^a-z]+", ""));
                     }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        if (stringBuilder.toString().isEmpty()) {
-            return new String[0];
-        }
-
-        String[] resultArray = stringBuilder.toString().trim().split(" ");
-        Arrays.sort(resultArray);
-        return resultArray;
+        Collections.sort(resultArray);
+        return resultArray.toArray(new String[resultArray.size()]);
     }
 }
+
