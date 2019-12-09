@@ -1,7 +1,6 @@
 package core.basesyntax;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
@@ -14,32 +13,32 @@ import java.util.Arrays;
  * Результат: web wide width world</p>
  */
 public class FileWork {
+    private static final String FIRST_LETTER = "w";
+
     public String[] readFromFile(String fileName) {
-        File file = new File(fileName);
-        String[] result = new String[(int) file.length()];
-        int counter = 0;
 
-        try (FileReader fileReader = new FileReader(file);
+        try (FileReader fileReader = new FileReader(fileName);
                 BufferedReader bufferedReader = new BufferedReader(fileReader)) {
-
+            String[] result = new String[fileReader.toString().length()];
+            int counter = 0;
             String fileLine;
             while ((fileLine = bufferedReader.readLine()) != null) {
                 String[] lineWords = fileLine.replaceAll("[^\\w]", " ").split(" ");
                 for (String word : lineWords) {
                     word = word.toLowerCase();
-                    if (word.startsWith("w")) {
+                    if (word.startsWith(FIRST_LETTER)) {
                         result[counter] = word;
                         counter++;
                     }
                 }
             }
+            result = Arrays.copyOf(result, counter);
+            Arrays.sort(result);
+            return result;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        result = Arrays.copyOf(result, counter);
-        Arrays.sort(result);
-
-        return result;
+        return new String[]{""};
     }
 
 }
