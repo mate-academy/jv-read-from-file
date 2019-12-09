@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * <p>Дано файл, потрібно прочитати його вміст і вибрати всі слова що починаються на `w`.
@@ -37,8 +35,8 @@ public class FileWork {
         } catch (IOException e) {
             System.out.println("Failed to upload file, make sure it's exist");
         }
+        Collections.sort(arr);
         String[] newArr = arr.toArray(new String[0]);
-        Arrays.sort(newArr);
         return newArr;
     }
 }
