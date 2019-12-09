@@ -14,6 +14,8 @@ import java.util.Collections;
  * Результат: web wide width world</p>
  */
 public class FileWork {
+    public static final String W = "w"; 
+    
     public String[] readFromFile(String fileName) {
         ArrayList<String> wordsArray = new ArrayList<>();
         StringBuilder stringBuilder = new StringBuilder(" ");
@@ -28,15 +30,13 @@ public class FileWork {
             while ((line = bufferedReader.readLine()) != null) {
                 sb.append(line);
             }
-            bufferedReader.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         String[] lineArray = sb.toString().toLowerCase().replaceAll("[^a-z]", " ").split(" ");
         for (String i : lineArray) {
-            i.split(" ");
             for (int j = 0; j < i.split(" ").length; j++) {
-                if (i.split(" ")[j].startsWith("w")) {
+                if (i.split(" ")[j].startsWith(W)) {
                     wordsArray.add(i.split(" ")[j]);
                 }
             }
