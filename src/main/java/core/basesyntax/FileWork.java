@@ -15,10 +15,14 @@ import java.util.List;
  * Результат: web wide width world</p>
  */
 public class FileWork {
-    final String firstLetter = "w";
-
-    public String[] readFromFile(String fileName) throws IOException {
-        String stringFile = Files.readString(Paths.get(fileName));
+    public String[] readFromFile(String fileName) {
+        final String firstLetter = "w";
+        String stringFile = null;
+        try {
+            stringFile = Files.readString(Paths.get(fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         String[] temp = stringFile.toLowerCase().replaceAll("[^a-z]+", " ").split(" ");
         List<String> list = new ArrayList<>();
 

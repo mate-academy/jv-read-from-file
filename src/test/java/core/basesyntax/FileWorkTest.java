@@ -18,7 +18,7 @@ public class FileWorkTest {
             new String[]{"wall", "wave", "width", "world", "www"};
 
     @Test
-    public void readFromEmptyFile() throws IOException {
+    public void readFromEmptyFile(){
         FileWork fileWork = new FileWork();
         String[] actualResult = fileWork.readFromFile(FIRST_FILE_NAME);
         Assert.assertArrayEquals("Test failed! You should returned empty array.",
