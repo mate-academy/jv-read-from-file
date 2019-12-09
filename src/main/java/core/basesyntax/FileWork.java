@@ -16,12 +16,12 @@ import java.util.Arrays;
 public class FileWork {
     public String[] readFromFile(String fileName) {
         StringBuilder buffer = new StringBuilder();
-        try (BufferedReader bReader =
+        try (BufferedReader bufferedReader =
                      new BufferedReader(new FileReader(new File(fileName)))) {
-            String line = bReader.readLine();
+            String line = bufferedReader.readLine();
             while (line != null) {
                 buffer.append(line);
-                line = bReader.readLine();
+                line = bufferedReader.readLine();
             }
             if (buffer.toString().isEmpty()) {
                 return new String[0];
