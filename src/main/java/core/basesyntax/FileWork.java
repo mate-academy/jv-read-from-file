@@ -20,13 +20,13 @@ public class FileWork {
     public String[] readFromFile(String fileName) {
 
         File file = new File(fileName);
-        FileReader fr = null;
+        FileReader fileReader = null;
         ArrayList<String> readFrom = new ArrayList<String>();
         try {
-            fr = new FileReader(file);
-            BufferedReader bf = new BufferedReader(fr);
+            fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
             String str = null;
-            while ((str = bf.readLine()) != null) {
+            while ((str = bufferedReader.readLine()) != null) {
                 String[] arrayWords = str.toLowerCase().replaceAll("[.,?!]", "").split("\\s");
                 for (String s : arrayWords) {
                     if (s.toLowerCase().startsWith("w")) {
@@ -34,8 +34,6 @@ public class FileWork {
                     }
                 }
             }
-            fr.close();
-            bf.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -44,6 +42,5 @@ public class FileWork {
         readFrom.sort(Comparator.naturalOrder());
         String[] readFromFile = readFrom.toArray(new String[0]);
         return readFromFile;
-
     }
 }
