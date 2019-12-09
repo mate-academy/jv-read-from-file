@@ -17,7 +17,7 @@ import java.util.List;
  * Результат: web wide width world</p>
  */
 public class FileWork {
-    final String CONSTANT = "w";
+    private static final String CONSTANT = "w";
 
     public String[] readFromFile(String fileName) {
         List<String> resultList = new ArrayList<>();
@@ -31,7 +31,7 @@ public class FileWork {
                 String[] result = temp.toLowerCase().replaceAll("[^a-z]", " ").split(" ");
                 for (String s : result) {
                     if (s.startsWith(CONSTANT)) {
-                        resultList.add(s);//
+                        resultList.add(s);
                     }
 
                 }
