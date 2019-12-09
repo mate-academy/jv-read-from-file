@@ -1,6 +1,5 @@
 package core.basesyntax;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,21 +17,20 @@ import java.util.List;
  */
 public class FileWork {
 
+    private static final String W = "w";
+    private static final String REGEX_NON_WORDS = "[^a-z+]";
+
     public String[] readFromFile(String fileName) {
         List<String> arr = new ArrayList<>();
 
-        File file = new File(fileName);
-        if (file.length() == 0) {
-            return new String[]{};
-        }
         Path path = Paths.get(fileName);
         try {
             List<String> array = Files.readAllLines(path);
             for (String value : array) {
                 String[] tmp = value.toLowerCase().split(" ");
                 for (String s : tmp) {
-                    if (s.startsWith("w")) {
-                        arr.add(s.replaceAll("[^a-z+]", ""));
+                    if (s.startsWith(W)) {
+                        arr.add(s.replaceAll(REGEX_NON_WORDS, ""));
                     }
                 }
             }
