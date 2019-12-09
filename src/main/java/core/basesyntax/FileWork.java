@@ -14,7 +14,7 @@ import java.util.List;
  * Результат: web wide width world</p>
  */
 public class FileWork {
-    public final static char W = 'w';
+    public static final char W = 'w';
 
     public static String[] readFromFile(String fileName) {
         StringBuilder words = new StringBuilder();
