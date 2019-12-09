@@ -1,8 +1,6 @@
 package core.basesyntax;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,17 +19,14 @@ public class FileWork {
     static final String CHECK = "w";
 
     public String[] readFromFile(String fileName) {
+
         StringBuilder str = new StringBuilder();
-        try {
-            File file = new File(fileName);
-            FileReader fileReader = new FileReader(file);
-            BufferedReader reader = new BufferedReader(fileReader);
+        try
+                (FileReader fileReader = new FileReader(fileName);
+                 BufferedReader reader = new BufferedReader(fileReader);) {
             while (reader.ready()) {
                 str.append(reader.readLine());
             }
-            reader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println(e);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -44,7 +39,7 @@ public class FileWork {
             }
         }
         Collections.sort(list);
-        String[] result = list.toArray(new String [list.size()]);
+        String[] result = list.toArray(new String[list.size()]);
 
         return result;
     }
