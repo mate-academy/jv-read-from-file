@@ -15,21 +15,22 @@ import java.util.Arrays;
 public class FileWork {
     public String[] readFromFile(String fileName) {
         String[] result = new String[0];
+        final String firstChar = "w";
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String line;
             StringBuilder searchedWords = new StringBuilder();
             while ((line = bufferedReader.readLine()) != null) {
-                String[] buffuredWords = line.toLowerCase()
+                String[] bufferedWords = line.toLowerCase()
                         .replaceAll("[^a-z]", " ")
-                        .trim().split(" ");
-                for (String word: buffuredWords) {
-                    if (word.startsWith("w")) {
+                        .split(" ");
+                for (String word: bufferedWords) {
+                    if (word.startsWith(firstChar)) {
                         searchedWords.append(word).append(" ");
                     }
                 }
             }
             if (!searchedWords.toString().isEmpty()) {
-                result = searchedWords.toString().trim().split(" ");
+                result = searchedWords.toString().split(" ");
                 Arrays.sort(result);
             }
         } catch (IOException e) {
