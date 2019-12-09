@@ -16,7 +16,7 @@ import java.util.Collections;
 public class FileWork {
     public String[] readFromFile(String fileName) {
         ArrayList<String> wordsArray = new ArrayList<>();
-        StringBuilder sb = new StringBuilder(" ");
+        StringBuilder stringBuilder = new StringBuilder(" ");
         File file = new File(fileName);
         if (file.length() == 0) {
             return new String[0];
@@ -46,4 +46,3 @@ public class FileWork {
         return (String[]) wordsArray.toArray(textFromFile);
     }
 }
-
