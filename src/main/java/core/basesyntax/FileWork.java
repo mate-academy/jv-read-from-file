@@ -3,7 +3,8 @@ package core.basesyntax;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -17,8 +18,8 @@ public class FileWork {
     public static final char START_LETTER = 'w';
 
     public static String[] readFromFile(String fileName) {
-        StringBuilder words = new StringBuilder();
-        String [] result = new String [0];
+        ArrayList<String> result = new ArrayList<>(0);
+
         try {
             List<String> lines = Files.readAllLines(Paths.get(fileName));
 
@@ -26,15 +27,15 @@ public class FileWork {
                 String[] lineWords = line.toLowerCase().split(" ");
                 for (String word : lineWords) {
                     if (word.charAt(0) == START_LETTER) {
-                        words.append(word.replaceAll("[^a-z]+", "")).append(" ");
-                        result = words.toString().trim().split(" ");
+                        result.add(word.replaceAll("[^a-z]+", ""));
+
                     }
                 }
             }
-            Arrays.sort(result);
+            Collections.sort(result);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return result;
+        return result.toArray(String[]::new);
     }
 }
