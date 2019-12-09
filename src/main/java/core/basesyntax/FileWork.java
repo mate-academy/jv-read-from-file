@@ -1,7 +1,6 @@
 package core.basesyntax;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,7 +31,8 @@ public class FileWork {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String[] lineArray = sb.toString().toLowerCase().replaceAll("[^a-z]", " ").split(" ");
+        String[] lineArray = sb.toString().toLowerCase()
+            .replaceAll("[^a-z]", " ").split(" ");
         for (String i : lineArray) {
             for (int j = 0; j < i.split(" ").length; j++) {
                 if (i.split(" ")[j].startsWith(W)) {
