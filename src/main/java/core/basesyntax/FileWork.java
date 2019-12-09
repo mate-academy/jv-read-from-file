@@ -18,8 +18,7 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         ArrayList result = new ArrayList();
-        try {
-            FileReader fileReader = new FileReader(fileName);
+        try (FileReader fileReader = new FileReader(fileName)) {
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
             while ((line = bufferedReader.readLine()) != null) {
@@ -32,7 +31,7 @@ public class FileWork {
                     }
                 }
             }
-        } catch (IOException e1) {
+        } catch (IOException e) {
             System.out.println("There isn't such file");
         }
         Collections.sort(result);
