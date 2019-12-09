@@ -17,6 +17,7 @@ import java.util.List;
 public class FileWork {
     public String[] readFromFile(String fileName) {
         String readfromFile = "";
+        final String leterW = "w";
         try {
             readfromFile = Files.readString(Paths.get(fileName));
         } catch (IOException e) {
@@ -24,13 +25,13 @@ public class FileWork {
         }
         String[] separatewords = readfromFile.toLowerCase().replaceAll("[^A-Za-z]", " ")
                 .split(" ");
-        List<String> wordwithW = new ArrayList<>();
+        List<String> filteredWords = new ArrayList<>();
         for (String words : separatewords) {
-            if (words.startsWith("w")) {
-                wordwithW.add(words);
+            if (words.startsWith(leterW)) {
+                filteredWords.add(words);
             }
         }
-        Collections.sort(wordwithW);
-        return wordwithW.toArray(new String[wordwithW.size()]);
+        Collections.sort(filteredWords);
+        return filteredWords.toArray(new String[filteredWords.size()]);
     }
 }
