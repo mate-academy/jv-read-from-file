@@ -21,7 +21,7 @@ public class FileWork {
         if (file.length() == 0) {
             return new String[0];
         }
-        String line = "";
+        String line;
         try {
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
