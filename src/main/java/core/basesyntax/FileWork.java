@@ -20,10 +20,6 @@ public class FileWork {
         try {
             List<String> stringsList = Files.readAllLines(Paths.get(fileName));
 
-            if (stringsList.isEmpty()) {
-                return new String[0];
-            }
-
             for (String string : stringsList) {
                 String[] words = string.toLowerCase().split(" ");
                 for (String word : words) {
