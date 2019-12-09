@@ -15,7 +15,7 @@ import java.util.Arrays;
  */
 public class FileWork {
 
-    public static final String OBJECT_SEACHER = "w";
+    public static final String OBJECT_SEARCHER = "w";
 
     public String[] readFromFile(String fileName) {
         StringBuilder buffer = new StringBuilder();
@@ -33,13 +33,18 @@ public class FileWork {
             throw new RuntimeException();
         }
 
-        String[] wordsSeacher = buffer.toString().toLowerCase().split(" ");
+        String[] wordsSearcher = buffer.toString()
+                .toLowerCase()
+                .replaceAll("[^a-z]+"," ")
+                .split(" ");
+
         StringBuilder fishWords = new StringBuilder();
-        for (String i : wordsSeacher) {
-            if (i.startsWith(OBJECT_SEACHER)) {
-                fishWords.append(i.replaceAll("[^a-z]+", "")).append(" ");
+        for (String i : wordsSearcher) {
+            if (i.startsWith(OBJECT_SEARCHER)) {
+                fishWords.append(i).append(" ");
             }
         }
+
         if (fishWords.toString().isBlank()) {
             return new String[0];
         }
