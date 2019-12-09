@@ -19,8 +19,7 @@ public class FileWork {
         ArrayList<String> wordsArray = new ArrayList<>();
         StringBuilder stringBuilder = new StringBuilder(" ");
         String line;
-        try {
-            FileReader fileReader = new FileReader(fileName);
+        try (FileReader fileReader = new FileReader(fileName)) {
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             while ((line = bufferedReader.readLine()) != null) {
                 stringBuilder.append(line);
