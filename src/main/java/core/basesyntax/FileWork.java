@@ -19,7 +19,6 @@ public class FileWork {
     public String[] readFromFile(String fileName) {
         ArrayList<String> wordsArray = new ArrayList<>();
         StringBuilder stringBuilder = new StringBuilder(" ");
-        File file = new File(fileName);
         if (file.length() == 0) {
             return new String[0];
         }
