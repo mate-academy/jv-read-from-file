@@ -20,10 +20,8 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         List<String> sortingLine = new ArrayList<String>();
-        try {
-            File file = new File(fileName);
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+        try (FileReader fileReader = new FileReader(new File(fileName));
+                BufferedReader bufferedReader = new BufferedReader(fileReader)) {
             String readedLine;
             while ((readedLine = bufferedReader.readLine()) != null) {
                 String[] convertedLine = readedLine.toLowerCase().replaceAll("[^a-zA-Z,\" \"]+", "")
