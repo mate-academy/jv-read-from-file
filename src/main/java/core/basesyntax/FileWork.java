@@ -15,8 +15,9 @@ import java.util.List;
  * Результат: web wide width world</p>
  */
 public class FileWork {
+    private static final String LETTER = "w";
+
     public String[] readFromFile(String fileName) {
-        final String firstLetter = "w";
         String stringFile = null;
         try {
             stringFile = Files.readString(Paths.get(fileName));
@@ -27,7 +28,7 @@ public class FileWork {
         List<String> list = new ArrayList<>();
 
         for (String s : temp) {
-            if (s.startsWith(firstLetter)) {
+            if (s.startsWith(LETTER)) {
                 list.add(s);
             }
         }
