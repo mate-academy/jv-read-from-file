@@ -14,6 +14,9 @@ import java.util.Arrays;
  * Результат: web wide width world</p>
  */
 public class FileWork {
+
+    public static final String OBJECT_SEACHER = "w";
+
     public String[] readFromFile(String fileName) {
         StringBuilder buffer = new StringBuilder();
         try (BufferedReader bufferedReader =
@@ -33,7 +36,7 @@ public class FileWork {
         String[] wordsSeacher = buffer.toString().toLowerCase().split(" ");
         StringBuilder fishWords = new StringBuilder();
         for (String i : wordsSeacher) {
-            if (i.startsWith("w")) {
+            if (i.startsWith(OBJECT_SEACHER)) {
                 fishWords.append(i.replaceAll("[^a-z]+", "")).append(" ");
             }
         }
