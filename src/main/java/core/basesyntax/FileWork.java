@@ -19,12 +19,10 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         StringBuilder resultLine = new StringBuilder();
-        try {
-            try (FileReader fileReader = new FileReader(fileName);
-                    BufferedReader reader = new BufferedReader(fileReader)) {
-                while (reader.ready()) {
-                    resultLine.append(reader.readLine());
-                }
+        try (FileReader fileReader = new FileReader(fileName);
+                BufferedReader reader = new BufferedReader(fileReader)) {
+            while (reader.ready()) {
+                resultLine.append(reader.readLine());
             }
         } catch (IOException e) {
             e.printStackTrace();
