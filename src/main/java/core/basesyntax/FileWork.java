@@ -1,8 +1,6 @@
 package core.basesyntax;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,24 +15,26 @@ import java.util.List;
  * Результат: web wide width world</p>
  */
 public class FileWork {
+    private static final String W = "w";
+
     public String[] readFromFile(String fileName) {
-        String resultLine = "";
+        StringBuilder resultLine = new StringBuilder();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File(fileName)));
-            while (reader.ready()) {
-                resultLine += reader.readLine();
+            try (FileReader fileReader = new FileReader(fileName);
+                    BufferedReader reader = new BufferedReader(fileReader)) {
+                while (reader.ready()) {
+                    resultLine.append(reader.readLine());
+                }
             }
-            reader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println(e);
         } catch (IOException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
-        resultLine = resultLine.replaceAll("[^(\\sa-zA-Z)]", "");
-        String[] words = resultLine.split(" ");
+        String result = resultLine.toString();
+        result = result.replaceAll("[^(\\sa-zA-Z)]", "");
+        String[] words = result.split(" ");
         List<String> list = new ArrayList<>();
         for (String word : words) {
-            if (word.toLowerCase().startsWith("w")) {
+            if (word.toLowerCase().startsWith(W)) {
                 list.add(word.toLowerCase());
             }
         }
