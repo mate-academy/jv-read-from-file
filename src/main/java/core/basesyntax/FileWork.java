@@ -14,7 +14,10 @@ import java.util.List;
  * Приклад: Width world Wide web
  * Результат: web wide width world</p>
  */
+
 public class FileWork {
+    public static final String LETTERW = "w";
+    
     public String[] readFromFile(String fileName) {
         List<String> resultList = new ArrayList<>();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
@@ -22,7 +25,7 @@ public class FileWork {
             while ((strFile = bufferedReader.readLine()) != null) {
                 String[] strFileWords = strFile.toLowerCase().split("[,;:.!?\\s]+");
                 for (String item : strFileWords) {
-                    if (item.startsWith("w")) {
+                    if (item.startsWith(LETTERW)) {
                         resultList.add(item);
                     }
                 }
