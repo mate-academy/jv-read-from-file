@@ -16,29 +16,29 @@ import java.util.List;
  * Результат: web wide width world</p>
  */
 public class FileWork {
+    static final String FILTER = "w";
+
     public String[] readFromFile(String fileName) {
-        List<String> line = new ArrayList<String>();
+        List<String> sortingLine = new ArrayList<String>();
         try {
             File file = new File(fileName);
             FileReader fileReader = new FileReader(file);
-            BufferedReader reader = new BufferedReader(fileReader);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
             String readedLine;
-            while ((readedLine = reader.readLine()) != null) {
+            while ((readedLine = bufferedReader.readLine()) != null) {
                 String[] convertedLine = readedLine.toLowerCase().replaceAll("[^a-zA-Z,\" \"]+", "")
                         .split(" ");
                 for (String word : convertedLine) {
-                    if (word.startsWith("w")) {
-                        line.add(word);
+                    if (word.startsWith(FILTER)) {
+                        sortingLine.add(word);
                     }
                 }
             }
-            if (line.isEmpty()) {
-                return new String[0];
-            }
         } catch (IOException e) {
             e.printStackTrace();
+            return new String[0];
         }
-        Collections.sort(line);
-        return line.toArray(new String[line.size()]);
+        Collections.sort(sortingLine);
+        return sortingLine.toArray(new String[sortingLine.size()]);
     }
 }
