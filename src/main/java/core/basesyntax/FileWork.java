@@ -20,7 +20,7 @@ public class FileWork {
         String[] result = new String[0];
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String line;
-            ArrayList searchedWords = new ArrayList();
+            ArrayList<String> searchedWords = new ArrayList<>();
             while ((line = bufferedReader.readLine()) != null) {
                 String[] bufferedWords = line.toLowerCase()
                         .replaceAll("[^a-z]", " ")
@@ -31,10 +31,7 @@ public class FileWork {
                     }
                 }
             }
-            result = new String[searchedWords.size()];
-            for (int i = 0; i < searchedWords.size(); i++) {
-                result[i] = searchedWords.get(i).toString();
-            }
+            result = searchedWords.toArray(String[]::new);
             Arrays.sort(result);
         } catch (IOException e) {
             e.printStackTrace();
