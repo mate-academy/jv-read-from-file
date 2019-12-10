@@ -13,14 +13,13 @@ import java.util.Collections;
  * Результат: web wide width world</p>
  */
 public class FileWork {
-    public static final String W = "w";
+    public static final String LETTER = "w";
 
     public String[] readFromFile(String fileName) {
         ArrayList<String> wordsArray = new ArrayList<>();
         StringBuilder stringBuilder = new StringBuilder(" ");
         String line;
-        try (FileReader fileReader = new FileReader(fileName)) {
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             while ((line = bufferedReader.readLine()) != null) {
                 stringBuilder.append(line);
             }
@@ -31,7 +30,7 @@ public class FileWork {
                 .replaceAll("[^a-z]", " ").split(" ");
         for (String i : lineArray) {
             for (int j = 0; j < i.split(" ").length; j++) {
-                if (i.split(" ")[j].startsWith(W)) {
+                if (i.split(" ")[j].startsWith(LETTER)) {
                     wordsArray.add(i.split(" ")[j]);
                 }
             }
