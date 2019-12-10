@@ -20,21 +20,21 @@ public class FileWork {
     private static final String REGEX_NON_WORDS = "[^a-z+]";
 
     public String[] readFromFile(String fileName) {
-        List<String> arr = new ArrayList<>();
+        List<String> correctWordsList = new ArrayList<>();
         try {
             List<String> array = Files.readAllLines(Paths.get(fileName));
             for (String value : array) {
                 String[] tmp = value.toLowerCase().split(" ");
                 for (String s : tmp) {
                     if (s.startsWith(START_OF_WORDS)) {
-                        arr.add(s.replaceAll(REGEX_NON_WORDS, ""));
+                        correctWordsList.add(s.replaceAll(REGEX_NON_WORDS, ""));
                     }
                 }
             }
         } catch (IOException e) {
             System.out.println("Failed to upload file, make sure it's exist");
         }
-        String[] newArr = arr.toArray(new String[0]);
+        String[] newArr = correctWordsList.toArray(new String[0]);
         Arrays.sort(newArr);
         return newArr;
     }
