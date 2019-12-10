@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * <p>Дано файл, потрібно прочитати його вміст і вибрати всі слова що починаються на `w`.
@@ -38,18 +40,13 @@ public class FileWork {
                 .replaceAll("[^a-z]+"," ")
                 .split(" ");
 
-        StringBuilder fishWords = new StringBuilder();
+        List<String> result = new ArrayList<>();
         for (String i : wordsSearcher) {
             if (i.startsWith(OBJECT_SEARCHER)) {
-                fishWords.append(i).append(" ");
+                result.add(i);
             }
         }
-
-        if (fishWords.toString().isBlank()) {
-            return new String[0];
-        }
-        String[] finishArray = fishWords.toString().trim().split(" ");
-        Arrays.sort(finishArray);
-        return finishArray;
+        Collections.sort(result);
+        return result.toArray(new String[result.size()]);
     }
 }
