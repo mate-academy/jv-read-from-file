@@ -18,7 +18,7 @@ class FileWork {
     private static final String leterW = "w";
 
     public String[] readFromFile(String fileName) {
-        String readfromFile = "";
+        String readfromFile = null;
         try {
             readfromFile = Files.readString(Paths.get(fileName));
         } catch (IOException e) {
