@@ -14,10 +14,11 @@ import java.util.List;
  * Приклад: Width world Wide web
  * Результат: web wide width world</p>
  */
-public class FileWork {
+class FileWork {
+    private static final String leterW = "w";
+
     public String[] readFromFile(String fileName) {
         String readfromFile = "";
-        final String leterW = "w";
         try {
             readfromFile = Files.readString(Paths.get(fileName));
         } catch (IOException e) {
