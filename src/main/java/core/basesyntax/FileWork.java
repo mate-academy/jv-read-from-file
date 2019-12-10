@@ -29,8 +29,9 @@ public class FileWork {
         String[] lineArray = stringBuilder.toString().toLowerCase()
                 .replaceAll("[^a-z]", " ").split(" ");
         for (String i : lineArray) {
-            for (int j = 0; j < i.split(" ").length; j++) {
-                if (i.split(" ")[j].startsWith(LETTER)) {
+            String[] text = i.split(" ");
+            for (int j = 0; j < text.length; j++) {
+                if (text[j].startsWith(LETTER)) {
                     wordsArray.add(i.split(" ")[j]);
                 }
             }
