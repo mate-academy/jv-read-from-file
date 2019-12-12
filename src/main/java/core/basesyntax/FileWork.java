@@ -14,6 +14,8 @@ import java.util.List;
  * Результат: web wide width world</p>
  */
 public class FileWork {
+    public static final int  KEY_FOR_SEARCH_WORDS = 'w';
+
     public String[] readFromFile(String fileName) {
 
         String[] empty = new String[0];
@@ -35,7 +37,7 @@ public class FileWork {
         int counter = 0;
         StringBuilder words = new StringBuilder();
         for (int i = 0; i < linesToArrayString.length; i++) {
-            if (linesToArrayString[i].charAt(0) == 'w') {
+            if (linesToArrayString[i].charAt(0) == KEY_FOR_SEARCH_WORDS) {
                 words.append(linesToArrayString[i] + " ");
                 counter++;
             }
