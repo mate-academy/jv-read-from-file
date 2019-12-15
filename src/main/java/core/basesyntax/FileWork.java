@@ -15,7 +15,7 @@ import java.util.Collections;
  */
 public class FileWork {
 
-    private static final char LETTER = 'w';
+    private static final String LETTER = "w";
 
     public String[] readFromFile(String fileName) {
         ArrayList<String> container = new ArrayList<>();
@@ -23,7 +23,7 @@ public class FileWork {
             String text = Files.readString(Paths.get(fileName));
             String[] words = text.toLowerCase().replaceAll("[^a-z]+", " ").split(" ");
             for (String word : words) {
-                if (word.startsWith("w")) {
+                if (word.startsWith(LETTER)) {
                     container.add(word);
                 }
             }
