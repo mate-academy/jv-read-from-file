@@ -3,7 +3,8 @@ package core.basesyntax;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * <p>Дано файл, потрібно прочитати його вміст і вибрати всі слова що починаються на `w`.
@@ -14,30 +15,22 @@ import java.util.Arrays;
  */
 public class FileWork {
 
-    static final char LETTER = 'w';
+    private static final char LETTER = 'w';
 
     public String[] readFromFile(String fileName) {
-        String text = null;
+        ArrayList<String> container = new ArrayList<>();
         try {
-            text = Files.readString(Paths.get(fileName));
+            String text = Files.readString(Paths.get(fileName));
+            String[] words = text.toLowerCase().replaceAll("[^a-z]+", " ").split(" ");
+            for (String word : words) {
+                if (word.startsWith("w")) {
+                    container.add(word);
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (text.length() == 0) {
-            return new String[0];
-        }
-        String[] words = text.toLowerCase().replaceAll("[^a-z]+", " ").split(" ");
-        StringBuilder newContainer = new StringBuilder();
-        for (String word : words) {
-            if (word.charAt(0) == LETTER) {
-                newContainer.append(word + " ");
-            }
-        }
-        if (newContainer.length() == 0) {
-            return new String[0];
-        }
-        String[] result = newContainer.toString().split(" ");
-        Arrays.sort(result);
-        return result;
+        Collections.sort(container);
+        return container.toArray(new String[0]);
     }
 }
