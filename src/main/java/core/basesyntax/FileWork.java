@@ -24,9 +24,9 @@ public class FileWork {
                     wordWList.append(word.replaceAll("\\W","")).append(" ");
                 }
             }
-            result = wordWList.length() > 0 ? wordWList.toString().split(" ") : new String[0];
+            result = wordWList.toString().split(" ");
             Arrays.sort(result);
-            return result;
+            return wordWList.length() > 0 ? result : new String[0];
         } catch (IOException e) {
             throw new RuntimeException("No such file");
         }
