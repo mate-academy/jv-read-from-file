@@ -14,12 +14,11 @@ public class FileWork {
         try (Scanner scan = new Scanner(new File(fileName))) {
             if (!scan.hasNext()) {
                 return new String[0];
-            } else {
-                while (scan.hasNext()) {
-                    String word = scan.next().toLowerCase();
-                    if (word.startsWith(LETTER)) {
-                        necessaryWords.append(word.replaceAll("[^a-z]","")).append(" ");
-                    }
+            }
+            while (scan.hasNext()) {
+                String word = scan.next().toLowerCase();
+                if (word.startsWith(LETTER)) {
+                    necessaryWords.append(word.replaceAll("[^a-z]", "")).append(" ");
                 }
             }
         } catch (IOException e) {
