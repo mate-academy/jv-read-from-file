@@ -34,6 +34,7 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException("Неверно указано имя файла, или его не существует", e);
         }
+        Arrays.sort(result);
         return result;
     }
 }
