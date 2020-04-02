@@ -27,8 +27,7 @@ public class FileWork {
                     correctWords.append(word.replaceAll("\\W","")).append(" ");
                 }
             }
-            resultString = correctWords.length() > 0
-                    ? correctWords.toString().split(" ") : new String[0];
+            resultString = correctWords.toString().split(" ");
             Arrays.sort(resultString);
         } catch (IOException e) {
             throw new RuntimeException("File doesn't exist", e);
