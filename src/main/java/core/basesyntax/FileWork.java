@@ -1,5 +1,14 @@
 package core.basesyntax;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * <p>Дано файл, потрібно прочитати його вміст і вибрати всі слова що починаються на `w`.
  * Результат повернути у вигляді відсортованого масиву (за замовчуванням). Всі слова повинні
@@ -7,8 +16,38 @@ package core.basesyntax;
  * Приклад: Width world Wide web
  * Результат: web wide width world</p>
  */
+
 public class FileWork {
+    private static final char LETTER = 'w';
+
     public String[] readFromFile(String fileName) {
-        return null;
+        try {
+            File file = new File(fileName);
+            if (file.length() == 0) {
+                return new String[]{};
+            }
+            BufferedReader fileReader = new BufferedReader(new FileReader(file));
+            String line = null;
+            List<String> wordList = new ArrayList<String>();
+            while ((line = fileReader.readLine()) != null) {
+                String[] words = line.replaceAll("[^a-zA-Z ]", "").toLowerCase().split(" ");
+                for (String word : words) {
+                    if (word.charAt(0) == LETTER) {
+                        wordList.add(word);
+                    }
+                }
+            }
+            if (wordList.size() == 0) {
+                return new String[]{};
+            }
+            String[] searchedWords = new String[wordList.size()];
+            System.arraycopy(wordList.toArray(), 0,searchedWords, 0, wordList.size());
+            Arrays.sort(searchedWords);
+            return searchedWords;
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e.getMessage(), e.getCause());
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage(), e.getCause());
+        }
     }
 }
