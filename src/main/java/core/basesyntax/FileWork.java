@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -18,25 +19,27 @@ public class FileWork {
     private static final String CHAR_AND_SPACE_ONLY_REGEXP = "[^A-z ]";
 
     public String[] readFromFile(String fileName) {
-        List<String> words = new ArrayList<>();
+        StringBuilder words = new StringBuilder();
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            String line = readStringFromFile(br);
-            while (line != null) {
+            String line;
+            while ((line = readStringFromFile(br)) != null) {
                 for (String word : line.toLowerCase().replaceAll(CHAR_AND_SPACE_ONLY_REGEXP, "")
                         .split(" ")) {
                     if (word.startsWith(START_OF_WORD)) {
-                        words.add(word);
+                        words.append(word).append(" ");
                     }
                 }
-                line = readStringFromFile(br);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        words.sort(String::compareTo);
-        String[] array = new String[words.size()];
-        words.toArray(array);
-        return array;
+        if (words.length() != 0) {
+            String[] array = words.toString().split(" ");
+            Arrays.sort(array);
+            return array;
+        } else {
+            return new String[0];
+        }
     }
 
     private String readStringFromFile(BufferedReader br) {
