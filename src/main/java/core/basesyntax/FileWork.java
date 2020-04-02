@@ -31,7 +31,8 @@ public class FileWork {
             e.printStackTrace();
         }
         return scannedWords.length() > 0
-                ? Arrays.stream(scannedWords.toString().trim().split(" ")).sorted().toArray(String[]::new)
+                ? Arrays.stream(scannedWords.toString().trim()
+                .split(" ")).sorted().toArray(String[]::new)
                 : new String[0];
     }
 
