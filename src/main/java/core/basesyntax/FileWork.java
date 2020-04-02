@@ -16,28 +16,5 @@ import java.util.List;
  */
 
 public class FileWork {
-    public String[] readFromFile(String fileName) {
-        StringBuilder wordsFromFile = new StringBuilder();
-        Path filePath = Paths.get(fileName);
-        List<String> lines = null;
-        try {
-            lines = Files.readAllLines(filePath);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        for (String text : lines) {
-            for (String soloText : text.split(" ")) {
-                if (soloText.startsWith("w") || soloText.startsWith("W")) {
-                    wordsFromFile.append(soloText.toLowerCase()
-                            .replaceAll("[^a-z]", "")).append(" ");
-                }
-            }
-        }
-
-        String[] result = wordsFromFile.toString().split(" ");
-        Arrays.sort(result);
-
-        return wordsFromFile.length() == 0 ? new String[0] : result;
-    }
 }
