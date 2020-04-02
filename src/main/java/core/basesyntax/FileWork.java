@@ -1,7 +1,7 @@
 package core.basesyntax;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -14,24 +14,20 @@ import java.util.Scanner;
  */
 
 public class FileWork {
-    public static final String BIG_W = "W";
-    public static final String SMALL_W = "w";
+    public static final String CHARACTER = "w";
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
         StringBuilder scannedWords = new StringBuilder();
         try (Scanner scan = new Scanner(file)) {
             while (scan.hasNext()) {
-                String oneString = scan.next();
-                if (oneString.startsWith(SMALL_W) || oneString.startsWith(BIG_W)) {
-                    scannedWords.append(oneString
-                            .toLowerCase()
-                            .replaceAll("[^a-z]", ""))
-                            .append(" ");
+                String oneString = scan.next().toLowerCase();
+                if (oneString.startsWith(CHARACTER)) {
+                    scannedWords.append(oneString.replaceAll("\\W", "")).append(" ");
                 }
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException("Неверно указано имя файла, или его не существует", e);
         }
         return scannedWords.length() > 0
                 ? Arrays.stream(scannedWords.toString().trim()
