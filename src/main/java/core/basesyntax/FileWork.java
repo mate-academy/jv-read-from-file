@@ -14,13 +14,16 @@ import java.util.Scanner;
  */
 
 public class FileWork {
+    public static final String BIG_W = "W";
+    public static final String SMALL_W = "w";
+
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
         StringBuilder scannedWords = new StringBuilder();
         try (Scanner scan = new Scanner(file)) {
             while (scan.hasNext()) {
                 String oneString = scan.next();
-                if (oneString.startsWith("w") || oneString.startsWith("W")) {
+                if (oneString.startsWith(SMALL_W) || oneString.startsWith(BIG_W)) {
                     scannedWords.append(oneString
                             .toLowerCase()
                             .replaceAll("[^a-z]", ""))
