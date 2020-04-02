@@ -18,25 +18,25 @@ import java.util.stream.Stream;
  * Результат: web wide width world</p>
  */
 public class FileWork {
-    private static final char FIRST_LETTER = 'w';
+    private static final String FIRST_LETTER = "w";
 
     public String[] readFromFile(String fileName) {
-        try (Stream<String> lines = Files.lines(Paths.get(fileName))) {
-            List<String> content = lines.collect(Collectors.toList());
-            Pattern p = Pattern.compile("(?i)\\b(" + FIRST_LETTER + "\\w*)\\b");
-            Matcher m = p.matcher(content.toString());
-            List<String> list = new ArrayList<>();
+        try {
+            String lines = Files.readString(Paths.get(fileName));
+            String[] content = lines.toLowerCase().split(" ");
+            StringBuilder words = new StringBuilder();
 
-            while (m.find()) {
-                list.add(m.group().toLowerCase());
+            for (String word: content) {
+                if(word.startsWith(FIRST_LETTER)) {
+                    words.append(word.replaceAll("\\W", "")).append(" ");
+                    System.out.println(words.toString());
+                }
             }
-            String[] arr = new String[list.size()];
-            list.toArray(arr);
+            String[] arr = words.length() > 0 ? words.toString().split(" ") : new String[0];
             Arrays.sort(arr);
             return arr;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            throw new RuntimeException("Hi, i am your headache", e);
         }
-        return null;
     }
 }
