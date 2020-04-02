@@ -18,14 +18,14 @@ public class FileWork {
         try {
             String line = Files.readString(Paths.get(fileName));
             String[] lineList = line.toLowerCase().split(" ");
-            StringBuilder wList = new StringBuilder();
+            StringBuilder wordWList = new StringBuilder();
             for (String word: lineList) {
                 if (word.toLowerCase().startsWith("w")) {
-                    wList.append(word.replaceAll("[^a-zA-Z0-9]","")).append(" "); // please help i have problem with mvn
-                } //  ileWork.java:21:27: Local variable name 'wList' must match pattern '^[a-z]([a-z0-9][a-zA-Z0-9]*)?$'. [LocalVariableName]
+                    wordWList.append(word.replaceAll("\\W","")).append(" ");
+                }
             }
-            if (wList.length() > 0) {
-                result = wList.toString().split(" ");
+            if (wordWList.length() > 0) {
+                result = wordWList.toString().split(" ");
             } else {
                 result = new String[0];
             }
