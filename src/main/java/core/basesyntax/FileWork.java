@@ -14,17 +14,18 @@ import java.util.Arrays;
  */
 public class FileWork {
     private static final String START_OF_WORD = "w";
+    private static final String SPLIT_TEXT = " ";
     private static final String CHAR_AND_SPACE_ONLY_REGEXP = "[^A-z ]";
 
     public String[] readFromFile(String fileName) {
         StringBuilder words = new StringBuilder();
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
-            while ((line = readStringFromFile(br)) != null) {
+            while ((line = br.readLine()) != null) {
                 for (String word : line.toLowerCase().replaceAll(CHAR_AND_SPACE_ONLY_REGEXP, "")
-                        .split(" ")) {
+                        .split(SPLIT_TEXT)) {
                     if (word.startsWith(START_OF_WORD)) {
-                        words.append(word).append(" ");
+                        words.append(word).append(SPLIT_TEXT);
                     }
                 }
             }
@@ -32,20 +33,11 @@ public class FileWork {
             throw new RuntimeException(e);
         }
         if (words.length() != 0) {
-            String[] array = words.toString().split(" ");
+            String[] array = words.toString().split(SPLIT_TEXT);
             Arrays.sort(array);
             return array;
         } else {
             return new String[0];
         }
     }
-
-    private String readStringFromFile(BufferedReader br) {
-        try {
-            return br.readLine();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
 }
