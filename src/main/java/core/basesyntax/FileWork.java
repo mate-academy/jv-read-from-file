@@ -29,7 +29,6 @@ public class FileWork {
             for (String word: content) {
                 if(word.startsWith(FIRST_LETTER)) {
                     words.append(word.replaceAll("\\W", "")).append(" ");
-                    System.out.println(words.toString());
                 }
             }
             String[] arr = words.length() > 0 ? words.toString().split(" ") : new String[0];
