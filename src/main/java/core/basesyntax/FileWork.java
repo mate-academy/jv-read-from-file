@@ -19,6 +19,7 @@ public class FileWork {
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
         StringBuilder scannedWords = new StringBuilder();
+        String[] result;
         try (Scanner scan = new Scanner(file)) {
             while (scan.hasNext()) {
                 String oneString = scan.next().toLowerCase();
@@ -26,13 +27,13 @@ public class FileWork {
                     scannedWords.append(oneString.replaceAll("\\W", "")).append(" ");
                 }
             }
+            result = scannedWords.length() > 0
+                    ? Arrays.stream(scannedWords.toString().trim()
+                    .split(" ")).sorted().toArray(String[]::new)
+                    : new String[0];
         } catch (IOException e) {
             throw new RuntimeException("Неверно указано имя файла, или его не существует", e);
         }
-        return scannedWords.length() > 0
-                ? Arrays.stream(scannedWords.toString().trim()
-                .split(" ")).sorted().toArray(String[]::new)
-                : new String[0];
+        return result;
     }
-
 }
