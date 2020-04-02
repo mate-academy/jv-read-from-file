@@ -18,11 +18,12 @@ import java.util.stream.Stream;
  * Результат: web wide width world</p>
  */
 public class FileWork {
+    private static final char FIRST_LETTER = 'w';
+
     public String[] readFromFile(String fileName) {
-        try {
-            Stream<String> lines = Files.lines(Paths.get(fileName));
+        try (Stream<String> lines = Files.lines(Paths.get(fileName))) {
             List<String> content = lines.collect(Collectors.toList());
-            Pattern p = Pattern.compile("(?i)\\b(w\\w*)\\b");
+            Pattern p = Pattern.compile("(?i)\\b(" + FIRST_LETTER + "\\w*)\\b");
             Matcher m = p.matcher(content.toString());
             List<String> list = new ArrayList<>();
 
