@@ -1,5 +1,10 @@
 package core.basesyntax;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Arrays;
+import java.util.Scanner;
+
 /**
  * <p>Дано файл, потрібно прочитати його вміст і вибрати всі слова що починаються на `w`.
  * Результат повернути у вигляді відсортованого масиву (за замовчуванням). Всі слова повинні
@@ -8,7 +13,30 @@ package core.basesyntax;
  * Результат: web wide width world</p>
  */
 public class FileWork {
+    private static final String BIG_W = "W";
+    private static final String SMALL_W = "w";
+
     public String[] readFromFile(String fileName) {
-        return null;
+        File file = new File(fileName);
+        StringBuilder wordsStartWithW = new StringBuilder();
+        try (Scanner scanner = new Scanner(file)) {
+            if (!scanner.hasNext()) {
+                return new String[0];
+            }
+            while (scanner.hasNext()) {
+                String word = scanner.next();
+                if (word.startsWith(BIG_W) || word.startsWith(SMALL_W)) {
+                    wordsStartWithW.append(word.toLowerCase().replaceAll("[^a-zA-z]", "") + " ");
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        String[] sortedWords = wordsStartWithW.toString().trim().split(" ");
+        if (sortedWords.length <= 1) {
+            return new String[0];
+        }
+        Arrays.sort(sortedWords);
+        return sortedWords;
     }
 }
