@@ -16,16 +16,18 @@ import java.util.Arrays;
 public class FileWork {
 
     public static final char WORD_START_AT = 'w';
+    public static final String ALL_PUNCTUATION = "\\p{Punct}";
 
     public String[] readFromFile(String fileName) {
         StringBuilder stringBuilder = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName));) {
             String line;
             while ((line = reader.readLine()) != null) {
-                stringBuilder.append(line.toLowerCase().replaceAll("\\p{Punct}", ""));
+                stringBuilder.append(line.toLowerCase().replaceAll(ALL_PUNCTUATION, ""));
                 stringBuilder.append(" ");
             }
         } catch (IOException e) {
+            e.printStackTrace();
             return new String[0];
         }
         StringBuilder result = new StringBuilder();
