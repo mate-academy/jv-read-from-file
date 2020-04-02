@@ -24,11 +24,7 @@ public class FileWork {
                     wordWList.append(word.replaceAll("\\W","")).append(" ");
                 }
             }
-            if (wordWList.length() > 0) {
-                result = wordWList.toString().split(" ");
-            } else {
-                result = new String[0];
-            }
+            result = wordWList.length() > 0 ? wordWList.toString().split(" ") : new String[0];
             Arrays.sort(result);
             return result;
         } catch (IOException e) {
