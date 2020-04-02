@@ -17,12 +17,14 @@ import java.util.stream.Stream;
  * Результат: web wide width world</p>
  */
 public class FileWork {
+    public static final String GIVEN_LETTER = "w";
+
     public String[] readFromFile(String fileName) {
         try (Stream<String> lines = Files.lines(Paths.get(fileName))) {
             List<String> words = lines
                     .flatMap(line -> Arrays.stream(line.split("\\s+")))
-                    .filter(word -> word.startsWith("W") || word.startsWith("w"))
                     .map(word -> word.replaceAll("\\W", "").toLowerCase())
+                    .filter(word -> word.startsWith(GIVEN_LETTER))
                     .collect(Collectors.toList());
             Collections.sort(words);
             return words.toArray(new String[] {});
