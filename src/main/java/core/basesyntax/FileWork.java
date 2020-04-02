@@ -15,14 +15,20 @@ import java.util.List;
  * Результат: web wide width world</p>
  */
 public class FileWork {
-    public String[] readFromFile(String fileName) throws IOException {
+    public String[] readFromFile(String fileName) {
 
-        List<String> lines = Files.readAllLines(Paths.get(fileName));
+        List<String> lines;
+        try {
+            lines = Files.readAllLines(Paths.get(fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
         List<String> listResult = new ArrayList<>();
         for (String line : lines) {
             String[] splitLine = line.split(" ");
             for (String word : splitLine) {
-                if (word.charAt(0) == 'w' || word.charAt(0) == 'W') {
+                if (word.toLowerCase().charAt(0) == 'w') {
                     listResult.add(word);
                 }
             }
