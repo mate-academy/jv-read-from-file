@@ -11,7 +11,7 @@ public class FileWork {
 
     public static String[] readFromFile(String fileName) {
         final StringBuilder sb = new StringBuilder();
-        List<String> reader ;
+        List<String> reader;
         Path filePath = Paths.get(fileName);
         String [] split = new String[0];
         try {
