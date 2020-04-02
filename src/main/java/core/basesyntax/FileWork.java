@@ -2,13 +2,7 @@ package core.basesyntax;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * <p>Дано файл, потрібно прочитати його вміст і вибрати всі слова що починаються на `w`.
@@ -27,7 +21,7 @@ public class FileWork {
             StringBuilder words = new StringBuilder();
 
             for (String word: content) {
-                if(word.startsWith(FIRST_LETTER)) {
+                if (word.startsWith(FIRST_LETTER)) {
                     words.append(word.replaceAll("\\W", "")).append(" ");
                 }
             }
