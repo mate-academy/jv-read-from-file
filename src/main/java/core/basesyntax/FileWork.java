@@ -13,7 +13,6 @@ import java.util.Scanner;
  * Результат: web wide width world</p>
  */
 public class FileWork {
-    private static final String BIG_W = "W";
     private static final String SMALL_W = "w";
 
     public String[] readFromFile(String fileName) {
@@ -24,19 +23,16 @@ public class FileWork {
                 return new String[0];
             }
             while (scanner.hasNext()) {
-                String word = scanner.next();
-                if (word.startsWith(BIG_W) || word.startsWith(SMALL_W)) {
-                    wordsStartWithW.append(word.toLowerCase().replaceAll("[^a-zA-z]", "") + " ");
+                String word = scanner.next().toLowerCase();
+                if (word.startsWith(SMALL_W)) {
+                    wordsStartWithW.append(word.replaceAll("[^a-zA-Z]", "") + " ");
                 }
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         String[] sortedWords = wordsStartWithW.toString().trim().split(" ");
-        if (sortedWords.length <= 1) {
-            return new String[0];
-        }
         Arrays.sort(sortedWords);
-        return sortedWords;
+        return sortedWords.length > 1 ? sortedWords : new String[0];
     }
 }
