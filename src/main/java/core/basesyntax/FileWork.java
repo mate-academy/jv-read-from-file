@@ -26,9 +26,8 @@ public class FileWork {
                 stringBuilder.append(line.toLowerCase().replaceAll(ALL_PUNCTUATION, ""));
                 stringBuilder.append(" ");
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new String[0];
+        } catch (RuntimeException | IOException e) {
+            throw new RuntimeException();
         }
         StringBuilder result = new StringBuilder();
         while (stringBuilder.length() != 0) {
