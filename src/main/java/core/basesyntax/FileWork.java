@@ -13,9 +13,7 @@ import java.util.Arrays;
  * Результат: web wide width world</p>
  */
 public class FileWork {
-
     private static final String START_LETTER = "w";
-
 
     public String[] readFromFile(String fileName) {
         StringBuilder stringBuilder = new StringBuilder();
