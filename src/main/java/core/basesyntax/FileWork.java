@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 public class FileWork {
 
-    public static final String W = "w";
+    public static final String START_LETTER = "w";
 
     String[] readFromFile(String fileName) {
 
