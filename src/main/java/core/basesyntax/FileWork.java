@@ -32,7 +32,7 @@ public class FileWork {
             }
             Arrays.sort(result);
         } catch (IOException e) {
-            System.out.println("No files");
+            throw new RuntimeException(e);
         }
         return result;
     }
