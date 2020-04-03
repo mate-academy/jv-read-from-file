@@ -32,12 +32,8 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        if (words.length() != 0) {
-            String[] array = words.toString().split(SPLIT_TEXT);
-            Arrays.sort(array);
-            return array;
-        } else {
-            return new String[0];
-        }
+        String[] array = words.toString().split(SPLIT_TEXT);
+        Arrays.sort(array);
+        return (words.length() == 0) ? new String[0] : array;
     }
 }
