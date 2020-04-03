@@ -21,7 +21,7 @@ public class FileWork {
         StringBuilder result = new StringBuilder();
         try {
             Path path = Paths.get(
-                    "C:\\Users\\Xiaomi\\Desktop\\JAVA\\02.04\\jv-read-from-file\\"
+                    ".jv-read-from-file/../"
                             + fileName);
             byte[] file = Files.readAllBytes(path);
             System.out.println(Arrays.toString(
