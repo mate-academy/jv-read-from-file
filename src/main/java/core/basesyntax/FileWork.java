@@ -23,8 +23,7 @@ public class FileWork {
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println("file not found");
-            e.printStackTrace();
+            throw new RuntimeException("file not found");
         }
 
         if (words.length() <= 0) {
