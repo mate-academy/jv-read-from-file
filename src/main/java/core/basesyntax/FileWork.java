@@ -33,10 +33,10 @@ public class FileWork {
                 return new String[0];
             }
             Arrays.sort(resultArray);
+            reader.close();
             return resultArray;
         } catch (IOException e) {
             e.getStackTrace();
-        }
         return new String[]{};
     }
 }
