@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -16,7 +16,6 @@ import java.util.List;
  */
 public class FileWork {
     public String[] readFromFile(String fileName) {
-
         List<String> lines;
         try {
             lines = Files.readAllLines(Paths.get(fileName));
@@ -32,9 +31,8 @@ public class FileWork {
                 }
             }
         }
-        String[] result = listResult.toArray(String[]::new);
-        Arrays.sort(result);
+        Collections.sort(listResult);
 
-        return result;
+        return listResult.toArray(String[]::new);
     }
 }
