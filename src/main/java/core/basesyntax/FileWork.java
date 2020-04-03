@@ -1,7 +1,7 @@
 package core.basesyntax;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -15,26 +15,24 @@ import java.util.Scanner;
  */
 public class FileWork {
     public String[] readFromFile(String fileName) {
-        if (fileName.isEmpty()) {
+        try {
+            FileReader fileReader;
+            String needStart = "w";
+            fileReader = new FileReader(fileName);
+            Scanner scanner = new Scanner(fileReader);
+            ArrayList<String> wordList = new ArrayList<>();
+            while (scanner.hasNext()) {
+                String word = scanner.next().toLowerCase();
+                if (word.startsWith(needStart)) {
+                    wordList.add(word.toLowerCase().replaceAll("[^a-z]", ""));
+                }
+            }
+            fileReader.close();
+            String[] words = wordList.toArray(String[]::new);
+            Arrays.sort(words);
+            return words;
+        } catch (IOException e) {
             return new String[]{};
         }
-        FileReader fr = null;
-        try {
-            fr = new FileReader(fileName);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        Scanner scanner = new Scanner(fr);
-        ArrayList<String> sb = new ArrayList<>();
-        while (scanner.hasNext()) {
-            String word = scanner.next();
-            if (word.startsWith("W") || word.startsWith("w")) {
-                sb.add(word.toLowerCase().replaceAll("[^a-z]",""));
-            }
-        }
-        String[] words = sb.toArray(String[]::new);
-        Arrays.sort(words);
-        return words;
     }
 }
-
