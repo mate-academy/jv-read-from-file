@@ -37,6 +37,7 @@ public class FileWork {
             return resultArray;
         } catch (IOException e) {
             e.getStackTrace();
+        }
         return new String[]{};
     }
 }
