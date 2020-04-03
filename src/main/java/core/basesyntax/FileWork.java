@@ -2,7 +2,6 @@ package core.basesyntax;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,12 +20,11 @@ public class FileWork {
     private static final char LETTER = 'w';
 
     public String[] readFromFile(String fileName) {
-        try {
-            File file = new File(fileName);
-            if (file.length() == 0) {
-                return new String[]{};
-            }
-            BufferedReader fileReader = new BufferedReader(new FileReader(file));
+        File file = new File(fileName);
+        if (file.length() == 0) {
+            return new String[]{};
+        }
+        try (BufferedReader fileReader = new BufferedReader(new FileReader(file))) {
             String line = null;
             List<String> wordList = new ArrayList<String>();
             while ((line = fileReader.readLine()) != null) {
@@ -42,8 +40,6 @@ public class FileWork {
             }
             Collections.sort(wordList);
             return wordList.toArray(new String[wordList.size()]);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e.getMessage(), e.getCause());
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage(), e.getCause());
         }
