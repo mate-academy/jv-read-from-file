@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -40,10 +40,8 @@ public class FileWork {
             if (wordList.size() == 0) {
                 return new String[]{};
             }
-            String[] searchedWords = new String[wordList.size()];
-            System.arraycopy(wordList.toArray(), 0,searchedWords, 0, wordList.size());
-            Arrays.sort(searchedWords);
-            return searchedWords;
+            Collections.sort(wordList);
+            return wordList.toArray(new String[wordList.size()]);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e.getMessage(), e.getCause());
         } catch (IOException e) {
