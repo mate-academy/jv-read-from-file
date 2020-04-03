@@ -1,14 +1,13 @@
 package core.basesyntax;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
 
-    public static final char W = 'w';
+    public static final String W = "w";
 
     String[] readFromFile(String fileName) {
 
@@ -16,21 +15,23 @@ public class FileWork {
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String nextLine;
             while ((nextLine = br.readLine()) != null) {
-                result.append(nextLine);  //read an entire line as a String:
+                String[] words = nextLine.split(" ");
+                for (String s : words) {
+                    if (s.toLowerCase().startsWith(W)) {
+                        result.append(s.toLowerCase().replaceAll("\\W", "")
+                                + " ");
+                    }
+                }
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("File Not Found Exception", e);
+            String[] resultSt = result.toString().split(" ");
+            if (resultSt[0].equals("")) {
+                return new String[0];
+            }
+            Arrays.sort(resultSt);
+            return resultSt;
         } catch (IOException e) {
-            throw new RuntimeException("No File", e);
+            throw new RuntimeException("File not found! " + e);
         }
-        String[] res = result.toString().toLowerCase().
-                replaceAll("[^A-Za-zА-Яа-я ]", "").split(" ");
-
-        return res.length == 0 ? new String[0] : Arrays
-                .stream(res)
-                .filter(word -> word.charAt(0) == W)
-                .sorted()
-                .toArray(String[]::new);
     }
 }
 
