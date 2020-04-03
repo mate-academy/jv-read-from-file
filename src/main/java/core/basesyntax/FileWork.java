@@ -21,9 +21,6 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
-        if (file.length() == 0) {
-            return new String[]{};
-        }
         try (BufferedReader fileReader = new BufferedReader(new FileReader(file))) {
             String line = null;
             List<String> wordList = new ArrayList<String>();
