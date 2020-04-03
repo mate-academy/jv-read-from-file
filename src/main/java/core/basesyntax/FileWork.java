@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * <p>Дано файл, потрібно прочитати його вміст і вибрати всі слова що починаються на `w`.
@@ -22,18 +23,22 @@ public class FileWork {
             return new String[0];
         }
 
-        String line = "";
+        StringBuilder line = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
-            line = bufferedReader.readLine();
+            line.append(bufferedReader.readLine());
             while (bufferedReader.ready()) {
-                line += " " + bufferedReader.readLine();
+                line.append(" " + bufferedReader.readLine());
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        line = line.toLowerCase().replaceAll("[^a-zA-Z ]", "");
 
-        String[] splitWords = line.split(" ");
+        String[] splitWords = line
+                .toString()
+                .toLowerCase()
+                .replaceAll("[^a-zA-Z ]", "")
+                .split(" ");
+
         String rightWords = "";
         for (int i = 0; i < splitWords.length; i++) {
             if (splitWords[i].startsWith(FIRST_WORD)) {
@@ -46,16 +51,7 @@ public class FileWork {
         }
 
         String[] finishArray = rightWords.split(" ");
-
-        for (int i = 0; i < finishArray.length - 1; i++) {
-            for (int j = i + 1; j < finishArray.length; j++) {
-                if (finishArray[i].compareTo(finishArray[j]) > 0) {
-                    String temp = finishArray[i];
-                    finishArray[i] = finishArray[j];
-                    finishArray[j] = temp;
-                }
-            }
-        }
+        Arrays.sort(finishArray);
         return finishArray;
     }
 }
