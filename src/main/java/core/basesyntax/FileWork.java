@@ -24,7 +24,7 @@ public class FileWork {
                 }
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Can not read file property", e);
         }
         return stringBuilder.length() == 0
                 ? new String[0]
