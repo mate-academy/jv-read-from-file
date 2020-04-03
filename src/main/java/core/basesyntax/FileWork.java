@@ -1,10 +1,8 @@
 package core.basesyntax;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 
 /**
@@ -15,20 +13,23 @@ import java.util.Arrays;
  * Результат: web wide width world</p>
  */
 public class FileWork {
-    private final String checkingLetter = "w";
-
+    private static final String START_LETTER = "w";
+    
     public String[] readFromFile(String fileName) {
         StringBuilder result = new StringBuilder();
-        try {
-            Path path = Paths.get("jv-read-from/../" + fileName);
-            byte[] file = Files.readAllBytes(path);
-            for (String str : new String(file, StandardCharsets.UTF_8).split(" ")) {
-                if (str.toLowerCase().startsWith(checkingLetter)) {
-                    result.append(str.toLowerCase().replaceAll("\\W", "") + " ");
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String readLine;
+            while ((readLine = reader.readLine()) != null) {
+                String[] bufferArray = readLine.split(" ");
+                for (String line : bufferArray) {
+                    if (line.toLowerCase().startsWith(START_LETTER)) {
+                        result.append(line.toLowerCase().replaceAll("\\W", "")
+                                + " ");
+                    }
                 }
             }
             String[] resultArray = result.toString().split(" ");
-            if (resultArray.length == 1 && resultArray[0].equals("") || resultArray.length == 0) {
+            if (resultArray.length == 1 && resultArray[0].equals("")) {
                 return new String[0];
             }
             Arrays.sort(resultArray);
