@@ -18,16 +18,16 @@ public class FileWork {
         try {
             String lineFileName = Files.readString(Paths.get(fileName));
             String[] arrayFile = lineFileName.toLowerCase().split(" ");
-            StringBuilder builder = new StringBuilder();
+            StringBuilder BasicLine = new StringBuilder();
             for (String temp : arrayFile) {
                 if (temp.toLowerCase().startsWith("w")) {
-                    builder.append(temp.replaceAll("\\W", "")).append(" ");
+                    BasicLine.append(temp.replaceAll("\\W", "")).append(" ");
                 }
             }
-            wordsStartWithW = builder.toString().split(" ");
+            wordsStartWithW = BasicLine.toString().split(" ");
             Arrays.sort(wordsStartWithW);
 
-            return builder.length() > 0 ? wordsStartWithW : new String[0];
+            return BasicLine.length() > 0 ? wordsStartWithW : new String[0];
         } catch (IOException e) {
             throw new RuntimeException("No such file", e);
         }
