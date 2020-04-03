@@ -17,6 +17,11 @@ public class FileWork {
             }
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
+            try {
+                throw ex;
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+            }
         }
         String[] result = fullText
                 .toString()
