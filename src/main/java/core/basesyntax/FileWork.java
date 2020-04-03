@@ -21,8 +21,7 @@ public class FileWork {
         String[] result = fullText
                 .toString()
                 .toLowerCase()
-                .replaceAll("[^A-Za-zА-Яа-я ]", "")
-                .concat(" ")
+                .replaceAll("[[^a-z\\s]]", "")
                 .split(" ");
         return Arrays.stream(result)
                 .filter(word -> word.charAt(0) == CHECKED_LATTER)
