@@ -21,8 +21,7 @@ public class FileWork {
         try {
             lines = Files.readAllLines(Paths.get(fileName));
         } catch (IOException e) {
-            e.printStackTrace();
-            return null;
+            throw new RuntimeException("HEI IOException caught.", e);
         }
         List<String> listResult = new ArrayList<>();
         for (String line : lines) {
