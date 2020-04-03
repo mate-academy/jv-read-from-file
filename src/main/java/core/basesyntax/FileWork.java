@@ -1,8 +1,8 @@
 package core.basesyntax;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Arrays;
 
 /**
@@ -18,12 +18,13 @@ public class FileWork {
     public static String[] readFromFile(String fileName) {
         StringBuilder sb = new StringBuilder();
         String text = "";
-        try {
-            text = Files.readString(Paths.get(fileName));
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
+            while (bufferedReader.ready()) {
+                text += bufferedReader.readLine();
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-
         String[] arrayOfWords = text.toLowerCase().split(" ");
         Arrays.sort(arrayOfWords);
         for (int i = 0; i < arrayOfWords.length; i++) {
