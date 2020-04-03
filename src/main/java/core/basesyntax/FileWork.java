@@ -28,7 +28,7 @@ public class FileWork {
             Arrays.sort(result);
             return wordWList.length() > 0 ? result : new String[0];
         } catch (IOException e) {
-            throw new RuntimeException("No such file");
+            throw new RuntimeException("No such file", e);
         }
     }
 }
