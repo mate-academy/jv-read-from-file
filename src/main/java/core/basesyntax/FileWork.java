@@ -25,7 +25,7 @@ public class FileWork {
                 }
             }
         } catch (FileNotFoundException e) {
-            throw new RuntimeException();
+            throw new RuntimeException("there is no such file");
         }
         if (sb.length() == 0) {
             return new String[0];
