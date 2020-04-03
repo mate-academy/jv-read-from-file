@@ -23,7 +23,7 @@ public class FileWork {
         try {
             allLines = Files.lines(Paths.get(fileName));
         } catch (IOException e) {
-            throw new RuntimeException();
+            throw new RuntimeException("File error", e);
         }
 
         return Arrays.stream(allLines.collect(Collectors.joining(" ")).split(" "))
