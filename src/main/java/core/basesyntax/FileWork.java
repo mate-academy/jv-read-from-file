@@ -36,12 +36,11 @@ public class FileWork {
                 }
             }
         }
+        String[] result = new String[0];
         if (wordsStartW.length() > 0) {
-            String[] result = wordsStartW.toString().split(" ");
+            result = wordsStartW.toString().split(" ");
             Arrays.sort(result);
-            return result;
-        } else {
-            return new String[0];
         }
+        return result;
     }
 }
