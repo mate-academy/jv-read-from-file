@@ -14,7 +14,12 @@ import java.util.Arrays;
  */
 public class FileWork {
     private static final String START_LETTER = "w";
-    
+
+    public static void main(String[] args) {
+        FileWork a = new FileWork();
+        a.readFromFile("dsadsa");
+    }
+
     public String[] readFromFile(String fileName) {
         StringBuilder result = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
@@ -35,7 +40,7 @@ public class FileWork {
             Arrays.sort(resultArray);
             return resultArray;
         } catch (IOException e) {
-            throw new RuntimeException("File not found!");
+            throw new RuntimeException("File not found! " + e.getMessage());
         }
     }
 }
