@@ -23,7 +23,7 @@ public class FileWork {
         try {
             words = Files.readString(Path.of(fileName)).toLowerCase().split("\\W+");
         } catch (IOException e) {
-            throw new RuntimeException("No file");
+            throw new RuntimeException("No file", e);
         }
         List<String> list = new ArrayList<>();
         for (String s : words) {
