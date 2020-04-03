@@ -20,12 +20,11 @@ public class FileWork {
         StringBuilder inputText = new StringBuilder();
         String inputLine = null;
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            inputLine = br.readLine();
-            while (inputLine != null) {
+            while (br.ready()) {
+                inputLine = br.readLine();
                 inputText.append(inputLine.toLowerCase()
                         .replaceAll("\\p{Punct}", ""))
                         .append(WHITESPACE);
-                inputLine = br.readLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
