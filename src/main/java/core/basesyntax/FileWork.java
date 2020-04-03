@@ -28,14 +28,11 @@ public class FileWork {
             String[] splitLine = line.split(" ");
             for (String word : splitLine) {
                 if (word.toLowerCase().charAt(0) == 'w') {
-                    listResult.add(word);
+                    listResult.add(word.replaceAll("\\W+", "").toLowerCase());
                 }
             }
         }
-        String[] result = new String[listResult.size()];
-        for (int i = 0; i < listResult.size(); i++) {
-            result[i] = listResult.get(i).toLowerCase().replaceAll("\\W+", "");
-        }
+        String[] result = listResult.toArray(String[]::new);
         Arrays.sort(result);
 
         return result;
