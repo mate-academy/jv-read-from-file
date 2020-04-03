@@ -29,7 +29,7 @@ public class FileWork {
                 }
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            throw new RuntimeException("There is no file", e);
         }
         String[] sortedWords = wordsStartWithW.toString().trim().split(" ");
         Arrays.sort(sortedWords);
