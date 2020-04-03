@@ -15,7 +15,7 @@ import java.util.Arrays;
 public class FileWork {
     private static final String START_LETTER = "w";
     
-    public String[] readFromFile(String fileName) throws IOException {
+    public String[] readFromFile(String fileName) {
         StringBuilder result = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String readLine;
@@ -35,7 +35,7 @@ public class FileWork {
             Arrays.sort(resultArray);
             return resultArray;
         } catch (IOException e) {
-            throw new IOException(e.getMessage());
+            throw new RuntimeException("File not found!");
         }
     }
 }
