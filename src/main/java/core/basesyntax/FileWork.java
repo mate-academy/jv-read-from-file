@@ -15,9 +15,11 @@ import java.util.Arrays;
 public class FileWork {
     private static final String START_LETTER = "w";
     
-    public String[] readFromFile(String fileName) {
+    public String[] readFromFile(String fileName) throws IOException {
         StringBuilder result = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader(fileName));
             String readLine;
             while ((readLine = reader.readLine()) != null) {
                 String[] bufferArray = readLine.split(" ");
@@ -33,10 +35,11 @@ public class FileWork {
                 return new String[0];
             }
             Arrays.sort(resultArray);
-            reader.close();
             return resultArray;
         } catch (IOException e) {
-            e.getStackTrace();
+            System.out.println(e.getMessage());
+        } finally {
+            reader.close();
         }
         return new String[]{};
     }
