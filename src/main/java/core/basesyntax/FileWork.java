@@ -2,7 +2,6 @@ package core.basesyntax;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 /**
@@ -14,7 +13,7 @@ import java.util.Scanner;
  */
 
 public class FileWork {
-    public String[] readFromFile(String fileName) throws IOException {
+    public String[] readFromFile(String fileName) {
         File file = new File(fileName);
         StringBuilder stringBuilder = new StringBuilder();
         try (Scanner scanner = new Scanner(file)) {
