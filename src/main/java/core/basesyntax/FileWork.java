@@ -1,5 +1,6 @@
 package core.basesyntax;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,8 +32,10 @@ public class FileWork {
             String[] words = wordList.toArray(String[]::new);
             Arrays.sort(words);
             return words;
+        } catch (FileNotFoundException e) {
+            return new String[0];
         } catch (IOException e) {
-            return new String[]{};
+            throw new RuntimeException("Can't read file", e);
         }
     }
 }
