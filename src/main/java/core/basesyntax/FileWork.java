@@ -19,7 +19,7 @@ public class FileWork {
             System.out.println(ex.getMessage());
             try {
                 throw ex;
-            } catch (Exception e){
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
