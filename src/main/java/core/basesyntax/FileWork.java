@@ -16,20 +16,15 @@ public class FileWork {
                 fullText.append(readLine);
             }
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-            try {
-                throw ex;
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+            throw new RuntimeException("Can not read file property", ex);
         }
         String[] result = fullText
                 .toString()
                 .toLowerCase()
                 .replaceAll("[^A-Za-zА-Яа-я ]", "")
+                .concat(" ")
                 .split(" ");
-        return fullText.length() == 0 ? new String[0] : Arrays
-                .stream(result)
+        return Arrays.stream(result)
                 .filter(word -> word.charAt(0) == CHECKED_LATTER)
                 .sorted()
                 .toArray(String[]::new);
