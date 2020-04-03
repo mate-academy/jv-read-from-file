@@ -26,7 +26,7 @@ public class FileWork {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return sb.length() > 0
                 ? Arrays.stream(sb.toString().trim().split(" ")).sorted().toArray(String[]::new)
