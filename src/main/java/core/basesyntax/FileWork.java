@@ -22,29 +22,24 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         Path file = Paths.get(fileName);
-        List<String> allLines = null;
+        List<String> allLines;
         try {
             allLines = Files.readAllLines(file);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("No such file found!");
         }
 
         List<String> answerList = new ArrayList<>();
         Pattern pattern = Pattern.compile(REGEX);
-        if (allLines != null) {
-            for (String s : allLines) {
-                Matcher matcher = pattern.matcher(s);
-                while (matcher.find()) {
-                    answerList.add(s.substring(matcher.start(), matcher.end()).toLowerCase());
-                }
+        for (String s : allLines) {
+            Matcher matcher = pattern.matcher(s);
+            while (matcher.find()) {
+                answerList.add(s.substring(matcher.start(), matcher.end()).toLowerCase());
             }
         }
 
         String[] answer = new String[answerList.size()];
-        for (int i = 0; i < answer.length; i++) {
-            answer[i] = answerList.get(i);
-        }
-        Arrays.sort(answer);
+        Arrays.sort(answerList.toArray(answer));
         return answer;
     }
 }
