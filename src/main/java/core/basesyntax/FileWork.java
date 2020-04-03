@@ -20,12 +20,8 @@ public class FileWork {
     public String[] readFromFile(String fileName) {
         StringBuilder result = new StringBuilder();
         try {
-            Path path = Paths.get(
-                    ".jv-read-from-file/../"
-                            + fileName);
+            Path path = Paths.get("jv-read-from/../" + fileName);
             byte[] file = Files.readAllBytes(path);
-            System.out.println(Arrays.toString(
-                    new String(file, StandardCharsets.UTF_8).split(" ")));
             for (String str : new String(file, StandardCharsets.UTF_8).split(" ")) {
                 if (str.toLowerCase().startsWith(checkingLetter)) {
                     result.append(str.toLowerCase().replaceAll("\\W", "") + " ");
