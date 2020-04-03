@@ -26,8 +26,8 @@ public class FileWork {
                 stringBuilder.append(line.toLowerCase().replaceAll(ALL_PUNCTUATION, ""));
                 stringBuilder.append(" ");
             }
-        } catch (RuntimeException | IOException e) {
-            throw new RuntimeException();
+        } catch (IOException e) {
+            throw new RuntimeException("Cant read file", e);
         }
         StringBuilder result = new StringBuilder();
         while (stringBuilder.length() != 0) {
@@ -40,8 +40,9 @@ public class FileWork {
             String[] finalResult = result.toString().split(" ");
             Arrays.sort(finalResult);
             return finalResult;
-        } else {
-            return new String[0];
         }
+        return new String[0];
     }
 }
+
+
