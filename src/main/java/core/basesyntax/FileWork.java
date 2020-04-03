@@ -34,7 +34,7 @@ public class FileWork {
                 line = bufferedReader.readLine();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         Collections.sort(words);
         return words.toArray(new String[words.size()]);
