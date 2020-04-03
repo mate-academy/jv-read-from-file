@@ -35,8 +35,7 @@ public class FileWork {
             Collections.sort(listOfWords);
             return listOfWords.toArray(new String[0]);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        return null;
     }
 }
