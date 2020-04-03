@@ -17,7 +17,6 @@ import java.util.List;
 public class FileWork {
 
     public static final String LETTER = "w";
-    public static final String REGEX = "\\W";
 
     public String[] readFromFile(String fileName) {
         List<String> words = new ArrayList<>();
@@ -26,7 +25,7 @@ public class FileWork {
             while (line != null) {
                 String[] splitData = line.toLowerCase().split(" ");
                 for (String word : splitData) {
-                    word = word.replaceAll(REGEX, "");
+                    word = word.replaceAll("\\W", "");
                     if (word.startsWith(LETTER)) {
                         words.add(word);
                     }
