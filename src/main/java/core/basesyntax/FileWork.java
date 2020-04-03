@@ -17,7 +17,7 @@ public class FileWork {
             while ((nextLine = br.readLine()) != null) {
                 String[] words = nextLine.split(" ");
                 for (String s : words) {
-                    if (s.toLowerCase().startsWith(W)) {
+                    if (s.toLowerCase().startsWith(START_LETTER)) {
                         result.append(s.toLowerCase().replaceAll("\\W", "")
                                 + " ");
                     }
