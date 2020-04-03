@@ -19,7 +19,6 @@ public class FileWork {
         StringBuilder fileText = new StringBuilder();
         Path filePath = Paths.get(fileName);
         List<String> list = null;
-
         try {
             list = Files.readAllLines(filePath);
         } catch (IOException e) {
@@ -28,7 +27,7 @@ public class FileWork {
 
         for (String line : list) {
             for (String word : line.split(" ")) {
-                if (word.startsWith("w") || word.startsWith("W")) {
+                if (word.toLowerCase().startsWith("w")) {
                     fileText.append(word.toLowerCase()
                             .replaceAll("\\W", "")).append(" ");
                 }
