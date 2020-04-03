@@ -1,6 +1,7 @@
 package core.basesyntax;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
@@ -26,8 +27,10 @@ public class FileWork {
                         .replaceAll("\\p{Punct}", ""))
                         .append(WHITESPACE);
             }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("No such file", e);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Can't read from file", e);
         }
 
         if (inputText.length() != 0) {
