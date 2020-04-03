@@ -1,5 +1,6 @@
 package core.basesyntax;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -18,12 +19,14 @@ public class FileWork {
         List<String> stringsFromFile = null;
         try {
             stringsFromFile = Files.readAllLines(Paths.get(fileName));
+        } catch (FileNotFoundException e) {
+            return new String[0];
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Not valid data", e);
         }
         StringBuilder wordsStartsWithW = new StringBuilder();
         for (String oneString : stringsFromFile) {
-            oneString = oneString.toLowerCase().replaceAll("\\?|\\!|\\.|\\,|\\;|\\:", "");
+            oneString = oneString.toLowerCase().replaceAll("\\p{P}", "");
             String[] words = oneString.split(" ");
             for (int i = 0; i < words.length; i++) {
                 if (words[i].charAt(0) == 'w') {
