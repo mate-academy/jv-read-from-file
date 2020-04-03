@@ -30,14 +30,12 @@ public class FileWork {
             String[] splittedSentence = sentence.toLowerCase().split(" ");
             for (String word : splittedSentence) {
                 if (word.startsWith(FIRST_LETTER)) {
-                    resultList.add(word);
+                    resultList.add(word.replaceAll("\\W", ""));
                 }
             }
         }
-        String[] solution = new String[resultList.size()];
-        for (int i = 0; i < resultList.size(); i++) {
-            solution[i] = resultList.get(i).replaceAll("\\W", "");
-        }
+
+        String[] solution = resultList.toArray(new String[resultList.size()]);
         Arrays.sort(solution);
         return solution;
     }
