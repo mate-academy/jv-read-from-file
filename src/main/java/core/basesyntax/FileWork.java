@@ -14,15 +14,18 @@ import java.util.Arrays;
  * Результат: web wide width world</p>
  */
 public class FileWork {
+    public static final String LETTER_W_IN_LOWER_CASE  = "w";
+
     public String[] readFromFile(String fileName) {
         StringBuilder sb = new StringBuilder();
         String[] result;
+
         try {
             Path filePath = Paths.get(fileName);
             String content = Files.readString(filePath).toLowerCase();
             String[] words = content.split(" ");
             for (String word: words) {
-                if (word.startsWith("w")) {
+                if (word.startsWith(LETTER_W_IN_LOWER_CASE)) {
                     sb.append(word.replaceAll("\\W", "")).append(" ");
                 }
             }
@@ -31,6 +34,7 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException("File not found", e);
         }
+
         return sb.length() > 0 ? result : new String[0];
     }
 }
