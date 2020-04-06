@@ -14,7 +14,7 @@ import java.util.Arrays;
  * Результат: web wide width world</p>
  */
 public class FileWork {
-    public static final String LETTER_W_IN_LOWER_CASE  = "w";
+    public static final String LETTER_W_IN_LOWER_CASE = "w";
 
     public String[] readFromFile(String fileName) {
         StringBuilder sb = new StringBuilder();
