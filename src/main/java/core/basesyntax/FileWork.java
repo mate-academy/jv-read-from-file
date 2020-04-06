@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -25,7 +26,7 @@ public class FileWork {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        ArrayList<String> wordsList = new ArrayList<>();
+        List<String> wordsList = new ArrayList<>();
 
         while (reader.hasNextLine()) {
             String line = reader.nextLine();
