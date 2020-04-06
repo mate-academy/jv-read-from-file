@@ -24,21 +24,21 @@ public class FileWork {
         try {
             reader = new Scanner(file);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        List<String> wordsList = new ArrayList<>();
+            throw new RuntimeException("file not found");
+        } finally {
+            List<String> wordsList = new ArrayList<>();
 
-        while (reader.hasNextLine()) {
-            String line = reader.nextLine();
-            String[] temp = line.split(" ");
-            for (String word : temp) {
-                if (word.toLowerCase().startsWith(LETTER)) {
-                    wordsList.add(word.toLowerCase().replaceAll("[^a-z\\s]", ""));
+            while (reader.hasNextLine()) {
+                String line = reader.nextLine();
+                String[] temp = line.split(" ");
+                for (String word : temp) {
+                    if (word.toLowerCase().startsWith(LETTER)) {
+                        wordsList.add(word.toLowerCase().replaceAll("[^a-z\\s]", ""));
+                    }
                 }
             }
+            Collections.sort(wordsList);
+            return wordsList.toArray(new String[wordsList.size()]);
         }
-        reader.close();
-        Collections.sort(wordsList);
-        return wordsList.toArray(new String[wordsList.size()]);
     }
 }
