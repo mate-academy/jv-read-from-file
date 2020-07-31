@@ -18,13 +18,13 @@ public class FileWork {
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
         List<String> textFromFile = new ArrayList<>();
-        final char startsWith = 'w';
+        final char STARTSWITH = 'w';
         try {
             Scanner sc = new Scanner(file);
             while (sc.hasNextLine()) {
                 String[] words = sc.nextLine().toLowerCase().split(" ");
                 for (int i = 0; i < words.length; i++) {
-                    if (words[i].startsWith(String.valueOf(startsWith))) {
+                    if (words[i].startsWith(String.valueOf(STARTSWITH))) {
                         textFromFile.add(words[i].replaceAll("[, '!.)?-]", ""));
                     }
                 }
