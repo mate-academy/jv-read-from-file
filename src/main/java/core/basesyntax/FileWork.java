@@ -9,6 +9,7 @@ import java.util.List;
 
 public class FileWork {
     private static final String KEY = "w";
+
     public String[] readFromFile(String fileName) {
         List<String> result = new ArrayList<>();
         try {
