@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FileWork {
+    private static final String KEY = "w";
     public String[] readFromFile(String fileName) {
         List<String> result = new ArrayList<>();
         try {
@@ -17,7 +18,7 @@ public class FileWork {
                 line = line.replaceAll("[^a-z]", " ");
                 String[] separateWords = line.split("\\s+");
                 for (String word : separateWords) {
-                    if (word.startsWith("w")) {
+                    if (word.startsWith(KEY)) {
                         result.add(word);
                     }
                 }
