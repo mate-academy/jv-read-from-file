@@ -1,6 +1,7 @@
 package core.basesyntax;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,7 +24,7 @@ public class FileWork {
                 fileContent.append(reader.readLine());
             }
         } catch (Exception e) {
-            System.out.println("The file with such name does not exist");
+            throw new RuntimeException(e);
         }
 
         List<String> listOfWords = new ArrayList<>();
