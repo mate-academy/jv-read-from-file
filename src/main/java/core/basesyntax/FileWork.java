@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * <p>Дано файл, потрібно прочитати його вміст і вибрати всі слова що починаються на `w`.
@@ -18,15 +18,20 @@ import java.util.stream.Collectors;
 public class FileWork {
     public String[] readFromFile(String fileName) {
         Path pathToFile = Paths.get(fileName);
+        List<String> stringsFromFile = new ArrayList<>();
         if (Files.exists(pathToFile) & Files.isReadable(pathToFile)) {
             try {
-                List<String[]> collect = Files.lines(pathToFile)
+                Files.lines(pathToFile)
                         .map(x -> Arrays.stream(x.split(" "))
-                        .map(z -> z.toLowerCase())
-                        .filter(z -> z.startsWith("w"))
-                        .toArray(String[]::new))
-                        .collect(Collectors.toList());
-                return arrayCreator(collect);
+                                .map(String::toLowerCase)
+                                .filter(z -> {
+                                    if (z.startsWith("w")) {
+                                        stringsFromFile.add(z);
+                                        return true;
+                                    }
+                                    return false;
+                                }).toArray(String[]::new)).count();
+                return arrayCreator(stringsFromFile);
             } catch (IOException e) {
                 throw new RuntimeException("Exception when reading a file !!!");
             }
@@ -34,22 +39,10 @@ public class FileWork {
         return new String[0];
     }
 
-    private static int findSize(List<String[]> list) {
-        int size = 0;
+    private String[] arrayCreator(List<String> list) {
+        String[] stringStartWithW = new String[list.size()];
         for (int i = 0; i < list.size(); i++) {
-            size += list.get(i).length;
-        }
-        return size;
-    }
-
-    private static String[] arrayCreator(List<String[]> list) {
-        String[] stringStartWithW = new String[findSize(list)];
-        int count = 0;
-        for (int i = 0; i < list.size(); i++) {
-            for (int j = 0; j < list.get(i).length; j++) {
-                stringStartWithW[count] = list.get(i)[j].replaceAll("\\W", "");
-                count++;
-            }
+            stringStartWithW[i] = list.get(i).replaceAll("\\W", "");
         }
         Arrays.sort(stringStartWithW);
         return stringStartWithW;
