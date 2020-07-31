@@ -44,9 +44,10 @@ public class FileWork {
             return result[0] != "" ? result : new String[0];
         } catch (FileNotFoundException e) {
             System.out.println("File with name " + fileName + " not found!");
+            throw new RuntimeException(e);
         } catch (IOException e) {
             e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        return new String[0];
     }
 }
