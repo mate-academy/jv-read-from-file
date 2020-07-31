@@ -2,10 +2,7 @@ package core.basesyntax;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * <p>Дано файл, потрібно прочитати його вміст і вибрати всі слова що починаються на `w`.
@@ -17,7 +14,7 @@ import java.util.Scanner;
 public class FileWork {
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
-        List<String> textFromFile = new ArrayList<>();
+        ArrayList <String> textFromFile = new ArrayList<>();
         final char STARTSWITH = 'w';
         try {
             Scanner sc = new Scanner(file);
@@ -32,11 +29,11 @@ public class FileWork {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Collections.sort(textFromFile);
         String[] finalStr = new String[textFromFile.size()];
         for (int i = 0; i < textFromFile.size(); i++) {
             finalStr[i] = textFromFile.get(i);
         }
+        Arrays.sort(finalStr);
         return finalStr;
     }
 }
