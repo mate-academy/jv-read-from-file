@@ -1,5 +1,9 @@
 package core.basesyntax;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.stream.Stream;
+
 /**
  * <p>Дано файл, потрібно прочитати його вміст і вибрати всі слова що починаються на `w`.
  * Результат повернути у вигляді відсортованого масиву (за замовчуванням). Всі слова повинні
@@ -8,7 +12,25 @@ package core.basesyntax;
  * Результат: web wide width world</p>
  */
 public class FileWork {
-    public String[] readFromFile(String fileName) {
-        return null;
+
+    private static final String FIRST_CHAR = "w";
+
+    public static String[] readFromFile(String fileName) {
+        String symbols = "[-/./,/'/!/)/(/?/\r/\n]*";
+        String fileText = "";
+        try (FileReader fileReader = new FileReader(fileName)) {
+            int oneLetter;
+            while ((oneLetter = fileReader.read()) != -1) {
+                fileText += (char) oneLetter;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
+        return fileText.equals("") ? new String[0] : Stream.of(fileText.split(" "))
+                .map(String::toLowerCase)
+                .filter(word -> word.startsWith(FIRST_CHAR))
+                .map(word -> word.replaceAll(symbols, ""))
+                .sorted(String::compareTo)
+                .toArray(String[]::new);
     }
 }
