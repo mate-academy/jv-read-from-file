@@ -15,7 +15,7 @@ public class FileWork {
 
     private static final String FIRST_CHAR = "w";
 
-    public static String[] readFromFile(String fileName) {
+    public String[] readFromFile(String fileName) {
         String symbols = "[-/./,/'/!/)/(/?/\r/\n]*";
         String fileText = "";
         try (FileReader fileReader = new FileReader(fileName)) {
@@ -27,7 +27,7 @@ public class FileWork {
             throw new RuntimeException();
         }
         return fileText.equals("") ? new String[0] : Stream.of(fileText.split(" "))
-                .map(String::toLowerCase)
+                .map(word -> word.toLowerCase())
                 .filter(word -> word.startsWith(FIRST_CHAR))
                 .map(word -> word.replaceAll(symbols, ""))
                 .sorted(String::compareTo)
