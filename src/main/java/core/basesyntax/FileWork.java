@@ -13,12 +13,15 @@ import java.util.stream.Stream;
  * Результат: web wide width world</p>
  */
 public class FileWork {
+
+    private static final String WORDS_START = "w";
+
     public String[] readFromFile(String fileName) {
         try {
             return Files.lines(Path.of(fileName))
                     .map(String::toLowerCase)
                     .flatMap(line -> Stream.of(line.split("\\W")))
-                    .filter(word -> word.startsWith("w"))
+                    .filter(word -> word.startsWith(WORDS_START))
                     .sorted().toArray(String[]::new);
         } catch (IOException e) {
             throw new RuntimeException(e);
