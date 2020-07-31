@@ -21,8 +21,7 @@ public class FileWork {
                     .filter(word -> word.startsWith("w"))
                     .sorted().toArray(String[]::new);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        return new String[0];
     }
 }
