@@ -25,8 +25,7 @@ public class FileWork {
             List<String> resultList = new ArrayList<>();
             String file = Files.readString(testFilePath)
                     .toLowerCase()
-                    .replaceAll("\\W", " ")
-                    .replaceAll("\\s+", " ")
+                    .replaceAll("(\\W)(\\s+)", " ")
                     .trim();
             if (file.length() > 0) {
                 for (String word : file.split(" ")) {
@@ -38,7 +37,7 @@ public class FileWork {
                 return resultList.toArray(new String[0]);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Problem which file");
         }
         return new String[]{};
     }
