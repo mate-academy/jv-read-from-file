@@ -16,7 +16,7 @@ import java.util.Scanner;
  * Результат: web wide width world</p>
  */
 public class FileWork {
-    public String[] readFromFile(String fileName) {
+    public String[] readFromFile(String fileName) throws RuntimeException {
         List<String> array = new ArrayList<>();
         Path path = Paths.get(fileName);
 
@@ -30,7 +30,7 @@ public class FileWork {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         Collections.sort(array);
         String[] resultArray = new String[array.size()];
