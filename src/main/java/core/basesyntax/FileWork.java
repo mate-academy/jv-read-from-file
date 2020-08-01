@@ -22,7 +22,7 @@ public class FileWork {
         if (Files.exists(pathToFile) & Files.isReadable(pathToFile)) {
             try {
                 Files.lines(pathToFile)
-                        .map(x -> Arrays.stream(x.split(" "))
+                        .map(x -> Arrays.stream(x.split("\\W"))
                                 .map(String::toLowerCase)
                                 .filter(z -> {
                                     if (z.startsWith("w")) {
@@ -41,9 +41,7 @@ public class FileWork {
 
     private String[] arrayCreator(List<String> list) {
         String[] stringStartWithW = new String[list.size()];
-        for (int i = 0; i < list.size(); i++) {
-            stringStartWithW[i] = list.get(i).replaceAll("\\W", "");
-        }
+        list.toArray(stringStartWithW);
         Arrays.sort(stringStartWithW);
         return stringStartWithW;
     }
