@@ -15,6 +15,9 @@ import java.util.Arrays;
  */
 public class FileWork {
     private final String regex = "\\W";
+    private final String letter = "w";
+    private final String space = " ";
+    private final String emptyString = "";
 
     public String[] readFromFile(String fileName) {
         final Path path = Paths.get(fileName);
@@ -22,9 +25,9 @@ public class FileWork {
             if (Files.exists(path)
                     && Files.isReadable(path)
                     && Files.size(path) > 0) {
-                return Arrays.stream(Files.readString(path).split(" "))
-                        .map(e -> e.toLowerCase().replaceAll(regex, ""))
-                        .filter(e -> e.startsWith("w"))
+                return Arrays.stream(Files.readString(path).split(space))
+                        .map(e -> e.toLowerCase().replaceAll(regex, emptyString))
+                        .filter(e -> e.startsWith(letter))
                         .sorted()
                         .toArray(String[]::new);
             }
