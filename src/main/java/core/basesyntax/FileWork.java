@@ -17,21 +17,20 @@ import java.util.List;
 public class FileWork {
     public String[] readFromFile(String fileName) {
         List<String> resultWords = new ArrayList<>();
+        List<String> inputLines = null;
         try {
-            List<String> inputLines = Files.readAllLines(Paths.get(fileName));
-            for (String string : inputLines) {
-                for (String oneWord : string.toLowerCase()
-                        .replaceAll("[^a-z]", " ")
-                        .replaceAll("\\s+", " ")
-                        .split(" ")
-                ) {
-                    if (oneWord.charAt(0) == 'w') {
-                        resultWords.add(oneWord);
-                    }
-                }
-            }
+            inputLines = Files.readAllLines(Paths.get(fileName));
         } catch (IOException e) {
             return new String[]{};
+        }
+        for (String string : inputLines) {
+            for (String oneWord : string.toLowerCase()
+                    .split("[^a-z]+")
+            ) {
+                if (oneWord.charAt(0) == 'w') {
+                    resultWords.add(oneWord);
+                }
+            }
         }
         Collections.sort(resultWords);
         return resultWords.toArray(new String[]{});
