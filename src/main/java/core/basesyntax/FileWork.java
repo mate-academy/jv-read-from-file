@@ -25,10 +25,9 @@ public class FileWork {
             List<String> resultList = new ArrayList<>();
             String file = Files.readString(testFilePath)
                     .toLowerCase()
-                    .replaceAll("(\\W)(\\s+)", " ")
                     .trim();
             if (file.length() > 0) {
-                for (String word : file.split(" ")) {
+                for (String word : file.split("(\\W)(\\s*)")) {
                     if (word.substring(0, 1).equals(FORMATER)) {
                         resultList.add(word);
                     }
