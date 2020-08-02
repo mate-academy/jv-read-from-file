@@ -1,5 +1,12 @@
 package core.basesyntax;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * <p>Дано файл, потрібно прочитати його вміст і вибрати всі слова що починаються на `w`.
  * Результат повернути у вигляді відсортованого масиву (за замовчуванням). Всі слова повинні
@@ -8,7 +15,29 @@ package core.basesyntax;
  * Результат: web wide width world</p>
  */
 public class FileWork {
+    private static final String WORD_STARTS_WITH = "w";
+
     public String[] readFromFile(String fileName) {
-        return null;
+        Path inputFilePath = Paths.get(fileName);
+        ArrayList<String> inputFile = new ArrayList<>();
+        try {
+            inputFile = (ArrayList<String>) Files.readAllLines(inputFilePath);
+        } catch (IOException e) {
+            System.out.println("File does not exist");
+        }
+        ArrayList<String> result = new ArrayList<>();
+        for (String string : inputFile) {
+            String[] words = string.split(" ");
+
+            for (String word : words) {
+                if (word.replaceAll("\\W", "").toLowerCase().startsWith(WORD_STARTS_WITH)) {
+                    result.add(word.replaceAll("\\W", "").toLowerCase());
+                }
+            }
+        }
+        Collections.sort(result);
+
+        return result.toArray((new String[result.size()]));
+
     }
 }
