@@ -25,7 +25,7 @@ public class FileWork {
                 }
             }
         } catch (IOException e) {
-            System.out.println("No such a file");
+            throw new RuntimeException(e);
         }
         String[] newResult = result.toArray(new String[0]);
         Arrays.sort(newResult);
