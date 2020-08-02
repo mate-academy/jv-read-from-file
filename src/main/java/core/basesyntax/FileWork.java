@@ -7,14 +7,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * <p>Дано файл, потрібно прочитати його вміст і вибрати всі слова що починаються на `w`.
- * Результат повернути у вигляді відсортованого масиву (за замовчуванням). Всі слова повинні
- * бути в нижньому регістрі. У випадку якщо таких слів не знайдено повернути пустий масив.
- * Приклад: Width world Wide web
- * Результат: web wide width world</p>
- */
 public class FileWork {
+    public static final String LETTER = "w";
+
     public String[] readFromFile(String fileName) {
         try {
             List<String> lines = Files.readAllLines(Paths.get(fileName));
@@ -26,7 +21,7 @@ public class FileWork {
             String linesToString = String.valueOf(connectLines).toLowerCase();
             String[] buffer = linesToString.split("\\W");
             for (String value : buffer) {
-                if (value.startsWith("w")) {
+                if (value.startsWith(LETTER)) {
                     result.add(value);
                 }
             }
