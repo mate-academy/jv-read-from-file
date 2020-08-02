@@ -1,14 +1,29 @@
 package core.basesyntax;
 
-/**
- * <p>Дано файл, потрібно прочитати його вміст і вибрати всі слова що починаються на `w`.
- * Результат повернути у вигляді відсортованого масиву (за замовчуванням). Всі слова повинні
- * бути в нижньому регістрі. У випадку якщо таких слів не знайдено повернути пустий масив.
- * Приклад: Width world Wide web
- * Результат: web wide width world</p>
- */
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
+
 public class FileWork {
+    private static final String FIRST_LETTER = "w";
+
     public String[] readFromFile(String fileName) {
-        return null;
+        String fileText = "";
+        try {
+            fileText = Files.readString(Paths.get(fileName));
+        } catch (IOException e) {
+            throw new RuntimeException("Some problems with file");
+        }
+
+        if (fileText.length() == 0) {
+            return new String[0];
+        }
+
+        return Arrays.stream(fileText.split("\\W+"))
+                .map(String::toLowerCase)
+                .filter(s -> s.substring(0, 1).equals(FIRST_LETTER))
+                .sorted()
+                .toArray(String[]::new);
     }
 }
