@@ -33,7 +33,7 @@ public class FileWork {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("File not found!");
         }
 
         String[] words = wordList.toArray(new String[0]);
