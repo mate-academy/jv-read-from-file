@@ -16,7 +16,6 @@ import java.util.List;
  */
 
 public class FileWork {
-
     private static final String SYMBOL_ALL_WORDS_STARTS_WITH = "w";
 
     public String[] readFromFile(String fileName) {
@@ -24,7 +23,6 @@ public class FileWork {
         List<String> result = new ArrayList<>();
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
-
             while (bufferedReader.ready()) {
                 readText.append((char) bufferedReader.read());
             }
@@ -37,12 +35,11 @@ public class FileWork {
                     result.add(word);
                 }
             }
-
             Collections.sort(result);
             return result.toArray(new String[result.size()]);
 
         } catch (IOException exception) {
-            throw new RuntimeException("File cannot be read");
+            throw new RuntimeException("File cannot be read", exception);
         }
     }
 }
