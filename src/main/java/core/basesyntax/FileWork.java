@@ -1,9 +1,10 @@
 package core.basesyntax;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -20,13 +21,14 @@ public class FileWork {
     public String[] readFromFile(String fileName) {
         ArrayList<String> list = new ArrayList<String>();
         ArrayList<String> resultList = new ArrayList<String>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))){
+        Path path = Paths.get(fileName);
+        try (BufferedReader reader = Files.newBufferedReader(path)) {
             while (reader.ready()) {
                 list.add(reader.readLine());
             }
 
         } catch (IOException e) {
-           throw new RuntimeException("We cant read a file",e);
+            throw new RuntimeException("We cant read a file",e);
         }
         for (String wordFromFile : list) {
             wordFromFile = wordFromFile.toLowerCase();
