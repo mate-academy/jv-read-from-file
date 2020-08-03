@@ -29,12 +29,9 @@ public class FileWork {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Can't open file ", e);
         }
-        String[] finalStr = new String[textFromFile.size()];
-        for (int i = 0; i < textFromFile.size(); i++) {
-            finalStr[i] = textFromFile.get(i);
-        }
+        String[] finalStr = textFromFile.toArray(new String[textFromFile.size()]);
         Arrays.sort(finalStr);
         return finalStr;
     }
