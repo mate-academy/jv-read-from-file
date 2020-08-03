@@ -24,20 +24,17 @@ public class FileWork {
         try {
             fileLines = Files.readAllLines(filePath);
         } catch (IOException e) {
-            throw new RuntimeException("Failed to read file");
+            throw new RuntimeException("Failed to read file",e);
         }
         List<String> answerInLine = new ArrayList<>();
         for (String line : fileLines) {
             for (String word : line.split(" ")) {
                 if (word.toLowerCase().startsWith(LETTER)) {
-                    answerInLine.add(word);
+                    answerInLine.add(word.toLowerCase().replaceAll("[^\\w]", ""));
                 }
             }
         }
-        String[] answer = new String[answerInLine.size()];
-        for (int i = 0; i < answer.length; i++) {
-            answer[i] = answerInLine.get(i).replaceAll("[^\\w]", "").toLowerCase();
-        }
+        String[] answer = answerInLine.toArray(new String[0]);
         Arrays.sort(answer);
         return answer;
     }
