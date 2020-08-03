@@ -34,7 +34,6 @@ public class FileWork {
                 }
             }
         } catch (IOException e) {
-            System.out.println("No such file");
             throw new RuntimeException("File not found", e);
         }
 
