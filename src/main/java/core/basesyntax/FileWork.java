@@ -14,7 +14,7 @@ import java.util.Collections;
  * Результат: web wide width world</p>
  */
 public class FileWork {
-    final String constantW = "w";
+    static final String CONSTANT_W = "w";
 
     public String[] readFromFile(String fileName) {
         try {
@@ -23,7 +23,7 @@ public class FileWork {
             ArrayList<String> arrayListOfWord = new ArrayList<String>();
 
             for (String word : cleanString.split(" ")) {
-                if (word.startsWith(constantW)) {
+                if (word.startsWith(CONSTANT_W)) {
                     arrayListOfWord.add(word);
                 }
             }
