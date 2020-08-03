@@ -3,8 +3,6 @@ package core.basesyntax;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 
 /**
@@ -16,15 +14,13 @@ import java.util.Arrays;
  */
 public class FileWork {
 
-    private static final String CONSTANTECHAR = "w";
+    private static final String FIRST_CHARACTER = "w";
 
     public String[] readFromFile(String fileName) {
         StringBuilder builder = new StringBuilder();
         try {
-            Path paths = Paths.get(fileName);
-            File file = paths.toFile();
+            File file = new File(fileName);
             InputStream inputStream = new FileInputStream(file);
-
             while (inputStream.available() > 0) {
                 char tmp = (char) inputStream.read();
                 builder.append(tmp);
@@ -33,20 +29,22 @@ public class FileWork {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        String[] words = builder.toString().toLowerCase().split(" ");
-        int count = 0;
-        for (String word : words) {
-            if (word.startsWith(CONSTANTECHAR)) {
-                ++count;
+        String[] lines = builder.toString().toLowerCase().split("\n");
+        builder.delete(0, builder.length());
+        for (String line : lines) {
+            String[] words = line.split(" ");
+            for (String word : words) {
+                if (word.startsWith(FIRST_CHARACTER)) {
+                    builder.append(word).append(" ");
+                }
             }
         }
-        String[] result = new String[count];
-        count = 0;
-        for (String word : words) {
-            if (word.startsWith(CONSTANTECHAR)) {
-                result[count] = word.replaceAll("\\W", "");
-                ++count;
-            }
+        if (builder.length() == 0) {
+            return new String[]{};
+        }
+        String[] result = builder.toString().trim().split(" ");
+        for (int i = 0; i < result.length; i++) {
+            result[i] = result[i].replaceAll("\\W", "");
         }
         Arrays.sort(result);
         return result;
