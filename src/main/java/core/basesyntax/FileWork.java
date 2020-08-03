@@ -13,12 +13,9 @@ import java.util.Arrays;
  */
 
 public class FileWork {
-    static final String LETTER = "w";
-    static final String POINT = ".";
-    static final String EMPTY = "";
-    static final String SPACE = " ";
-    static final String EXCLAMATION_MARK = "!";
-    static final String QUESTION_MARK = "?";
+    private static final String LETTER = "w";
+    private static final String EMPTY = "";
+    private static final String SPACE = " ";
 
     public String[] readFromFile(String fileName) {
         String tempString = EMPTY;
