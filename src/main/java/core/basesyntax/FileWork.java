@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class FileWork {
     private static final String WORDS_START = "w";
 
-    public static String[] readFromFile(String fileName) {
+    public String[] readFromFile(String fileName) {
         try {
             return Arrays.stream(Files.readString(Paths.get(fileName), UTF_8)
                     .toLowerCase()
@@ -18,7 +18,7 @@ public class FileWork {
                     .sorted()
                     .toArray(String[]::new);
         } catch (Exception e) {
-            return null;
+            throw new RuntimeException("Empty File!", e);
         }
 
     }
