@@ -42,7 +42,7 @@ public class FileWork {
             return result.toArray(new String[result.size()]);
 
         } catch (IOException exception) {
-            throw new RuntimeException("Fail is not read");
+            throw new RuntimeException("File cannot be read");
         }
     }
 }
