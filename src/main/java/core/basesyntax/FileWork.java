@@ -19,7 +19,7 @@ public class FileWork {
 
     private static final String REGEX_W = "\\bw\\w*\\b";
 
-    public String[] readFromFile(String fileName) throws RuntimeException {
+    public String[] readFromFile(String fileName) {
 
         ArrayList<String> listOfWords = new ArrayList<>();
 
@@ -34,8 +34,6 @@ public class FileWork {
             }
             Collections.sort(listOfWords);
         } catch (IOException exception) {
-            exception.printStackTrace();
-        } catch (RuntimeException exception) {
             throw new RuntimeException(exception);
         }
 
