@@ -26,9 +26,7 @@ public class FileWork {
             throw new RuntimeException(e);
         }
         for (String string : inputLines) {
-            for (String oneWord : string.toLowerCase()
-                    .split("[^a-z]+")
-            ) {
+            for (String oneWord : string.toLowerCase().split("[^a-z]+")) {
                 if (oneWord.charAt(0) == FIRST_LETTER) {
                     resultWords.add(oneWord);
                 }
