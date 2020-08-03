@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class FileWork {
-    static final String wLetter = "w";
+    static final String W_LETTER = "w";
 
     public String[] readFromFile(String fileName) {
         List<String> resultList = new ArrayList<>();
@@ -17,9 +17,9 @@ public class FileWork {
             lines = Files.readAllLines(Paths.get(fileName));
 
             for (String line: lines) {
-                String[] words = line.toLowerCase().replaceAll("[^a-z]"," ").split(" ");
+                String[] words = line.toLowerCase().replaceAll("[^a-z]"," ").split("\\W+");
                 for (String word: words) {
-                    if (word.startsWith(wLetter)) {
+                    if (word.startsWith(W_LETTER)) {
                         resultList.add(word);
                     }
                 }
