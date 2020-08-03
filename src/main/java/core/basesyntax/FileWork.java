@@ -15,21 +15,23 @@ import java.util.Arrays;
  */
 public class FileWork {
     public String[] readFromFile(String fileName) {
-        final char W = 'w';
+        final char CONSTW = 'w';
         ArrayList<String> wordsWithWList = new ArrayList<String>();
         String text = "";
         try {
             text = new String(Files.readAllBytes((Paths.get(fileName)))).toLowerCase().replaceAll(
-                    "[^A-Za-zА-Яа-я ]", "");
+                    "[^A-Za-zА-Яа-я\n ]", "");
         } catch (IOException e) {
-            System.out.println("Такого файла не существует");
+            throw new RuntimeException("Такого файла не существует", e);
         }
         if (text.length() == 0) {
             return new String[0];
         }
-        for (String word : text.split(" ")) {
-            if (word.charAt(0) == W) {
-                wordsWithWList.add(word);
+        for (String line : text.split("\n")) {
+            for(String word : line.split(" ")) {
+                if (word.charAt(0) == CONSTW) {
+                    wordsWithWList.add(word);
+                }
             }
         }
         String[] wordsWithWArray = wordsWithWList.toArray(String[]::new);
