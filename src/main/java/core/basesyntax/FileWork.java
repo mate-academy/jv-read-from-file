@@ -16,14 +16,14 @@ import java.util.List;
  */
 
 public class FileWork {
-    static final String LETTER = "w";
+    private static final String LETTER = "w";
 
     public String[] readFromFile(String fileName) {
         List<String> rowOfText = null;
         try {
             rowOfText = Files.readAllLines(Paths.get(fileName));
         } catch (IOException e) {
-            throw new RuntimeException();
+            throw new RuntimeException("File not found");
         }
         List<String> arrayList = new ArrayList<>();
         for (String line : rowOfText) {
