@@ -18,7 +18,8 @@ public class FileWork {
     private static final String SPACE = " ";
 
     public String[] readFromFile(String fileName) {
-        String tempString = EMPTY;
+        StringBuilder tempString = new StringBuilder();
+//        String tempString = EMPTY;
         String[] result;
         try (BufferedReader newReader = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -26,17 +27,17 @@ public class FileWork {
                 String[] arr1 = line.toLowerCase().split(SPACE);
                 for (String line2 : arr1) {
                     if (line2.startsWith(LETTER)) {
-                        tempString += line2.replaceAll("[^a-z0-9]", "") + SPACE;
+                        tempString.append(line2.replaceAll("[^a-z0-9]", "") + SPACE);
                     }
                 }
             }
         } catch (IOException e) {
             throw new RuntimeException("Where is the file?", e);
         }
-        if (tempString.equals(EMPTY)) {
+        if (tempString.length() == 0)  {
             return new String[0];
         }
-        result = tempString.split(SPACE);
+        result = tempString.toString().trim().split(" ");
         Arrays.sort(result);
         return result;
     }
