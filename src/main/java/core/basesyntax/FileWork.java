@@ -27,8 +27,8 @@ public class FileWork {
             throw new RuntimeException("Can't read this file", e);
         }
 
-        for (String s : lines) {
-            String[] words = s.toLowerCase().split("\\W");
+        for (String line : lines) {
+            String[] words = line.toLowerCase().split("\\W");
 
             for (String word : words) {
                 if (word.startsWith(FIRST_CHAR)) {
