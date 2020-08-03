@@ -33,12 +33,11 @@ public class FileWork {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException("File not found!");
+            throw new RuntimeException("File not found!", e);
         }
 
         String[] words = wordList.toArray(new String[0]);
         Arrays.sort(words);
-
         return words;
     }
 }
