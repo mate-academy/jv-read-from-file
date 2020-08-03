@@ -16,6 +16,9 @@ import java.util.List;
  */
 
 public class FileWork {
+
+    private final char symbolThatAllWordsStartWith = 'w';
+
     public String[] readFromFile(String fileName) {
         StringBuilder readText = new StringBuilder();
         List<String> result = new ArrayList<>();
@@ -30,7 +33,7 @@ public class FileWork {
                     .toString()
                     .toLowerCase()
                     .split("\\W+")) {
-                if (word.startsWith("w")) {
+                if (word.startsWith(String.valueOf(symbolThatAllWordsStartWith))) {
                     result.add(word);
                 }
             }
@@ -39,8 +42,7 @@ public class FileWork {
             return result.toArray(new String[result.size()]);
 
         } catch (IOException exception) {
-            System.out.println("ex");
+            throw new RuntimeException("Fail is not read");
         }
-        return null;
     }
 }
