@@ -2,7 +2,6 @@ package core.basesyntax;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,16 +26,12 @@ public class FileWork {
                 String[] words = sampleLine.split(" ");
                 for (String word : words) {
                     if (word.toLowerCase().charAt(0) == SEARCHLETTER) {
-                        answerList.add(word.toLowerCase().replaceAll("[^A-Za-zА-Яа-я0-9]",""));
+                        answerList.add(word.toLowerCase().replaceAll("\\W+",""));
                     }
                 }
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-            throw new RuntimeException(e);
         } catch (IOException e) {
-            System.out.println("File read error");
-            throw new RuntimeException(e);
+            throw new RuntimeException("File read error " + e);
         }
         Collections.sort(answerList);
         return answerList.toArray(new String[answerList.size()]);
