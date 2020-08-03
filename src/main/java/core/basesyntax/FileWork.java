@@ -19,15 +19,16 @@ public class FileWork {
     String[] readFromFile(String fileName) {
 
         StringBuilder result = new StringBuilder();
-        
+
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String nextLine;
             while ((nextLine = br.readLine()) != null) {
-                String[] words = nextLine.split(" ");
+                String[] words = nextLine.toLowerCase()
+                        .replaceAll("\\W+", " ")
+                        .split(" ");
                 for (String str : words) {
-                    if (str.toLowerCase().startsWith(LETTER)) {
-                        result.append(str.toLowerCase()
-                                .replaceAll("\\W", "") + " ");
+                    if (str.startsWith(LETTER)) {
+                        result.append(str).append(" ");
                     }
                 }
             }
