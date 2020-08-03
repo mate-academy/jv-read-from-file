@@ -24,7 +24,7 @@ public class FileWork {
                 String[] words = sc.nextLine().toLowerCase().split(" ");
                 for (int i = 0; i < words.length; i++) {
                     if (words[i].startsWith(String.valueOf(StartsWith))) {
-                        textFromFile.add(words[i].replaceAll("[, '!.)?-]", ""));
+                        textFromFile.add(words[i].replaceAll("[^a-z]", ""));
                     }
                 }
             }
