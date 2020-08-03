@@ -16,7 +16,7 @@ import java.util.Arrays;
 public class FileWork {
     private static final String REGEX = "\\W";
     private static final String LETTER = "w";
-    private static final String SPACE = " ";
+    private static final String SPACE = "\\s+";
     private static final String EMPTY_STRING = "";
 
     public String[] readFromFile(String fileName) {
