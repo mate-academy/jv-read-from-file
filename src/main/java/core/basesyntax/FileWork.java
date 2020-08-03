@@ -13,10 +13,10 @@ public class FileWork {
     public String[] readFromFile(String fileName) {
         try {
             List<String> preResult = new ArrayList<String>();
-            String file = Files.readString(Paths.get(fileName)).toLowerCase();
-            if (file.length() > 0) {
-                for (String word : file.split("[^A-Za-zА-Яа-я]+")) {
-                    if (word.substring(0, 1).equals(LETTER)) {
+            String text = Files.readString(Paths.get(fileName)).toLowerCase();
+            if (text.length() > 0) {
+                for (String word : text.split("\\W+")) {
+                    if (word.startsWith(LETTER)) {
                         preResult.add(word);
                     }
                 }
