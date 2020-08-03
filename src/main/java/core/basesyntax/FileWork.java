@@ -20,7 +20,7 @@ public class FileWork {
         StringBuilder fileContent = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             while (reader.ready()) {
-                fileContent.append(reader.readLine());
+                fileContent.append(reader.readLine()).append("\n");
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -35,5 +35,6 @@ public class FileWork {
         Collections.sort(listOfWords);
         String[] result = new String[listOfWords.size()];
         return listOfWords.toArray(result);
+
     }
 }
