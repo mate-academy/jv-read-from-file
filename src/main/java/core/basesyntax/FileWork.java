@@ -16,13 +16,15 @@ public class FileWork {
 
     private static final String FIRST_CHAR = "w";
 
-    public static String[] readFromFile(String fileName) {
-        String fileText = "";
+    public String[] readFromFile(String fileName) {
+        String fileText;
+        StringBuffer stringBuffer = new StringBuffer();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String oneLine;
             while ((oneLine = bufferedReader.readLine()) != null) {
-                fileText += oneLine;
+                stringBuffer.append(oneLine);
             }
+            fileText = stringBuffer.toString();
         } catch (IOException e) {
             throw new RuntimeException("Something went wrong! We can't read this file");
         }
