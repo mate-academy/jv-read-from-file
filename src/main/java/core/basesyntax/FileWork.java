@@ -15,28 +15,25 @@ import java.util.Arrays;
  * Результат: web wide width world</p>
  */
 public class FileWork {
-    static final String SEARCH_LETTER = "w";
+    public static final String SEARCH_LETTER = "w";
 
     public String[] readFromFile(String fileName) {
         ArrayList<String> list = new ArrayList<String>();
         ArrayList<String> resultList = new ArrayList<String>();
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))){
             while (reader.ready()) {
                 list.add(reader.readLine());
             }
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            throw new RuntimeException();
+           throw new RuntimeException("We cant read a file",e);
         }
-        for (String str : list) {
-            str = str.toLowerCase();
-            String[] stringArray = str.split("\\W");
-            for (String search : stringArray) {
-                if (search.startsWith(SEARCH_LETTER)) {
-                    resultList.add(search);
+        for (String wordFromFile : list) {
+            wordFromFile = wordFromFile.toLowerCase();
+            String[] stringArray = wordFromFile.split("\\W");
+            for (String needleWords : stringArray) {
+                if (needleWords.startsWith(SEARCH_LETTER)) {
+                    resultList.add(needleWords);
                 }
             }
         }
