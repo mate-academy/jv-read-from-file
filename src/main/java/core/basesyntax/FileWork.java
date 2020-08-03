@@ -15,7 +15,7 @@ import java.util.List;
  * Результат: web wide width world</p>
  */
 public class FileWork {
-    private final String LETTER = "w";
+    private static final String LETTER = "w";
 
     public String[] readFromFile(String fileName) {
         List<String> result = new ArrayList<>();
