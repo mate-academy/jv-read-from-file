@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class FileWork {
 
-    public final String FORMATER = "w";
+    public final String formater = "w";
 
     public String[] readFromFile(String fileName) {
         Path testFilePath = Paths.get(fileName);
@@ -28,7 +28,7 @@ public class FileWork {
                     .trim();
             if (file.length() > 0) {
                 for (String word : file.split("\\W+")) {
-                    if (word.startsWith(FORMATER)) {
+                    if (word.startsWith(formater)) {
                         resultList.add(word);
                     }
                 }
