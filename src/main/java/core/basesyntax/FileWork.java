@@ -15,7 +15,7 @@ public class FileWork {
 
     private static final String FIRST_CHAR = "w";
 
-    public static String[] readFromFile(String fileName) {
+    public String[] readFromFile(String fileName) {
         String fileText = "";
         try (FileReader fileReader = new FileReader(fileName)) {
             int oneLetter;
