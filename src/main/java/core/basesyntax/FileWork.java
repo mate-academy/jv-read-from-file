@@ -14,8 +14,10 @@ import java.util.Arrays;
  * Результат: web wide width world</p>
  */
 public class FileWork {
+
+    public static final char CONSTW = 'w';
+
     public String[] readFromFile(String fileName) {
-        final char CONSTW = 'w';
         ArrayList<String> wordsWithWList = new ArrayList<String>();
         String text = "";
         try {
@@ -28,7 +30,7 @@ public class FileWork {
             return new String[0];
         }
         for (String line : text.split("\n")) {
-            for(String word : line.split(" ")) {
+            for (String word : line.split(" ")) {
                 if (word.charAt(0) == CONSTW) {
                     wordsWithWList.add(word);
                 }
