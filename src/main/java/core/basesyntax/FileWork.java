@@ -34,7 +34,7 @@ public class FileWork {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Can't read file.", e);
         }
         result = resultBuilder.toString().trim().split(" ");
         Arrays.sort(result);
