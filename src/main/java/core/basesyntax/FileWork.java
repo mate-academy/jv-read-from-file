@@ -20,7 +20,7 @@ public class FileWork {
     private static final String EMPTY_STRING = "";
 
     public String[] readFromFile(String fileName) {
-        final Path path = Paths.get(fileName);
+        Path path = Paths.get(fileName);
         try {
             if (Files.exists(path)
                     && Files.isReadable(path)
