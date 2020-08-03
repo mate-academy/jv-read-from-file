@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class FileWork {
 
-    static final char WORDS_START_FROM = 'w';
+    static final String WORDS_START_FROM = "w";
 
     public String[] readFromFile(String fileName) {
         Path path = Paths.get(fileName);
@@ -28,7 +28,7 @@ public class FileWork {
             String buffer;
             while ((buffer = reader.readLine()) != null) {
                 for (String s : buffer.split(" ")) {
-                    if (s.toLowerCase().charAt(0) == WORDS_START_FROM) {
+                    if (s.toLowerCase().startsWith(WORDS_START_FROM)) {
                         selectedWords.add(s.toLowerCase().replaceAll("[^a-z]", ""));
                     }
                 }
@@ -37,9 +37,6 @@ public class FileWork {
             throw new RuntimeException("File not found", e);
         }
 
-        if (selectedWords.size() == 0) {
-            return new String[0];
-        }
         selectedWords.sort(Comparator.naturalOrder());
         return selectedWords.toArray(new String[0]);
     }
