@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * <p>Дано файл, потрібно прочитати його вміст і вибрати всі слова що починаються на `w`.
@@ -19,9 +20,9 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         Path inputFilePath = Paths.get(fileName);
-        ArrayList<String> inputFile = new ArrayList<>();
+        List<String> inputFile = new ArrayList<>();
         try {
-            inputFile = (ArrayList<String>) Files.readAllLines(inputFilePath);
+            inputFile = Files.readAllLines(inputFilePath);
         } catch (IOException e) {
             System.out.println("File does not exist");
         }
@@ -30,14 +31,13 @@ public class FileWork {
             String[] words = string.split(" ");
 
             for (String word : words) {
-                if (word.replaceAll("\\W", "").toLowerCase().startsWith(WORD_STARTS_WITH)) {
-                    result.add(word.replaceAll("\\W", "").toLowerCase());
+                String resultWord = word.toLowerCase().replaceAll("\\W", "");
+                if (resultWord.startsWith(WORD_STARTS_WITH)) {
+                    result.add(resultWord);
                 }
             }
         }
         Collections.sort(result);
-
         return result.toArray((new String[result.size()]));
-
     }
 }
