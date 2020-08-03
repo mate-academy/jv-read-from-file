@@ -23,7 +23,7 @@ public class FileWork {
                 fileText += (char) oneLetter;
             }
         } catch (IOException e) {
-            throw new RuntimeException("This file does not exist");
+            throw new RuntimeException("Something went wrong! We can't read this file");
         }
         return fileText.equals("") ? new String[0] : Stream.of(fileText.split(" "))
                 .map(word -> word.toLowerCase())
