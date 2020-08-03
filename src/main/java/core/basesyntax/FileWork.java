@@ -19,7 +19,6 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         StringBuilder tempString = new StringBuilder();
-//        String tempString = EMPTY;
         String[] result;
         try (BufferedReader newReader = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -34,9 +33,10 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException("Where is the file?", e);
         }
-        if (tempString.length() == 0)  {
+        if (tempString.length() == 0) {
             return new String[0];
         }
+
         result = tempString.toString().trim().split(" ");
         Arrays.sort(result);
         return result;
