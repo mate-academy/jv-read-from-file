@@ -14,16 +14,17 @@ import java.util.Scanner;
  * Результат: web wide width world</p>
  */
 public class FileWork {
+    private static final String STARTS_WITH = "w";
+
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
         ArrayList<String> textFromFile = new ArrayList<>();
-        final char StartsWith = 'w';
         try {
             Scanner sc = new Scanner(file);
             while (sc.hasNextLine()) {
                 String[] words = sc.nextLine().toLowerCase().split(" ");
                 for (int i = 0; i < words.length; i++) {
-                    if (words[i].startsWith(String.valueOf(StartsWith))) {
+                    if (words[i].startsWith(STARTS_WITH)) {
                         textFromFile.add(words[i].replaceAll("[^a-z]", ""));
                     }
                 }
