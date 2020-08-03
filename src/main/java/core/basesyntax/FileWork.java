@@ -23,7 +23,7 @@ public class FileWork {
         try {
             rowOfText = Files.readAllLines(Paths.get(fileName));
         } catch (IOException e) {
-            throw new RuntimeException("File not found");
+            throw new RuntimeException("File not found", e);
         }
         List<String> arrayList = new ArrayList<>();
         for (String line : rowOfText) {
