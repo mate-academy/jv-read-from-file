@@ -20,7 +20,6 @@ public class FileWork {
     public String[] readFromFile(String fileName) {
         List<String> lines;
         List<String> list = new ArrayList<>();
-        String[] result = list.toArray(new String[0]);
 
         try {
             lines = Files.readAllLines(Paths.get(fileName));
@@ -37,6 +36,8 @@ public class FileWork {
                 }
             }
         }
+        String[] result = list.toArray(new String[0]);
+
         Arrays.sort(result);
 
         return result;
