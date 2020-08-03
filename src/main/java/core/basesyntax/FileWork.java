@@ -31,7 +31,7 @@ public class FileWork {
             String[] result = sortedWordsWithW.toArray(new String[0]);
             return result;
         } catch (IOException e) {
-            throw new RuntimeException();
+            throw new RuntimeException("Incorrect input file", e);
         }
     }
 }
