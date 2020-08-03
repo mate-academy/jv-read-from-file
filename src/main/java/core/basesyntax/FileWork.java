@@ -16,15 +16,15 @@ import java.util.Scanner;
  * Результат: web wide width world</p>
  */
 public class FileWork {
-    public String[] readFromFile(String fileName) throws RuntimeException {
+    public String[] readFromFile(String fileName) {
         List<String> array = new ArrayList<>();
         Path path = Paths.get(fileName);
-
+        final String searchLiteral = "w";
         try (Scanner scanner = new Scanner(path)) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine().toLowerCase();
                 for (String word : line.split(" ")) {
-                    if (word.startsWith("w")) {
+                    if (word.startsWith(searchLiteral)) {
                         array.add(word.replaceAll("[^a-z0-9]", ""));
                     }
                 }
