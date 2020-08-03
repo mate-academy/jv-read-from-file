@@ -16,33 +16,28 @@ import java.util.Scanner;
  */
 public class FileWork {
 
-    static final char CONSTATNT_1 = 'w';
-    static final char CONSTANT_2 = 'W';
+    static final char CHECK_WITH_W = 'w';
 
     public String[] readFromFile(String fileName) {
         ArrayList<String> ourWords = new ArrayList<>();
         File file = new File(fileName);
-        try {
-            Scanner document = new Scanner(file);
-
+        try (Scanner document = new Scanner(file)) {
             while (document.hasNextLine()) {
                 String[] lineWithWords = document.nextLine().split(" ");
                 for (int i = 0; i < lineWithWords.length; i++) {
-                    if (lineWithWords[i].startsWith(String.valueOf(CONSTATNT_1))
-                            || lineWithWords[i].startsWith(String.valueOf(CONSTANT_2))) {
+                    if (lineWithWords[i].toLowerCase().startsWith(String.valueOf(CHECK_WITH_W))) {
                         ourWords.add(lineWithWords[i].toLowerCase()
                                 .replaceAll("\\w+\\d", "")
                                 .replaceAll("[, '!.)?-]", ""));
                     }
                 }
             }
-            document.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         Collections.sort(ourWords);
-        String[] arr = ourWords.toArray(new String[ourWords.size()]);
-        Arrays.toString(arr);
-        return arr;
+        String[] resultWords = ourWords.toArray(new String[ourWords.size()]);
+        Arrays.toString(resultWords);
+        return resultWords;
     }
 }
