@@ -1,5 +1,6 @@
 package core.basesyntax;
 
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.stream.Stream;
@@ -15,12 +16,12 @@ public class FileWork {
 
     private static final String FIRST_CHAR = "w";
 
-    public String[] readFromFile(String fileName) {
+    public static String[] readFromFile(String fileName) {
         String fileText = "";
-        try (FileReader fileReader = new FileReader(fileName)) {
-            int oneLetter;
-            while ((oneLetter = fileReader.read()) != -1) {
-                fileText += (char) oneLetter;
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
+            String oneLine;
+            while ((oneLine = bufferedReader.readLine()) != null) {
+                fileText += oneLine;
             }
         } catch (IOException e) {
             throw new RuntimeException("Something went wrong! We can't read this file");
@@ -33,4 +34,3 @@ public class FileWork {
                 .toArray(String[]::new);
     }
 }
-
