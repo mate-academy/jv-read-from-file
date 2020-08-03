@@ -34,6 +34,7 @@ public class FileWork {
         for (String line : lines) {
             String[] words = line.split(" ");
             for (String word : words) {
+                word = word.replaceAll("\\W", "");
                 if (word.startsWith(FIRST_CHARACTER)) {
                     builder.append(word).append(" ");
                 }
@@ -43,9 +44,6 @@ public class FileWork {
             return new String[]{};
         }
         String[] result = builder.toString().trim().split(" ");
-        for (int i = 0; i < result.length; i++) {
-            result[i] = result[i].replaceAll("\\W", "");
-        }
         Arrays.sort(result);
         return result;
     }
