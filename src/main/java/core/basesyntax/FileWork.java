@@ -25,7 +25,7 @@ public class FileWork {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException("Something went wrong(");
+            throw new RuntimeException("Something went wrong(", e);
         }
         String[] response = wordsStartsWithW.toArray(new String[0]);
         Arrays.sort(response);
