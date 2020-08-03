@@ -22,7 +22,7 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         Path path = Paths.get(fileName);
-        List<String> selectedWords = new ArrayList<String>();
+        List<String> selectedWords = new ArrayList<>();
 
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             String buffer;
@@ -35,6 +35,7 @@ public class FileWork {
             }
         } catch (IOException e) {
             System.out.println("No such file");
+            throw new RuntimeException("File not found" ,e);
         }
 
         if (selectedWords.size() == 0) {
