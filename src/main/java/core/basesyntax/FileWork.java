@@ -15,16 +15,18 @@ import java.util.List;
  * Результат: web wide width world</p>
  */
 public class FileWork {
+    private final String identifier = "w";
+
     public String[] readFromFile(String fileName) {
-        List<String> text = new ArrayList<>();
+        List<String> result = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            while (br.ready()) {
-                String[] allText = br.readLine().split(" ");
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            while (reader.ready()) {
+                String[] wordsFromLine = reader.readLine().split(" ");
 
-                for (String s : allText) {
-                    if (s.startsWith("w") || s.startsWith("W")) {
-                        text.add(s.toLowerCase().replaceAll("[^a-z]", ""));
+                for (String word : wordsFromLine) {
+                    if (word.toLowerCase().startsWith(identifier)) {
+                        result.add(word.toLowerCase().replaceAll("[^a-z]", ""));
                     }
                 }
             }
@@ -32,7 +34,7 @@ public class FileWork {
             throw new RuntimeException(e.getMessage());
         }
 
-        Collections.sort(text);
-        return text.toArray(new String[0]);
+        Collections.sort(result);
+        return result.toArray(new String[0]);
     }
 }
