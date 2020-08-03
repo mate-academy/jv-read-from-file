@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class FileWork {
 
-    static String FORMATER = "w";
+    public final String FORMATER = "w";
 
     public String[] readFromFile(String fileName) {
         Path testFilePath = Paths.get(fileName);
@@ -27,8 +27,8 @@ public class FileWork {
                     .toLowerCase()
                     .trim();
             if (file.length() > 0) {
-                for (String word : file.split("(\\W)(\\s*)")) {
-                    if (word.substring(0, 1).equals(FORMATER)) {
+                for (String word : file.split("\\W+")) {
+                    if (word.startsWith(FORMATER)) {
                         resultList.add(word);
                     }
                 }
@@ -36,7 +36,7 @@ public class FileWork {
                 return resultList.toArray(new String[0]);
             }
         } catch (IOException e) {
-            throw new RuntimeException("Problem which file");
+            throw new RuntimeException("Problem with file");
         }
         return new String[]{};
     }
