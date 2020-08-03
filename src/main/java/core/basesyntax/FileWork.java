@@ -15,7 +15,7 @@ import java.util.List;
  * Результат: web wide width world</p>
  */
 public class FileWork {
-    private final String letter = "w";
+    private final String LETTER = "w";
 
     public String[] readFromFile(String fileName) {
         List<String> result = new ArrayList<>();
@@ -25,7 +25,7 @@ public class FileWork {
                 line = line.toLowerCase().replaceAll("[\\W]", " ").trim();
                 String[] words = line.split(" ");
                 for (String word : words) {
-                    if (word.startsWith(letter)) {
+                    if (word.startsWith(LETTER)) {
                         result.add(word);
                     }
                 }
