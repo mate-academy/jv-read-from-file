@@ -18,7 +18,7 @@ public class FileWork {
             for (String value : lines) {
                 connectLines.append(value);
             }
-            for (String value : String.valueOf(connectLines).toLowerCase().split("\\W")) {
+            for (String value : connectLines.toString().toLowerCase().split("\\W")) {
                 if (value.startsWith(LETTER)) {
                     result.add(value);
                 }
@@ -26,7 +26,7 @@ public class FileWork {
             Collections.sort(result);
             return result.toArray(new String[0]);
         } catch (IOException e) {
-            throw new RuntimeException(" ");
+            throw new RuntimeException("This is mistake, sweetheart!", e);
         }
     }
 }
