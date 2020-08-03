@@ -15,13 +15,15 @@ import java.util.List;
  * Результат: web wide width world</p>
  */
 public class FileWork {
+    private static final String SMALL_LETTER_W = "w";
+
     public String[] readFromFile(String fileName) throws RuntimeException {
         try {
             List<String> sortedWordsWithW = new ArrayList<>();
             for (String line : Files.readAllLines(Paths.get(fileName))) {
                 for (String word : line.toLowerCase().split(" ")) {
-                    if (word.substring(0, 1).matches("w")) {
-                        sortedWordsWithW.add(word.replaceAll("\\W+",""));
+                    if (word.startsWith(SMALL_LETTER_W)) {
+                        sortedWordsWithW.add(word.replaceAll("\\W+", ""));
                     }
                 }
             }
