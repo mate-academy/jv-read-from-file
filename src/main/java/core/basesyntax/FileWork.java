@@ -15,23 +15,23 @@ import java.util.Scanner;
  */
 
 public class FileWork {
-    public static final char LETTER = 'w';
+    public static final String LETTER = "w";
 
     public static String[] readFromFile(String fileName) {
         try (FileReader fileReader = new FileReader(fileName)) {
             Scanner scanner = new Scanner(fileReader);
 
-            String text = "";
+            StringBuilder text = new StringBuilder("");
             while (scanner.hasNextLine()) {
-                text += scanner.nextLine() + " ";
+                text.append(scanner.nextLine() + " ");
             }
-            String[] words = text.split(" ");
+            String[] words = text.toString().split(" ");
             String resultString = "";
 
             int index = 0;
             for (int i = 0; i < words.length; i++) {
                 if (words.length > 1) {
-                    if (words[i].toLowerCase().charAt(0) == LETTER) {
+                    if (words[i].toLowerCase().startsWith(LETTER)) {
                         resultString += words[i].toLowerCase().replaceAll("[.), \\-'!?]", "") + " ";
                     }
                 } else {
@@ -43,10 +43,8 @@ public class FileWork {
 
             return result[0] != "" ? result : new String[0];
         } catch (FileNotFoundException e) {
-            System.out.println("File with name " + fileName + " not found!");
             throw new RuntimeException(e);
         } catch (IOException e) {
-            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
