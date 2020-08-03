@@ -1,10 +1,11 @@
 package core.basesyntax;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.Collections;
 
 /**
  * <p>Дано файл, потрібно прочитати його вміст і вибрати всі слова що починаються на `w`.
@@ -16,28 +17,23 @@ import java.util.Scanner;
 
 public class FileWork {
 
-    private static final char LETTER = 'w';
+    private static final String LETTER = "w";
 
     public String[] readFromFile(String fileName) throws RuntimeException {
-
         File file = new File(fileName);
-        ArrayList<String> textFromFile = new ArrayList<>();
-        try {
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNextLine()) {
-                String[] text = scanner.nextLine().toLowerCase().split(" ");
-                for (String line : text) {
-                    if (line.startsWith(String.valueOf(LETTER))) {
-                        textFromFile.add(line.replaceAll("[\\W]", ""));
+        ArrayList<String> textStartsWithW = new ArrayList<>();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+            String line = "";
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] lineArray = line.toLowerCase().split(" ");
+                for (String word : lineArray) {
+                    if (word.startsWith(LETTER)) {
+                        textStartsWithW.add(word.replaceAll("\\W+", ""));
                     }
                 }
             }
-            String[] result = new String[textFromFile.size()];
-            for (int i = 0; i < textFromFile.size(); i++) {
-                result[i] = textFromFile.get(i);
-            }
-            Arrays.sort(result);
-            return result;
+            Collections.sort(textStartsWithW);
+            return textStartsWithW.toArray(new String[textStartsWithW.size()]);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
