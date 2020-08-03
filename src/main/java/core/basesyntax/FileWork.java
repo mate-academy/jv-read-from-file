@@ -12,6 +12,7 @@ public class FileWork {
         String fileText = "";
         try {
             fileText = Files.readString(Paths.get(fileName));
+
         } catch (IOException e) {
             throw new RuntimeException("Some problems with file");
         }
@@ -22,7 +23,7 @@ public class FileWork {
 
         return Arrays.stream(fileText.split("\\W+"))
                 .map(String::toLowerCase)
-                .filter(s -> s.substring(0, 1).equals(FIRST_LETTER))
+                .filter(s -> s.startsWith(FIRST_LETTER))
                 .sorted()
                 .toArray(String[]::new);
     }
