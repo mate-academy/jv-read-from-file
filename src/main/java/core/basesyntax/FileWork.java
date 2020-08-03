@@ -1,6 +1,5 @@
 package core.basesyntax;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
@@ -30,20 +29,14 @@ public class FileWork {
 
             int index = 0;
             for (int i = 0; i < words.length; i++) {
-                if (words.length > 1) {
-                    if (words[i].toLowerCase().startsWith(LETTER)) {
-                        resultString += words[i].toLowerCase().replaceAll("[.), \\-'!?]", "") + " ";
-                    }
-                } else {
-                    return new String[0];
+                if (words[i].toLowerCase().startsWith(LETTER)) {
+                    resultString += words[i].toLowerCase().replaceAll("[^\\w\\s]|_", "") + " ";
                 }
             }
             String[] result = resultString.trim().split(" ");
             Arrays.sort(result);
 
             return result[0] != "" ? result : new String[0];
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
