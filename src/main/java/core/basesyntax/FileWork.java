@@ -15,8 +15,7 @@ public class FileWork {
 
     private static final String FIRST_CHAR = "w";
 
-    public String[] readFromFile(String fileName) {
-        String symbols = "[-/./,/'/!/)/(/?/\r/\n]*";
+    public static String[] readFromFile(String fileName) {
         String fileText = "";
         try (FileReader fileReader = new FileReader(fileName)) {
             int oneLetter;
@@ -24,13 +23,14 @@ public class FileWork {
                 fileText += (char) oneLetter;
             }
         } catch (IOException e) {
-            throw new RuntimeException();
+            throw new RuntimeException("This file does not exist");
         }
         return fileText.equals("") ? new String[0] : Stream.of(fileText.split(" "))
                 .map(word -> word.toLowerCase())
+                .map(word -> word.replaceAll("(\\W*)(\\s*)", ""))
                 .filter(word -> word.startsWith(FIRST_CHAR))
-                .map(word -> word.replaceAll(symbols, ""))
                 .sorted(String::compareTo)
                 .toArray(String[]::new);
     }
 }
+
