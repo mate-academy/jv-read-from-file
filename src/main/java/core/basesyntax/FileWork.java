@@ -1,6 +1,5 @@
 package core.basesyntax;
 
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -29,7 +28,7 @@ public class FileWork {
             return new String[0];
         }
         for (String word : text.split(" ")) {
-            if(word.charAt(0) == W) {
+            if (word.charAt(0) == W) {
                 wordsWithWList.add(word);
             }
         }
