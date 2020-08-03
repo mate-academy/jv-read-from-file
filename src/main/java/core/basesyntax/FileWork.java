@@ -14,10 +14,10 @@ import java.util.Arrays;
  * Результат: web wide width world</p>
  */
 public class FileWork {
-    private final String regex = "\\W";
-    private final String letter = "w";
-    private final String space = " ";
-    private final String emptyString = "";
+    private static final String REGEX = "\\W";
+    private static final String LETTER = "w";
+    private static final String SPACE = " ";
+    private static final String EMPTY_STRING = "";
 
     public String[] readFromFile(String fileName) {
         final Path path = Paths.get(fileName);
@@ -25,9 +25,9 @@ public class FileWork {
             if (Files.exists(path)
                     && Files.isReadable(path)
                     && Files.size(path) > 0) {
-                return Arrays.stream(Files.readString(path).split(space))
-                        .map(e -> e.toLowerCase().replaceAll(regex, emptyString))
-                        .filter(e -> e.startsWith(letter))
+                return Arrays.stream(Files.readString(path).split(SPACE))
+                        .map(e -> e.toLowerCase().replaceAll(REGEX, EMPTY_STRING))
+                        .filter(e -> e.startsWith(LETTER))
                         .sorted()
                         .toArray(String[]::new);
             }
