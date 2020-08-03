@@ -28,9 +28,8 @@ public class FileWork {
             while ((line = newReader.readLine()) != null) {
                 String[] arr1 = line.toLowerCase().split(SPACE);
                 for (String line2 : arr1) {
-                    if (line2.substring(0, 1).equals(LETTER)) {
-                        tempString += line2.replace(POINT, EMPTY).replace(QUESTION_MARK, EMPTY)
-                                .replace(EXCLAMATION_MARK, EMPTY) + SPACE;
+                    if (line2.startsWith(LETTER)) {
+                        tempString += line2.replaceAll("[^a-z0-9]", "") + SPACE;
                     }
                 }
             }
