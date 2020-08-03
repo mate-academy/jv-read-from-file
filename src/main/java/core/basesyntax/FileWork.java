@@ -21,10 +21,6 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) throws RuntimeException {
 
-        if (fileName == null) {
-            throw new RuntimeException("No file with such name was found");
-        }
-
         ArrayList<String> listOfWords = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
