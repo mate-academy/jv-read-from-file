@@ -15,19 +15,21 @@ import java.util.List;
  * Результат: web wide width world</p>
  */
 public class FileWork {
+    private static final char FIRST_LETTER = 'w';
+
     public String[] readFromFile(String fileName) {
         List<String> resultWords = new ArrayList<>();
         List<String> inputLines = null;
         try {
             inputLines = Files.readAllLines(Paths.get(fileName));
         } catch (IOException e) {
-            return new String[]{};
+            throw new RuntimeException(e);
         }
         for (String string : inputLines) {
             for (String oneWord : string.toLowerCase()
                     .split("[^a-z]+")
             ) {
-                if (oneWord.charAt(0) == 'w') {
+                if (oneWord.charAt(0) == FIRST_LETTER) {
                     resultWords.add(oneWord);
                 }
             }
