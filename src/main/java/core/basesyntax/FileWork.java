@@ -27,16 +27,14 @@ public class FileWork {
                 String[] arrayOfWords = line.split(" ");
                 for (String word : arrayOfWords) {
                     if ((word.substring(0, 1)).equalsIgnoreCase(LETTER)) {
-                        resultList.add(word.replaceAll("[^A-Za-zА-Яа-я0-9]", "").toLowerCase());
+                        resultList.add(word.replaceAll("\\W+", "").toLowerCase());
                     }
                 }
             }
             Collections.sort(resultList);
             return resultList.toArray(new String[resultList.size()]);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("File does not exist", e);
         }
-
-        return new String[]{};
     }
 }
