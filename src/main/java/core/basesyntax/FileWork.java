@@ -12,6 +12,7 @@ import java.util.List;
 public class FileWork {
     private static final char UPPER_CHAR = 'W';
     private static final char LOWER_CHAR = 'w';
+    private static final String REGEX_SEPARATOR = " |" + System.lineSeparator();
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
@@ -34,8 +35,8 @@ public class FileWork {
     }
 
     private String[] findWWords(StringBuilder stringBuilder) {
-        List<String> splitedString = Arrays.asList(stringBuilder.toString().split(" |"
-                + System.lineSeparator()));
+        List<String> splitedString = Arrays
+                .asList(stringBuilder.toString().split(REGEX_SEPARATOR));
         List<String> finalResult = new ArrayList<String>();
         for (int i = 0; i < splitedString.size(); i++) {
             if (splitedString.get(i).charAt(0) == UPPER_CHAR
