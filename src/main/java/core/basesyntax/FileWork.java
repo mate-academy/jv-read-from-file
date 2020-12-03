@@ -30,7 +30,11 @@ public class FileWork {
         if (text.length() == 0) {
             return new String[]{};
         }
-        List<String> splitedString = Arrays.asList(text.toString().split(" |"
+        return findWWords(text);
+    }
+
+    private String[] findWWords(StringBuilder stringBuilder) {
+        List<String> splitedString = Arrays.asList(stringBuilder.toString().split(" |"
                 + System.lineSeparator()));
         List<String> finalResult = new ArrayList<String>();
         for (int i = 0; i < splitedString.size(); i++) {
