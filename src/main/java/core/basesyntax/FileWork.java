@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
-    public static final char LETTER_W = 'w';
+    public static final String LETTER_W = "w";
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
@@ -18,7 +18,7 @@ public class FileWork {
             while (value != null) {
                 String[] parts = value.toLowerCase().split("\\W+");
                 for (String s : parts) {
-                    if (s.charAt(0) == LETTER_W) {
+                    if (s.startsWith(LETTER_W)) {
                         stringBuilder.append(s.toLowerCase()).append(",");
                     }
                 }
