@@ -22,7 +22,7 @@ public class FileWork {
         }
         String[] words = information.toString().toLowerCase().split(DELIMITERS);
         String[] wordsStartsOnSpecifiedCharacter =
-                new String[countWordsStartsOnSpecifiedCharacter(words)];
+                new String[getCountWordsStartsOnSpecifiedCharacter(words)];
         int index = 0;
         for (String word : words) {
             if (startWithLetter(word)) {
@@ -38,7 +38,7 @@ public class FileWork {
         return word.startsWith(SPECIFIED_CHARACTER);
     }
 
-    private static int countWordsStartsOnSpecifiedCharacter(String[] words) {
+    private static int getCountWordsStartsOnSpecifiedCharacter(String[] words) {
         int counterWordsStartOnSpecifiedCharacter = 0;
         for (String word : words) {
             if (startWithLetter(word)) {
