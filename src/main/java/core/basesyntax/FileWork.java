@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
+    private static final char W_CHARACTER = 'w';
+
     public String[] readFromFile(String fileName) {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName));) {
             StringBuilder wordsReader = new StringBuilder();
@@ -25,14 +27,14 @@ public class FileWork {
             }
             String[] arr = wordsReader.toString().toLowerCase().split(" ");
             for (i = 0; i < arr.length; i++) {
-                if (arr[i].charAt(0) == 'w') {
+                if (arr[i].charAt(0) == W_CHARACTER) {
                     counter++;
                 }
             }
             String[] arrW = new String[counter];
             counter = 0;
             for (i = 0; i < arr.length; i++) {
-                if (arr[i].charAt(0) == 'w') {
+                if (arr[i].charAt(0) == W_CHARACTER) {
                     arrW[counter] = arr[i].trim();
                     counter++;
                 }
