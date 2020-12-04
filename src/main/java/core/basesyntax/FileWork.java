@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
+    static final String WORD_START_W = "w";
+
     public String[] readFromFile(String fileName) {
         StringBuilder lines = new StringBuilder();
 
@@ -23,7 +25,7 @@ public class FileWork {
         StringBuilder words = new StringBuilder();
 
         for (String word : wordsFromLines) {
-            if (word.startsWith("w")) {
+            if (word.startsWith(WORD_START_W)) {
                 words.append(word.replaceAll("[^a-z]","")).append(" ");
             }
         }
