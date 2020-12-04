@@ -27,7 +27,8 @@ public class FileWork {
                         || (value >= FIRST_LOWERCASE_LETTER_AT_ASCII
                         && value <= LAST_LOWERCASE_LETTER_AT_ASCII)) {
                     data = data + (char)value;
-                } else if (value >= FIRST_SIGN && value <= LAST_SIGN || value == CARRIAGE_RETURN) {
+                } else if (value >= FIRST_SIGN && value <= LAST_SIGN || value == CARRIAGE_RETURN
+                        || value == LINE_FEED) {
                     data += " ";
                 }
                 value = reader.read();
