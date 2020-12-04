@@ -15,7 +15,7 @@ public class FileWork {
                 value = reader.readLine();
             }
         } catch (IOException e) {
-            throw new RuntimeException("Can't read the file", e);
+            throw new RuntimeException("Can't read this file", e);
         }
         String[] text = builder.toString().split("\\W+");
         StringBuilder stringBuilder = new StringBuilder();
