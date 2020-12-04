@@ -12,7 +12,7 @@ public class FileWork {
         try {
             return Files.readAllLines(new File(fileName).toPath())
                     .stream()
-                    .flatMap(line -> Arrays.stream((line + " ").toLowerCase().split("[.!?]* ")))
+                    .flatMap(line -> Arrays.stream(line.toLowerCase().split("\\W+")))
                     .filter(word -> word.startsWith(START_SYMBOL))
                     .sorted()
                     .toArray(String[]::new);
