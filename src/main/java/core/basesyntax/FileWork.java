@@ -23,8 +23,12 @@ public class FileWork {
         } catch (IOException e) {
             new RuntimeException("Error with reading a file!", e);
         }
+        return findWordsWithCharacterW(allText.toString());
+    }
+
+    private String[] findWordsWithCharacterW(String allText) {
         StringBuilder lineWordsWithCharW = new StringBuilder();
-        for (String word : allText.toString().replaceAll("[!?,.]", "").toLowerCase().split(" ")) {
+        for (String word : allText.replaceAll("[!?,.]", "").toLowerCase().split(" ")) {
             if (word.startsWith(CHARACTER_W)) {
                 lineWordsWithCharW.append(word).append(" ");
             }
