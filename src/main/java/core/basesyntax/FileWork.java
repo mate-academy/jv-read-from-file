@@ -6,10 +6,8 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
-    
     public static final String SYMBOL_W = "w";
     public static final String SYMBOL_W_UPPER_CASE = "W";
-    public static final String CONTROL_CHARS = "!&?()_+=,;:. \n";
     
     public String[] readFromFile(String fileName) {
         StringBuilder words = new StringBuilder();
@@ -17,7 +15,7 @@ public class FileWork {
             StringBuilder word = new StringBuilder();
             int symbol = reader.read();
             while (symbol > 0) {
-                if (CONTROL_CHARS.indexOf(symbol) == -1) {
+                if (Character.isAlphabetic(symbol)) {
                     word.append((char) symbol);
                 } else {
                     if (word.toString().startsWith(SYMBOL_W_UPPER_CASE)
