@@ -13,7 +13,7 @@ public class FileWork {
             return Files.readAllLines(new File(fileName).toPath())
                     .stream()
                     .flatMap(line -> Arrays.stream((line + " ").toLowerCase().split("[.!?]* ")))
-                    .filter(word -> word.toLowerCase().startsWith(START_SYMBOL))
+                    .filter(word -> word.startsWith(START_SYMBOL))
                     .sorted()
                     .toArray(String[]::new);
         } catch (IOException e) {
