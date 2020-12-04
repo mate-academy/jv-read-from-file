@@ -32,7 +32,7 @@ public class FileWork {
                 value = reader.read();
             }
         } catch (IOException e) {
-            throw new RuntimeException("Can't read file!");
+            throw new RuntimeException("Can't read file!!!");
         }
         data = data.toLowerCase();
         String[] stringArrayData = data.split(" ");
