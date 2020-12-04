@@ -14,6 +14,7 @@ public class FileWork {
     private static final int FIRST_SIGN = 32;
     private static final int LAST_SIGN = 63;
     private static final int CARRIAGE_RETURN = 13;
+    private static final int LINE_FEED = 10;
 
     public String[] readFromFile(String fileName) {
         String data = "";
