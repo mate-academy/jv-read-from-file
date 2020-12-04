@@ -10,21 +10,18 @@ import java.util.Collections;
 import java.util.List;
 
 public class FileWork {
-    private static final char UPPER_CHAR = 'W';
-    private static final char LOWER_CHAR = 'w';
+    private static final char FINDING_CHAR = 'w';
     private static final String REGEX_SEPARATOR = " |" + System.lineSeparator();
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
         StringBuilder text = new StringBuilder();
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-            int value = bufferedReader.read();
-            while (value != -1) {
-                text.append((char) value);
-                value = bufferedReader.read();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file));) {
+            String value = bufferedReader.readLine();
+            while (value != null) {
+                text.append(value).append(" ");
+                value = bufferedReader.readLine();
             }
-            System.out.println(text.toString());
         } catch (IOException e) {
             throw new RuntimeException("Can't read file", e);
         }
@@ -39,8 +36,7 @@ public class FileWork {
                 .asList(stringBuilder.toString().split(REGEX_SEPARATOR));
         List<String> finalResult = new ArrayList<String>();
         for (int i = 0; i < splitedString.size(); i++) {
-            if (splitedString.get(i).charAt(0) == UPPER_CHAR
-                    || splitedString.get(i).charAt(0) == LOWER_CHAR) {
+            if (splitedString.get(i).toLowerCase().charAt(0) == FINDING_CHAR) {
                 finalResult.add(splitedString.get(i).toLowerCase().replaceAll("[^\\w]", ""));
             }
         }
