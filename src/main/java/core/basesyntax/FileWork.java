@@ -10,15 +10,13 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         StringBuilder wordsStartedW = new StringBuilder();
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String value = bufferedReader.readLine();
             while (value != null) {
-                String[] line = value.split(" ");
+                String[] line = value.toLowerCase().split("\\W+");
                 for (String words : line) {
-                    if (words.toLowerCase().startsWith(SPECIFIED_CHARACTER)) {
-                        wordsStartedW.append(words.replaceAll("[?!.,]", "").toLowerCase())
-                                .append(" ");
+                    if (words.startsWith(SPECIFIED_CHARACTER)) {
+                        wordsStartedW.append(words).append(" ");
                     }
                 }
                 value = bufferedReader.readLine();
@@ -26,7 +24,7 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException("File can't be read", e);
         }
-        if (wordsStartedW.length() == 0) {
+        if (wordsStartedW.toString().isEmpty()) {
             return new String[]{};
         }
         String[] finalArray = wordsStartedW.toString().split(" ");
