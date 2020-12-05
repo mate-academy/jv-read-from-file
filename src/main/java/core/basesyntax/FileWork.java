@@ -15,10 +15,8 @@ public class FileWork {
         StringBuilder file = new StringBuilder();
         String[] readFromFile = new String[] {};
         ArrayList<String> read = new ArrayList<>();
-        BufferedReader bufferedReader = null;
-        try {
-            bufferedReader = new BufferedReader(new
-                    InputStreamReader(new FileInputStream(fileName)));
+        try (BufferedReader bufferedReader = new BufferedReader(new
+                InputStreamReader(new FileInputStream(fileName)));) {
             String newLine = bufferedReader.readLine();
             while (newLine != null) {
                 file.append(newLine.toLowerCase(Locale.ROOT)).append(" ");
@@ -45,7 +43,7 @@ public class FileWork {
         } catch (FileNotFoundException e) {
             System.out.println("File was not found");
         } catch (IOException e) {
-            System.out.println("In file smth strage, i do not read it!");
+            System.out.println("File was not written ");
         }
         return readFromFile;
     }
