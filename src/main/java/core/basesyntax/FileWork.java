@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
-    private static final char KEY_CHARACTER = 'w';
+    private static final String KEY_CHARACTER = "w";
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
@@ -21,7 +21,7 @@ public class FileWork {
             while (line != null) {
                 String[] readingLine = line.toLowerCase().split("\\W+");
                 for (String wordInLine : readingLine) {
-                    if (wordInLine.toLowerCase().charAt(0) == KEY_CHARACTER) {
+                    if (wordInLine.toLowerCase().startsWith(KEY_CHARACTER)) {
                         stringBuilder.append(wordInLine).append(" ");
                     }
                 }
