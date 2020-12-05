@@ -29,9 +29,11 @@ public class FileWork {
         if (allText == null || allText.toString().isEmpty()) {
             return new String[0];
         }
-        List<String> listOfWords = new LinkedList<>(Arrays.asList(allText.toString().split("[^\\w]")));
+        List<String> listOfWords = new LinkedList<>(
+                Arrays.asList(allText.toString().split("[^\\w]")));
         listOfWords.replaceAll(String::toLowerCase);
-        listOfWords.removeIf(word -> word.isEmpty() || word.charAt(0) != SPECIAL_LOWERCASE_W_CHARACTER);
+        listOfWords.removeIf(word -> word.isEmpty()
+                || word.charAt(0) != SPECIAL_LOWERCASE_W_CHARACTER);
         Collections.sort(listOfWords);
         return listOfWords.toArray(new String[0]);
     }
