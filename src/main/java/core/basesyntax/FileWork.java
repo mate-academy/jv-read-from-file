@@ -3,6 +3,8 @@ package core.basesyntax;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 
 public class FileWork {
@@ -12,10 +14,8 @@ public class FileWork {
     public String[] readFromFile(String fileName) {
         String[] resultW = new String[0];
         StringBuilder stringBuilder = new StringBuilder();
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        try (BufferedReader reader = Files.newBufferedReader(Paths.get(fileName))){
             String value = reader.readLine();
-
             while (value != null) {
                 stringBuilder.append(value).append(" ");
                 value = reader.readLine();
