@@ -8,12 +8,9 @@ import java.util.Arrays;
 public class FileWork {
     public String[] readFromFile(String fileName) {
         StringBuilder bufResult = new StringBuilder();
-        String[] result = new String[0];
+        String[] result;
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String line = bufferedReader.readLine();
-            if (line == null) {
-                return new String[0];
-            }
             while (line != null) {
                 String[] words = line.toLowerCase().replaceAll("[^a-z ]", "").split(" ");
                 line = bufferedReader.readLine();
@@ -24,13 +21,14 @@ public class FileWork {
                 }
             }
             result = bufResult.toString().split(" ");
-            Arrays.sort(result);
-            if (bufResult.toString().length() == 0) {
-                return new String[0];
-            }
-            return result;
+
         } catch (IOException e) {
-            System.out.println("Can not read this file");
+            throw new RuntimeException("Can not read this file",e);
+        }
+
+        Arrays.sort(result);
+        if (bufResult.toString().length() == 0) {
+            return new String[0];
         }
         return result;
     }
