@@ -10,19 +10,17 @@ public class FileWork {
     private static final char FIRST_CHARACTER_TO_FILTER = 'w';
 
     public String[] readFromFile(String fileName) {
-        File file = new File(fileName);
         StringBuilder stringBuilder = new StringBuilder();
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-            String newLine = bufferedReader.readLine();
-            while (newLine != null) {
+        File file = new File(fileName);
+        String newLine;
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+            while ((newLine = bufferedReader.readLine()) != null) {
                 String[] lineWords = newLine.toLowerCase().split("\\W+");
                 for (String item : lineWords) {
                     if (item.charAt(0) == FIRST_CHARACTER_TO_FILTER) {
                         stringBuilder.append(item.toLowerCase()).append(" ");
                     }
                 }
-                newLine = bufferedReader.readLine();
             }
         } catch (IOException e) {
             throw new RuntimeException("Can't read from file:" + fileName, e);
