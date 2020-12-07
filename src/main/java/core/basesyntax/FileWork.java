@@ -15,15 +15,14 @@ public class FileWork {
         List<String> arrayList = new ArrayList<>();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file));) {
             StringBuilder stringBuilder = new StringBuilder();
-            String value = bufferedReader.readLine();
-            while (value != null) {
+            String value;
+            while ((value = bufferedReader.readLine()) != null) {
                 stringBuilder.append(value).append(" ");
-                value = bufferedReader.readLine();
             }
-            String[] allWords = stringBuilder.toString().toLowerCase().split(" ");
+            String[] allWords = stringBuilder.toString().toLowerCase().split("\\W+");
             for (String word: allWords) {
                 if (word.startsWith(SPECIFIED_CHARACTER)) {
-                    arrayList.add(word.replaceAll("[.?!]", ""));
+                    arrayList.add(word);
                 }
             }
         } catch (Exception e) {
