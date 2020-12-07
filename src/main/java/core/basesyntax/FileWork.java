@@ -21,15 +21,15 @@ public class FileWork {
                 value = bufferedReader.readLine();
             }
         } catch (IOException e) {
-            throw new RuntimeException("Can't find file");
+            throw new RuntimeException("Can't find file", e);
         }
         String[] wordsOfFile = builderWordsForAllFile.toString().toLowerCase()
                 .replaceAll("[,!?\\.]", "")
                 .split("\\s+");
 
-        for (String st : wordsOfFile) {
-            if (st.startsWith(SPEC_CHARACTER)) {
-                builderWordsStartsWithW.append(st).append(" ");
+        for (String wordsIterator : wordsOfFile) {
+            if (wordsIterator.startsWith(SPEC_CHARACTER)) {
+                builderWordsStartsWithW.append(wordsIterator).append(" ");
             }
         }
         String[] wordsStartsWithW = builderWordsStartsWithW.toString().split(" ");
