@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FileWork {
+    public static final String PREFIX = "w";
 
     public String[] readFromFile(String fileName) {
         File fileToRead = new File(fileName);
@@ -25,6 +26,6 @@ public class FileWork {
         String[] finalArray = sb.toString().trim().toLowerCase()
                 .replaceAll("[^ a-zA-Z]", "").split(" ");
         return Arrays.stream(finalArray).sorted()
-                .filter(i -> i.startsWith("w")).toArray(String[]::new);
+                .filter(i -> i.startsWith(PREFIX)).toArray(String[]::new);
     }
 }
