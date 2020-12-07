@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class FileWork {
+    private static final char IMPORTANT_CHAR = 'w';
+
     public String[] readFromFile(String fileName) {
 
         File file = new File(fileName);
@@ -22,7 +24,7 @@ public class FileWork {
         for (int i = 0; i < data.size(); i++) {
             String[] strings = data.get(i).split("\\W+");
             for (String str : strings) {
-                if (Character.toLowerCase(str.charAt(0)) == 'w') {
+                if (Character.toLowerCase(str.charAt(0)) == IMPORTANT_CHAR) {
                     returnStrings.add(str.toLowerCase());
                 }
             }
