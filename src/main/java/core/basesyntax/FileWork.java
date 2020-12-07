@@ -11,19 +11,16 @@ public class FileWork {
         String[] returnValue = new String[0];
         File file = new File(fileName);
         StringBuilder readerForWords = new StringBuilder();
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             StringBuilder stringBuilderForFile = new StringBuilder();
-            String value = bufferedReader.readLine();
-            while (value != null) {
+            String value;
+            while ((value = bufferedReader.readLine()) != null) {
                 stringBuilderForFile.append(value).append(" ");
-                value = bufferedReader.readLine();
             }
-            String[] workList = stringBuilderForFile.toString().split("\\s+");
+            String[] workList = stringBuilderForFile.toString().split("\\W+");
             for (int i = 0; i < workList.length; i++) {
                 if (workList[i].toLowerCase().startsWith("w")) {
-                    readerForWords.append(workList[i].toLowerCase()
-                            .replaceAll("\\W", "")).append(" ");
+                    readerForWords.append(workList[i].toLowerCase()).append(" ");
                 }
             }
         } catch (Exception e) {
@@ -31,7 +28,7 @@ public class FileWork {
         }
         if (readerForWords.toString().isEmpty()) {
             returnValue = new String[0];
-        } else if (!readerForWords.toString().isEmpty()) {
+        } else {
             returnValue = readerForWords.toString().split("\\s+");
             Arrays.sort(returnValue);
         }
