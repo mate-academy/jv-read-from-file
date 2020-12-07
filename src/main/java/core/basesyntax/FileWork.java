@@ -13,9 +13,6 @@ public class FileWork {
         StringBuilder information = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String value = bufferedReader.readLine();
-            if (value == null) {
-                return new String[]{};
-            }
             while (value != null) {
                 information.append(value).append(" ");
                 value = bufferedReader.readLine();
@@ -23,29 +20,29 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException("File can't be read " + fileName, e);
         }
-        StringBuilder wordsStartsOnSpecifiedCharacter =
-                getWordsStartsOnSpecifiedCharacter(information);
-        if (wordsStartsOnSpecifiedCharacter.length() == 0) {
+        StringBuilder wordsOnSpecifiedChar =
+                getWordsOnSpecifiedChar(information);
+        if (wordsOnSpecifiedChar.length() == 0) {
             return new String[]{};
         }
-        String[] arrayWordsStartsOnSpecifiedCharacter =
-                wordsStartsOnSpecifiedCharacter.toString().split(" ");
-        Arrays.sort(arrayWordsStartsOnSpecifiedCharacter);
-        return arrayWordsStartsOnSpecifiedCharacter;
+        String[] wordsOnConcreteChar =
+                wordsOnSpecifiedChar.toString().split(" ");
+        Arrays.sort(wordsOnConcreteChar);
+        return wordsOnConcreteChar;
     }
 
     private static boolean startWithLetter(String word) {
         return word.startsWith(SPECIFIED_CHARACTER);
     }
 
-    private static StringBuilder getWordsStartsOnSpecifiedCharacter(StringBuilder information) {
+    private static StringBuilder getWordsOnSpecifiedChar(StringBuilder information) {
         String[] words = information.toString().toLowerCase().split(DELIMITERS);
-        StringBuilder wordsStartsOnSpecifiedCharacter = new StringBuilder();
+        StringBuilder wordsOnSpecifiedChar = new StringBuilder();
         for (String word : words) {
             if (startWithLetter(word)) {
-                wordsStartsOnSpecifiedCharacter.append(word).append(" ");
+                wordsOnSpecifiedChar.append(word).append(" ");
             }
         }
-        return wordsStartsOnSpecifiedCharacter;
+        return wordsOnSpecifiedChar;
     }
 }
