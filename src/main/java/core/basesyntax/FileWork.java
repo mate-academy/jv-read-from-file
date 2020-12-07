@@ -6,7 +6,8 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
-    static final String WORD_START_W = "w";
+    private static final String WORD_START_W = "w";
+    private static final String WHITESPACE = " ";
 
     public String[] readFromFile(String fileName) {
         StringBuilder lines = new StringBuilder();
@@ -14,24 +15,26 @@ public class FileWork {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String value = reader.readLine();
             while (value != null) {
-                lines.append(value.toLowerCase()).append(System.lineSeparator()).append(" ");
+                lines.append(value.toLowerCase()).append(WHITESPACE);
                 value = reader.readLine();
             }
         } catch (IOException e) {
-            throw new RuntimeException();
+            throw new RuntimeException("Can't find file " + fileName, e);
         }
 
-        String[] wordsFromLines = lines.toString().split(" ");
+        String[] wordsFromLines = lines.toString().split(WHITESPACE);
         StringBuilder words = new StringBuilder();
 
         for (String word : wordsFromLines) {
             if (word.startsWith(WORD_START_W)) {
-                words.append(word.replaceAll("[^a-z]","")).append(" ");
+                words.append(word.replaceAll("[^a-z]","")).append(WHITESPACE);
             }
         }
-        String[] wordsWithW = words.toString().split(" ");
+
+        String[] wordsWithW = words.length() != 0
+                ? words.toString().split(WHITESPACE) : new String[0];
         Arrays.sort(wordsWithW);
 
-        return !words.toString().equals("") ? wordsWithW : new String[0];
+        return wordsWithW;
     }
 }
