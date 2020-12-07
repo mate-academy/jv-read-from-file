@@ -3,7 +3,6 @@ package core.basesyntax;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -32,12 +31,12 @@ public class FileWork {
                 return new String[0];
             }
             String[] sortableStrings = stringBuilder.toString().split(" ");
-            ArrayList<String> sortingList = new ArrayList<>(Arrays.asList(sortableStrings));
+            List<String> sortingList = Arrays.asList(sortableStrings);
             Collections.sort(sortingList);
             String[] result = new String[sortingList.size()];
             return sortingList.toArray(result);
         } catch (IOException e) {
-            throw new RuntimeException("Can't read file", e);
+            throw new RuntimeException("Can't read file" + fileName, e);
         }
     }
 }
