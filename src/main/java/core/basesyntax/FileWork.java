@@ -26,7 +26,7 @@ public class FileWork {
     }
 
     private String[] getWordsWithLowerCaseW(StringBuilder allText) {
-        if (allText == null || allText.toString().isEmpty()) {
+        if (allText.toString().isEmpty()) {
             return new String[0];
         }
         List<String> listOfWords = new LinkedList<>(
