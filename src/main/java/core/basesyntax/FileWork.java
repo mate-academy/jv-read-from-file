@@ -18,7 +18,7 @@ public class FileWork {
                 value = reader.readLine();
             }
         } catch (IOException e) {
-            throw new RuntimeException("Can't read file!", e);
+            throw new RuntimeException("Can't read file - " + fileName, e);
         }
         String[] words = allText.toString().toLowerCase().split(DELIMITERS);
         StringBuilder myWords = new StringBuilder();
