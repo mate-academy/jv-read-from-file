@@ -18,19 +18,16 @@ public class FileWork {
                 String[] notSortedList = value.toLowerCase().split(" ");
                 for (String word : notSortedList) {
                     if (word.startsWith(SPECIFIED_CHARACTER_LOWER_CASE)) {
-                        notFormattedWords.add(word.toLowerCase().replaceAll("\\W", ""));
+                        notFormattedWords.add(word.replaceAll("\\W", ""));
                     }
                 }
                 value = reader.readLine();
             }
         } catch (IOException e) {
-            throw new RuntimeException("Can't read file");
+            throw new RuntimeException("Can't read file", e);
         }
         Collections.sort(notFormattedWords);
-        String[] sortedWords = new String[notFormattedWords.size()];
-        for (int i = 0; i < notFormattedWords.size(); i++) {
-            sortedWords[i] = notFormattedWords.get(i);
-        }
+        String[] sortedWords = notFormattedWords.toArray(new String[notFormattedWords.size()]);
         return sortedWords;
     }
 }
