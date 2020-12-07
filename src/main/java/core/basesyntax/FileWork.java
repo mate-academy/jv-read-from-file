@@ -23,14 +23,14 @@ public class FileWork {
             stringBuilder.append(string.toLowerCase()).append(" ");
         }
 
-        String[] arrayText = stringBuilder.toString().split(" ");
-        List<String> readFiles = new ArrayList<>();
-        for (String string : arrayText) {
+        String[] arrayOfWordsToBeChecked = stringBuilder.toString().split(" ");
+        List<String> checkedAndReadFiles = new ArrayList<>();
+        for (String string : arrayOfWordsToBeChecked) {
             if (string.startsWith(SPECIFIED_CHARACTER)) {
-                readFiles.add(string.replaceAll("\\W", ""));
+                checkedAndReadFiles.add(string.replaceAll("\\W", ""));
             }
         }
-        Collections.sort(readFiles);
-        return readFiles.toArray(new String[0]);
+        Collections.sort(checkedAndReadFiles);
+        return checkedAndReadFiles.toArray(new String[0]);
     }
 }
