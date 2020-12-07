@@ -14,8 +14,7 @@ public class FileWork {
             return new String[0];
         }
 
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             StringBuilder stringBuilder = new StringBuilder();
             String value = bufferedReader.readLine();
 
@@ -34,9 +33,8 @@ public class FileWork {
                     .toArray(String[]::new);
 
         } catch (IOException e) {
-            throw new RuntimeException("Couldn`t read file", e);
+            throw new RuntimeException("Couldn`t read file " + fileName, e);
         }
-
         return result;
     }
 
