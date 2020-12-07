@@ -25,14 +25,7 @@ public class FileWork {
             readFromFile = file.toString().split(" ");
             for (int i = 0; i < readFromFile.length; i++) {
                 if (readFromFile[i].indexOf('w') == 0) {
-                    if (readFromFile[i].indexOf(',') >= 0
-                            || readFromFile[i].indexOf('.') >= 0
-                            || readFromFile[i].indexOf('!') >= 0
-                            || readFromFile[i].indexOf('?') >= 0) {
-                        readFromFile[i] = readFromFile[i]
-                                .substring(0, readFromFile[i].length() - 1);
-                    }
-                    read.add(readFromFile[i]);
+                    read.add(readFromFile[i].replaceAll("[,.!?]", ""));
                 }
             }
             Collections.sort(read);
