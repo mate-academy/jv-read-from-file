@@ -13,38 +13,39 @@ public class FileWork {
         StringBuilder information = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String value = bufferedReader.readLine();
+            if (value == null) {
+                return new String[]{};
+            }
             while (value != null) {
                 information.append(value).append(" ");
                 value = bufferedReader.readLine();
             }
         } catch (IOException e) {
-            throw new RuntimeException("File can't be read ", e);
+            throw new RuntimeException("File can't be read " + fileName, e);
         }
-        String[] words = information.toString().toLowerCase().split(DELIMITERS);
-        String[] wordsStartsOnSpecifiedCharacter =
-                new String[getCountWordsStartsOnSpecifiedCharacter(words)];
-        int index = 0;
-        for (String word : words) {
-            if (startWithLetter(word)) {
-                wordsStartsOnSpecifiedCharacter[index] = word;
-                index++;
-            }
+        StringBuilder wordsStartsOnSpecifiedCharacter =
+                getWordsStartsOnSpecifiedCharacter(information);
+        if (wordsStartsOnSpecifiedCharacter.length() == 0) {
+            return new String[]{};
         }
-        Arrays.sort(wordsStartsOnSpecifiedCharacter);
-        return wordsStartsOnSpecifiedCharacter;
+        String[] arrayWordsStartsOnSpecifiedCharacter =
+                wordsStartsOnSpecifiedCharacter.toString().split(" ");
+        Arrays.sort(arrayWordsStartsOnSpecifiedCharacter);
+        return arrayWordsStartsOnSpecifiedCharacter;
     }
 
     private static boolean startWithLetter(String word) {
         return word.startsWith(SPECIFIED_CHARACTER);
     }
 
-    private static int getCountWordsStartsOnSpecifiedCharacter(String[] words) {
-        int counterWordsStartOnSpecifiedCharacter = 0;
+    private static StringBuilder getWordsStartsOnSpecifiedCharacter(StringBuilder information) {
+        String[] words = information.toString().toLowerCase().split(DELIMITERS);
+        StringBuilder wordsStartsOnSpecifiedCharacter = new StringBuilder();
         for (String word : words) {
             if (startWithLetter(word)) {
-                counterWordsStartOnSpecifiedCharacter++;
+                wordsStartsOnSpecifiedCharacter.append(word).append(" ");
             }
         }
-        return counterWordsStartOnSpecifiedCharacter;
+        return wordsStartsOnSpecifiedCharacter;
     }
 }
