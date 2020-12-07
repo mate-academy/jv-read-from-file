@@ -14,9 +14,9 @@ public class FileWork {
             String readLine = reader.readLine();
             while (readLine != null) {
                 String[] arrReadLine = readLine.split("\\s*(\\s|,|!|\\.|\\?)\\s*");
-                for (String arrReadLine1 : arrReadLine) {
-                    if (arrReadLine1.toLowerCase().startsWith(W_CHARACTER)) {
-                        wordsReader.append(arrReadLine1.toLowerCase()).append(" ");
+                for (String wordFromLine : arrReadLine) {
+                    if (wordFromLine.toLowerCase().startsWith(W_CHARACTER)) {
+                        wordsReader.append(wordFromLine.toLowerCase()).append(" ");
                     }
                 }
                 readLine = reader.readLine();
