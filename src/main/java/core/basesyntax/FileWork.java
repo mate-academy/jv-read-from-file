@@ -17,7 +17,7 @@ public class FileWork {
             String value = bufferedReader.readLine();
 
             while (value != null) {
-                for (String word: value.toLowerCase().split("\\W+")) {
+                for (String word : value.toLowerCase().split("\\W+")) {
                     if (startWithLetter(word)) {
                         stringBuilder.append(word).append(" ");
                     }
