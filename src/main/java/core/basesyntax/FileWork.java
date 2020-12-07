@@ -11,12 +11,13 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
+        List<String> listOfWords;
         try {
-            List<String> listOfWords = Files.readAllLines(new File(fileName).toPath());
-            return wordsFromListLowerCase(listOfWords);
+            listOfWords = Files.readAllLines(new File(fileName).toPath());
         } catch (IOException e) {
             throw new RuntimeException("Can't read file " + fileName, e);
         }
+        return wordsFromListLowerCase(listOfWords);
     }
 
     private String[] wordsFromListLowerCase(List<String> listOfWords) {
@@ -33,7 +34,7 @@ public class FileWork {
         textBuilder = new StringBuilder();
 
         for (String word : wordsArray) {
-            if (startWithLetter(word)) {
+            if (word.startsWith(SPECIFIED_CHARACTER)) {
                 textBuilder.append(word).append(" ");
             }
         }
@@ -43,9 +44,5 @@ public class FileWork {
         wordsArray = textBuilder.toString().split(" ");
         Arrays.sort(wordsArray);
         return wordsArray.length == 0 ? new String[0] : wordsArray;
-    }
-
-    public boolean startWithLetter(String word) {
-        return word.startsWith(SPECIFIED_CHARACTER);
     }
 }
