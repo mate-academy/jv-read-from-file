@@ -1,7 +1,40 @@
 package core.basesyntax;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
+
 public class FileWork {
+    private static final String SPACE_FOR_SPLIT = " ";
+    private static final String LOOKING_LETTER = "w";
+
     public String[] readFromFile(String fileName) {
-        return null;
+        String[] resultW = new String[0];
+        StringBuilder stringBuilder = new StringBuilder();
+        try (BufferedReader reader = Files.newBufferedReader(Paths.get(fileName))) {
+            String value = reader.readLine();
+            while (value != null) {
+                stringBuilder.append(value).append(" ");
+                value = reader.readLine();
+            }
+            String[] split = stringBuilder.toString().toLowerCase().split(SPACE_FOR_SPLIT);
+            StringBuilder stringBuilderForW = new StringBuilder();
+            for (int i = 0; i < split.length; i++) {
+                split[i] = split[i].replaceAll("[.!?]", "");
+                if (split[i].startsWith(LOOKING_LETTER)) {
+                    stringBuilderForW = stringBuilderForW.append(split[i]).append(SPACE_FOR_SPLIT);
+                }
+            }
+            resultW = stringBuilderForW.toString().split(SPACE_FOR_SPLIT);
+            if (stringBuilderForW.length() == 0) {
+                return new String[0];
+            }
+            Arrays.sort(resultW);
+        } catch (IOException e) {
+            throw new RuntimeException("Can't read file " + fileName, e);
+        }
+        return resultW;
     }
 }
