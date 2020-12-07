@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 public class FileWork {
     private static final char SYMBOL_LOWER_CASE = 'w';
 
@@ -19,14 +18,15 @@ public class FileWork {
                 String[] line = reader.readLine().split(" ");
                 for (String value : line) {
                     if (Character.toLowerCase(value.charAt(0)) == SYMBOL_LOWER_CASE) {
-                        list.add(value.replaceAll("[^A-z]","").toLowerCase());
+                        list.add(value.replaceAll("[^A-z]", "").toLowerCase());
                     }
                 }
             }
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(String.format("File %s not found. Try again",fileName), e);
+            throw new RuntimeException(String.format("File %s not found. Try again", fileName), e);
         } catch (IOException e) {
-            throw new RuntimeException(String.format("Some problem with file %s. Try again", fileName), e);
+            throw new RuntimeException(String.format("Some problem with file %s. Try again",
+                    fileName), e);
         }
         Collections.sort(list);
         return list.toArray(new String[0]);
