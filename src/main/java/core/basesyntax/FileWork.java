@@ -10,10 +10,9 @@ public class FileWork {
     private static final String SPECIFIED_CHARACTER = "w";
 
     public String[] readFromFile(String fileName) {
-        File file = new File(fileName);
         StringBuilder stringBuilder = new StringBuilder();
 
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String value = bufferedReader.readLine();
 
             while (value != null) {
@@ -35,7 +34,7 @@ public class FileWork {
         return readingResult;
     }
 
-    public boolean startWithLetter(String word) {
+    private boolean startWithLetter(String word) {
         return word.startsWith(SPECIFIED_CHARACTER);
     }
 }
