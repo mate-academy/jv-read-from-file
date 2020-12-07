@@ -11,15 +11,14 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         StringBuilder allText = new StringBuilder();
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String value = reader.readLine();
             while (value != null) {
                 allText.append(value).append(" ");
                 value = reader.readLine();
             }
         } catch (IOException e) {
-            throw new RuntimeException("Can't read file!");
+            throw new RuntimeException("Can't read file!", e);
         }
         String[] words = allText.toString().toLowerCase().split(DELIMITERS);
         StringBuilder myWords = new StringBuilder();
