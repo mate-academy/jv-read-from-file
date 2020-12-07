@@ -16,16 +16,15 @@ public class FileWork {
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             StringBuilder stringBuilder = new StringBuilder();
-            String value = bufferedReader.readLine();
+            String value;
 
-            while (value != null) {
+            while ((value = bufferedReader.readLine()) != null) {
                 stringBuilder.append(value.toLowerCase()).append(" ");
-                value = bufferedReader.readLine();
+
             }
             String[] words = stringBuilder
                     .toString()
-                    .replaceAll("[.!,?\\-]", " ")
-                    .split(" ");
+                    .split("\\W+");
 
             result = Arrays.stream(words)
                     .filter(this::startsWithLetter)
@@ -38,7 +37,7 @@ public class FileWork {
         return result;
     }
 
-    public boolean startsWithLetter(String word) {
+    private boolean startsWithLetter(String word) {
         return word.startsWith(SPECIFIED_CHARACTER);
     }
 }
