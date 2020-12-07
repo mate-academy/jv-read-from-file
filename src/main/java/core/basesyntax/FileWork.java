@@ -24,7 +24,7 @@ public class FileWork {
 
         for (String word : listOfWords) {
             textBuilder.append(word.toLowerCase()).append(System.lineSeparator());
-            if (textBuilder.length() <= 0) {
+            if (textBuilder.length() == 0) {
                 return new String[0];
             }
         }
@@ -37,9 +37,12 @@ public class FileWork {
                 textBuilder.append(word).append(" ");
             }
         }
+        if (textBuilder.toString().length() == 0) {
+            return new String[0];
+        }
         wordsArray = textBuilder.toString().split(" ");
         Arrays.sort(wordsArray);
-        return wordsArray.length == 1 ? new String[0] : wordsArray;
+        return wordsArray.length == 0 ? new String[0] : wordsArray;
     }
 
     public boolean startWithLetter(String word) {
