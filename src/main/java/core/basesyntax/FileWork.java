@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FileWork {
-
     private static final String SPECIFIED_CHARACTER = "w";
 
     public String[] readFromFile(String fileName) {
@@ -16,10 +15,10 @@ public class FileWork {
             List<String> arrayList = new ArrayList<>();
             String line = null;
             while ((line = bufferedReader.readLine()) != null) {
-                String[] split = line.split(" ");
-                for (String s : split) {
-                    if (s.toLowerCase().startsWith(SPECIFIED_CHARACTER)) {
-                        arrayList.add(s.replaceAll("\\W", "").toLowerCase());
+                String[] splittedLine = line.split(" ");
+                for (String piece : splittedLine) {
+                    if (piece.toLowerCase().startsWith(SPECIFIED_CHARACTER)) {
+                        arrayList.add(piece.replaceAll("\\W", "").toLowerCase());
                     }
                 }
             }
@@ -27,7 +26,7 @@ public class FileWork {
             Arrays.sort(resultArray);
             return resultArray;
         } catch (IOException e) {
-            throw new RuntimeException("");
+            throw new RuntimeException("Can't read from file: " + fileName + ", " + e);
         }
     }
 }
