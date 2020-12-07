@@ -5,15 +5,15 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class FileWork {
     private static final String SPECIFIED_CHARACTER = "w";
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
-        ArrayList<String> arrayList = new ArrayList<>();
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+        List<String> arrayList = new ArrayList<>();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file));) {
             StringBuilder stringBuilder = new StringBuilder();
             String value = bufferedReader.readLine();
             while (value != null) {
