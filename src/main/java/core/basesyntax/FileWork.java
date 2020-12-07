@@ -1,7 +1,6 @@
 package core.basesyntax;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,10 +11,10 @@ public class FileWork {
     private static final String STRING_START_WITH = "w";
 
     public String[] readFromFile(String fileName) {
-        File file = new File(fileName);
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             StringBuilder stringBuilder = new StringBuilder();
-            String lineSeparator = System.getProperty("line.separator");
+            String lineSeparator = System.lineSeparator();
             String lineFromFile = bufferedReader.readLine();
             while (lineFromFile != null) {
                 stringBuilder.append(lineFromFile).append(lineSeparator);
@@ -24,7 +23,7 @@ public class FileWork {
             String[] splitedStringBuilderResult = stringBuilder
                     .toString()
                     .toLowerCase()
-                    .split(" |\\.|,|:|;|'|!|\\?|\r|\n");
+                    .split("\\s+|\\.|,|:|;|'|!|\\?|\r|\n");
             List<String> wordsList = new ArrayList<>();
             for (String eachWord : splitedStringBuilderResult) {
                 if (eachWord.startsWith(STRING_START_WITH)) {
