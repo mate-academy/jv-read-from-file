@@ -7,7 +7,6 @@ import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Locale;
 
 public class FileWork {
 
@@ -22,21 +21,21 @@ public class FileWork {
                 file.append(newLine.toLowerCase()).append(" ");
                 newLine = bufferedReader.readLine();
             }
-            readFromFile = file.toString().split(" ");
-            for (int i = 0; i < readFromFile.length; i++) {
-                if (readFromFile[i].indexOf('w') == 0) {
-                    read.add(readFromFile[i].replaceAll("[,.!?]", ""));
-                }
-            }
-            Collections.sort(read);
-            readFromFile = new String[read.size()];
-            for (int i = 0; i < read.size(); i++) {
-                readFromFile[i] = read.get(i);
-            }
         } catch (FileNotFoundException e) {
             System.out.println("File was not found");
         } catch (IOException e) {
             System.out.println("File was not written ");
+        }
+        readFromFile = file.toString().split(" ");
+        for (String readFile : readFromFile) {
+            if (readFile.indexOf('w') == 0) {
+                read.add(readFile.replaceAll("[,.!?]", ""));
+            }
+        }
+        Collections.sort(read);
+        readFromFile = new String[read.size()];
+        for (int i = 0; i < read.size(); i++) {
+            readFromFile[i] = read.get(i);
         }
         return readFromFile;
     }
