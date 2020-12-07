@@ -6,12 +6,15 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
+    private static final String START_LETTER = "w";
+    private static final String WHITESPACE = " ";
+
     public String[] readFromFile(String fileName) {
         StringBuilder builder = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String value = reader.readLine();
             while (value != null) {
-                builder.append(value).append(" ");
+                builder.append(value).append(WHITESPACE);
                 value = reader.readLine();
             }
         } catch (IOException e) {
@@ -20,8 +23,8 @@ public class FileWork {
         String[] text = builder.toString().split("\\W+");
         StringBuilder stringBuilder = new StringBuilder();
         for (String word : text) {
-            if (word.toLowerCase().startsWith("w")) {
-                stringBuilder.append(word.toLowerCase()).append(" ");
+            if (word.toLowerCase().startsWith(START_LETTER)) {
+                stringBuilder.append(word.toLowerCase()).append(WHITESPACE);
             }
         }
         if (stringBuilder.toString().isEmpty()) {
