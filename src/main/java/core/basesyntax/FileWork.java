@@ -25,7 +25,7 @@ public class FileWork {
                 line = reader.readLine();
             }
         } catch (IOException e) {
-            throw new RuntimeException("Can not read file");
+            throw new RuntimeException("Can not read file " + fileName, e);
         }
         String[] wordsStartWithW = stringBuilder.toString().split(" ");
         Arrays.sort(wordsStartWithW);
