@@ -6,16 +6,20 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
+    private static final String FIRST_LETTER_W = "w";
+
     public String[] readFromFile(String fileName) {
         StringBuilder bufResult = new StringBuilder();
         String[] result;
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
-            String line = bufferedReader.readLine();
-            while (line != null) {
-                String[] words = line.toLowerCase().replaceAll("[^a-z ]", "").split(" ");
-                line = bufferedReader.readLine();
-                for (String word : words) {
-                    if (word.startsWith("w")) {
+            String lineFromFile = bufferedReader.readLine();
+            while (lineFromFile != null) {
+                String[] wordsFromLine = lineFromFile.toLowerCase()
+                        .replaceAll("[^a-z ]", "")
+                        .split(" ");
+                lineFromFile = bufferedReader.readLine();
+                for (String word : wordsFromLine) {
+                    if (word.startsWith(FIRST_LETTER_W)) {
                         bufResult.append(word).append(" ");
                     }
                 }
