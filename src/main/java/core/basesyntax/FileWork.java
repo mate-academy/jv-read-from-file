@@ -19,7 +19,7 @@ public class FileWork {
                 FileReader((fileName)))) {
             String newLine = bufferedReader.readLine();
             while (newLine != null) {
-                file.append(newLine.toLowerCase(Locale.ROOT)).append(" ");
+                file.append(newLine.toLowerCase()).append(" ");
                 newLine = bufferedReader.readLine();
             }
             readFromFile = file.toString().split(" ");
