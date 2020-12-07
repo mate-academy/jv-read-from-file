@@ -13,8 +13,7 @@ public class FileWork {
         File file = new File(fileName);
         StringBuilder stringBuilder = new StringBuilder();
 
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             String value = bufferedReader.readLine();
 
             while (value != null) {
@@ -28,7 +27,6 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException("Can`t read file", e);
         }
-
         if (stringBuilder.length() == 0) {
             return new String[] {};
         }
