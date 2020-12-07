@@ -11,20 +11,16 @@ public class FileWork {
     public String[] readFromFile(String fileName) {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             StringBuilder builder = new StringBuilder();
-            int value = bufferedReader.read();
-            while (value != -1) {
-                if ((char) value == 'w' || (char) value == 'W') {
-                    while (Character.isAlphabetic((char) value)) {
-                        builder.append((char) value);
-                        value = bufferedReader.read();
-                    }
-                    builder.append(" ");
-                } else {
-                    while (Character.isAlphabetic((char) value)) {
-                        value = bufferedReader.read();
+            String row = bufferedReader.readLine();
+            while (row != null) {
+                String[] words = row.split("\\W+");
+                for (String word : words) {
+                    if (Character.toLowerCase(word.charAt(0)) == 'w') {
+                        builder.append(word);
+                        builder.append(" ");
                     }
                 }
-                value = bufferedReader.read();
+                row = bufferedReader.readLine();
             }
             if (builder.toString().length() == 0) {
                 return new String[0];
