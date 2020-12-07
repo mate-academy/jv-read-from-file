@@ -32,15 +32,14 @@ public class FileWork {
                 read.add(readFile.replaceAll("[,.!?]", ""));
             }
         }
-        Collections.sort(read);
         readFromFile = new String[read.size()];
-        for (int i = 0; i < read.size(); i++) {
-            readFromFile[i] = read.get(i);
-        }
+        Collections.sort(read);
+        read.toArray(readFromFile);
         return readFromFile;
     }
 
     private boolean startsWith(String word){
-                return word.indexOf('w') == 0;
+
+        return word.indexOf('w') == 0;
     }
 }
