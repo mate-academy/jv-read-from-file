@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class FileWork {
+    private static final char STARTS_WITH = 'w';
 
     public String[] readFromFile(String fileName) {
-        String[] readFromFile;
         StringBuilder stringBuilder = new StringBuilder();
         ArrayList<String> arrayList = new ArrayList<>();
         try (BufferedReader bufferedReader = new BufferedReader(new
@@ -21,24 +21,23 @@ public class FileWork {
                 newLine = bufferedReader.readLine();
             }
         } catch (FileNotFoundException e) {
-            throw new RuntimeException("File was not found");
+            throw new RuntimeException("File was not found", e);
         } catch (IOException e) {
-            throw new RuntimeException("File was not written ");
+            throw new RuntimeException("File was not read", e);
         }
-        readFromFile = stringBuilder.toString().split(" ");
-        for (String readFile : readFromFile) {
-            if (startsWith(readFile)) {
-                arrayList.add(readFile.replaceAll("[,.!?]", ""));
+        String[] stringArr = stringBuilder.toString().split(" ");
+        for (String string : stringArr) {
+            if (startsWith(string)) {
+                arrayList.add(string.replaceAll("[,.!?]", ""));
             }
         }
-        readFromFile = new String[arrayList.size()];
+        stringArr = new String[arrayList.size()];
         Collections.sort(arrayList);
-        arrayList.toArray(readFromFile);
-        return readFromFile;
+        arrayList.toArray(stringArr);
+        return stringArr;
     }
 
     private boolean startsWith(String word) {
-
-        return word.indexOf('w') == 0;
+        return word.indexOf(STARTS_WITH) == 0;
     }
 }
