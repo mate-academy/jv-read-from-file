@@ -11,30 +11,29 @@ public class FileWork {
     private static final String STRING_START_WITH = "w";
 
     public String[] readFromFile(String fileName) {
-
+        StringBuilder stringBuilder = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
-            StringBuilder stringBuilder = new StringBuilder();
             String lineSeparator = System.lineSeparator();
             String lineFromFile = bufferedReader.readLine();
             while (lineFromFile != null) {
                 stringBuilder.append(lineFromFile).append(lineSeparator);
                 lineFromFile = bufferedReader.readLine();
             }
-            String[] splitedStringBuilderResult = stringBuilder
-                    .toString()
-                    .toLowerCase()
-                    .split("\\s+|\\.|,|:|;|'|!|\\?|\r|\n");
-            List<String> wordsList = new ArrayList<>();
-            for (String eachWord : splitedStringBuilderResult) {
-                if (eachWord.startsWith(STRING_START_WITH)) {
-                    wordsList.add(eachWord);
-                }
-            }
-            Collections.sort(wordsList);
-            String[] sortedWords = new String[wordsList.size()];
-            return wordsList.toArray(sortedWords);
         } catch (IOException e) {
             throw new RuntimeException("Can't read file", e);
         }
+        String[] splitedStringBuilderResult = stringBuilder
+                .toString()
+                .toLowerCase()
+                .split("\\s+|\\.|,|:|;|'|!|\\?");
+        List<String> wordsList = new ArrayList<>();
+        for (String eachWord : splitedStringBuilderResult) {
+            if (eachWord.startsWith(STRING_START_WITH)) {
+                wordsList.add(eachWord);
+            }
+        }
+        Collections.sort(wordsList);
+        String[] sortedWords = new String[wordsList.size()];
+        return wordsList.toArray(sortedWords);
     }
 }
