@@ -15,9 +15,6 @@ public class FileWork {
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line = reader.readLine();
-            if (line == null) {
-                return new String[]{};
-            }
             while (line != null) {
                 String[] readingLine = line.toLowerCase().split("\\W+");
                 for (String wordInLine : readingLine) {
