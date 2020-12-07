@@ -12,12 +12,11 @@ public class FileWork {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             StringBuilder wordsReader = new StringBuilder();
             String readLine = reader.readLine();
-            int counter = 0;
             while (readLine != null) {
                 String[] arrReadLine = readLine.split("\\s*(\\s|,|!|\\.|\\?)\\s*");
-                for (int i = 0; i < arrReadLine.length; i++) {
-                    if (arrReadLine[i].toLowerCase().startsWith(W_CHARACTER)) {
-                        wordsReader.append(arrReadLine[i].toLowerCase()).append(" ");
+                for (String arrReadLine1 : arrReadLine) {
+                    if (arrReadLine1.toLowerCase().startsWith(W_CHARACTER)) {
+                        wordsReader.append(arrReadLine1.toLowerCase()).append(" ");
                     }
                 }
                 readLine = reader.readLine();
@@ -29,7 +28,7 @@ public class FileWork {
     }
 
     private String[] createArrayAndSort(StringBuilder wordsReader) {
-        if (wordsReader.toString().equals("")) {
+        if (wordsReader.toString().isEmpty()) {
             return new String[0];
         }
         String[] arrW = wordsReader.toString().split(" ");
