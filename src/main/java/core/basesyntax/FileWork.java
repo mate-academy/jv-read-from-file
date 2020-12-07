@@ -24,7 +24,7 @@ public class FileWork {
         }
 
         String[] arrayOfWordsToBeChecked = stringBuilder.toString().split(" ");
-        List<String> checkedAndReadFiles = new ArrayList<>();
+        List<String> requiredWords = new ArrayList<>();
         for (String string : arrayOfWordsToBeChecked) {
             if (string.startsWith(SPECIFIED_CHARACTER)) {
                 checkedAndReadFiles.add(string.replaceAll("\\W", ""));
