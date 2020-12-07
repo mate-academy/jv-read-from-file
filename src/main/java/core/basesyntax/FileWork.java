@@ -21,7 +21,7 @@ public class FileWork {
                 newLine = bufferedReader.readLine();
             }
         } catch (FileNotFoundException e) {
-           throw new RuntimeException("File was not found");
+            throw new RuntimeException("File was not found");
         } catch (IOException e) {
             throw new RuntimeException("File was not written ");
         }
