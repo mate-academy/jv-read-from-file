@@ -10,12 +10,10 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         StringBuilder data = new StringBuilder();
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            String value = reader.readLine();
-            while (value != null) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String value;
+            while ((value = reader.readLine()) != null) {
                 data.append(value).append(" ");
-                value = reader.readLine();
             }
         } catch (IOException e) {
             throw new RuntimeException("Can't read file!" + fileName, e);
@@ -27,13 +25,11 @@ public class FileWork {
                 stringResult.append(word.toLowerCase()).append(",");
             }
         }
-        if (stringResult.toString().equals("")) {
+        if (stringResult.toString().isEmpty()) {
             return new String[0];
         }
-
         String[] result = stringResult.toString().split("\\W++");
         Arrays.sort(result);
         return result;
     }
-
 }
