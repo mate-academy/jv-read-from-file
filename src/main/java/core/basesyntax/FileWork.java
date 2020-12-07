@@ -28,7 +28,7 @@ public class FileWork {
         }
         readFromFile = file.toString().split(" ");
         for (String readFile : readFromFile) {
-            if (readFile.indexOf('w') == 0) {
+            if (startsWith(readFile)) {
                 read.add(readFile.replaceAll("[,.!?]", ""));
             }
         }
@@ -38,5 +38,9 @@ public class FileWork {
             readFromFile[i] = read.get(i);
         }
         return readFromFile;
+    }
+
+    private boolean startsWith(String word){
+                return word.indexOf('w') == 0;
     }
 }
