@@ -22,20 +22,20 @@ public class FileWork {
             throw new RuntimeException("Can't ride file", e);
         }
 
-        String[] splitReadFile = readFile.toString().toLowerCase().split(" ");
-        StringBuilder writeFileToArray = new StringBuilder();
+        String[] fileReadAndSplit = readFile.toString().toLowerCase().split(" ");
+        StringBuilder fileWriteToArray = new StringBuilder();
 
-        for (String findCharacterW : splitReadFile) {
+        for (String findCharacterW : fileReadAndSplit) {
             String temp = findCharacterW.replaceAll("[.!?]", "");
             if (temp.startsWith(CHARACTER_W)) {
-                writeFileToArray.append(temp).append(" ");
+                fileWriteToArray.append(temp).append(" ");
             }
         }
 
-        String[] wordsWithCharacterW = writeFileToArray.toString().split(" ");
+        String[] wordsWithCharacterW = fileWriteToArray.toString().split(" ");
         Arrays.sort(wordsWithCharacterW);
 
-        if (writeFileToArray.toString().isEmpty()) {
+        if (fileWriteToArray.toString().isEmpty()) {
             return new String[0];
         }
         return wordsWithCharacterW;
