@@ -1,10 +1,10 @@
 package core.basesyntax;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
@@ -16,7 +16,7 @@ public class FileWork {
         String[] readFromFile = new String[] {};
         ArrayList<String> read = new ArrayList<>();
         try (BufferedReader bufferedReader = new BufferedReader(new
-                InputStreamReader(new FileInputStream(fileName)));) {
+                FileReader((fileName)))) {
             String newLine = bufferedReader.readLine();
             while (newLine != null) {
                 file.append(newLine.toLowerCase(Locale.ROOT)).append(" ");
