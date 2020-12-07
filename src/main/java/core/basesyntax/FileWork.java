@@ -9,32 +9,20 @@ public class FileWork {
     private static final String FIRST_SYMBOL = "w";
 
     public String[] readFromFile(String fileName) {
-        BufferedReader bufferedReader = null;
         StringBuilder stringBuilder = null;
-        try {
-            bufferedReader = new BufferedReader(new FileReader(fileName));
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             stringBuilder = new StringBuilder();
-            String value = bufferedReader.readLine();
-            while (value != null) {
+            String value;
+            while ((value = bufferedReader.readLine()) != null) {
                 stringBuilder.append(value).append(System.lineSeparator());
-                value = bufferedReader.readLine();
             }
         } catch (IOException e) {
             throw new RuntimeException("Can't read from file", e);
-        } finally {
-            if (bufferedReader != null) {
-                try {
-                    bufferedReader.close();
-                } catch (IOException e) {
-                    throw new RuntimeException("Can't close BufferedReader",e);
-                }
-            }
         }
-        String[] resultArray = stringBuilder.toString().toLowerCase().split("\\s+");
+        String[] resultArray = stringBuilder.toString().toLowerCase().split("\\W+");
         StringBuilder newSB = new StringBuilder();
         for (String res:resultArray) {
             if (res.startsWith(FIRST_SYMBOL)) {
-                res = res.replaceAll("[!?.,]", "");
                 newSB.append(res).append(" ");
             }
         }
