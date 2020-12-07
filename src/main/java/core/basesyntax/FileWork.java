@@ -21,9 +21,7 @@ public class FileWork {
                 for (String value : line) {
                     if (value.charAt(0) == SYMBOL_LOWER_CASE
                             || value.charAt(0) == SYMBOL_UPPER_CASE) {
-                        list.add(value.chars().filter(Character::isLetter)
-                                .mapToObj(Character::toString).collect(Collectors.joining())
-                                .toLowerCase());
+                        list.add(value.replaceAll("[^A-z]","").toLowerCase());
                     }
                 }
             }
