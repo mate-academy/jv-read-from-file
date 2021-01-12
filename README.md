@@ -1,8 +1,12 @@
 # jv-read-from-file
-Дано файл, потрібно прочитати його вміст і вибрати всі слова що починаються на `w`.
-Результат повернути у вигляді відсортованого масиву (за замовчуванням). Всі слова повинні
-бути в нижньому регістрі. У випадку якщо таких слів не знайдено повернути пустий масив.
+You are given a file. You need to filter out only the words starting with `w`.
 
-Приклад: Width world Wide web
+The result should be returned as a naturally sorted array.
+  
+All words should be lower-case. If the file does not contain the necessary words, return an empty array.
 
-Результат: web wide width world
+Example: Width world Wide web
+
+Result: \["web", "wide", "width", "world"]
+
+#### [Try to avoid these common mistakes, while solving task](https://mate-academy.github.io/jv-program-common-mistakes/java-core/builder-file/read-from-file.html)
