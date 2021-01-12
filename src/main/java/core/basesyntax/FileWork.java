@@ -20,9 +20,8 @@ public class FileWork {
         List<String> list = new ArrayList<>();
         StringBuilder stringBuilder = new StringBuilder();
         File file = new File(fileName);
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(new FileReader(file));
+        try (FileReader fileReader = new FileReader(file);
+                BufferedReader reader = new BufferedReader(fileReader)) {
             int value = reader.read();
             while (value != -1) {
                 stringBuilder.append((char)value);
