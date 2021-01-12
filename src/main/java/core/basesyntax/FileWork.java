@@ -15,6 +15,7 @@ import java.util.List;
  * Приклад: Width world Wide web
  * Результат: web wide width world</p>
  */
+
 public class FileWork {
     public String[] readFromFile(String fileName) {
         List<String> list = new ArrayList<>();
