@@ -35,8 +35,8 @@ public class FileWork {
             String[] resultArray = builderForWords.toString().split(" ");
 
             for (int i = 0; i < resultArray.length; i++) {
-                if (resultArray[i].indexOf('.') > 0 || resultArray[i].indexOf('!') > 0
-                        | resultArray[i].indexOf('?') > 0 || resultArray[i].indexOf('+') > 0) {
+                if (resultArray[i].endsWith(".") || resultArray[i].endsWith("!")
+                        || resultArray[i].endsWith("?") || resultArray[i].endsWith("+")) {
                     String substring = resultArray[i].substring(0, resultArray[i].length() - 1);
                     resultArray[i] = substring;
                 }
