@@ -8,24 +8,19 @@ import java.util.Arrays;
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
+        final String WORD_FIRST_CHARACTER = "w";
         File file = new File(fileName);
         StringBuilder stringBuilder = new StringBuilder();
         String[] resultList = new String[]{};
 
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(file));
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String readerValue = reader.readLine();
             String regex = "[?.:!;]";
-
-            if (readerValue == null) {
-                return new String[]{};
-            }
-
             while (readerValue != null) {
                 String[] readerValueList = readerValue.split(" ");
 
                 for (String value : readerValueList) {
-                    if (value.toLowerCase().startsWith("w")) {
+                    if (value.toLowerCase().startsWith(WORD_FIRST_CHARACTER)) {
                         stringBuilder.append(value.toLowerCase().replaceAll(regex, "")).append(" ");
                     }
                 }
