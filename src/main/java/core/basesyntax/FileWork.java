@@ -7,8 +7,9 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
+    private static final String WORD_FIRST_CHARACTER = "w";
+
     public String[] readFromFile(String fileName) {
-        final String WORD_FIRST_CHARACTER = "w";
         File file = new File(fileName);
         StringBuilder stringBuilder = new StringBuilder();
         String[] resultList = new String[]{};
