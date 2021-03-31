@@ -28,7 +28,6 @@ public class FileWork {
                 return result;
             }
             return new String[0];
-
         } catch (IOException e) {
             throw new RuntimeException("File not found", e);
         }
