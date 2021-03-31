@@ -17,6 +17,11 @@ public class FileWork {
     private static final char SEARCHED_SYMBOL = 'w';
 
     public String[] readFromFile(String fileName) {
+        String wholeText = copyTextFromFile(fileName);
+        return findAllWordsWithW(wholeText);
+    }
+
+    private String copyTextFromFile(String fileName) {
         StringBuilder wholeText = new StringBuilder();
         try {
             FileReader fileReader = new FileReader(fileName);
@@ -36,8 +41,12 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException("Couldn't read a file", e);
         }
+        return wholeText.toString();
+    }
+
+    private String[] findAllWordsWithW(String wholeText) {
         if (wholeText.length() != 0) {
-            String[] wholeTextArray = wholeText.toString().toLowerCase().split(" ");
+            String[] wholeTextArray = wholeText.toLowerCase().split(" ");
             Arrays.sort(wholeTextArray);
             List<String> wordsWithW = new ArrayList<>();
 
