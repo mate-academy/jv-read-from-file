@@ -6,13 +6,16 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
+    public static final char FILTER_CHARACTER = 'w';
+    public static final String SEPARATOR_CHARACTER = " ";
+
     public String[] readFromFile(String fileName) {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             StringBuilder text = new StringBuilder();
             String line = reader.readLine();
             while (line != null) {
-                for (String word : line.split(" ")) {
-                    if (word.toLowerCase().charAt(0) == 'w') {
+                for (String word : line.split(SEPARATOR_CHARACTER)) {
+                    if (word.toLowerCase().charAt(0) == FILTER_CHARACTER) {
                         text.append(word.toLowerCase().replaceAll("[.,!?]", ""))
                                 .append(System.lineSeparator());
                     }
