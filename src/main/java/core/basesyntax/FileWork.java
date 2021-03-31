@@ -21,8 +21,8 @@ public class FileWork {
         try {
             FileReader fileReader = new FileReader(fileName);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
-
             int symbol = bufferedReader.read();
+
             while (symbol != STOP_READING) {
                 if (symbol >= SYMBOL_FROM && symbol <= SYMBOL_TO || symbol == SPACE_CHAR) {
                     wholeText.append((char) symbol);
