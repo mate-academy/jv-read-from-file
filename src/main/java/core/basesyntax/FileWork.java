@@ -1,6 +1,9 @@
 package core.basesyntax;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
@@ -12,7 +15,7 @@ public class FileWork {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             int value = reader.read();
             while (value != -1) {
-                if (!endOfWord(value)){
+                if (notEndOfWord(value)) {
                     if (Character.toLowerCase((char)value) == SPECIFIED_CHARACTER) {
                         if (builder.length() != 0) {
                             builder.append(' ');
@@ -20,11 +23,11 @@ public class FileWork {
                         do {
                             builder.append(Character.toLowerCase((char) value));
                             value = reader.read();
-                        }while (!endOfWord(value));
+                        } while (notEndOfWord(value));
                     } else {
                         do {
                             value = reader.read();
-                        } while (!endOfWord(value));
+                        } while (notEndOfWord(value));
                     }
                 } else {
                     value = reader.read();
@@ -36,32 +39,16 @@ public class FileWork {
         return toStringArray(builder);
     }
 
-    public void pullWord(StringBuilder builder, BufferedReader reader, int value) throws IOException {
-        if (builder.length() != 0){
-            builder.append(' ');
-        }
-        do {
-            builder.append((char) value);
-            value = reader.read();
-        }while (!endOfWord(value));
-    }
-
-    public void passWord(BufferedReader reader, int value) throws IOException {
-        do {
-            value = reader.read();
-        } while (!endOfWord(value));
-    }
-
-    public boolean endOfWord (int value) {
-        return (char) value == ' '
-                || (char) value == '.'
-                || (char) value == ','
-                || (char) value == '-'
-                || (char) value == '!'
-                || (char) value == '?'
-                || (char) value == '\n'
-                || (char) value == '\r'
-                || value == -1;
+    public boolean notEndOfWord(int value) {
+        return (char) value != ' '
+                && (char) value != '.'
+                && (char) value != ','
+                && (char) value != '-'
+                && (char) value != '!'
+                && (char) value != '?'
+                && (char) value != '\n'
+                && (char) value != '\r'
+                && value != -1;
     }
 
     public String [] toStringArray(StringBuilder builder) {
@@ -69,8 +56,7 @@ public class FileWork {
             String [] result = builder.toString().split(" ");
             Arrays.sort(result);
             return result;
-        }
-        else {
+        } else {
             return new String[] {};
         }
     }
