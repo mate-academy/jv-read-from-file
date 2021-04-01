@@ -1,7 +1,77 @@
 package core.basesyntax;
 
+import java.io.*;
+import java.util.Arrays;
+
 public class FileWork {
+    private static final char SPECIFIED_CHARACTER = 'w';
+
     public String[] readFromFile(String fileName) {
-        return null;
+        File file = new File(fileName);
+        StringBuilder builder = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            int value = reader.read();
+            while (value != -1) {
+                if (!endOfWord(value)){
+                    if (Character.toLowerCase((char)value) == SPECIFIED_CHARACTER) {
+                        if (builder.length() != 0) {
+                            builder.append(' ');
+                        }
+                        do {
+                            builder.append(Character.toLowerCase((char) value));
+                            value = reader.read();
+                        }while (!endOfWord(value));
+                    } else {
+                        do {
+                            value = reader.read();
+                        } while (!endOfWord(value));
+                    }
+                } else {
+                    value = reader.read();
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("can't read from file");
+        }
+        return toStringArray(builder);
+    }
+
+    public void pullWord(StringBuilder builder, BufferedReader reader, int value) throws IOException {
+        if (builder.length() != 0){
+            builder.append(' ');
+        }
+        do {
+            builder.append((char) value);
+            value = reader.read();
+        }while (!endOfWord(value));
+    }
+
+    public void passWord(BufferedReader reader, int value) throws IOException {
+        do {
+            value = reader.read();
+        } while (!endOfWord(value));
+    }
+
+    public boolean endOfWord (int value) {
+        return (char) value == ' '
+                || (char) value == '.'
+                || (char) value == ','
+                || (char) value == '-'
+                || (char) value == '!'
+                || (char) value == '?'
+                || (char) value == '\n'
+                || (char) value == '\r'
+                || value == -1;
+    }
+
+    public String [] toStringArray(StringBuilder builder) {
+        if (builder.length() != 0) {
+            String [] result = builder.toString().split(" ");
+            Arrays.sort(result);
+            return result;
+        }
+        else {
+            return new String[] {};
+        }
     }
 }
