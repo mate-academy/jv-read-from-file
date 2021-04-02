@@ -9,20 +9,17 @@ import java.util.Locale;
 
 public class FileWork {
     private static final String REGEX = "\\s*(\\s|,|\\?|!|\\.)\\s*";
+    private static final String FIRST_LETTER = "w";
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             String line = bufferedReader.readLine();
-            if (line == null) {
-                return new String[0];
-            }
             StringBuilder builder = new StringBuilder();
             while (line != null) {
                 String[] words = line.toLowerCase(Locale.ROOT).split(REGEX);
                 for (String word : words) {
-                    if (word.indexOf("w") == 0) {
+                    if (word.startsWith(FIRST_LETTER)) {
                         builder.append(word).append(" ");
                     }
                 }
