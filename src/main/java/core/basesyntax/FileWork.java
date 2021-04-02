@@ -15,28 +15,35 @@ public class FileWork {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             int value = reader.read();
             while (value != -1) {
-                if (notEndOfWord(value)) {
-                    if (Character.toLowerCase((char)value) == SPECIFIED_CHARACTER) {
-                        if (builder.length() != 0) {
-                            builder.append(' ');
-                        }
-                        do {
-                            builder.append(Character.toLowerCase((char) value));
-                            value = reader.read();
-                        } while (notEndOfWord(value));
-                    } else {
-                        do {
-                            value = reader.read();
-                        } while (notEndOfWord(value));
-                    }
+                if (Character.toLowerCase((char)value) == SPECIFIED_CHARACTER) {
+                    value = pullWord(reader, builder, value);
                 } else {
-                    value = reader.read();
+                    value = passWord(reader, value);
                 }
             }
         } catch (IOException e) {
             throw new RuntimeException("can't read from file");
         }
         return toStringArray(builder);
+    }
+
+    public int pullWord(BufferedReader reader, StringBuilder builder, int value)
+            throws IOException {
+        if (builder.length() != 0) {
+            builder.append(' ');
+        }
+        do {
+            builder.append(Character.toLowerCase((char) value));
+            value = reader.read();
+        } while (notEndOfWord(value));
+        return value;
+    }
+
+    public int passWord(BufferedReader reader, int value) throws IOException {
+        while (notEndOfWord(value)) {
+            value = reader.read();
+        }
+        return reader.read();
     }
 
     public boolean notEndOfWord(int value) {
