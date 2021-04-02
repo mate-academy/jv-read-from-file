@@ -21,7 +21,7 @@ public class FileWork {
             while (value != null) {
                 for (String word : value.split(" ")) {
                     if (word.substring(0, 1).equalsIgnoreCase(START_LETTER)) {
-                        listOfWords.add(word.toLowerCase().replaceAll("\\s*\\p{Punct}+\\s*$", ""));
+                        listOfWords.add(word.toLowerCase().replaceAll("[!?.,]", ""));
                     }
                 }
                 value = reader.readLine();
