@@ -15,13 +15,12 @@ public class FileWork {
         List<String> listOfWords = new ArrayList<>();
 
         File file = new File(fileName);
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(file));
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String value = reader.readLine();
             while (value != null) {
-                for (String word : value.split(" ")) {
-                    if (word.substring(0, 1).equalsIgnoreCase(START_LETTER)) {
-                        listOfWords.add(word.toLowerCase().replaceAll("[!?.,]", ""));
+                for (String word : value.split("\\W+")) {
+                    if (word.toLowerCase().startsWith(START_LETTER)) {
+                        listOfWords.add(word.toLowerCase());
                     }
                 }
                 value = reader.readLine();
@@ -29,11 +28,10 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException("Can't read file", e);
         }
-        if (listOfWords.size() > 0) {
-            String[] result = listOfWords.toArray(new String[0]);
-            Arrays.sort(result);
-            return result;
-        }
-        return new String[0];
+
+        String[] result = listOfWords.toArray(new String[0]);
+        Arrays.sort(result);
+        return result;
+
     }
 }
