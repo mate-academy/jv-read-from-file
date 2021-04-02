@@ -30,7 +30,7 @@ public class FileWork {
             fileRead = String.valueOf(builder).split(" ");
             Arrays.sort(fileRead);
         } catch (IOException e) {
-            throw new RuntimeException("Something do wrong" + e);
+            throw new RuntimeException("Can't read file" + e);
         }
         return fileRead;
     }
