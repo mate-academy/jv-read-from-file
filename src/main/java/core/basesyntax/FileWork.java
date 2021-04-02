@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class FileWork {
-    private static final char SPECIFIED_CHARACTER = 'w';
+    private static final String SPECIFIED_CHARACTER = "w";
     private static final String SEPARATOR = " ";
 
     public String[] readFromFile(String fileName) {
@@ -20,10 +20,9 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException("Can't read the file " + fileName, e);
         }
-        String[] linesFromFile = strings.toArray(new String[0]);
-        for (String line: linesFromFile) {
+        for (String line: strings.toArray(new String[0])) {
             for (String splitedLine : line.split(SEPARATOR)) {
-                if (splitedLine.toLowerCase().charAt(0) == SPECIFIED_CHARACTER) {
+                if (splitedLine.toLowerCase().startsWith(SPECIFIED_CHARACTER)) {
                     result.add(splitedLine.toLowerCase().replaceAll("[.,!?]", ""));
                 }
             }
