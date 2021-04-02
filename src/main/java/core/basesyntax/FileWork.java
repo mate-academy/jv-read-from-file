@@ -25,14 +25,18 @@ public class FileWork {
                 }
                 line = bufferedReader.readLine();
             }
-            String[] result = builder.toString().split(" ");
-            Arrays.sort(result);
-            if (result.length == 1) {
-                return new String[0];
-            }
-            return result;
+            return createList(builder);
         } catch (IOException e) {
             throw new RuntimeException("Can`t find or read file", e);
         }
+    }
+
+    public String[] createList(StringBuilder builder) {
+        String[] result = builder.toString().split(" ");
+        Arrays.sort(result);
+        if (result.length == 1) {
+            return new String[0];
+        }
+        return result;
     }
 }
