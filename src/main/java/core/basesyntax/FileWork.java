@@ -5,13 +5,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class FileWork {
     private static final char SEARCHED_LETTER = 'w';
     private static final String SEPARATOR = " ";
 
     public String[] readFromFile(String fileName) {
-        ArrayList<String> result = new ArrayList<>();
+        List<String> result = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line = reader.readLine();
             while (line != null) {
