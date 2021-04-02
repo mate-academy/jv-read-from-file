@@ -10,8 +10,6 @@ import java.util.List;
 
 public class FileWork {
     private static final String START_LETTER = "w";
-    private static final String[] PUNCTUATION_MARKS = new String[] {
-            ".", ",", "!", "?"};
 
     public String[] readFromFile(String fileName) {
         List<String> listOfWords = new ArrayList<>();
@@ -23,12 +21,7 @@ public class FileWork {
             while (value != null) {
                 for (String word : value.split(" ")) {
                     if (word.substring(0, 1).equalsIgnoreCase(START_LETTER)) {
-                        for (String mark : PUNCTUATION_MARKS) {
-                            if (word.substring(word.length() - 1).equals(mark)) {
-                                word = word.substring(0, word.length() - 1);
-                            }
-                        }
-                        listOfWords.add(word.toLowerCase());
+                        listOfWords.add(word.toLowerCase().replaceAll("\\s*\\p{Punct}+\\s*$", ""));
                     }
                 }
                 value = reader.readLine();
@@ -40,8 +33,7 @@ public class FileWork {
             String[] result = listOfWords.toArray(new String[0]);
             Arrays.sort(result);
             return result;
-        } else {
-            return new String[0];
         }
+        return new String[0];
     }
 }
