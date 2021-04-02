@@ -15,7 +15,7 @@ public class FileWork {
             while ((line = bufferedReader.readLine()) != null) {
                 for (String word : line.split("\\W+")) {
                     String lowerCaseWord = word.toLowerCase();
-                    if (word.length() > 0 && lowerCaseWord.startsWith(SPECIFIED_CHARACTER)) {
+                    if (lowerCaseWord.startsWith(SPECIFIED_CHARACTER)) {
                         stringBuilder.append(lowerCaseWord);
                         stringBuilder.append(" ");
                     }
