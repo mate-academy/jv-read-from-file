@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FileWork {
+    private static final int DESIRED_POSITION = 0;
     private static final char LOOKING_CHARACTER = 'w';
     private static final String NOT_LETTER_DELIMITER = "[^a-zA-Z]";
     private static final String SPACE_DELIMITER = " ";
@@ -25,7 +26,7 @@ public class FileWork {
         for (String string : stringsFromFile) {
             String[] wordsOfString = string.toLowerCase().split(SPACE_DELIMITER);
             for (String singleWord : wordsOfString) {
-                if (singleWord.charAt(0) == LOOKING_CHARACTER) {
+                if (singleWord.charAt(DESIRED_POSITION) == LOOKING_CHARACTER) {
                     stringBuilder.append(singleWord.replaceAll(NOT_LETTER_DELIMITER,
                             EMPTY_DELIMITER))
                                  .append(SPACE_DELIMITER);
