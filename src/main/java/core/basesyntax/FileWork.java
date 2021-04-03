@@ -7,11 +7,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FileWork {
-    private static final int DESIRED_POSITION = 0;
     private static final char LOOKING_CHARACTER = 'w';
+    private static final int DESIRED_POSITION = 0;
+    private static final String EMPTY_DELIMITER = "";
     private static final String NOT_LETTER_DELIMITER = "[^a-zA-Z]";
     private static final String SPACE_DELIMITER = " ";
-    private static final String EMPTY_DELIMITER = "";
 
     public String[] readFromFile(String fileName) {
         StringBuilder stringBuilder = new StringBuilder();
