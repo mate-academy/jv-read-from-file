@@ -8,6 +8,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FileWork {
+    private static final String ONLY_START_WITH_W = new String("(?i)\\bw\\w*\\b");
+    private static final String ONLY_LETTERS = new String("[^a-zA-Z0-9 ]");
+
     public String[] readFromFile(String fileName) {
         File myFile = new File(fileName);
         String textFromFiles = new String();
@@ -20,9 +23,9 @@ public class FileWork {
         return filterWordsWithW(textFromFiles);
     }
 
-    public static String[] filterWordsWithW(String toFilter) {
+    private String[] filterWordsWithW(String toFilter) {
         toFilter = filterLetters(toFilter);
-        Pattern pattern = Pattern.compile("(?i)\\bw\\w*\\b");
+        Pattern pattern = Pattern.compile(ONLY_START_WITH_W);
         int count = 0;
 
         Matcher matcher = pattern.matcher(toFilter);
@@ -44,9 +47,9 @@ public class FileWork {
         return matchingWords;
     }
 
-    public static String filterLetters(String toFilter) {
+    private String filterLetters(String toFilter) {
 
-        System.out.println(toFilter.replaceAll("[^a-zA-Z0-9 ]",""));
-        return toFilter.replaceAll("[^a-zA-Z0-9 ]","");
+        System.out.println(toFilter.replaceAll(ONLY_LETTERS,""));
+        return toFilter.replaceAll(ONLY_LETTERS,"");
     }
 }
