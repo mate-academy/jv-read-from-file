@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 
 public class FileWork {
     private static final String SPECIFIED_CHARACTER = "w";
+    private static final String SPACE = "";
     private static final String SPECIAL_CHARACTERS = "[,\\s\\-:\\?]";
     private static final String ONLY_WORD_PATTERN = "[^a-z A-Z]";
 
@@ -55,6 +56,6 @@ public class FileWork {
     private static String getOnlyWord(String str) {
         Pattern pattern = Pattern.compile(ONLY_WORD_PATTERN);
         Matcher matcher = pattern.matcher(str);
-        return matcher.replaceAll("");
+        return matcher.replaceAll(SPACE);
     }
 }
