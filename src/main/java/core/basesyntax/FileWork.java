@@ -39,7 +39,7 @@ public class FileWork {
         }
     }
 
-    public String[] toStringArray(StringBuilder builder) {
+    private String[] toStringArray(StringBuilder builder) {
         if (builder.length() != 0) {
             String[] result = builder.toString().split(" ");
             Arrays.sort(result);
