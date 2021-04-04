@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class FileWork {
+
     private static final char FILTER_CHARACTER = 'w';
     private static final int ASCII_CODE_FOR_PUNCTUATION_MARKS = 63;
+
     public String[] readFromFile(String fileName) {
         if (fileName == null) {
             return new String[0];
@@ -18,34 +20,29 @@ public class FileWork {
         if (file.length() == 0) {
             return new String[0];
         }
-        StringBuilder allWords;
+
+        StringBuilder fileContent = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            allWords = new StringBuilder();
-            String words = reader.readLine();
-            while (words != null) {
-                allWords.append(words).append(System.lineSeparator());
-                words = reader.readLine();
+            for (String line = reader.readLine(); line != null; line = reader.readLine()) {
+                fileContent.append(line).append(System.lineSeparator());
             }
-            allWords.deleteCharAt(allWords.length() - 1).deleteCharAt(allWords.length() - 1);
         } catch (IOException e) {
-            throw new RuntimeException("Can't read file");
+            throw new RuntimeException("Can't read file", e);
         }
-        String[] arrayToFilter = allWords.toString().split("\\s+");
-        ArrayList<String> filteredArray = new ArrayList<>();
-        for (String word : arrayToFilter) {
-            if (word.charAt(0) == FILTER_CHARACTER || word.charAt(0) == Character.toUpperCase(FILTER_CHARACTER)) {
-                char[] array = word.toCharArray();
-                if ((int) array[array.length -1] <= ASCII_CODE_FOR_PUNCTUATION_MARKS) {
-                    StringBuilder correctWord = new StringBuilder();
-                    for (int i = 0; i < array.length - 1; i++) {
-                        correctWord.append(array[i]);
-                    }
-                    word = correctWord.toString();
-                }
-                filteredArray.add(word.toLowerCase());
+
+        String[] allWords = fileContent.toString().split("\\s+");
+        ArrayList<String> filteredWords = new ArrayList<>();
+        for (String word : allWords) {
+            if (word.charAt(0) != FILTER_CHARACTER && word.charAt(0) != Character.toUpperCase(FILTER_CHARACTER)) {
+                continue;
             }
+            char[] array = word.toCharArray();
+            if ((int) array[array.length -1] <= ASCII_CODE_FOR_PUNCTUATION_MARKS) {
+                word = word.substring(0, array.length - 1);
+            }
+            filteredWords.add(word.toLowerCase());
         }
-        String[] sortedFilteredArray = filteredArray.toArray(new String[0]);
+        String[] sortedFilteredArray = filteredWords.toArray(new String[0]);
 
         Arrays.sort(sortedFilteredArray);
 
