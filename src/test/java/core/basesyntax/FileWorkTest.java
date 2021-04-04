@@ -3,6 +3,7 @@ package core.basesyntax;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWorkTest {
@@ -21,7 +22,7 @@ public class FileWorkTest {
             new String[]{"was", "was", "whenever", "which", "which", "worse"};
 
     @Test
-    public void readFromEmptyFile() {
+    public void readFromEmptyFile() throws IOException {
         FileWork fileWork = new FileWork();
         String[] actualResult = fileWork.readFromFile(FIRST_FILE_NAME);
         Assert.assertArrayEquals("Test failed! You should returned empty array.",
@@ -29,7 +30,7 @@ public class FileWorkTest {
     }
 
     @Test
-    public void getLowerCaseResultFromFile() {
+    public void getLowerCaseResultFromFile() throws IOException {
         FileWork fileWork = new FileWork();
         String[] actualResult = fileWork.readFromFile(SECOND_FILE_NAME);
         Assert.assertArrayEquals("Test failed! You should returned next array "
@@ -39,7 +40,7 @@ public class FileWorkTest {
     }
 
     @Test
-    public void getCamelCaseResultFromFile() {
+    public void getCamelCaseResultFromFile() throws IOException {
         FileWork fileWork = new FileWork();
         String[] actualResult = fileWork.readFromFile(FOURS_FILE_NAME);
         Assert.assertArrayEquals("Test failed! You should returned next array "
@@ -49,7 +50,7 @@ public class FileWorkTest {
     }
 
     @Test
-    public void getEmptyResultFromFile() {
+    public void getEmptyResultFromFile() throws IOException {
         FileWork fileWork = new FileWork();
         String[] actualResult = fileWork.readFromFile(THIRD_FILE_NAME);
         Assert.assertArrayEquals("Test failed! You should returned empty array.",
@@ -57,7 +58,7 @@ public class FileWorkTest {
     }
 
     @Test
-    public void getAdjacentWordsResultFromFile() {
+    public void getAdjacentWordsResultFromFile() throws IOException {
         FileWork fileWork = new FileWork();
         String[] actualResult = fileWork.readFromFile(FIFTH_FILE_NAME);
         Assert.assertArrayEquals("Test failed! You should returned next array "
