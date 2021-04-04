@@ -10,7 +10,6 @@ import java.util.Arrays;
 public class FileWork {
 
     private static final char FILTER_CHARACTER = 'w';
-    private static final int ASCII_CODE_FOR_PUNCTUATION_MARKS = 63;
 
     public String[] readFromFile(String fileName) {
         if (fileName == null) {
@@ -21,6 +20,38 @@ public class FileWork {
             return new String[0];
         }
 
+        String fileContent = getFileContent(file);
+        String[] allWords = fileContent.split("\\s+");
+        for (int i = 0; i < allWords.length; i++) {
+            allWords[i] = removeNonLetters(allWords[i]);
+        }
+
+        String[] sortedFilteredArray = getLinesStartingAt(FILTER_CHARACTER, allWords);
+        Arrays.sort(sortedFilteredArray);
+        return sortedFilteredArray;
+    }
+
+    private String[] getLinesStartingAt(char charToStartAt, String[] lines) {
+        ArrayList<String> filteredLines = new ArrayList<>(lines.length);
+        for (String line : lines) {
+            line = line.toLowerCase();
+            if (line.charAt(0) != charToStartAt) {
+                continue;
+            }
+            filteredLines.add(line);
+        }
+        return filteredLines.toArray(new String[0]);
+    }
+
+    private String removeNonLetters(String line) {
+        char lastCharacter = line.charAt(line.length() - 1);
+        if (!Character.isLetter(lastCharacter)) {
+            line = line.substring(0, line.length() - 1);
+        }
+        return line;
+    }
+
+    private String getFileContent(File file) {
         StringBuilder fileContent = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             for (String line = reader.readLine(); line != null; line = reader.readLine()) {
@@ -29,24 +60,6 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException("Can't read file", e);
         }
-
-        String[] allWords = fileContent.toString().split("\\s+");
-        ArrayList<String> filteredWords = new ArrayList<>(allWords.length);
-        for (String word : allWords) {
-            word = word.toLowerCase();
-            if (word.charAt(0) != FILTER_CHARACTER) {
-                continue;
-            }
-            char lastCharacter = word.charAt(word.length() - 1);
-            if (!Character.isLetter(lastCharacter)) {
-                word = word.substring(0, word.length() - 1);
-            }
-            filteredWords.add(word);
-        }
-        String[] sortedFilteredArray = filteredWords.toArray(new String[0]);
-
-        Arrays.sort(sortedFilteredArray);
-
-        return sortedFilteredArray;
+        return fileContent.toString();
     }
 }
