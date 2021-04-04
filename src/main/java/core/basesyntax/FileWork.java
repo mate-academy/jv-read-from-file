@@ -6,6 +6,8 @@ import java.nio.file.Files;
 import java.util.Arrays;
 
 public class FileWork {
+    private static char SPECIFIC_FILTER_CHAR = 'w';
+
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
         if (file.length() > 0) {
@@ -19,7 +21,7 @@ public class FileWork {
             }
             String[] filteredArray;
             for (String data : fileDataArray) {
-                if (data.toLowerCase().toCharArray()[0] == 'w') {
+                if (data.toLowerCase().toCharArray()[0] == SPECIFIC_FILTER_CHAR) {
                     buffer.append(data.toLowerCase()).append(" ");
                 }
             }
