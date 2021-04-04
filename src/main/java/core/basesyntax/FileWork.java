@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
-    private static final String SPECIAL_SYMBOL = "w";
-
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
