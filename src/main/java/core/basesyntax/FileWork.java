@@ -18,14 +18,12 @@ public class FileWork {
                 stringBuilder.append(value).append(" ");
                 value = bufferedReader.readLine();
             }
-            String[] words = stringBuilder.toString().split(" ");
+            String[] words = stringBuilder.toString().toLowerCase()
+                    .replaceAll("\\W", " ").split(" ");
             StringBuilder filtersWorlds = new StringBuilder();
             for (int i = 0; i < words.length; i++) {
-                String toLowerCaseWord = words[i].toLowerCase();
-                if (toLowerCaseWord.startsWith(SPECIAL_CHARACTER)) {
-                    toLowerCaseWord = toLowerCaseWord.replaceAll("(\\w+)\\p{Punct}(\\s|$)", "$1$2");
-                    filtersWorlds.append(toLowerCaseWord).append(" ");
-
+                if (words[i].startsWith(SPECIAL_CHARACTER)) {
+                    filtersWorlds.append(words[i]).append(" ");
                 }
             }
             if (filtersWorlds.length() == 0) {
