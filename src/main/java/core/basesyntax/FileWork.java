@@ -7,33 +7,35 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
-    public static final char GIVEN_CHARACTER = 'w';
-    public static final String WHITE_SPACE = " ";
-    public static final String EMPTY = "";
+    private static final String LOWER_GIVEN_CHARACTER = "w";
+    private static final String UPPER_GIVEN_CHARACTER = "W";
+    private static final String SPACE_REGEX = " ";
+    private static final String EMPTY_REGEX = "";
+    private static final String PUNCTUATION_REGEX = "\\p{P}";
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
-        String newString = EMPTY;
+        StringBuilder targetWords = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line = reader.readLine();
             while (line != null) {
-                String[] words = line.split(WHITE_SPACE);
+                String[] words = line.split(SPACE_REGEX);
                 line = reader.readLine();
                 for (String word : words) {
-                    if (word.toLowerCase().charAt(0) == GIVEN_CHARACTER) {
-                        newString += word.toLowerCase().replaceAll("\\p{P}", EMPTY)
-                                + WHITE_SPACE;
+                    if (word.startsWith(LOWER_GIVEN_CHARACTER)
+                            || word.startsWith(UPPER_GIVEN_CHARACTER)) {
+                        targetWords.append(word.toLowerCase()
+                                .replaceAll(PUNCTUATION_REGEX, EMPTY_REGEX)).append(SPACE_REGEX);
                     }
                 }
             }
         } catch (IOException e) {
             throw new RuntimeException("Can't read file", e);
         }
-        if (newString.equals(EMPTY)) {
-            String[] emptyArray = new String[0];
-            return emptyArray;
+        if (targetWords.toString().equals(EMPTY_REGEX)) {
+            return new String[0];
         }
-        String[] answer = newString.split(WHITE_SPACE);
+        String[] answer = targetWords.toString().split(SPACE_REGEX);
         Arrays.sort(answer);
         return answer;
     }
