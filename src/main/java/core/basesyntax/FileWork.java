@@ -8,6 +8,8 @@ import java.util.Arrays;
 
 public class FileWork {
     private static final String SPECIFIED_LETTER = "w";
+    private static final String DIVIDER = " ";
+    private static final String REGEX = "[\\W]+";
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
@@ -18,19 +20,20 @@ public class FileWork {
                 builder.append((char) value);
                 value = bufferedReader.read();
             }
-            String[] results = builder.toString().split("[\\W]+");
+            String[] results = builder.toString().split(REGEX);
             StringBuilder filteredWords = new StringBuilder();
             for (String result : results) {
                 String lowerCase = result.toLowerCase();
                 if (lowerCase.startsWith(SPECIFIED_LETTER)) {
-                    filteredWords.append(lowerCase).append(" ");
+                    filteredWords.append(lowerCase).append(DIVIDER);
                 }
             }
             if (filteredWords.length() == 0) {
                 return new String[0];
             }
-            String[] finalResults = filteredWords.toString().split(" ");
+            String[] finalResults = filteredWords.toString().split(DIVIDER);
             Arrays.sort(finalResults);
+            bufferedReader.close();
             return finalResults;
         } catch (IOException e) {
             throw new RuntimeException("Can not read a file", e);
