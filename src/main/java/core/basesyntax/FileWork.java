@@ -8,11 +8,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class FileWork {
-    public static final String SPECIFIED_CHARACTER = "w";
+    private static final String SPECIFIED_CHARACTER = "w";
 
     public String[] readFromFile(String fileName) {
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String readString = bufferedReader.readLine();
             String[] tempArray;
 
@@ -29,14 +28,12 @@ public class FileWork {
             }
             Collections.sort(wordList);
             String[] resultArray = new String[wordList.size()];
-            int i = 0;
-            for (String word : wordList) {
-                resultArray[i] = word;
-                i++;
+            for (int i = 0; i < wordList.size(); i++) {
+                resultArray[i] = wordList.get(i);
             }
             return resultArray;
         } catch (IOException e) {
-            throw new RuntimeException("File does not exist.");
+            throw new RuntimeException("File does not exist.", e);
         }
     }
 }
