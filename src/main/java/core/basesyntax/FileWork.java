@@ -7,45 +7,29 @@ import java.util.Arrays;
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
-        String output;
+        StringBuilder stringBuilder = new StringBuilder();
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
-            StringBuilder stringBuilder = new StringBuilder();
             String line = bufferedReader.readLine();
             while (line != null) {
-                stringBuilder.append(line).append(System.lineSeparator());
+                String[] words = line.toLowerCase().split("\\W+");
+                for (String word : words) {
+                    if (word.startsWith("w") || word.startsWith("W")) {
+                        stringBuilder.append(word).append(" ");
+                    }
+                }
                 line = bufferedReader.readLine();
             }
-            output = stringBuilder.toString();
             bufferedReader.close();
         } catch (IOException e) {
             throw new RuntimeException("Reader not create!");
         }
-        output = output.replaceAll("[.,?!]", "").trim();
-        if (output.isEmpty()) {
-            String[] empty = new String[0];
-            return empty;
+        String sbString = stringBuilder.toString();
+        String[] ary = new String[0];
+        if (!sbString.isEmpty()) {
+            ary = sbString.split(" ");
+            Arrays.sort(ary);
         }
-        String[] words = output.split("\\s+");
-        int wordsWithW = 0;
-        for (String word : words) {
-            if (word.charAt(0) == 'w' || word.charAt(0) == 'W') {
-                wordsWithW++;
-            }
-        }
-        String [] outputArray = new String[wordsWithW];
-        int j = 0;
-        for (String word : words) {
-            if (word == "") {
-                word = "null";
-            }
-            char art = word.charAt(0);
-            if (word.charAt(0) == 'w' || word.charAt(0) == 'W') {
-                outputArray[j] = word.toLowerCase();
-                j++;
-            }
-        }
-        Arrays.sort(outputArray);
-        return outputArray;
+        return ary;
     }
 }
