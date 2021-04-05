@@ -19,7 +19,7 @@ public class FileWork {
             String line = bufferedReader.readLine();
             StringBuilder stringBuilder = new StringBuilder();
             while (line != null) {
-                stringBuilder.append(line).append(" ");
+                stringBuilder.append(line).append(SPACE_DIVIDER);
                 line = bufferedReader.readLine();
             }
             String[] words = stringBuilder.toString().split(SPACE_DIVIDER);
