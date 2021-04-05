@@ -23,11 +23,7 @@ public class FileWork {
         StringBuilder stringBuilder = new StringBuilder();
         for (String string : strings) {
             stringBuilder.append(string
-                    .replaceAll("\\.", "")
-                    .replaceAll(",", "")
-                    .replaceAll("!", "")
-                    .replaceAll("\\?", "")
-                    .replaceAll(";", "")).append(" ");
+                    .replaceAll("\\W", " ")).append(" ");
 
         }
 
@@ -42,9 +38,9 @@ public class FileWork {
 
         String[] resultArray = new String[count];
         count = 0;
-        for (String s : tempArray) {
-            if (startWithLetter(s)) {
-                resultArray[count] = s.toLowerCase();
+        for (String string : tempArray) {
+            if (startWithLetter(string)) {
+                resultArray[count] = string.toLowerCase();
                 count++;
             }
         }
@@ -53,7 +49,7 @@ public class FileWork {
         return resultArray;
     }
 
-    public boolean startWithLetter(String word) {
+    private boolean startWithLetter(String word) {
         return word.startsWith(SPECIFIED_CHARACTER);
     }
 }
