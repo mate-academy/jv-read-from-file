@@ -30,7 +30,7 @@ public class FileWork {
         return createList(filteredWords);
     }
 
-    public String[] createList(StringBuilder builder) {
+    private String[] createList(StringBuilder builder) {
         if (builder.length() == 0) {
             return new String[0];
         }
