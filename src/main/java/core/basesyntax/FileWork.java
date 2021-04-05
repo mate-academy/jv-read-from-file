@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 public class FileWork {
     private static final String SPECIFIED_CHARACTER = "w";
+    private static final String ONLY_WORDS = "\\W+";
     private static final String SPACE = " ";
     private static final String[] EMPTY_ARRAY = new String[0];
 
@@ -16,10 +17,10 @@ public class FileWork {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String line = bufferedReader.readLine();
             while (line != null) {
-                String[] words = line.toLowerCase().split("\\W+");
+                String[] words = line.toLowerCase().split(ONLY_WORDS);
                 for (String word : words) {
                     if (word.startsWith(SPECIFIED_CHARACTER)) {
-                        filteredWords.append(word).append(" ");
+                        filteredWords.append(word).append(SPACE);
                     }
                 }
                 line = bufferedReader.readLine();
@@ -34,8 +35,7 @@ public class FileWork {
             String[] array = filteredWords.toString().split(SPACE);
             Arrays.sort(array);
             return array;
-        } else {
-            return EMPTY_ARRAY;
         }
+        return EMPTY_ARRAY;
     }
 }
