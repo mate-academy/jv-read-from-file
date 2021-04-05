@@ -16,8 +16,7 @@ public class FileWork {
             StringBuilder stringBuilder = new StringBuilder();
             String value = bufferedReader.readLine();
             while (value != null) {
-                value = value.replaceAll("[!?,.]", " ");
-                value = value.replace("W", "w");
+                value = value.toLowerCase().replaceAll("[!?,.]", " ");
                 String[] words = value.split(SPACE);
                 for (String word : words) {
                     if (word.startsWith(SPECIFIED_CHARACTER)) {
@@ -26,11 +25,10 @@ public class FileWork {
                 }
                 value = bufferedReader.readLine();
             }
-            String resultString = stringBuilder.toString().trim();
-            if (resultString.length() == 0) {
+            if (stringBuilder.length() == 0) {
                 return new String[0];
             }
-            String[] resultArray = resultString.split(SPACE);
+            String[] resultArray = stringBuilder.toString().split(SPACE);
             Arrays.sort(resultArray);
             return resultArray;
         } catch (IOException e) {
