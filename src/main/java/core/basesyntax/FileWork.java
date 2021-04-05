@@ -39,7 +39,7 @@ public class FileWork {
             if (word == "") {
                 word = "null";
             }
-            char ar = word.charAt(0);
+            char art = word.charAt(0);
             if (word.charAt(0) == 'w' || word.charAt(0) == 'W') {
                 outputArray[j] = word.toLowerCase();
                 j++;
