@@ -5,8 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Arrays;
+import java.util.List;
 
 public class FileWork {
 
@@ -24,9 +24,9 @@ public class FileWork {
             allWords[i] = removeNonLetters(allWords[i]);
         }
 
-        String[] wWords = getLinesStartingAt(allWords);
-        Arrays.sort(wWords);
-        return wWords;
+        String[] wordsStartingWithW = getLinesStartingAt(allWords);
+        Arrays.sort(wordsStartingWithW);
+        return wordsStartingWithW;
     }
 
     private String[] getLinesStartingAt(String[] lines) {
