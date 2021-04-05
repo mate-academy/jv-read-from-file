@@ -19,15 +19,14 @@ public class FileWork {
             String line = bufferedReader.readLine();
             StringBuilder stringBuilder = new StringBuilder();
             while (line != null) {
-                stringBuilder.append(line).append(SPACE_DIVIDER);
-                line = bufferedReader.readLine();
-            }
-            String[] words = stringBuilder.toString().split(SPACE_DIVIDER);
-            for (String string : words) {
-                if (string.toLowerCase().startsWith(CHECK_LETTER)) {
-                    textFromFile.append(string.toLowerCase()
-                            .replaceAll(CHECK_REGEX, "")).append(SPACE_DIVIDER);
+                String[] words = line.toString().split(SPACE_DIVIDER);
+                for (String string : words) {
+                    if (string.toLowerCase().startsWith(CHECK_LETTER)) {
+                        textFromFile.append(string.toLowerCase()
+                                .replaceAll(CHECK_REGEX, "")).append(SPACE_DIVIDER);
+                    }
                 }
+                line = bufferedReader.readLine();
             }
         } catch (IOException e) {
             throw new RuntimeException("File " + fileName + " not found", e);
