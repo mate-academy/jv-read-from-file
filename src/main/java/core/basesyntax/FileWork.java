@@ -8,16 +8,18 @@ import java.util.Locale;
 
 public class FileWork {
     private static final String SPECIFIED_CHARACTER = "w";
+    private static final String REGEX = "\\W";
+    private static final String SPACE_DIVIDER = " ";
 
     public String[] readFromFile(String fileName) {
         StringBuilder stringBuilder = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
-            String value = bufferedReader.readLine();
-            while (value != null) {
-                stringBuilder.append(value.toLowerCase(Locale.ROOT)).append(System.lineSeparator());
-                value = bufferedReader.readLine();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line.toLowerCase(Locale.ROOT)).append(System.lineSeparator());
             }
-            String[] words = stringBuilder.toString().replaceAll("\\W", " ").split(" ");
+            String[] words = stringBuilder.toString().replaceAll(REGEX, SPACE_DIVIDER)
+                    .split(SPACE_DIVIDER);
             stringBuilder.setLength(0);
             for (String word : words) {
                 if (word.startsWith(SPECIFIED_CHARACTER)) {
@@ -30,9 +32,9 @@ public class FileWork {
         if (stringBuilder.length() == 0) {
             return new String[]{};
         }
-        String[] filter = stringBuilder.toString().trim().split(" ");
-        Arrays.sort(filter);
-        return filter;
+        String[] validWords = stringBuilder.toString().trim().split(" ");
+        Arrays.sort(validWords);
+        return validWords;
 
     }
 }
