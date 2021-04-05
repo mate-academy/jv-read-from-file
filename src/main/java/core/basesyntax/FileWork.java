@@ -7,7 +7,8 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
-    private  static  final String SPECIAL_CHARACTER = "w";
+    private static final String SPECIAL_CHARACTER = "w";
+
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
@@ -19,8 +20,8 @@ public class FileWork {
             }
             String[] words = stringBuilder.toString().split(" ");
             StringBuilder filtersWorlds = new StringBuilder();
-            for (String word : words) {
-                String toLowerCaseWord = word.toLowerCase();
+            for (int i = 0; i < words.length; i++) {
+                String toLowerCaseWord = words[i].toLowerCase();
                 if (toLowerCaseWord.startsWith(SPECIAL_CHARACTER)) {
                     toLowerCaseWord = toLowerCaseWord.replaceAll("(\\w+)\\p{Punct}(\\s|$)", "$1$2");
                     filtersWorlds.append(toLowerCaseWord).append(" ");
