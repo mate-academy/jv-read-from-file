@@ -9,6 +9,7 @@ import java.util.List;
 
 public class FileWork {
     private static final String SPECIFIED_CHARACTER = "w";
+    private static final String NON_LETTERS = "[^a-z]";
 
     public String[] readFromFile(String fileName) {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
@@ -21,7 +22,7 @@ public class FileWork {
                 for (String word : tempArray) {
                     word = word.toLowerCase();
                     if (word.startsWith(SPECIFIED_CHARACTER)) {
-                        wordList.add(word.replaceAll("[^a-z]", ""));
+                        wordList.add(word.replaceAll(NON_LETTERS, ""));
                     }
                 }
                 readString = bufferedReader.readLine();
