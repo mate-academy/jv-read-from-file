@@ -23,7 +23,7 @@ public class FileWork {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException("Can`t read file", e);
+            throw new RuntimeException("Can`t read file" + fileName, e);
         }
         if (stringBuilder.length() > 0) {
             String[] resultWords = stringBuilder.toString().split(SPACE);
