@@ -8,15 +8,21 @@ import java.util.Arrays;
 
 public class FileWork {
     private static final String SPECIFIED_CHARACTER = "w";
-    private static final String SPECIAL_CHARACTERS = "[,.\\s\\-:?!]";
+    private static final String SPACE = " ";
+    private static final String[] EMPTY_ARRAY = new String[0];
 
     public String[] readFromFile(String fileName) {
         StringBuilder filteredWords = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
-            String value = bufferedReader.readLine();
-            while (value != null) {
-                filteredWords.append(value.toLowerCase()).append(System.lineSeparator());
-                value = bufferedReader.readLine();
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                String[] words = line.toLowerCase().split("\\W+");
+                for (String word : words) {
+                    if (word.startsWith(SPECIFIED_CHARACTER)) {
+                        filteredWords.append(word).append(" ");
+                    }
+                }
+                line = bufferedReader.readLine();
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException("File not found", e);
@@ -24,28 +30,12 @@ public class FileWork {
             throw new RuntimeException("Can't read from file", e);
         }
 
-        String[] array = filteredWords.toString().split(SPECIAL_CHARACTERS);
-        int countWithLetterW = 0;
-        for (String word : array) {
-            if (startWithLetter(word)) {
-                countWithLetterW++;
-            }
+        if (filteredWords.length() > 0) {
+            String[] array = filteredWords.toString().split(SPACE);
+            Arrays.sort(array);
+            return array;
+        } else {
+            return EMPTY_ARRAY;
         }
-
-        int i = 0;
-        String[] startWithW = new String[countWithLetterW];
-        for (String word : array) {
-            if (startWithLetter(word)) {
-                startWithW[i] = word;
-                i++;
-            }
-        }
-
-        Arrays.sort(startWithW);
-        return startWithW;
-    }
-
-    private boolean startWithLetter(String word) {
-        return word.startsWith(SPECIFIED_CHARACTER);
     }
 }
