@@ -35,11 +35,11 @@ public class FileWork {
 
     private String[] findAllWordsWithW(String wholeText) {
         if (wholeText.length() != 0) {
-            String[] wholeTextArray = wholeText.toLowerCase().split(" ");
+            String[] wholeTextArray = wholeText.toLowerCase().split(REPLACING_MATCH);
             List<String> wordsWithW = new ArrayList<>();
             for (String word : wholeTextArray) {
                 if (word.startsWith(SPECIFIED_CHARACTER)) {
-                    wordsWithW.add(word.replaceAll(REPLACING_MATCH, ""));
+                    wordsWithW.add(word);
                 }
             }
             Collections.sort(wordsWithW);
