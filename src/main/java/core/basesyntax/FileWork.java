@@ -10,8 +10,8 @@ import java.util.List;
 public class FileWork {
     private static final String SPECIFIED_CHARACTER = "w";
     private static final String REPLACEMENT = "";
-    private static final String REGEX = " ";
-    private static final String REGULAR_REGEX = "[^a-zA-Z]";
+    private static final String WITE_SPACE_REGEX = " ";
+    private static final String NON_LETTERS_REGEX = "[^a-zA-Z]";
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
@@ -25,9 +25,9 @@ public class FileWork {
 
         List<String> listWords = new ArrayList<>();
         for (String line : allLineFromFile) {
-            for (String s : line.toLowerCase().split(REGEX)) {
-                if (startWithLetter(s)) {
-                    listWords.add(s.replaceAll(REGULAR_REGEX, REPLACEMENT));
+            for (String word : line.toLowerCase().split(WITE_SPACE_REGEX)) {
+                if (word.startsWith(SPECIFIED_CHARACTER)) {
+                    listWords.add(word.replaceAll(NON_LETTERS_REGEX, REPLACEMENT));
                 }
             }
         }
@@ -35,10 +35,6 @@ public class FileWork {
         Collections.sort(listWords);
 
         return listWords.toArray(new String[listWords.size()]);
-    }
-
-    public boolean startWithLetter(String word) {
-        return word.startsWith(SPECIFIED_CHARACTER);
     }
 }
 
