@@ -8,8 +8,9 @@ import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class FileWork {
+    private static final String CHECK_LITERAL = "w";
+
     public String[] readFromFile(String fileName) {
-        String[] checkEmpty = new String[0];
         StringBuilder selectedWords = new StringBuilder();
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
@@ -20,7 +21,7 @@ public class FileWork {
                 line = line.toLowerCase();
                 String[] arrayOfWordsOfLine = pattern.split(line);
                 for (String wordOfLine : arrayOfWordsOfLine) {
-                    if (wordOfLine.startsWith("w")) {
+                    if (wordOfLine.startsWith(CHECK_LITERAL)) {
                         selectedWords.append(wordOfLine).append(" ");
                     }
                 }
@@ -34,6 +35,6 @@ public class FileWork {
 
         String[] arrayOfSelectWords = selectedWords.toString().split(" ");
         Arrays.sort(arrayOfSelectWords);
-        return selectedWords.length() != 0 ? arrayOfSelectWords : checkEmpty;
+        return selectedWords.length() != 0 ? arrayOfSelectWords : new String[0];
     }
 }
