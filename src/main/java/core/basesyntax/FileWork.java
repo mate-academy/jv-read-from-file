@@ -1,24 +1,23 @@
 package core.basesyntax;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
+    private static  final char CHECK_FILENAME = 'w';
     public String[] readFromFile(String fileName) {
         String[] changeValue;
         String[] fileRead = {};
-        File myFile = new File(fileName);
-        try (BufferedReader reader = new BufferedReader(new FileReader(myFile))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             StringBuilder builder = new StringBuilder();
             String value = reader.readLine();
             while (value != null) {
                 changeValue = (value.replaceAll("\\W+", " ")
                         .toLowerCase().split(" "));
                 for (int i = 0; i < changeValue.length; i++) {
-                    if (changeValue[i].charAt(0) == 'w') {
+                    if (changeValue[i].charAt(0) == CHECK_FILENAME) {
                         builder.append(changeValue[i]).append(" ");
                     }
                 }
