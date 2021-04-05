@@ -13,11 +13,10 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         List<String> result = new ArrayList<>();
-        String[] splitString;
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String stringOfFile = bufferedReader.readLine();
             while (stringOfFile != null) {
-                splitString = stringOfFile.split(SPLIT_REGEX);
+                String[] splitString = stringOfFile.split(SPLIT_REGEX);
                 for (String word : splitString) {
                     if (word.toLowerCase().startsWith(SPECIFIED_CHARACTER)) {
                         result.add(word.toLowerCase());
