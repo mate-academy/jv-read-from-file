@@ -9,6 +9,9 @@ import java.util.List;
 
 public class FileWork {
     private static final String SPECIFIED_CHARACTER = "w";
+    private static final String REPLACEMENT = "";
+    private static final String REGEX = " ";
+    private static final String REGULAR_REGEX = "[^a-zA-Z]";
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
@@ -22,12 +25,11 @@ public class FileWork {
 
         List<String> listWords = new ArrayList<>();
         for (String line : list) {
-            String words = line.toLowerCase();
-            String[] allWordsInLine = words.split(" ");
+            String[] allWordsInLine = line.toLowerCase().split(REGEX);
 
-            for (int i = 0; i < allWordsInLine.length; i++) {
-                if (startWithLetter(allWordsInLine[i])) {
-                    listWords.add(allWordsInLine[i].replaceAll("[^a-zA-Z]", ""));
+            for (String s : allWordsInLine) {
+                if (startWithLetter(s)) {
+                    listWords.add(s.replaceAll(REGULAR_REGEX, REPLACEMENT));
                 }
             }
         }
