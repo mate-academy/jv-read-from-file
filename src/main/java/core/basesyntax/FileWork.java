@@ -7,34 +7,34 @@ import java.util.Arrays;
 
 public class FileWork {
     private static final String CHECK_LETTER = "w";
+    private static final String CHECK_REGEX = "[!\\.,?]";
 
     public String[] readFromFile(String fileName) {
-        String textFromFile = "";
+        StringBuilder textFromFile = new StringBuilder();
         FileReader fileReader;
         try {
             fileReader = new FileReader(fileName);
-        } catch (IOException e) {
-            throw new RuntimeException("File not found", e);
-        }
-        try {
             BufferedReader bufferedReader = new BufferedReader(fileReader);
-            while (bufferedReader.ready()) {
-                String word = bufferedReader.readLine();
-                String[] words = word.split(" ");
-                for (String string : words) {
-                    if (string.toLowerCase().startsWith(CHECK_LETTER)) {
-                        textFromFile += string.toLowerCase().replaceAll("[!\\.,?]", "") + " ";
-                    }
+            String line = bufferedReader.readLine();
+            StringBuilder stringBuilder = new StringBuilder();
+            while (line != null) {
+                stringBuilder.append(line).append(" ");
+                line = bufferedReader.readLine();
+            }
+            String[] words = stringBuilder.toString().split(" ");
+            for (String string : words) {
+                if (string.toLowerCase().startsWith(CHECK_LETTER)) {
+                    textFromFile.append(string.toLowerCase()
+                            .replaceAll(CHECK_REGEX, "")).append(" ");
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException("File not found", e);
+            throw new RuntimeException("File " + fileName + " not found", e);
         }
         if (textFromFile.length() == 0) {
-            String[] emptyArr = new String[0];
-            return emptyArr;
+            return new String[0];
         }
-        String[] textArray = textFromFile.split(" ");
+        String[] textArray = textFromFile.toString().split(" ");
         Arrays.sort(textArray);
         return textArray;
     }
