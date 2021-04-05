@@ -6,7 +6,9 @@ import java.nio.file.Files;
 import java.util.Arrays;
 
 public class FileWork {
-    private static char SPECIFIC_FILTER_CHAR = 'w';
+    private static final char SPECIFIC_FILTER_CHAR = 'w';
+    private static final String CHARACTER_FILTER = "[^a-z ^A-Z]";
+    private static final String SPLITTER = " ";
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
@@ -15,9 +17,9 @@ public class FileWork {
             String[] fileDataArray;
             try {
                 fileDataArray = Files.readAllLines(file.toPath()).toString()
-                        .replaceAll("[^a-z ^A-Z]", "").split(" ");
+                        .replaceAll(CHARACTER_FILTER, "").split(SPLITTER);
             } catch (IOException e) {
-                throw new RuntimeException("Can`t read file and list data.", e);
+                throw new RuntimeException("Can`t read file" + fileName + "and list data.", e);
             }
             String[] filteredArray;
             for (String data : fileDataArray) {
@@ -26,7 +28,7 @@ public class FileWork {
                 }
             }
             if (buffer.toString().length() > 0) {
-                filteredArray = buffer.toString().split(" ");
+                filteredArray = buffer.toString().split(SPLITTER);
                 Arrays.sort(filteredArray);
                 return filteredArray;
             }
