@@ -7,27 +7,29 @@ import java.util.Arrays;
 
 public class FileWork {
     private static final String REGEX_SPLITTER = "\\W+";
+    private static final String STARTS_WITH = "w";
+    private static final String SPLIT_DELIMITER = " ";
 
     public String[] readFromFile(String fileName) {
         String[] result = {};
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder filteredWords = new StringBuilder();
         String[] currentLineArray;
-        String currentLine;
+
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
-            currentLine = bufferedReader.readLine();
+            String currentLine = bufferedReader.readLine();
             while (currentLine != null) {
                 currentLineArray = currentLine.toLowerCase().split(REGEX_SPLITTER);
                 for (String currentString : currentLineArray) {
-                    if (currentString.startsWith("w")) {
-                        stringBuilder.append(currentString).append(" ");
+                    if (currentString.startsWith(STARTS_WITH)) {
+                        filteredWords.append(currentString).append(SPLIT_DELIMITER);
                     }
                 }
                 currentLine = bufferedReader.readLine();
             }
-            if (stringBuilder.length() == 0) {
+            if (filteredWords.length() == 0) {
                 return result;
             }
-            result = stringBuilder.toString().split(" ");
+            result = filteredWords.toString().split(SPLIT_DELIMITER);
             Arrays.sort(result);
         } catch (IOException e) {
             throw new RuntimeException("Can't read the file", e);
