@@ -17,9 +17,8 @@ public class FileWork {
         File file = new File(fileName);
         List<String> result = new ArrayList<>();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
-
-            for (String line = bufferedReader.readLine(); line != null;
-                    line = bufferedReader.readLine()) {
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
                 for (String word : line.split(DELIMITER)) {
                     if (word.toLowerCase().startsWith(LETTER_WORDS_SHOULD_START_WITH)) {
                         result.add(word.toLowerCase().replaceAll(REGEX, ""));
