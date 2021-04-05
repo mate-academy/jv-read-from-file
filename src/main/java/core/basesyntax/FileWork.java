@@ -15,10 +15,10 @@ public class FileWork {
         File file = new File(fileName);
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             StringBuilder builder = new StringBuilder();
-            int value = bufferedReader.read();
-            while (value != -1) {
-                builder.append((char) value);
-                value = bufferedReader.read();
+            String value = bufferedReader.readLine();
+            while (value != null) {
+                builder.append(value).append(DIVIDER);
+                value = bufferedReader.readLine();
             }
             String[] results = builder.toString().split(REGEX);
             StringBuilder filteredWords = new StringBuilder();
