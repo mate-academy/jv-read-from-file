@@ -8,35 +8,35 @@ import java.util.Arrays;
 import java.util.Locale;
 
 public class FileWork {
-    private static final String REGEX = "\\s*(\\s|,|\\?|!|\\.)\\s*";
+    private static final String SPLIT_SYMBOLS = "\\s*(\\s|,|\\?|!|\\.)\\s*";
     private static final String FIRST_LETTER = "w";
 
     public String[] readFromFile(String fileName) {
-        File file = new File(fileName);
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+        StringBuilder filteredWords = new StringBuilder();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String line = bufferedReader.readLine();
-            StringBuilder builder = new StringBuilder();
             while (line != null) {
-                String[] words = line.toLowerCase(Locale.ROOT).split(REGEX);
+                String[] words = line.toLowerCase(Locale.ROOT).split(SPLIT_SYMBOLS);
                 for (String word : words) {
                     if (word.startsWith(FIRST_LETTER)) {
-                        builder.append(word).append(" ");
+                        filteredWords.append(word).append(" ");
                     }
                 }
                 line = bufferedReader.readLine();
             }
-            return createList(builder);
         } catch (IOException e) {
             throw new RuntimeException("Can`t find or read file", e);
         }
+        return createList(filteredWords);
     }
 
     public String[] createList(StringBuilder builder) {
-        String[] result = builder.toString().split(" ");
-        Arrays.sort(result);
-        if (result.length == 1) {
+        if (builder.length() == 0) {
             return new String[0];
         }
+        String[] result = builder.toString().split(" ");
+        Arrays.sort(result);
         return result;
+
     }
 }
