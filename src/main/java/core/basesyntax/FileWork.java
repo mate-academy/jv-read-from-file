@@ -22,7 +22,7 @@ public class FileWork {
                 value = bufferedReader.readLine();
             }
         } catch (IOException e) {
-            throw new RuntimeException("Can not read a file" +fileName, e);
+            throw new RuntimeException("Can not read a file" + fileName, e);
         }
         String[] results = builder.toString().split(REGEX);
         StringBuilder filteredWords = new StringBuilder();
