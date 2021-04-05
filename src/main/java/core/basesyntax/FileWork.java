@@ -13,10 +13,9 @@ public class FileWork {
     private static final int ASCI_LOWER_START = 97;
     private static final int ASCI_LOWER_end = 122;
 
-    public String[] readFromFile(String fileName) throws Exception {
+    public String[] readFromFile(String fileName) {
         StringBuilder wordsArrayBuilder = new StringBuilder();
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             int value = bufferedReader.read();
             while (value != -1) {
                 if (isSpecified(value)) {
@@ -32,7 +31,6 @@ public class FileWork {
                 }
                 value = bufferedReader.read();
             }
-            bufferedReader.close();
         } catch (IOException e) {
             throw new RuntimeException("Unable to read the file");
         }
