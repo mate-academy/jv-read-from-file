@@ -27,7 +27,7 @@ public class FileWork {
                 line = bufferedReader.readLine();
             }
         } catch (IOException e) {
-            throw new RuntimeException("Can't read from file", e);
+            throw new RuntimeException("Can't read file", e);
         }
         Collections.sort(result);
         return result.toArray(new String[0]);
