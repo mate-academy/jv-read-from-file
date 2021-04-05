@@ -17,14 +17,14 @@ public class FileWork {
         File file = new File(fileName);
         List<String> result = new ArrayList<>();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
-            String line = bufferedReader.readLine();
-            while (line != null) {
+
+            for (String line = bufferedReader.readLine(); line != null;
+                    line = bufferedReader.readLine()) {
                 for (String word : line.split(DELIMITER)) {
                     if (word.toLowerCase().startsWith(LETTER_WORDS_SHOULD_START_WITH)) {
                         result.add(word.toLowerCase().replaceAll(REGEX, ""));
                     }
                 }
-                line = bufferedReader.readLine();
             }
         } catch (IOException e) {
             throw new RuntimeException("Can't read file", e);
