@@ -9,13 +9,15 @@ import java.util.List;
 
 public class FileWork {
     private static final String SPECIFIED_CHARACTER = "w";
+    private static final String CUSTOM_REGEX = "[\\n\\r\\p{P}]";
+    private static final String WHITESPACE = " ";
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
         List<String> result = new ArrayList<>();
         try {
             String data = Files.readString(file.toPath());
-            for (String wordFromData : data.replaceAll("[\\n\\r\\p{P}]", " ").split(" ")) {
+            for (String wordFromData : data.replaceAll(CUSTOM_REGEX, WHITESPACE).split(WHITESPACE)) {
                 if (wordFromData.toLowerCase().startsWith(SPECIFIED_CHARACTER)) {
                     result.add(wordFromData.toLowerCase());
                 }
