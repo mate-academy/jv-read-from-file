@@ -11,12 +11,13 @@ public class FileWork {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
             StringBuilder stringBuilder = new StringBuilder();
-            String value = bufferedReader.readLine();
-            while (value != null) {
-                stringBuilder.append(value).append(System.lineSeparator());
-                value = bufferedReader.readLine();
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                stringBuilder.append(line).append(System.lineSeparator());
+                line = bufferedReader.readLine();
             }
             output = stringBuilder.toString();
+            bufferedReader.close();
         } catch (IOException e) {
             throw new RuntimeException("Reader not create!");
         }
