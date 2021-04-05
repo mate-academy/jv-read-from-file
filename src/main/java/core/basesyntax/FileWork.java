@@ -7,14 +7,13 @@ import java.util.Arrays;
 
 public class FileWork {
     private static final char SPECIFIED_CHARACTER = 'w';
-
-    private static final String UNUSED_CHARACTERS = "[\\.,?!]";
+    private static final String UNUSED_CHARACTERS = "[.,?!]";
+    private static final String SPACE_DIVIDER = " ";
+    private static final String REGEX_FOR_SPLIT = "\\s+";
 
     public String[] readFromFile(String fileName) {
-        BufferedReader bufferedReader = null;
         StringBuilder stringBuilder;
-        try {
-            bufferedReader = new BufferedReader(new FileReader(fileName));
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             stringBuilder = new StringBuilder();
             String value = bufferedReader.readLine();
             while (value != null) {
@@ -23,26 +22,17 @@ public class FileWork {
             }
         } catch (IOException e) {
             throw new RuntimeException("Can't read file", e);
-        } finally {
-            try {
-                bufferedReader.close();
-            } catch (IOException e) {
-                throw new RuntimeException("Can't close resource", e);
-            }
         }
-
         if (stringBuilder.toString().isEmpty()) {
             return new String[0];
         }
-
         String[] arrayOfAllWords = stringBuilder.toString().toLowerCase()
-                .replaceAll(UNUSED_CHARACTERS, "").trim().split("\\s+");
+                .replaceAll(UNUSED_CHARACTERS, "").trim().split(REGEX_FOR_SPLIT);
         Arrays.sort(arrayOfAllWords);
         stringBuilder = new StringBuilder();
-
         for (String singleWord : arrayOfAllWords) {
             if (singleWord.charAt(0) == SPECIFIED_CHARACTER) {
-                stringBuilder.append(singleWord).append(" ");
+                stringBuilder.append(singleWord).append(SPACE_DIVIDER);
             }
         }
         if (stringBuilder.toString().isEmpty()) {
