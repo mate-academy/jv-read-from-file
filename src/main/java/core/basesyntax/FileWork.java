@@ -8,6 +8,7 @@ import java.util.Arrays;
 public class FileWork {
     private static final String CHECK_LETTER = "w";
     private static final String CHECK_REGEX = "[!\\.,?]";
+    private static final String SPACE_DIVIDER = " ";
 
     public String[] readFromFile(String fileName) {
         StringBuilder textFromFile = new StringBuilder();
@@ -21,11 +22,11 @@ public class FileWork {
                 stringBuilder.append(line).append(" ");
                 line = bufferedReader.readLine();
             }
-            String[] words = stringBuilder.toString().split(" ");
+            String[] words = stringBuilder.toString().split(SPACE_DIVIDER);
             for (String string : words) {
                 if (string.toLowerCase().startsWith(CHECK_LETTER)) {
                     textFromFile.append(string.toLowerCase()
-                            .replaceAll(CHECK_REGEX, "")).append(" ");
+                            .replaceAll(CHECK_REGEX, "")).append(SPACE_DIVIDER);
                 }
             }
         } catch (IOException e) {
@@ -34,7 +35,7 @@ public class FileWork {
         if (textFromFile.length() == 0) {
             return new String[0];
         }
-        String[] textArray = textFromFile.toString().split(" ");
+        String[] textArray = textFromFile.toString().split(SPACE_DIVIDER);
         Arrays.sort(textArray);
         return textArray;
     }
