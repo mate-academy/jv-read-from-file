@@ -16,8 +16,8 @@ public class FileWork {
     public String[] readFromFile(String fileName) {
         StringBuilder wordsArrayBuilder = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
-            int value = bufferedReader.read();
-            while (value != -1) {
+            int value;
+            while ((value = bufferedReader.read()) != -1) {
                 if (isSpecified(value)) {
                     while (valueIsLetter(value)) {
                         wordsArrayBuilder.append((char) value);
@@ -29,12 +29,11 @@ public class FileWork {
                         value = bufferedReader.read();
                     }
                 }
-                value = bufferedReader.read();
             }
         } catch (IOException e) {
             throw new RuntimeException("Unable to read the file");
         }
-        if (wordsArrayBuilder.toString().equals("")) {
+        if (wordsArrayBuilder.length() == 0) {
             return new String[]{};
         }
         String[] wordsStartingWithW = wordsArrayBuilder.toString().toLowerCase().split(" ");

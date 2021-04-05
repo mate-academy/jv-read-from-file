@@ -22,7 +22,7 @@ public class FileWorkTest {
             new String[]{"was", "was", "whenever", "which", "which", "worse"};
 
     @Test
-    public void readFromEmptyFile() throws Exception {
+    public void readFromEmptyFile() {
         FileWork fileWork = new FileWork();
         String[] actualResult = fileWork.readFromFile(FIRST_FILE_NAME);
         Assert.assertArrayEquals("Test failed! You should returned empty array.",
@@ -30,7 +30,7 @@ public class FileWorkTest {
     }
 
     @Test
-    public void getLowerCaseResultFromFile() throws Exception {
+    public void getLowerCaseResultFromFile() {
         FileWork fileWork = new FileWork();
         String[] actualResult = fileWork.readFromFile(SECOND_FILE_NAME);
         Assert.assertArrayEquals("Test failed! You should returned next array "
@@ -40,7 +40,7 @@ public class FileWorkTest {
     }
 
     @Test
-    public void getCamelCaseResultFromFile() throws Exception {
+    public void getCamelCaseResultFromFile() {
         FileWork fileWork = new FileWork();
         String[] actualResult = fileWork.readFromFile(FOURS_FILE_NAME);
         Assert.assertArrayEquals("Test failed! You should returned next array "
@@ -50,7 +50,7 @@ public class FileWorkTest {
     }
 
     @Test
-    public void getEmptyResultFromFile() throws Exception {
+    public void getEmptyResultFromFile() {
         FileWork fileWork = new FileWork();
         String[] actualResult = fileWork.readFromFile(THIRD_FILE_NAME);
         Assert.assertArrayEquals("Test failed! You should returned empty array.",
@@ -58,7 +58,7 @@ public class FileWorkTest {
     }
 
     @Test
-    public void getAdjacentWordsResultFromFile() throws Exception {
+    public void getAdjacentWordsResultFromFile() {
         FileWork fileWork = new FileWork();
         String[] actualResult = fileWork.readFromFile(FIFTH_FILE_NAME);
         Assert.assertArrayEquals("Test failed! You should returned next array "
