@@ -13,30 +13,32 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
+        StringBuilder builder;
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
-            StringBuilder builder = new StringBuilder();
+            builder = new StringBuilder();
             String value = bufferedReader.readLine();
             while (value != null) {
                 builder.append(value).append(DIVIDER);
                 value = bufferedReader.readLine();
             }
-            bufferedReader.close();
-            String[] results = builder.toString().split(REGEX);
-            StringBuilder filteredWords = new StringBuilder();
-            for (String result : results) {
-                String lowerCase = result.toLowerCase();
-                if (lowerCase.startsWith(SPECIFIED_LETTER)) {
-                    filteredWords.append(lowerCase).append(DIVIDER);
-                }
-            }
-            if (filteredWords.length() == 0) {
-                return new String[0];
-            }
-            String[] finalResults = filteredWords.toString().split(DIVIDER);
-            Arrays.sort(finalResults);
-            return finalResults;
+
         } catch (IOException e) {
             throw new RuntimeException("Can not read a file", e);
         }
+        String[] results = builder.toString().split(REGEX);
+        StringBuilder filteredWords = new StringBuilder();
+        for (String result : results) {
+            String lowerCase = result.toLowerCase();
+            if (lowerCase.startsWith(SPECIFIED_LETTER)) {
+                filteredWords.append(lowerCase).append(DIVIDER);
+            }
+        }
+        if (filteredWords.length() == 0) {
+            return new String[0];
+        }
+        String[] finalResults = filteredWords.toString().split(DIVIDER);
+        Arrays.sort(finalResults);
+        return finalResults;
+
     }
 }
