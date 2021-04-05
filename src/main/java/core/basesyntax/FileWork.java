@@ -21,9 +21,8 @@ public class FileWork {
                 builder.append(value).append(DIVIDER);
                 value = bufferedReader.readLine();
             }
-
         } catch (IOException e) {
-            throw new RuntimeException("Can not read a file", e);
+            throw new RuntimeException("Can not read a file" +fileName, e);
         }
         String[] results = builder.toString().split(REGEX);
         StringBuilder filteredWords = new StringBuilder();
@@ -39,6 +38,5 @@ public class FileWork {
         String[] finalResults = filteredWords.toString().split(DIVIDER);
         Arrays.sort(finalResults);
         return finalResults;
-
     }
 }
