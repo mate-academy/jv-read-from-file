@@ -20,6 +20,7 @@ public class FileWork {
                 builder.append(value).append(DIVIDER);
                 value = bufferedReader.readLine();
             }
+            bufferedReader.close();
             String[] results = builder.toString().split(REGEX);
             StringBuilder filteredWords = new StringBuilder();
             for (String result : results) {
@@ -33,7 +34,6 @@ public class FileWork {
             }
             String[] finalResults = filteredWords.toString().split(DIVIDER);
             Arrays.sort(finalResults);
-            bufferedReader.close();
             return finalResults;
         } catch (IOException e) {
             throw new RuntimeException("Can not read a file", e);
