@@ -14,7 +14,7 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         try {
-            String res = "";
+            StringBuilder result = new StringBuilder();
             StringBuilder list = new StringBuilder();
             List<String> files = Files.readAllLines(Paths.get(fileName));
             if (files.isEmpty()) {
@@ -26,16 +26,17 @@ public class FileWork {
             String[] listSplit = list.toString().split(SECOND_SEPARATOR_CHARACTER);
             for (int i = 0; i < listSplit.length; i++) {
                 if (listSplit[i].toLowerCase().charAt(0) == FILTER_CHARACTER) {
-                    res += listSplit[i].toLowerCase() + SEPARATOR_CHARACTER;
+                    result.append(listSplit[i].toLowerCase()).append(SEPARATOR_CHARACTER);
                 }
             }
-            res = res.trim().replaceAll("\\W", EMPTY_CHARACTER);
-            if (res.isEmpty()) {
+            if (result.toString().isEmpty()) {
                 return new String[0];
             }
-            String[] result = res.split(SEPARATOR_CHARACTER);
-            Arrays.sort(result);
-            return result;
+            String[] resultArr = result.toString().trim()
+                    .replaceAll("\\W", EMPTY_CHARACTER)
+                    .split(SEPARATOR_CHARACTER);
+            Arrays.sort(resultArr);
+            return resultArr;
         } catch (IOException e) {
             throw new RuntimeException("Can't read from file", e);
         }
