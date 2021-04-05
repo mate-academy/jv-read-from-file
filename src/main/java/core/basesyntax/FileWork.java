@@ -12,7 +12,6 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         StringBuilder wordsStartingWithConstant = new StringBuilder();
-        int wordsWithConstant = 0;
         try {
             String fileData = Files.readString(Path.of(fileName))
                     .replaceAll(SHOULD_BE_DELETED_AT_FINAL_ARRAY, REPLACEMENT_OF_INAPPROPRIATE);
@@ -20,7 +19,6 @@ public class FileWork {
             for (String lineData : fileData.split(" ")) {
                 if (lineData.toLowerCase().startsWith(CONSTANT_LETTER)) {
                     wordsStartingWithConstant.append(lineData).append(" ");
-                    wordsWithConstant++;
                 }
             }
         } catch (IOException e) {
