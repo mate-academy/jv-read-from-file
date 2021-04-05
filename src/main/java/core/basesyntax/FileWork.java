@@ -16,8 +16,8 @@ public class FileWork {
         File file = new File(fileName);
         List<String> result = new ArrayList<>();
         try {
-            String data = Files.readString(file.toPath());
-            for (String wordFromData : data.replaceAll(CUSTOM_REGEX, WHITESPACE).split(WHITESPACE)) {
+            String data = Files.readString(file.toPath()).replaceAll(CUSTOM_REGEX, WHITESPACE);
+            for (String wordFromData : data.split(WHITESPACE)) {
                 if (wordFromData.toLowerCase().startsWith(SPECIFIED_CHARACTER)) {
                     result.add(wordFromData.toLowerCase());
                 }
