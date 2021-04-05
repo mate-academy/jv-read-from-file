@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FileWork {
-    private static final char SPECIFIED_CHARACTER = 'w';
+    private static final String SPECIFIED_CHARACTER = "w";
     private static final String REGEX = "[\\W]";
 
     public String[] readFromFile(String fileName) {
@@ -27,10 +27,7 @@ public class FileWork {
             }
 
             for (String word : line.toLowerCase().split(REGEX)) {
-                if (word.equals("")) {
-                    continue;
-                }
-                if (SPECIFIED_CHARACTER == word.charAt(0)) {
+                if (word.startsWith(SPECIFIED_CHARACTER)) {
                     stringBuilder.append(word)
                             .append(" ");
                 }
