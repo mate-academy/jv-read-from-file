@@ -6,13 +6,15 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
+    public static final String WORDS_SPLIT = "\\W+";
+
     public String[] readFromFile(String fileName) {
         StringBuilder stringBuilder = new StringBuilder();
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
             String line = bufferedReader.readLine();
             while (line != null) {
-                String[] words = line.toLowerCase().split("\\W+");
+                String[] words = line.toLowerCase().split(WORDS_SPLIT);
                 for (String word : words) {
                     if (word.startsWith("w") || word.startsWith("W")) {
                         stringBuilder.append(word).append(" ");
