@@ -27,7 +27,7 @@ public class FileWork {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException("Can't read file", e);
+            throw new RuntimeException("Can't write write data to file" + fileName, e);
         }
         Collections.sort(result);
         return result.toArray(new String[0]);
