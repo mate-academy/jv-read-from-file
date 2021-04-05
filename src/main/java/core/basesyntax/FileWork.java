@@ -16,15 +16,14 @@ public class FileWork {
     public String[] readFromFile(String fileName) {
         StringBuilder stringBuilder = new StringBuilder();
         File file = new File(fileName);
-        List<String> stringsFromFile;
+        List<String> linesFromFile;
         try {
-            stringsFromFile = Files.readAllLines(file.toPath());
+            linesFromFile = Files.readAllLines(file.toPath());
         } catch (IOException e) {
             throw new RuntimeException("Can`t read a file", e);
         }
-
-        for (String string : stringsFromFile) {
-            String[] wordsOfString = string.toLowerCase().split(SPACE_DELIMITER);
+        for (String line : linesFromFile) {
+            String[] wordsOfString = line.toLowerCase().split(SPACE_DELIMITER);
             for (String singleWord : wordsOfString) {
                 if (singleWord.charAt(DESIRED_POSITION) == LOOKING_CHARACTER) {
                     stringBuilder.append(singleWord.replaceAll(NOT_LETTER_DELIMITER,
