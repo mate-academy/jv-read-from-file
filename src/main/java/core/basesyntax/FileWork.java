@@ -6,7 +6,8 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
-    private static  final char CHECK_FILENAME = 'w';
+    private static final char CHECK_FILENAME = 'w';
+
     public String[] readFromFile(String fileName) {
         String[] changeValue;
         String[] fileRead = {};
