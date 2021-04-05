@@ -34,7 +34,7 @@ public class FileWork {
 
     private String[] readFile(File file) {
         StringBuilder wordsArray = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))){
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String value = reader.readLine();
             while (value != null) {
                 wordsArray.append(value).append(" ");
