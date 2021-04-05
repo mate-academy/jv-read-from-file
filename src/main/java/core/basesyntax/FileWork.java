@@ -20,16 +20,15 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException("Reader not create!");
         }
-        output = output.replaceAll("[.,?!]", "");
-        String[] words = output.split("\\s");
+        output = output.replaceAll("[.,?!]", "").trim();
+        if (output.isEmpty()) {
+            String[] empty = new String[0];
+            return empty;
+        }
+        String[] words = output.split("\\s+");
         int wordsWithW = 0;
         for (String word : words) {
-            if (word == "") {
-                word = "null";
-            }
-            char ar = word.charAt(0);
             if (word.charAt(0) == 'w' || word.charAt(0) == 'W') {
-                System.out.println(word.toLowerCase());
                 wordsWithW++;
             }
         }
