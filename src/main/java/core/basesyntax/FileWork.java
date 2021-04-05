@@ -22,11 +22,11 @@ public class FileWork {
                 readerValue = bufferedReader.readLine();
             }
         } catch (IOException exception) {
-            throw new RuntimeException("Can`t read file, file is Empty!" + exception);
+            throw new RuntimeException("Can`t read file, file is Empty!", exception);
         }
-        String[] inputArray = builder.toString().split("\\s+");
+        String[] inputArray = builder.toString().toLowerCase().split("\\s+");
         for (String singleWord : inputArray) {
-            singleWord = singleWord.replaceAll("\\W", "").toLowerCase();
+            singleWord = singleWord.replaceAll("\\W", "");
             if (singleWord.startsWith(START_CHARACTER)) {
                 comparingResult.add(singleWord);
             }
