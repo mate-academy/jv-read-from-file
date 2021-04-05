@@ -12,8 +12,7 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         List<String> listOfWords = new ArrayList<>();
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line = reader.readLine();
             while (line != null) {
                 for (String word : line.toLowerCase().split("\\W+")) {
