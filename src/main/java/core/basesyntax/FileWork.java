@@ -8,28 +8,31 @@ import java.util.Arrays;
 import java.util.Locale;
 
 public class FileWork {
+    public static final String STRING_DIVIDER = " ";
+    public static final String SYMBOLS_TO_EXCLUDE = "[.,?!]";
+    public static final String CHARACTER_WE_ARE_LOOKING_FOR = "w";
+
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
-        String answerString = "";
-        StringBuilder stringBuilder = new StringBuilder(answerString);
+        String resultString = "";
+        StringBuilder stringBuilder = new StringBuilder(resultString);
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String value = reader.readLine();
-            while (value != null) {
-                String[] strings = value.split(" ");
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] strings = line.split(STRING_DIVIDER);
                 for (String str : strings) {
                     String s = str.toLowerCase(Locale.ROOT).replaceAll(
-                            "[.,?!]", "");
-                    if (s.startsWith("w")) {
-                        stringBuilder.append(s).append(" ");
+                            SYMBOLS_TO_EXCLUDE, "");
+                    if (s.startsWith(CHARACTER_WE_ARE_LOOKING_FOR)) {
+                        stringBuilder.append(s).append(STRING_DIVIDER);
                     }
                 }
-                value = reader.readLine();
             }
-            answerString = stringBuilder.toString();
-            if (answerString.equals("")) {
+            resultString = stringBuilder.toString();
+            if (resultString.equals("")) {
                 return new String[0];
             }
-            String[] outputArray = stringBuilder.toString().split(" ");
+            String[] outputArray = stringBuilder.toString().split(STRING_DIVIDER);
             Arrays.sort(outputArray);
             return outputArray;
         } catch (IOException e) {
