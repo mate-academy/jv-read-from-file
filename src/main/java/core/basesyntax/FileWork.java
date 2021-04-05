@@ -1,7 +1,6 @@
 package core.basesyntax;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
@@ -10,18 +9,17 @@ public class FileWork {
     private static final String REGEX_SPLITTER = "\\W+";
 
     public String[] readFromFile(String fileName) {
-        File file = new File(fileName);
         String[] result = {};
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
-            String currentLine = bufferedReader.readLine();
-            StringBuilder stringBuilder = new StringBuilder();
-            String[] currentLineArray;
+        StringBuilder stringBuilder = new StringBuilder();
+        String[] currentLineArray;
+        String currentLine;
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
+            currentLine = bufferedReader.readLine();
             while (currentLine != null) {
-                currentLineArray = currentLine.toLowerCase().replaceAll(REGEX_SPLITTER, " ")
-                        .split(" ");
-                for (String s : currentLineArray) {
-                    if (s.startsWith("w")) {
-                        stringBuilder.append(s).append(" ");
+                currentLineArray = currentLine.toLowerCase().split(REGEX_SPLITTER);
+                for (String currentString : currentLineArray) {
+                    if (currentString.startsWith("w")) {
+                        stringBuilder.append(currentString).append(" ");
                     }
                 }
                 currentLine = bufferedReader.readLine();
