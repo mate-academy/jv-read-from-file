@@ -1,38 +1,34 @@
 package core.basesyntax;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class FileWork {
     private static final String SPECIFIED_CHARACTER = "w";
+    private static final String SPLIT_REGEX = "\\W+";
 
     public String[] readFromFile(String fileName) {
-        File file = new File(fileName);
-        String[] resultArray;
-        ArrayList<String> result = new ArrayList<>();
-        StringBuilder stringBuilder = new StringBuilder();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+        List<String> result = new ArrayList<>();
+        String[] splitString;
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String stringOfFile = bufferedReader.readLine();
             while (stringOfFile != null) {
-                stringBuilder.append(stringOfFile).append(" ");
-                stringOfFile = bufferedReader.readLine();
-            }
-            String[] splitDataArray = stringBuilder.toString().toLowerCase().split(" ");
-            for (String word : splitDataArray) {
-                if (word.startsWith(SPECIFIED_CHARACTER)) {
-                    result.add(word.replaceAll("[^a-z]", ""));
+                splitString = stringOfFile.split(SPLIT_REGEX);
+                for (String word : splitString) {
+                    if (word.toLowerCase().startsWith(SPECIFIED_CHARACTER)) {
+                        result.add(word.toLowerCase());
+                    }
                 }
+                stringOfFile = bufferedReader.readLine();
             }
         } catch (IOException e) {
             throw new RuntimeException("Can't read file", e);
         }
-        resultArray = new String[result.size()];
-        resultArray = result.toArray(resultArray);
-        Arrays.sort(resultArray);
-        return resultArray;
+        Collections.sort(result);
+        return result.toArray(new String[0]);
     }
 }
