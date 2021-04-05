@@ -15,19 +15,17 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
-        List<String> list;
+        List<String> allLineFromFile;
 
         try {
-            list = Files.readAllLines(file.toPath());
+            allLineFromFile = Files.readAllLines(file.toPath());
         } catch (IOException e) {
             throw new RuntimeException("Can't read file", e);
         }
 
         List<String> listWords = new ArrayList<>();
-        for (String line : list) {
-            String[] allWordsInLine = line.toLowerCase().split(REGEX);
-
-            for (String s : allWordsInLine) {
+        for (String line : allLineFromFile) {
+            for (String s : line.toLowerCase().split(REGEX)) {
                 if (startWithLetter(s)) {
                     listWords.add(s.replaceAll(REGULAR_REGEX, REPLACEMENT));
                 }
