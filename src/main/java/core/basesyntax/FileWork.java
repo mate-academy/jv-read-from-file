@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class FileWork {
+    public static final String SPECIFIED_CHARACTER = "w";
+
     public String[] readFromFile(String fileName) {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
@@ -19,7 +21,7 @@ public class FileWork {
                 tempArray = readString.split(" ");
                 for (String word : tempArray) {
                     word = word.toLowerCase();
-                    if (word.startsWith("w")) {
+                    if (word.startsWith(SPECIFIED_CHARACTER)) {
                         wordList.add(word.replaceAll("[^a-z]", ""));
                     }
                 }
