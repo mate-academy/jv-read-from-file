@@ -32,14 +32,11 @@ public class FileWork {
                 }
             }
         }
-
         if (stringBuilder.length() == 0) {
             return new String[0];
         }
-
         String[] resultArray = stringBuilder.toString().split(SPACE_DELIMITER);
         Arrays.sort(resultArray);
-
         return resultArray;
     }
 }
