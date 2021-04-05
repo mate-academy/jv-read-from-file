@@ -1,7 +1,6 @@
 package core.basesyntax;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,15 +13,14 @@ public class FileWork {
             ",","!","?","."
     };
 
-    public String[] readFromFile(String firstFileName) {
-        File file = new File(firstFileName);
+    public String[] readFromFile(String fileName) {
         List<String> arrayOfWords = new ArrayList<>();
 
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-            String value = bufferedReader.readLine();
-            while (value != null) {
-                for (String word : value.split(" ")) {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                for (String word : line.split("\\W+")) {
                     if (word.toLowerCase().startsWith(START_LETTER)) {
                         for (String sign : SIGNS) {
                             if (word.endsWith(sign)) {
@@ -32,15 +30,12 @@ public class FileWork {
                         arrayOfWords.add(word.toLowerCase());
                     }
                 }
-                value = bufferedReader.readLine();
+                line = bufferedReader.readLine();
             }
         } catch (IOException e) {
             throw new RuntimeException("Can't read file");
         }
 
-        if (arrayOfWords.size() == 0) {
-            return new String[0];
-        }
         String[] returnedString = arrayOfWords.toArray(new String[0]);
         Arrays.sort(returnedString);
         return returnedString;
