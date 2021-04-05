@@ -27,6 +27,7 @@ public class FileWork {
                     }
                 }
             }
+            reader.close();
         } catch (FileNotFoundException e) {
             throw new RuntimeException("File not found", e);
         } catch (IOException e) {
