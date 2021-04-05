@@ -41,7 +41,7 @@ public class FileWork {
     }
 
     private String removeNonLetters(String line) {
-        return line.replaceAll("\\W", " ");
+        return line.replaceAll("\\W", "");
     }
 
     private String getFileContent(File file) {
