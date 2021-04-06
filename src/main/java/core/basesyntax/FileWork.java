@@ -7,42 +7,40 @@ import java.util.Arrays;
 
 public class FileWork {
     private static final char START_CHARACTER = 'w';
+    private static final String DELETING_REGEX = "[!\\.,?]";
 
     public String[] readFromFile(String fileName) {
-        StringBuilder testFromFile = new StringBuilder();
+        StringBuilder dataFromFile = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String test = reader.readLine();
             while (test != null) {
-                testFromFile.append(test).append(" ");
+                dataFromFile.append(test).append(" ");
                 test = reader.readLine();
             }
         } catch (IOException e) {
             throw new RuntimeException("Can't read file", e);
         }
 
-        return justDoubleVeeWords(testFromFile.toString());
+        return justDoubleVeeWords(dataFromFile.toString());
     }
 
     public String[] justDoubleVeeWords(String text) {
-        if (text.equals("")) {
+        if (text.isEmpty()) {
             return new String[]{};
         }
 
-        String[] testArray = text.toLowerCase().replaceAll("[!\\.,?]", "").split(" ");
-        StringBuilder onlyWordsWithW = new StringBuilder();
+        String[] testArray = text.toLowerCase().replaceAll(DELETING_REGEX, "").split(" ");
+        StringBuilder searchingWords = new StringBuilder();
         for (int i = 0; i < testArray.length; i++) {
             if (testArray[i].charAt(0) == START_CHARACTER) {
-                onlyWordsWithW.append(testArray[i]);
-                if (i < testArray.length - 1) {
-                    onlyWordsWithW.append(" ");
-                }
+                searchingWords.append(testArray[i]).append(" ");
             }
         }
-
-        String[] preReturn = onlyWordsWithW.toString().split(" ");
-        if (preReturn[0].equals("")) {
+        String postSearching = searchingWords.toString().trim();
+        if(postSearching.isEmpty()) {
             return new String[]{};
         }
+        String[] preReturn = postSearching.split(" ");
         Arrays.sort(preReturn);
         return preReturn;
     }
