@@ -13,21 +13,21 @@ public class FileWork {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                String[] words = line.split("\\W+");
+                String[] words = line.toLowerCase().split("\\W+");
                 for (String word: words) {
-                    if (word.toLowerCase().startsWith(SPECIFIED_CHARACTER)) {
-                        returnBuilder.append(word.toLowerCase()).append(" ");
+                    if (word.startsWith(SPECIFIED_CHARACTER)) {
+                        returnBuilder.append(word).append(" ");
                     }
                 }
             }
 
         } catch (IOException e) {
-            throw new RuntimeException("Unable to read the file");
+            throw new RuntimeException("Unable to read the file", e);
         }
         if (returnBuilder.length() == 0) {
             return new String[]{};
         }
-        String[] wordsStartingWithW = returnBuilder.toString().toLowerCase().split(" ");
+        String[] wordsStartingWithW = returnBuilder.toString().split(" ");
         Arrays.sort(wordsStartingWithW);
         return wordsStartingWithW;
     }
