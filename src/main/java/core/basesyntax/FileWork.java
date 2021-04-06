@@ -6,11 +6,12 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
-    private final String firstLetter = "w";
+    private static final String firstLetter = "w";
+    private static final String regex = "[.!?]";
 
-    public String[] readFromFile(String fileName) {
+    public String[] readFromFile(String file01) {
         StringBuilder stringBuilder = new StringBuilder();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file01))) {
             String value = bufferedReader.readLine();
             while (value != null) {
                 stringBuilder.append(value).append(" ");
@@ -21,9 +22,8 @@ public class FileWork {
         }
         String[] words = stringBuilder.toString().toLowerCase().split(" ");
         StringBuilder wordsToArray = new StringBuilder();
-
         for (String findCharacter : words) {
-            String temp = findCharacter.replaceAll("[.!?]", "");
+            String temp = findCharacter.replaceAll(regex, "");
             if (temp.startsWith(firstLetter)) {
                 wordsToArray.append(temp).append(" ");
             }
@@ -32,9 +32,6 @@ public class FileWork {
         String[] wordsWithW = wordsToArray.toString().split(" ");
         Arrays.sort(wordsWithW);
 
-        if (wordsToArray.toString().isEmpty()) {
-            return new String[0];
-        }
         return wordsWithW;
     }
 }
