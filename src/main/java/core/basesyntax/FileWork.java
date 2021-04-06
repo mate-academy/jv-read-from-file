@@ -37,7 +37,7 @@ public class FileWork {
             }
         }
         String postSearching = searchingWords.toString().trim();
-        if(postSearching.isEmpty()) {
+        if (postSearching.isEmpty()) {
             return new String[]{};
         }
         String[] preReturn = postSearching.split(" ");
