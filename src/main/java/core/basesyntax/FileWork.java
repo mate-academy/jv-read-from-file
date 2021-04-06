@@ -10,28 +10,26 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         StringBuilder stringBuilder = new StringBuilder();
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String line = bufferedReader.readLine();
             while (line != null) {
                 String[] words = line.toLowerCase().split(WORDS_SPLIT);
                 for (String word : words) {
-                    if (word.startsWith("w") || word.startsWith("W")) {
+                    if (word.startsWith("w")) {
                         stringBuilder.append(word).append(" ");
                     }
                 }
                 line = bufferedReader.readLine();
             }
-            bufferedReader.close();
         } catch (IOException e) {
-            throw new RuntimeException("Reader not create!");
+            throw new RuntimeException("Can't read from file!", e);
         }
         String sbString = stringBuilder.toString();
-        String[] ary = new String[0];
+        String[] filteredWords = new String[0];
         if (!sbString.isEmpty()) {
-            ary = sbString.split(" ");
-            Arrays.sort(ary);
+            filteredWords = sbString.split(" ");
+            Arrays.sort(filteredWords);
         }
-        return ary;
+        return filteredWords;
     }
 }
