@@ -27,7 +27,7 @@ public class FileWork {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException("Can't read file", e);
+            throw new RuntimeException("Can't read file" + fileName, e);
         }
         if (stringBuilder.length() == 0) {
             return new String[]{};
