@@ -6,42 +6,31 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
+    private static final String REGEX_SYMBOL = "\\W+";
+    private static final String REGEX_WHITESPACES = "\\s+";
+    private static final String LOWER_CASE_W = "w";
+
     public String[] readFromFile(String fileName) {
-        String data;
+        StringBuilder filteredWords = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
-            StringBuilder stringBuilder = new StringBuilder();
-            String value = bufferedReader.readLine();
-            while (value != null) {
-                stringBuilder.append(value).append(System.lineSeparator());
-                value = bufferedReader.readLine();
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                String[] words = line.toLowerCase().split(REGEX_SYMBOL);
+                for (String word : words) {
+                    if (word.startsWith(LOWER_CASE_W)) {
+                        filteredWords.append(word).append(" ");
+                    }
+                }
+                line = bufferedReader.readLine();
             }
-            data = stringBuilder.toString();
         } catch (IOException e) {
-            throw new RuntimeException("Can't read file!", e);
+            throw new RuntimeException("Can't read file!" + fileName, e);
         }
-        data = data.replaceAll("[.,?!]", "").trim();
-
-        if (data.isEmpty()) {
-            String[] emptyArray = new String[0];
-            return emptyArray;
+        String words = filteredWords.toString();
+        if (words.isEmpty()) {
+            return new String[0];
         }
-
-        String[] words = data.split("\\s+");
-        int countOfWordsWithW = 0;
-        for (String word : words) {
-            if (word.charAt(0) == 'w' || word.charAt(0) == 'W') {
-                countOfWordsWithW++;
-            }
-        }
-
-        String[] resultArray = new String[countOfWordsWithW];
-        int i = 0;
-        for (String word : words) {
-            if (word.charAt(0) == 'w' || word.charAt(0) == 'W') {
-                resultArray[i] = word.toLowerCase();
-                i++;
-            }
-        }
+        String[] resultArray = filteredWords.toString().split(REGEX_WHITESPACES);
         Arrays.sort(resultArray);
         return resultArray;
     }
