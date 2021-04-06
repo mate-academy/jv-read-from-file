@@ -31,6 +31,9 @@ public class FileWork {
 
         String[] wordsWithW = wordsToArray.toString().split(" ");
         Arrays.sort(wordsWithW);
+        if (wordsToArray.toString().isEmpty()) {
+            return new String[0];
+        }
 
         return wordsWithW;
     }
