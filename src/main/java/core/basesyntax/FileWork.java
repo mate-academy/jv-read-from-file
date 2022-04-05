@@ -26,14 +26,14 @@ public class FileWork {
         String[] split = stringBuilder.toString().split("\\W+");
         stringBuilder.delete(0, stringBuilder.length());
         try {
-            //int i = 0;
+            int i = 0;
             for (String value : split) {
                 if (value.charAt(0) == 'w' || value.charAt(0) == 'W') {
                     stringBuilder.append(value.toLowerCase()).append(", ");
-                    //i++;
+                    i++;
                 }
             }
-            if (stringBuilder.isEmpty()) {
+            if (i == 0) {
                 return emptyArray;
             }
         } catch (RuntimeException e) {
