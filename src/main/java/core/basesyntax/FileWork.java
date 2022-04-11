@@ -26,10 +26,10 @@ public class FileWork {
                         if (!text.substring(temp, i).equals("")) {
                             if (text.charAt(temp) == SPECIFIC_CHARACTER
                                     || text.charAt(temp) == SPECIFIC_CHARACTER_UPPER) {
-                                if (i != text.length() - 1) {
-                                    stringList.add(text.substring(temp, i).toLowerCase());
-                                } else {
+                                if (i == text.length() - 1 && text.charAt(i) != '.') {
                                     stringList.add(text.substring(temp, i + 1).toLowerCase());
+                                } else {
+                                    stringList.add(text.substring(temp, i).toLowerCase());
                                 }
                             }
                         }
