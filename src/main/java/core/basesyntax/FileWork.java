@@ -24,7 +24,7 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException("IO Error");
         }
-        if (string.isEmpty()) {
+        if (string.length() == 0) {
             return new String[0];
         }
         String[] resultStringArray = string.toString().split(" ");
@@ -38,7 +38,7 @@ public class FileWork {
                 string.append(' ');
             }
         }
-        if (string.isEmpty()) {
+        if (string.length() == 0) {
             return new String[0];
         } else {
             return Arrays.stream(string.toString().split(" ")).sorted().toArray(String[]::new);
