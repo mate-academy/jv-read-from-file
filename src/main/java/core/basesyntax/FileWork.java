@@ -24,22 +24,22 @@ public class FileWork {
             throw new RuntimeException("Cannot read", e);
         }
         //COUNT NEEDED WORDS---------------------
-        if (stringBuilder.toString() == "") {
+        if (stringBuilder.toString().equals("")) {
             return new String [0];
         }
         String[] split = stringBuilder.toString().split("\\W+");
 
-        for (int i = 0; i < split.length; i++) {
-            if (split[i].toLowerCase().charAt(0) == 'w') {
+        for (String str : split) {
+            if (str.toLowerCase().charAt(0) == 'w') {
                 count++;
             }
         }
         //PUT WORDS TO NEW ARRAY---------------------
         String[] resultStringArray = new String[count];
         count = 0;
-        for (int i = 0; i < split.length; i++) {
-            if (split[i].toLowerCase().charAt(0) == 'w') {
-                resultStringArray[count] = split[i].toLowerCase();
+        for (String str : split) {
+            if (str.toLowerCase().charAt(0) == 'w') {
+                resultStringArray[count] = str.toLowerCase();
                 count++;
             }
         }
