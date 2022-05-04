@@ -29,5 +29,5 @@ public class FileWork {
         String[] answer = textWithoutPunctuation.toArray(new String[0]);
         Arrays.sort(answer);
         return answer;
-     }
+    }
 }
