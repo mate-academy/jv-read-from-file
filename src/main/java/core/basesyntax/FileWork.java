@@ -28,6 +28,5 @@ public class FileWork {
         String[] resultString = stringBuilder.toString().split(" ");
         Arrays.sort(resultString);
         return resultString;
-
     }
 }
