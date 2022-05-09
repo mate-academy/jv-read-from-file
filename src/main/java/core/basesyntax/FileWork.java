@@ -1,6 +1,10 @@
 package core.basesyntax;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 
 public class FileWork {
@@ -11,7 +15,8 @@ public class FileWork {
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             while ((stringLine = br.readLine()) != null) {
-                for (String temp : stringLine.replaceAll("[^a-zA-Z ]", "").toLowerCase().split(" ")) {
+                for (String temp : stringLine.replaceAll("[^a-zA-Z ]", "")
+                        .toLowerCase().split(" ")) {
                     if (String.valueOf(temp.charAt(0)).equals("w")) {
                         stringBuilder.append(temp).append(" ");
                     }
