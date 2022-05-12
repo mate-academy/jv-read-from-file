@@ -23,8 +23,7 @@ public class FileWork {
                     arr = Arrays.copyOf(arr, arr.length + 1);
                     arr[arr.length - 1] = stringBuilder.toString().toLowerCase(Locale.ROOT);
                     stringBuilder.setLength(0);
-                }
-                else if (value >= 65 && value <= 90 || value >= 97 && value <= 122) {
+                } else if (value >= 65 && value <= 90 || value >= 97 && value <= 122) {
                     while (value >= 65 && value <= 90 || value >= 97 && value <= 122) {
                         value = buffer.read();
                     }
