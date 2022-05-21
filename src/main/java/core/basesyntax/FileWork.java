@@ -2,15 +2,14 @@ package core.basesyntax;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
+    private static final String SPECIFIED_CHARACTER = "w";
 
     public String[] readFromFile(String fileName) {
-        String SPECIFIED_CHARACTER = "w";
         File file = new File(fileName);
         StringBuilder stringLine = new StringBuilder();
         try {
