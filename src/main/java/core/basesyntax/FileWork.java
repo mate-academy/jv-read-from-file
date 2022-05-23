@@ -18,17 +18,17 @@ public class FileWork {
                 value = reader.readLine();
             }
             String inputString = stringBuilder.toString().toLowerCase();
-            if (inputString.length() == 0) {
+            String[] arrayOfStrings = inputString.split("\\W+");
+            if (arrayOfStrings.length == 0 || arrayOfStrings.length == 1) {
                 return new String[]{};
             }
-            String[] arrayOfStrings = inputString.split("\\W+");
             StringBuilder stringBuilder1 = new StringBuilder();
             for (String string : arrayOfStrings) {
                 if (string.startsWith("w")) {
                     stringBuilder1.append(string).append(" ");
                 }
             }
-            if (stringBuilder.length() == 0) {
+            if (stringBuilder1.length() == 0) {
                 return new String[]{};
             }
             String inputString1 = stringBuilder1.toString();
