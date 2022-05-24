@@ -38,7 +38,7 @@ public class FileWork {
             }
             return text.toString();
         } catch (IOException e) {
-            throw new RuntimeException("Can't read file", e);
+            throw new RuntimeException("Can't read file" + file, e);
         }
     }
 }
