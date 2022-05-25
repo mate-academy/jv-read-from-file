@@ -1,6 +1,9 @@
 package core.basesyntax;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
@@ -19,7 +22,7 @@ public class FileWork {
                     }
                 }
             }
-        }  catch (IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException("Can not read the files:" + fileName);
         }
         String clearWord = builder.toString().replaceAll("[!-?-,]", "");
