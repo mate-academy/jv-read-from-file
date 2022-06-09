@@ -4,34 +4,41 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.util.Objects;
+import java.util.Arrays;
 
 public class FileWork {
+    private static final int ZERO_WORD_POSITION = 0;
+
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
-        StringBuilder result = new StringBuilder();
+        StringBuilder listOfWStartingWords = new StringBuilder();
 
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
-          String line = bufferedReader.readLine();
-            if (line == null){
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+            String fileLine = bufferedReader.readLine();
+            if (fileLine == null) {
                 return new String[]{};
             }
-          while (line != null){
-            String[] splittedLine = line.split(" ");
-              for (int i = 0; i < splittedLine.length; i++) {
-                  splittedLine[i] = splittedLine[i].toLowerCase();
-                  if("w".equals(String.valueOf(splittedLine[i].toLowerCase().charAt(0)))){
-                      result.append(splittedLine[i]).append(".");
-                  }
-
-              }
-              line = bufferedReader.readLine();
-          }
+            while (fileLine != null) {
+                fileLine = fileLine.toLowerCase();
+                String[] splittedFileLine = fileLine.split(" ");
+                for (int i = 0; i < splittedFileLine.length; i++) {
+                    if ("w".equals(String.valueOf(splittedFileLine[i]
+                            .charAt(ZERO_WORD_POSITION)))) {
+                        splittedFileLine[i] = splittedFileLine[i].replaceAll("\\W", "");
+                        listOfWStartingWords.append(splittedFileLine[i]).append(".");
+                    }
+                }
+                fileLine = bufferedReader.readLine();
+            }
+            if (listOfWStartingWords.toString() == "") {
+                return new String[]{};
+            } else {
+                String[] arrayOfWStartingWords = listOfWStartingWords.toString().split("\\.");
+                Arrays.sort(arrayOfWStartingWords);
+                return arrayOfWStartingWords;
+            }
         } catch (IOException e) {
             throw new RuntimeException("Can't read file", e);
         }
-        String[] res = result.toString().split("\\.");
-        return res;
     }
 }
