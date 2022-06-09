@@ -15,9 +15,6 @@ public class FileWork {
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             String fileLine = bufferedReader.readLine();
-            if (fileLine == null) {
-                return new String[]{};
-            }
             while (fileLine != null) {
                 fileLine = fileLine.toLowerCase();
                 String[] splittedFileLine = fileLine.split(" ");
@@ -30,7 +27,7 @@ public class FileWork {
                 }
                 fileLine = bufferedReader.readLine();
             }
-            if (listOfWStartingWords.toString() == "") {
+            if (listOfWStartingWords.toString().equals("")) {
                 return new String[]{};
             } else {
                 String[] arrayOfWStartingWords = listOfWStartingWords.toString().split("\\.");
