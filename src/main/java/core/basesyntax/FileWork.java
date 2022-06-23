@@ -6,31 +6,46 @@ import java.io.FileReader;
 import java.util.Arrays;
 
 public class FileWork {
+    private static final String SPECIFIED_CHARACTER = "w";
+    private static final String REGEX_LETTER_ONLY = "[^a-z]";
+    private final StringBuilder stringOfWords = new StringBuilder();
+
     public String[] readFromFile(String fileName) {
         File path = new File(fileName);
-        StringBuilder result = new StringBuilder();
 
         try (BufferedReader file = new BufferedReader(new FileReader(path))) {
             String value = file.readLine();
+
             while (value != null) {
-                for (String word : value.split(" ")) {
-                    if (word.toLowerCase().startsWith("w")) {
-                        String formattedWord = word.toLowerCase().replaceAll("[^a-z]", "");
-                        result.append(formattedWord).append(" ");
-                    }
-                }
+                findWordsInLine(value);
                 value = file.readLine();
             }
         } catch (Exception e) {
-            System.out.println("File not find " + e);
+            throw new RuntimeException("Can't read data from file " + fileName, e);
         }
 
-        if (!result.toString().isEmpty()) {
-            String[] arrayOfWords = result.toString().split(" ");
-            Arrays.sort(arrayOfWords);
-            return arrayOfWords;
+        return createSortedArrFromString();
+    }
+
+    private void findWordsInLine(String line) {
+        for (String word : line.split(" ")) {
+            if (word.toLowerCase().startsWith(SPECIFIED_CHARACTER)) {
+                String formattedWord = word.toLowerCase().replaceAll(REGEX_LETTER_ONLY, "");
+                stringOfWords.append(formattedWord).append(" ");
+            }
+        }
+    }
+
+    private String[] createSortedArrFromString() {
+        String[] foundWords;
+
+        if (!stringOfWords.toString().isEmpty()) {
+            foundWords = stringOfWords.toString().split(" ");
+            Arrays.sort(foundWords);
+        } else {
+            foundWords = new String[0];
         }
 
-        return new String[] {};
+        return foundWords;
     }
 }
