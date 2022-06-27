@@ -8,7 +8,7 @@ public class MainFileWork {
     public static void main(String[] args) {
 
       FileWork fileWork = new FileWork();
-      System.out.println(fileWork.readFromFile("test1"));
+      System.out.println(fileWork.readFromFile("test2"));
 
 
 //        File file = new File("test2");
