@@ -1,37 +1,33 @@
 package core.basesyntax;
 
 import java.io.*;
-import java.util.Arrays;
 
 public class FileWork {
-    private static final String SPECIFIED_CHARACTER = "w";
 
     public String[] readFromFile(String fileName) {
-        String[] fileWork = null;
         File file = new File(fileName);
-        StringBuilder stringBuilder = new StringBuilder();
-
+        StringBuilder readFile = new StringBuilder();
+        StringBuilder sortWords = new StringBuilder();
             try {
                 BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
                 int value = bufferedReader.read();
                 while (value !=-1) {
-                    stringBuilder.append((char) value);
+                    readFile.append((char) value);
                     value = bufferedReader.read();
                 }
-                fileWork = stringBuilder.toString().trim().split("\\s+");
-                System.out.println(Arrays.toString(fileWork));
+                String [] wordsReadFile = readFile.toString().toLowerCase().trim()
+                        .split("[?|!|-|(|)|:|;|'|\"| |.|,|\\s+|\\t|\\n|\\r|\\f]");
+                int index;
+                for (int i = 0; i<wordsReadFile.length; i++) {
+                    index = i;
+                    if (wordsReadFile[i].startsWith("w") || wordsReadFile[i].startsWith("W")) {
+                        sortWords.append(wordsReadFile[i]).append(" ");
+                    }
+                }
             } catch (IOException e) {
                 throw new RuntimeException("Can't to read file", e);
-            }
-            return fileWork;
-    }
-
-    private boolean fileIsNotEmpty(String fileName) {
-        File file = new File(fileName);
-        return !file.exists();
-    }
-
-    private boolean startWithLetter(String word) {
-        return word.startsWith(SPECIFIED_CHARACTER);
+           }
+            String[] resultReadFile = sortWords.toString().split(" ");
+        return resultReadFile;
     }
 }
