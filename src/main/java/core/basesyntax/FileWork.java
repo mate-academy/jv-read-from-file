@@ -43,7 +43,7 @@ public class FileWork {
         return resultReadFile;
     }
 
-    private boolean isSymbol(String words){
+    private boolean isSymbol(String words) {
         return (words.startsWith("w") || words.startsWith("W"));
     }
 }
