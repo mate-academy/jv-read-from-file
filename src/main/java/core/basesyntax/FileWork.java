@@ -1,6 +1,7 @@
 package core.basesyntax;
 
 import java.io.*;
+import java.util.Arrays;
 
 public class FileWork {
     private static final String SPECIFIED_CHARACTER = "w";
@@ -17,11 +18,11 @@ public class FileWork {
                     stringBuilder.append((char) value);
                     value = bufferedReader.read();
                 }
-                System.out.println(stringBuilder);
+                fileWork = stringBuilder.toString().trim().split("\\s+");
+                System.out.println(Arrays.toString(fileWork));
             } catch (IOException e) {
                 throw new RuntimeException("Can't to read file", e);
             }
-
             return fileWork;
     }
 

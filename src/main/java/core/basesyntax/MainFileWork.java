@@ -3,12 +3,13 @@ package core.basesyntax;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 public class MainFileWork {
     public static void main(String[] args) {
 
       FileWork fileWork = new FileWork();
-      System.out.println(fileWork.readFromFile("test2"));
+      System.out.println(Arrays.toString(fileWork.readFromFile("test2")));
 
 
 //        File file = new File("test2");
