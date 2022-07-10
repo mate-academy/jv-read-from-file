@@ -31,7 +31,9 @@ public class FileWork {
 
             stringBuilder = new StringBuilder();
             for (String str : arrayWords) {
-                if (str.charAt(0) == 'w') stringBuilder.append(str).append(" ");
+                if (str.charAt(0) == 'w') {
+                    stringBuilder.append(str).append(" ");
+                }
             }
 
             if (stringBuilder.length() == 0) {
