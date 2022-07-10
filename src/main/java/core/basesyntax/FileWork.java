@@ -1,6 +1,9 @@
 package core.basesyntax;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
@@ -19,16 +22,21 @@ public class FileWork {
                 value = bufferedReader.readLine();
             }
 
-            if (stringBuilder.length() == 0) return new String[0];
+            if (stringBuilder.length() == 0) {
+                return new String[0];
+            }
 
-            arrayWords =  stringBuilder.toString().replaceAll("[^A-Za-z ]", "").toLowerCase().split(" ");
+            arrayWords = stringBuilder.toString().replaceAll("[^A-Za-z ]", "")
+                    .toLowerCase().split(" ");
 
             stringBuilder = new StringBuilder();
             for (String str : arrayWords) {
                 if (str.charAt(0) == 'w') stringBuilder.append(str).append(" ");
             }
 
-            if (stringBuilder.length() == 0) return new String[0];
+            if (stringBuilder.length() == 0) {
+                return new String[0];
+            }
 
             arrayWords = stringBuilder.toString().split(" ");
             Arrays.sort(arrayWords);
