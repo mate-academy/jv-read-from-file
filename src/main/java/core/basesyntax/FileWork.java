@@ -24,8 +24,8 @@ public class FileWork {
         }
 
         String allText = builder.toString().toLowerCase();
-        String[] splitedValue = allText.split("\\W+");
-        for (String words : splitedValue) {
+        String[] needsValue = allText.split("\\W+");
+        for (String words : needsValue) {
             if (words.startsWith(specialChar)) {
                 needWords.append(words).append(" ");
                 count++;
