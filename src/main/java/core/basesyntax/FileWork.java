@@ -16,7 +16,7 @@ public class FileWork {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(fileName)));
             String line = bufferedReader.readLine();
             while (line != null) {
-                stringBuilder.append(line);
+                stringBuilder.append(line).append(" ");
                 line = bufferedReader.readLine();
             }
         } catch (FileNotFoundException e) {
@@ -45,7 +45,7 @@ public class FileWork {
                 counter++;
             }
         }
-        //Arrays.sort(filteredWords);
+        Arrays.sort(filteredWords);
         return filteredWords;
     }
 }
