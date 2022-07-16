@@ -1,14 +1,10 @@
 package core.basesyntax;
 
-
-
-
-
-
-
-
-
-
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
@@ -18,7 +14,8 @@ public class FileWork {
     public String[] readFromFile(String fileName) {
         //write your code here
         StringBuilder stringBuilder = new StringBuilder();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(fileName)))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(
+                new File(fileName)))) {
             String line = bufferedReader.readLine();
             while (line != null) {
                 stringBuilder.append(line).append(" ");
