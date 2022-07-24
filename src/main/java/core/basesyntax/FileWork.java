@@ -36,7 +36,6 @@ public class FileWork {
         word = word.replaceAll("\\B[.]","");
         String[] sorted = word.split("[.]++");
         Arrays.sort(sorted);
-        System.out.println(Arrays.toString(sorted));
         return sorted;
     }
 }
