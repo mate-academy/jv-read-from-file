@@ -7,8 +7,8 @@ import java.util.Arrays;
 
 public class FileWork {
     private static final String SPECIFIED_CHARACTER = "w";
-    private static final String REGEX_LETTER_ONLY = "[^a-z]";
-    private final StringBuilder stringOfWords = new StringBuilder();
+    private static final String LETTERS_ONLY = "[^a-z]";
+    private final StringBuilder wordsFromFile = new StringBuilder();
 
     public String[] readFromFile(String fileName) {
         File path = new File(fileName);
@@ -30,22 +30,20 @@ public class FileWork {
     private void findWordsInLine(String line) {
         for (String word : line.split(" ")) {
             if (word.toLowerCase().startsWith(SPECIFIED_CHARACTER)) {
-                String formattedWord = word.toLowerCase().replaceAll(REGEX_LETTER_ONLY, "");
-                stringOfWords.append(formattedWord).append(" ");
+                String formattedWord = word.toLowerCase().replaceAll(LETTERS_ONLY, "");
+                wordsFromFile.append(formattedWord).append(" ");
             }
         }
     }
 
     private String[] createSortedArrFromString() {
-        String[] foundWords;
+        String[] sortedWords = new String[0];
 
-        if (!stringOfWords.toString().isEmpty()) {
-            foundWords = stringOfWords.toString().split(" ");
-            Arrays.sort(foundWords);
-        } else {
-            foundWords = new String[0];
+        if (!wordsFromFile.toString().isEmpty()) {
+            sortedWords = wordsFromFile.toString().split(" ");
+            Arrays.sort(sortedWords);
         }
 
-        return foundWords;
+        return sortedWords;
     }
 }
