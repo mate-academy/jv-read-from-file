@@ -15,7 +15,7 @@ public class FileWork {
 
     private String[] checkArrayForWords() {
         String[] checkedWords = new String[0];
-        if (stringBuilder.length() == 0) {
+        if (stringBuilder.length() > 0) {
             Arrays.sort(checkedWords = stringBuilder.toString().split(" "));
         }
         return checkedWords;
