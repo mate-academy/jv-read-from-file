@@ -21,7 +21,7 @@ public class FileWork {
             }
         }
         if (refactoredData.length() == 0) {
-          return new String[]{};
+            return new String[]{};
         }
         String[] result = refactoredData.toString().split(" ");
         Arrays.sort(result);
@@ -35,7 +35,7 @@ public class FileWork {
             StringBuilder notRefactoredData = new StringBuilder();
             String value = reader.readLine();
             if (value == null) {
-              return new String[]{};
+                return new String[]{};
             }
             while (value != null) {
                 notRefactoredData.append(value).append(System.lineSeparator());
