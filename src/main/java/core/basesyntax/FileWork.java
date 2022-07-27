@@ -1,12 +1,15 @@
 package core.basesyntax;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
     private static final String REGEX_DELETE_CONDITION = "[^a-z]";
     private static final String START_OF_WORD_CHARACTER = "w";
-    StringBuilder stringBuilder = new StringBuilder();
+    private StringBuilder stringBuilder = new StringBuilder();
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
@@ -34,12 +37,11 @@ public class FileWork {
     private void getStringFromArray(String string) {
         for (String wordFromArray : string.split(" ")) {
             if (wordFromArray.toLowerCase().startsWith(START_OF_WORD_CHARACTER)) {
-                String resultWordFromArray = wordFromArray.toLowerCase().replaceAll(REGEX_DELETE_CONDITION, "");
+                String resultWordFromArray = wordFromArray.toLowerCase()
+                        .replaceAll(REGEX_DELETE_CONDITION, "");
                 stringBuilder.append(resultWordFromArray).append(" ");
             }
         }
     }
-
-
 }
 
