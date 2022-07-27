@@ -16,9 +16,8 @@ public class FileWork {
             String value = bufferedReader.readLine();
             while (value != null) {
                 value = value.toLowerCase().replaceAll("\\b(?!w)\\w+\\W*", "");
-                value = value.replaceAll("[.]","");
-                if (value != "") {
-                    String[] words = value.split("[\\W++&&[^-]]");
+                if (!"".equals(value)) {
+                    String[] words = value.split("[\\W+&&[^-]]");
                     stringBuilder.append(Arrays.toString(words));
                 }
                 value = bufferedReader.readLine();
@@ -28,13 +27,12 @@ public class FileWork {
         } catch (IOException ex) {
             throw new RuntimeException("Can't read the file", ex);
         }
-        String word = stringBuilder.toString().replaceAll("\\s++","");
-        if (word == "") {
+        String word = stringBuilder.toString();
+        if ("".equals(word)) {
             return new String[]{};
         }
-        word = word.replaceAll("[\\W++&&[^-]]",".");
-        word = word.replaceAll("\\B[.]","");
-        String[] sorted = word.split("[.]++");
+        word = word.replaceAll("(?:(?<=\\W)\\W+)|(\\A\\W)","");
+        String[] sorted = word.split("\\W+");
         Arrays.sort(sorted);
         return sorted;
     }
