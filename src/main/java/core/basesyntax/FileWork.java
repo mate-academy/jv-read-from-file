@@ -41,14 +41,14 @@ public class FileWork {
     private String readFile(String fileName) {
         StringBuilder builder = new StringBuilder();
 
-        try(BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String value = reader.readLine();
             while (value != null) {
                 builder.append(value).append(System.lineSeparator());
                 value = reader.readLine();
             }
         } catch (FileNotFoundException e) {
-            throw new RuntimeException("File not found." , e);
+            throw new RuntimeException("File not found.", e);
         } catch (IOException e) {
             throw new RuntimeException("Can't read file", e);
         }
