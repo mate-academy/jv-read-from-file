@@ -1,8 +1,41 @@
 package core.basesyntax;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Arrays;
+import java.util.List;
+
 public class FileWork {
+    private static final String CHAR = "w";
+
     public String[] readFromFile(String fileName) {
-        //write your code here
-        return null;
+        List<String> strings;
+        try {
+            strings = Files.readAllLines(new File(fileName).toPath());
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
+        StringBuilder builder = new StringBuilder();
+        for (String s : strings) {
+            builder.append(s).append(" ");
+        }
+        String[] newSentence = builder.toString().split("[^A-Za-z0-9 ]+");
+        int length = 0;
+        for (String newS : newSentence) {
+            if (newS.toLowerCase().startsWith(CHAR)) {
+                length++;
+            }
+        }
+        String[] result = new String[length];
+        int index = 0;
+        for (String res : result) {
+            if (res.toLowerCase().startsWith(CHAR)) {
+                result[index] = res.toLowerCase();
+                index++;
+            }
+        }
+        Arrays.sort(result);
+        return result;
     }
 }
