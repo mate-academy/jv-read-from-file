@@ -14,13 +14,13 @@ public class FileWork {
         try {
             strings = Files.readAllLines(new File(fileName).toPath());
         } catch (IOException e) {
-            throw new RuntimeException();
+            throw new RuntimeException("Can't read this file", e);
         }
         StringBuilder builder = new StringBuilder();
         for (String s : strings) {
             builder.append(s).append(" ");
         }
-        String[] newSentence = builder.toString().split("[^A-Za-z0-9 ]+");
+        String[] newSentence = builder.toString().split("\\W+");
         int length = 0;
         for (String newS : newSentence) {
             if (newS.toLowerCase().startsWith(CHAR)) {
@@ -29,7 +29,7 @@ public class FileWork {
         }
         String[] result = new String[length];
         int index = 0;
-        for (String res : result) {
+        for (String res : newSentence) {
             if (res.toLowerCase().startsWith(CHAR)) {
                 result[index] = res.toLowerCase();
                 index++;
