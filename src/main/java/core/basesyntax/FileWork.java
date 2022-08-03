@@ -9,6 +9,8 @@ import java.nio.file.Path;
 import java.util.Arrays;
 
 public class FileWork {
+    private static final String FIRST_LETTER_OF_WORD = "w";
+
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
         Path path = file.toPath();
@@ -25,7 +27,7 @@ public class FileWork {
 
         StringBuilder stringBuilder = new StringBuilder();
         for (String word : words) {
-            if (word.startsWith("w")) {
+            if (word.startsWith(FIRST_LETTER_OF_WORD)) {
                 stringBuilder.append(word)
                         .append(" ");
             }
@@ -36,6 +38,7 @@ public class FileWork {
         if (words.length <= 1) {
             return new String[0];
         }
+
         Arrays.sort(words);
         return words;
     }
