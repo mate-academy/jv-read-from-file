@@ -7,7 +7,6 @@ import java.util.Arrays;
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
-        //write your code here
         StringBuilder stringBuilder = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String value = bufferedReader.readLine();
