@@ -1,35 +1,39 @@
 package core.basesyntax;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Locale;
-import java.util.regex.Pattern;
 
 public class FileWork {
-    public static void main (String[]args){
-        FileWork ff = new FileWork();
-       ff.readFromFile("test2");
-    }
-    public String [] readFromFile(String fileName) {
-        File file = new File (fileName);
-        String [] allWords;
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(file));
-            String readed = reader.readLine().toLowerCase(Locale.ROOT);
+    private static final String REGEX = "\\W+";
 
-            allWords = readed.split("[\\W]");
-
-            System.out.println(Arrays.toString(allWords));
-
-
-
-
-            }catch (IOException e) {
-            throw new RuntimeException(" ddd ");
+    public String[] readFromFile(String fileName) {
+        StringBuilder stringBuilder = new StringBuilder();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
+            String read = bufferedReader.readLine();
+            if (read == null) {
+                return new String[]{};
+            }
+            while (read != null) {
+                stringBuilder.append(read).append(" ");
+                read = bufferedReader.readLine();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Can't read data from file " + fileName, e);
         }
-            return allWords;
+        String[] temp = stringBuilder.toString().split(REGEX);
+        StringBuilder tempBuilder = new StringBuilder();
+        for (String word : temp) {
+            if (word.toLowerCase().startsWith("w")) {
+                tempBuilder.append(word.toLowerCase()).append(" ");
+            }
+        }
+        if (tempBuilder.toString().length() == 0) {
+            return new String[]{};
+        }
+        String[] result = tempBuilder.toString().split(" ");
+        Arrays.sort(result);
+        return result;
     }
 }
