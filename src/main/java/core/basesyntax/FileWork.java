@@ -24,7 +24,6 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException("Problem with read file ", e);
         }
-
         StringBuilder stringBuilder = new StringBuilder();
         for (String word : words) {
             if (word.startsWith(FIRST_LETTER_OF_WORD)) {
@@ -34,11 +33,9 @@ public class FileWork {
         }
         words = stringBuilder.toString()
                 .split(" ");
-
         if (words.length <= 1) {
             return new String[0];
         }
-
         Arrays.sort(words);
         return words;
     }
