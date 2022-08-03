@@ -10,10 +10,6 @@ public class FileWork {
         StringBuilder stringBuilder = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String value = bufferedReader.readLine();
-            if (value == null) {
-                String[] nullArray = new String[]{};
-                return nullArray;
-            }
             while (value != null) {
                 stringBuilder.append(value).append(System.lineSeparator());
                 value = bufferedReader.readLine();
@@ -24,12 +20,16 @@ public class FileWork {
 
         String[] split = stringBuilder.toString().split("\\W+");
         StringBuilder builder = new StringBuilder();
+        if (stringBuilder.toString().equals("")) {
+            return new String[0];
+        }
         for (String word : split) {
-            if (word.substring(0,1).equals("w")) {
-                builder.append(word).append(" ");
-            } else if (word.substring(0,1).equals("W")) {
+            if (word.toLowerCase().charAt(0) == 'w') {
                 builder.append(word.toLowerCase()).append(" ");
             }
+        }
+        if (builder.toString().equals("")) {
+            return new String[0];
         }
         String[] arrayW = builder.toString().split(" ");
         Arrays.sort(arrayW);
