@@ -1,6 +1,7 @@
 package core.basesyntax;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
@@ -29,12 +30,12 @@ public class FileWork {
     private String getReadingStringInLowerCase(String fileName) {
         File file = new File(fileName);
         StringBuilder builder = new StringBuilder();
-        List <String> strings;
+        List<String> strings;
         try {
-        strings = Files.readAllLines(file.toPath());
+            strings = Files.readAllLines(file.toPath());
         } catch (IOException e) {
             throw new RuntimeException("Can't read the file", e);
         }
-            return builder.append(strings).toString().toLowerCase();
+        return builder.append(strings).toString().toLowerCase();
     }
 }
