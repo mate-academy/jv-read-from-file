@@ -22,7 +22,7 @@ public class FileWork {
                     tempData.append(lowerCaseWord).append(" ");
                 }
             }
-            if (tempData.isEmpty()) {
+            if (tempData.length() == 0) {
                 return new String[0];
             }
             String[] result = tempData.toString().split(" ");
