@@ -10,12 +10,12 @@ public class FileWork {
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
         StringBuilder builder = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))){
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String fileLine = reader.readLine();
             while (fileLine != null) {
                 String[] lineSplitLower = fileLine.toLowerCase().split(" ");
                 for (int i = 0; i < fileLine.length(); i++) {
-                    if("w".equals(String.valueOf(lineSplitLower[i].charAt(0)))){
+                    if ("w".equals(String.valueOf(lineSplitLower[i].charAt(0)))) {
                         lineSplitLower[i] = lineSplitLower[i].replaceAll("\\W+", "");
                         builder.append(lineSplitLower[i]).append(".");
                     }
@@ -27,7 +27,7 @@ public class FileWork {
             } else {
                 String[] array = builder.toString().split("\\.");
                 Arrays.sort(array);
-                return  array;
+                return array;
             }
         } catch (IOException e) {
             throw new RuntimeException("Cant read file", e);
