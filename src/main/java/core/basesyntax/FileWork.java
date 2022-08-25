@@ -13,14 +13,12 @@ public class FileWork {
         int lastSymb = 0;
         String [] splitLines = new String[]{};
         String [] result = new String[]{};
-
         try {
             File file = new File(fileName);
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
             lineFromDoc = bufferedReader.readLine();
             while (lineFromDoc != null) {
                 splitLines = lineFromDoc.split(" ");
-
                 for (int j = 0; j < splitLines.length; j++) {
                     if (splitLines[j].substring(0, 1).equals("w")
                             || splitLines[j].substring(0, 1).equals("W")) {
@@ -44,5 +42,4 @@ public class FileWork {
         Arrays.sort(result);
         return result;
     }
-
 }
