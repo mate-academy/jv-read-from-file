@@ -8,13 +8,10 @@ import java.util.Arrays;
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
-        //write your code here
-
         String lineFromDoc;
-
         int index = 0;
         int lastSymb = 0;
-        String [] splitLines = new String[]{}; //тупо скинуть инфу в массив и деребанить сплитом
+        String [] splitLines = new String[]{};
         String [] result = new String[]{};
 
         try {
