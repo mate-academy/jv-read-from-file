@@ -14,7 +14,7 @@ public class FileWork {
         StringBuilder builder = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String fileLine = reader.readLine();
-            while(fileLine != null) {
+            while (fileLine != null) {
                 String[] splitLine = fileLine.toLowerCase().split(" ");
                 for (int i = 0; i < splitLine.length; i++) {
                     if ("w".equals(String.valueOf(splitLine[i].charAt(ZERO_INDEX)))) {
