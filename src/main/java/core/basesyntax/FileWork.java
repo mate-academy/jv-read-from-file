@@ -1,8 +1,11 @@
 package core.basesyntax;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
