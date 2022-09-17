@@ -18,11 +18,11 @@ public class FileWorkTest {
 
     private static final String[] EMPTY_ARRAY_RESULT = new String[0];
     private static final String[] RESULT_FROM_LOWER_CASE =
-        new String[]{"walk, with, warm, with"};
+        new String[]{"walk", "warm", "with", "with"};
     private static final String[] RESULT_FROM_CAMEL_CASE =
-        new String[]{"www, wave, world, wall, width"};
+        new String[]{"wall", "wave", "width", "world", "www"};
     private static final String[] RESULT_FROM_ADJACENT_WORDS_CASE =
-        new String[]{"whenever, which, was, which, was, worse"};
+        new String[]{"was", "was", "whenever", "which", "which", "worse"};
 
     @BeforeClass
     public static void beforeClass() throws Exception{

@@ -3,6 +3,7 @@ package core.basesyntax;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class FileWork {
     public static String[] readFromFile(String fileName) {
@@ -10,8 +11,7 @@ public class FileWork {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));) {
             String readString = bufferedReader.readLine();
             while (readString != null) {
-                String[] as = readString.toLowerCase().trim()
-                        .replaceAll("[^A-Za-zА,-]", " ").trim().split(" ");
+                String[] as = readString.toLowerCase().trim().replaceAll("[^A-Za-zА,-]", " ").trim().split(" ");
                 for (String asd : as) {
                     if (asd.indexOf("w") == 0) {
                         stringBuilder.append(asd + " ");
@@ -25,7 +25,9 @@ public class FileWork {
         if (stringBuilder.length() == 0) {
             stringBuilder.append(" ");
         }
-        return String.valueOf(stringBuilder).split(" ");
+        String[] qwe = String.valueOf(stringBuilder).split(" ");
+        Arrays.sort(qwe);
+        return qwe;
     }
 }
 
