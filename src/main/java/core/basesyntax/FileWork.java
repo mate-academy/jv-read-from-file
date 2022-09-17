@@ -10,7 +10,8 @@ public class FileWork {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));) {
             String readString = bufferedReader.readLine();
             while (readString != null) {
-                String[] as = readString.toLowerCase().trim().replaceAll("[^A-Za-zА,-]", " ").trim().split(" ");
+                String[] as = readString.toLowerCase().trim()
+                        .replaceAll("[^A-Za-zА,-]", " ").trim().split(" ");
                 for (String asd : as) {
                     if (asd.indexOf("w") == 0) {
                         stringBuilder.append(asd + " ");
