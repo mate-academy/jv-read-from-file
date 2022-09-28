@@ -16,8 +16,7 @@ public class FileWork {
                     .map(String::toLowerCase)
                     .filter(word -> word.matches("^w.+"))
                     .sorted()
-                    .toList()
-                    .toArray(new String[0]);
+                    .toArray(String[]::new);
         } catch (IOException e) {
             System.out.println("Can't read file!");
         }
