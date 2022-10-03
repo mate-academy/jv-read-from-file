@@ -7,6 +7,7 @@ import java.util.Arrays;
 
 public class FileWork {
     private static final char SPECIFIED_CHARACTER = 'w';
+
     public String[] readFromFile(String fileName) {
         StringBuilder builder = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
