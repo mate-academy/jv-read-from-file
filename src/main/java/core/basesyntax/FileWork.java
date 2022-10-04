@@ -1,10 +1,11 @@
 package core.basesyntax;
 
-import java.io.*;
-
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class FileWork {
     private static final char FILTER_VALUE = 'w';
@@ -46,7 +47,7 @@ public class FileWork {
         }
         String[] result = new String[counter];
         for (int i = 0, j = 0; i < split.length; i++) {
-            if(split[i].charAt(0) == FILTER_VALUE) {
+            if (split[i].charAt(0) == FILTER_VALUE) {
                 result[j] = split[i];
                 j++;
             }
