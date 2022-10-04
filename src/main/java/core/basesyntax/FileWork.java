@@ -8,6 +8,7 @@ import java.util.Arrays;
 public class FileWork {
     public static final String REGEX = "\\W+";
     public static final String MESSAGE = "Cannot read the file";
+    public static final char STARTING_CHAR = 'w';
 
     public String[] readFromFile(String fileName) {
         StringBuilder stringBuilder;
@@ -31,7 +32,7 @@ public class FileWork {
         String[] filteredWords = new String[words.length];
         int index = 0;
         for (String word : words) {
-            if (word != null && word.charAt(0) == 'w') {
+            if (word != null && word.charAt(0) == STARTING_CHAR) {
                 filteredWords[index] = word;
                 index++;
             }
