@@ -30,7 +30,7 @@ public class FileWork {
         for (int i = 0; i < splitSentense.length; i++) {
             String[] words = splitSentense[i].split("");
             if (words[0].equals("W") || words[0].equals("w")) {
-                count = count + 1;
+                count++;
             }
         }
         String[] outPutMass = new String[count];
@@ -39,7 +39,7 @@ public class FileWork {
             String[] words = splitSentense[a].split("");
             if (words[0].equals("W") || words[0].equals("w")) {
                 outPutMass[h] = splitSentense[a];
-                h = h + 1;
+                h++;
             }
         }
         for (int g = 0; g < outPutMass.length; g++) {
