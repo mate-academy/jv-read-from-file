@@ -21,7 +21,7 @@ public class FileWork {
                 }
                 value = reader.readLine();
             }
-            if (stringBuilder.isEmpty()) {
+            if (stringBuilder.length() == 0) {
                 return new String[0];
             }
             String[] result = stringBuilder.toString().split(DELIMITER);
