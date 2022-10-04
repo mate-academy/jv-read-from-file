@@ -15,7 +15,7 @@ public class FileWork {
             String value = reader.readLine();
             while (value != null) {
                 String[] split = value.split(SPLIT_STRING);
-                for (String word:split){
+                for (String word:split) {
                     word = word.toLowerCase();
                     if (word.charAt(0) == 'w') {
                         stringBuilder.append(word).append(DELIMITER);
