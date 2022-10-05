@@ -12,11 +12,11 @@ public class CreateArr {
             }
         }
         String[] arrForAnswer = new String[arrlength];
+        int index = arrlength - 1;
         for (int i = 0; i < arrFromFile.length; i++) {
             if (arrFromFile[i].charAt(0) == SPECIFIED_CHARACTER) {
-                for (int j = arrlength - 1; j >=0 ; j--) {
-                    arrForAnswer[j] = arrFromFile[i];
-                }
+                arrForAnswer[index] = arrFromFile[i];
+                index--;
             }
         }
 
