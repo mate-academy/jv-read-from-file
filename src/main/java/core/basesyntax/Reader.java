@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Reader {
-
     public String reader(String fileName) throws IOException {
         File newFile = new File(fileName);
         try {
@@ -22,5 +21,4 @@ public class Reader {
             throw new RuntimeException("Can't read file", e);
         }
     }
-
 }
