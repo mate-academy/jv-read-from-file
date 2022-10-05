@@ -12,7 +12,7 @@ public class CreateArr {
             }
         }
         String[] arrForAnswer = new String[arrlength];
-        for (int i = 0; i < arrFromFile.length; i++) {
+        for (int i = arrFromFile.length - 1; i <= 0; i--) {
             if (arrFromFile[i].charAt(0) == SPECIFIED_CHARACTER) {
                 for (int j = 0; j < arrlength; j++) {
                     arrForAnswer[j] = arrFromFile[i];
