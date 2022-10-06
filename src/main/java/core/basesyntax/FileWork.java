@@ -29,7 +29,7 @@ public class FileWork {
                 builder.append(word).append(" ");
             }
         }
-        if (builder.toString() == "") {
+        if (builder.toString().equals("")) {
             return new String[] {};
         }
         String[] result = builder.toString().split(" ");
