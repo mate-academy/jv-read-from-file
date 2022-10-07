@@ -26,15 +26,15 @@ public class FileWork {
         }
 
         String[] words = builder.toString().split("\\W+");
-        int size = 0;
+        int length = 0;
 
         for (String word : words) {
             if (word.startsWith(First_Char)) {
-                size++;
+                length++;
             }
         }
 
-        String[] result = new String[size];
+        String[] result = new String[length];
         int index = 0;
 
         for (String word : words) {
