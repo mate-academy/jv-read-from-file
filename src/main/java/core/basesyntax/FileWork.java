@@ -1,6 +1,9 @@
 package core.basesyntax;
 
-import java.io.*;
+import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
@@ -8,6 +11,7 @@ public class FileWork {
     public static String removePunctuations(String text) {
         return text.replaceAll("\\p{Punct}", "");
     }
+
     public String[] readFromFile(String fileName) {
 
         File file = new File(fileName);
@@ -55,7 +59,6 @@ public class FileWork {
             Arrays.sort(resSplit);
 
             String[] edde = resSplit;
-
 
             return resSplit;
         } catch (IOException e) {
