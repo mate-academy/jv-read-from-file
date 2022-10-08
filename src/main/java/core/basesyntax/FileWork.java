@@ -47,8 +47,6 @@ public class FileWork {
 
             String text2 = stringBuilder1.toString();
 
-            String testTeset = text2;
-
             if (text2 == "") {
                 String[] nulll = new String[0];
                 return nulll;
@@ -57,8 +55,6 @@ public class FileWork {
             String[] resSplit = text2.split(" ");
 
             Arrays.sort(resSplit);
-
-            String[] edde = resSplit;
 
             return resSplit;
         } catch (IOException e) {
