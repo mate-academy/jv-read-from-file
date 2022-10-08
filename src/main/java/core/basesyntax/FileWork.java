@@ -33,7 +33,7 @@ public class FileWork {
             text = stringBuilder.toString().toLowerCase();
             text = removePunctuations(text);
 
-            String text1 = text;
+             String text1 = text;
 
             StringBuilder stringBuilder1 = new StringBuilder();
 
