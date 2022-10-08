@@ -28,31 +28,27 @@ public class FileWork {
             }
             text = stringBuilder.toString().toLowerCase();
             text = removePunctuations(text);
-            //String test = text;
-//            for (int i = 0; i < split.length; i++) {
-//                stringBuilder.append(split[i]).append(" ");
-//            }
 
             String text1 = text;
-            char[] chars = text1.toCharArray();
-
-            char[] chars1 = chars;
 
             StringBuilder stringBuilder1 = new StringBuilder();
 
-            for (int i = 0; i < chars.length; i++) {
-                if (chars[i] == 'w') {
-                    while (chars[i] != ' ') {
-                        stringBuilder1.append(chars[i]);
-                        i++;
-                    }
-                    stringBuilder1.append(" ");
-                    String resTest = stringBuilder1.toString();
+            String[] strings = text1.split(" ");
+
+            for (int i = 0; i < strings.length; i++) {
+                if (strings[i].charAt(0) == 'w') {
+                    stringBuilder1.append(strings[i]).append(" ");
                 }
             }
 
             String text2 = stringBuilder1.toString();
+
             String testTeset = text2;
+
+            if (text2 == "") {
+                String[] nulll = new String[0];
+                return nulll;
+            }
 
             String[] resSplit = text2.split(" ");
 
@@ -60,14 +56,10 @@ public class FileWork {
 
             String[] edde = resSplit;
 
-            //whenever which was which was worse
+
             return resSplit;
-
-
         } catch (IOException e) {
             throw new RuntimeException("Can't read file", e);
         }
-
-        //return res;
     }
 }
