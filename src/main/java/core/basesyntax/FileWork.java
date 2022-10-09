@@ -52,7 +52,6 @@ public class FileWork {
                 return nulll;
             }
 
-
             String[] resSplit = text2.split(" ");
 
             Arrays.sort(resSplit);
