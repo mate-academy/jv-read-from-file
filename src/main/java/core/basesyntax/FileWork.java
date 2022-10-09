@@ -47,10 +47,11 @@ public class FileWork {
 
             String text2 = stringBuilder1.toString();
 
-            if (text2 == "") {
+            if (text2.equals("")) {
                 String[] nulll = new String[0];
                 return nulll;
             }
+
 
             String[] resSplit = text2.split(" ");
 
