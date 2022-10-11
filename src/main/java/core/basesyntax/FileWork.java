@@ -31,7 +31,7 @@ public class FileWork {
             throw new RuntimeException("Can't read file", e);
         }
         stringArray = builder.toString().toLowerCase().split("\\W+");
-        for(String str : stringArray) {
+        for (String str : stringArray) {
             if (str.charAt(INDEX) == 'w') {
                 count++;
             }
