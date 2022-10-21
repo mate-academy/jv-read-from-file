@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
@@ -14,11 +15,12 @@ public class FileWork {
             String line;
             while ((line = reader.readLine()) != null) {
                 for (String word : line.split("\\W+")) {
-                    if (word.startsWith("w")) {
+                    if (word.toLowerCase().startsWith("w")) {
                         list.add(word.toLowerCase());
                     }
                 }
             }
+            Collections.sort(list);
             return list.toArray(result);
         } catch (IOException a) {
             throw new RuntimeException("there is no such file");
