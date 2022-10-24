@@ -17,9 +17,6 @@ public class FileWork {
         StringBuilder stringBuilder = new StringBuilder(4096);
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             tmp = bufferedReader.readLine();
-            if (tmp == null) {
-                return new String[0];
-            }
             while (tmp != null) {
                 arrStr = tmp.split("[!?;:^,.'\"\\- ]");
                 for (String str : arrStr) {
@@ -32,6 +29,9 @@ public class FileWork {
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+        if (arrStr.length == 0 || stringBuilder.length() == 0) {
+            return new String[0];
         }
         arrStr = stringBuilder.toString().split(" ");
 
