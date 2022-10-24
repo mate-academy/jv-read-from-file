@@ -8,6 +8,7 @@ import java.io.IOException;
 public class FileWork {
     private static final String SEARCHING_LETTER_LOW = "w";
     private static final String SEARCHING_LETTER_UP = "W";
+
     public String[] readFromFile(String fileName) {
         //write your code here
         String[] arrStr = new String[0];
@@ -22,7 +23,8 @@ public class FileWork {
             while (tmp != null) {
                 arrStr = tmp.split("[!?;:^,.'\"\\- ]");
                 for (String str : arrStr) {
-                    if (str.startsWith(SEARCHING_LETTER_LOW) || str.startsWith(SEARCHING_LETTER_UP)) {
+                    if (str.startsWith(SEARCHING_LETTER_LOW)
+                            || str.startsWith(SEARCHING_LETTER_UP)) {
                         stringBuilder.append(str.toLowerCase()).append(" ");
                     }
                 }
