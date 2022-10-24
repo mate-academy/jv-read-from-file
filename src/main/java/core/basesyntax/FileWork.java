@@ -8,7 +8,6 @@ import java.io.IOException;
 public class FileWork {
     private static final String SEARCHING_LETTER_LOW = "w";
     private static final String SEARCHING_LETTER_UP = "W";
-    private static final String[] EMPTY_ARRAY = new String[0];
 
     public String[] readFromFile(String fileName) {
         //write your code here
