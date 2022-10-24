@@ -8,17 +8,18 @@ import java.io.IOException;
 public class FileWork {
     private static final String SEARCHING_LETTER_LOW = "w";
     private static final String SEARCHING_LETTER_UP = "W";
+    private static final String[] EMPTY_ARRAY = new String[0];
 
     public String[] readFromFile(String fileName) {
         //write your code here
-        String[] arrStr = new String[0];
         String tmp;
+        String[] arrStr = new String[0];
         File file = new File(fileName);
         StringBuilder stringBuilder = new StringBuilder(4096);
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             tmp = bufferedReader.readLine();
             if (tmp == null) {
-                return arrStr;
+                return new String[0];
             }
             while (tmp != null) {
                 arrStr = tmp.split("[!?;:^,.'\"\\- ]");
