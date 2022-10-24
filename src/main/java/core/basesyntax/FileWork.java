@@ -32,6 +32,19 @@ public class FileWork {
             throw new RuntimeException(e);
         }
         arrStr = stringBuilder.toString().split(" ");
+
+        boolean flag = true;
+        while (flag) {
+            flag = false;
+            for (int i = 1; i < arrStr.length; i++) {
+                if (arrStr[i - 1].compareTo(arrStr[i]) > 0) {
+                    tmp = arrStr[i - 1];
+                    arrStr[i - 1] = arrStr[i];
+                    arrStr[i] = tmp;
+                    flag = true;
+                }
+            }
+        }
         return arrStr;
     }
 }
