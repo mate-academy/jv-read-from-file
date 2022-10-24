@@ -11,8 +11,8 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         //write your code here
-        String[] arrStr = new String[0];
         String tmp;
+        String[] arrStr = new String[0];
         File file = new File(fileName);
         StringBuilder stringBuilder = new StringBuilder(4096);
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
