@@ -19,7 +19,7 @@ public class FileWork {
             }
             while (value != null) {
                 String sentence = value.toLowerCase();
-            String[] split = sentence.split("\\W+");
+                String[] split = sentence.split("\\W+");
                 for (String words: split) {
                     if (words.charAt(0) == 'w') {
                         builder.append(words).append(" ");
