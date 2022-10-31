@@ -17,26 +17,26 @@ public class FileWork {
             if (value == null) {
                 return new String[0];
             }
-                while (value != null) {
-            String sentence = value.toLowerCase();
+            while (value != null) {
+                String sentence = value.toLowerCase();
             String[] split = sentence.split("\\W+");
                 for (String words: split) {
-                if(words.charAt(0) == 'w') {
-                    builder.append(words).append(" ");
+                    if (words.charAt(0) == 'w') {
+                        builder.append(words).append(" ");
+
+                    }
 
                 }
 
-            }
-
-            value = bufferedReader.readLine();
+                value = bufferedReader.readLine();
 
             }
             if (builder.toString().length() == 0) {
                 return new String[0];
             } else {
 
-            newText = builder.toString().split(" ");
-            Arrays.sort(newText);
+                newText = builder.toString().split(" ");
+                Arrays.sort(newText);
             }
 
         } catch (IOException e) {
