@@ -17,7 +17,7 @@ public class FileWork {
         List<String> list;
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
-            while ((value = bufferedReader.readLine())!= null) {
+            while ((value = bufferedReader.readLine()) != null) {
                 sb.append(value).append("\n");
             }
         } catch (IOException e) {
@@ -25,7 +25,7 @@ public class FileWork {
         }
 
         fileText = sb.toString().toLowerCase();
-        list = findMatcher(fileText,"\\bw\\w*\\b" );
+        list = findMatcher(fileText, "\\bw\\w*\\b");
         return getSortedArray(list);
     }
 
@@ -34,7 +34,7 @@ public class FileWork {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(text);
 
-        while(matcher.find()){
+        while (matcher.find()) {
             list.add(matcher.group());
         }
         return list;
