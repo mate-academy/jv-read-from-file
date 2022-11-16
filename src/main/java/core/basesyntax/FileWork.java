@@ -1,6 +1,10 @@
 package core.basesyntax;
 
-import java.io.*;
+import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 import java.text.Collator;
 import java.util.Arrays;
 
@@ -26,7 +30,10 @@ public class FileWork {
         String fileString = stringBuilder.toString();
         String[] allWordsArray = fileString.split("\\W+");
         for (String s : allWordsArray) {
-            if (s.equals("")) s = " ";
+            if (s.equals("")) {
+                s = " ";
+            }
+            
             if (s.charAt(0) == 'w' || s.charAt(0) == 'W') {
                 constructionBuilder.append(s.toLowerCase()).append(" ");
             } else {
