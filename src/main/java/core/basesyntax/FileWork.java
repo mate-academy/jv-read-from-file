@@ -1,11 +1,14 @@
 package core.basesyntax;
 
-import java.io.File;
+import java.text.Collator;
+
 import java.io.BufferedReader;
+import java.io.File;
+
 import java.io.FileReader;
 import java.io.IOException;
 
-import java.text.Collator;
+
 import java.util.Arrays;
 
 public class FileWork {
@@ -24,7 +27,7 @@ public class FileWork {
                 value = bufferedReader.read();
             }
         } catch (IOException e) {
-            throw new RuntimeException("Can't read file", e);
+            throw new RuntimeException("Unable to read file", e);
         }
 
         String fileString = stringBuilder.toString();
@@ -33,7 +36,7 @@ public class FileWork {
             if (s.equals("")) {
                 s = " ";
             }
-            
+
             if (s.charAt(0) == 'w' || s.charAt(0) == 'W') {
                 constructionBuilder.append(s.toLowerCase()).append(" ");
             } else {
