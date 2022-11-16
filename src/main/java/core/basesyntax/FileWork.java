@@ -3,12 +3,10 @@ package core.basesyntax;
 import java.io.BufferedReader;
 import java.text.Collator;
 
-
 import java.io.File;
 
 import java.io.FileReader;
 import java.io.IOException;
-
 
 import java.util.Arrays;
 
