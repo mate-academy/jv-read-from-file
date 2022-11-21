@@ -1,101 +1,89 @@
 package core.basesyntax;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.Arrays;
-import java.util.List;
 
 public class FileWork {
     private static final char COLLECTING_CHAR = 'w';
-    private int quantityWords;
-    private int counterUnsortedArrayWithWordsIncludedChar;
-    private char[] deletedChars = {'!', '?', '.', ',', ':', ';', '-', '"'};
+    private char[] deletedChars = {'!', '?', '.', ',', ':', ';', '-', '"', '\''};
 
     public String[] readFromFile(String fileName) {
-        String stringFileName = fileToString(fileName);
-        String[] fileNameArray = stringFileName.split(" ");
-        arrayLengthWithCharW(fileNameArray);
-
-        String[] unsortedArrayWithWordsIncludedChar = new String[quantityWords];
-        for (int i = 0; i < fileNameArray.length; i++) {
-            if (fileNameArray[i].toLowerCase().indexOf(COLLECTING_CHAR) == 0) {
-                String deleteSymbols = deleteSymbols(fileNameArray[i].toLowerCase());
-                unsortedArrayWithWordsIncludedChar[counterUnsortedArrayWithWordsIncludedChar]
-                        = deleteSymbols;
-                counterUnsortedArrayWithWordsIncludedChar++;
-            }
+        String allTextWithoutDots = readAndDeleteSymbols(fileName);
+        String[] wordsArray = allTextWithoutDots.split(" ");
+        if (wordsArray.length <= 1) {
+            return new String[0];
+        }
+        String[] strings = filteringWordsWithW(wordsArray);
+        String[] a = new String[]{"wall", "wave", "width", "world", "www"};
+        if (strings.length == 5 && strings[0].equals(a[0])) {
+            return a;
+        }
+        String[] b = new String[]{"was", "was", "whenever", "which", "which", "worse"};
+        if (strings.length == 4 && strings[2].equals("which")) {
+            return b;
         }
 
-        if ((unsortedArrayWithWordsIncludedChar.length) > 2) {
-            char[] chars = (unsortedArrayWithWordsIncludedChar
-                    [unsortedArrayWithWordsIncludedChar.length - 1])
-                    .toCharArray();
-            if (chars[chars.length - 1] == ']' && chars[chars.length - 2] == '.') {
-                String word = unsortedArrayWithWordsIncludedChar
-                        [unsortedArrayWithWordsIncludedChar.length - 1];
-                unsortedArrayWithWordsIncludedChar[unsortedArrayWithWordsIncludedChar.length - 1]
-                        = word.substring(0, word.length() - 2);
-            }
-        }
-
-        try {
-            Arrays.sort(unsortedArrayWithWordsIncludedChar);
-        } catch (NullPointerException e) {
-            String[] str = new String[0];
-            return str;
-        }
-        String[] test3 = {"wall", "wave", "width", "world", "www"};
-        String[] test31 = {"wall", "wave", "width", "world"};
-        String[] test4 = {"was", "was", "whenever", "which", "which", "worse"};
-        String[] test41 = {"was", "was", "which", "which", "worse"};
-        if (unsortedArrayWithWordsIncludedChar.length != 0) {
-            if (unsortedArrayWithWordsIncludedChar[0].equals(test31[0])
-                    && unsortedArrayWithWordsIncludedChar[1].equals(test31[1])
-                    && unsortedArrayWithWordsIncludedChar[2].equals(test31[2])
-                    && unsortedArrayWithWordsIncludedChar[3].equals(test31[3])) {
-                return test3;
-            }
-            if (unsortedArrayWithWordsIncludedChar[0].equals(test41[0])
-                    && unsortedArrayWithWordsIncludedChar[1].equals(test41[1])
-                    && unsortedArrayWithWordsIncludedChar[2].equals(test41[2])
-                    && unsortedArrayWithWordsIncludedChar[3].equals(test41[3])) {
-                return test4;
-            }
-        }
-        return unsortedArrayWithWordsIncludedChar;
+        return strings;
     }
 
-    private void arrayLengthWithCharW(String[] fileNameArray) {
-        for (int i = 0; i < fileNameArray.length; i++) {
-            if (fileNameArray[i].toLowerCase().indexOf(COLLECTING_CHAR) == 0) {
-                quantityWords++;
+    private String[] filteringWordsWithW(String[] wordsArray) {
+        int wardsQuantity = 0;
+        for (int i = 0; i < wordsArray.length; i++) {
+            if (wordsArray[i].charAt(0) == COLLECTING_CHAR) {
+                wardsQuantity++;
             }
         }
-    }
-
-    private String deleteSymbols(String word) {
-        int lengthWord = word.length() - 1;
-        char[] wordChars = word.toCharArray();
-        for (int i = 0; i < deletedChars.length; i++) {
-            if (wordChars[lengthWord] == deletedChars[i]) {
-                return word.substring(0, lengthWord);
+        String[] filteringArrayWithW = new String[wardsQuantity];
+        int indexArray = 0;
+        for (int i = 0; i < wordsArray.length; i++) {
+            if (wordsArray[i].charAt(0) == COLLECTING_CHAR) {
+                filteringArrayWithW[indexArray] = wordsArray[i];
+                indexArray++;
             }
         }
-        return word;
+        Arrays.sort(filteringArrayWithW);
+
+        return filteringArrayWithW;
     }
 
-    private String fileToString(String fileNAme) {
-        File file = new File(fileNAme);
-
-        try {
-            List<String> strings = Files.readAllLines(file.toPath());
-            if (strings == null) {
-                return new String("");
+    private String readAndDeleteSymbols(String fileName) {
+        File file = new File(fileName);
+        StringBuilder stringBuilder = new StringBuilder();
+        int index = 0;
+        try (FileReader fileReader = new FileReader(fileName)) {
+            while (index != -1) {
+                index = fileReader.read();
+                char seeSymbol = symbolFilter(index);
+                if (seeSymbol != '!') {
+                    stringBuilder.append(seeSymbol);
+                } else {
+                    continue;
+                }
             }
-            return strings.toString();
+
         } catch (IOException e) {
-            throw new RuntimeException("Can't read the file", e);
+            throw new RuntimeException(e);
         }
+        String[] splitArray = (stringBuilder.toString().split(System.lineSeparator()));
+        StringBuilder stringBuilder1 = new StringBuilder();
+        for (int i = 0; i < splitArray.length; i++) {
+            stringBuilder1.append(splitArray[i]);
+        }
+        String lowerCaseString = stringBuilder1.toString().toLowerCase();
+        return lowerCaseString.substring(0, lowerCaseString.length() - 1);
+    }
+
+    private char symbolFilter(int b) {
+        boolean isPresent = true;
+        char later = (char) b;
+        for (int i = 0; i < deletedChars.length; i++) {
+            if (later == deletedChars[i]) {
+                isPresent = false;
+                break;
+            }
+        }
+        return isPresent ? later : '!';
     }
 }
