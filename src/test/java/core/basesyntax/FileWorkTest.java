@@ -1,12 +1,13 @@
 package core.basesyntax;
 
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 public class FileWorkTest {
     private static final String TEMP_DIRECTORY = System.getProperty("java.io.tmpdir") + "/";
