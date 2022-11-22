@@ -30,7 +30,7 @@ public class FileWork {
                 }
             }
             String[] result = resultStringBuilder.toString().split(" ");
-            if (resultStringBuilder.toString() != "") {
+            if (!resultStringBuilder.toString().equals("")) {
                 Arrays.sort(result);
                 return result;
             } else {
