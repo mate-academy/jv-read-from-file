@@ -18,21 +18,22 @@ public class FileWork {
                 stringBuilder.append(value).append(System.lineSeparator());
                 value = bufferedReader.readLine();
             }
-            String[] words = stringBuilder.toString().toLowerCase().split("//W+");
-            List<String> wwwList = new ArrayList<>();
+            String[] words = stringBuilder.toString().toLowerCase().split("\\W+");
+            List<String> letterList = new ArrayList<>();
             for (String word : words) {
                 if (word.startsWith(SPECIFIED_LETTER)) {
-                    wwwList.add(word);
+                    letterList.add(word);
                 }
             }
-            Collections.sort(wwwList);
-            return wwwList.toArray(new String[0]);
+            Collections.sort(letterList);
+            return letterList.toArray(new String[0]);
 
         } catch (IOException e) {
-            throw new RuntimeException("Can't read file",e);
+            throw new RuntimeException("Can't read file", e);
         }
     }
 }
+
 
 
 
