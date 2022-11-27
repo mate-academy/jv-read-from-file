@@ -34,8 +34,8 @@ public class FileWork {
         if (builderWithW.toString().isEmpty()) {
             return new String[0];
         }
-        String StringWithKey = builderWithW.toString();
-        String[] arr = StringWithKey.split(" ");
+        String stringWithKey = builderWithW.toString();
+        String[] arr = stringWithKey.split(" ");
         Arrays.sort(arr);
         return arr;
     }
