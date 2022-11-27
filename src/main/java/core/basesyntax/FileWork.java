@@ -24,18 +24,18 @@ public class FileWork {
         }
         String[] words = stringBuilder.toString().split("\\W+");
         StringBuilder builderWithW = new StringBuilder();
-        int wWords = 0;
+        int wordsWithKey = 0;
         for (String word: words) {
             if (word.toLowerCase().startsWith("w")) {
                 builderWithW.append(word.toLowerCase()).append(" ");
-                wWords++;
+                wordsWithKey++;
             }
         }
         if (builderWithW.toString().isEmpty()) {
             return new String[0];
         }
-        String wWordsSting = builderWithW.toString();
-        String[] arr = wWordsSting.split(" ");
+        String StringWithKey = builderWithW.toString();
+        String[] arr = StringWithKey.split(" ");
         Arrays.sort(arr);
         return arr;
     }
