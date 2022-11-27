@@ -15,6 +15,7 @@ public class FileWork {
                 stringBuilder.append(value).append(" ");
                 value = bufferedReader.readLine();
             }
+            bufferedReader.close();
         } catch (IOException e) {
             throw new RuntimeException("Can't read file");
         }
