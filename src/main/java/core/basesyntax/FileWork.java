@@ -29,7 +29,7 @@ public class FileWork {
         split = stringBuilder.toString().trim().split(" ");
         Arrays.sort(split);
         System.out.println(Arrays.asList(split));
-        if (stringBuilder.isEmpty()) {
+        if (stringBuilder.length() == 0) {
             return new String[0];
         }
         return split;
