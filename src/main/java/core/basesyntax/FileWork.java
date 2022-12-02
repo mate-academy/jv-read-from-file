@@ -20,11 +20,12 @@ public class FileWork {
             String value = reader.readLine();
             StringBuilder stringBuilder = new StringBuilder();
             while (value != null) {
-                value = reader.readLine();
                 stringBuilder.append(value).append(System.lineSeparator());
+                value = reader.readLine();
             }
             String wordsFromFile = stringBuilder.toString();
-            String[] splitted = wordsFromFile.split("\\W+");
+            String t = wordsFromFile.toLowerCase();
+            String[] splitted = t.split("\\W+");
             for (int i = 0; i < splitted.length; i++) {
                 if (splitted[i].charAt(0) == 'w') {
                     counter++;
