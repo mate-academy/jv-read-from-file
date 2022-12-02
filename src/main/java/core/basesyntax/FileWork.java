@@ -32,7 +32,7 @@ public class FileWork {
                 }
             }
             sortedWords = new String[counter];
-            for (int i = 0; i < splitted.length; i++) {
+            for (int i = splitted.length - 1; i >= 0; i--) {
                 if (splitted[i].charAt(0) == 'w') {
                     sortedWords[indexCounter] = splitted[i];
                     indexCounter++;
