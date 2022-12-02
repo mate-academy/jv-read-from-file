@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
@@ -38,6 +39,7 @@ public class FileWork {
                     indexCounter++;
                 }
             }
+            Arrays.sort(sortedWords);
         } catch (FileNotFoundException e) {
             throw new RuntimeException("File not found", e);
         } catch (IOException e) {
