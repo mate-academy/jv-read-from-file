@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
@@ -14,7 +15,7 @@ public class FileWork {
         final char symbol = (char) 39;
 
         File file = new File(fileName);
-        String[] result = new String[arrSize];
+        String[] subResult = new String[arrSize];
         StringBuilder string = new StringBuilder();
         int wordCounter = 0;
 
@@ -22,6 +23,7 @@ public class FileWork {
             BufferedReader buffReader = new BufferedReader(new FileReader(file));
             String value = buffReader.readLine();
             String[] lines = new String[arrSize];
+
             while (value != null) {
                 lines = value.split(" ");
                 for (String checker : lines) {
@@ -34,7 +36,7 @@ public class FileWork {
                                 string.append(charArr[i]);
                             }
                         }
-                        result[wordCounter] = string.toString().toLowerCase();
+                        subResult[wordCounter] = string.toString().toLowerCase();
                         string.setLength(0);
                         wordCounter++;
                     }
@@ -46,6 +48,13 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        String[] result = new String[wordCounter];
+        for (int i = 0; i < wordCounter; i++) {
+            result[i] = subResult[i];
+        }
+
+        Arrays.sort(result);
 
         return result;
     }
