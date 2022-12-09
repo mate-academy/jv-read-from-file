@@ -27,13 +27,14 @@ public class FileWork {
             while (value != null) {
                 lines = value.split(" ");
                 for (String checker : lines) {
-                    char[] charArr = checker.toCharArray();
-                    if (charArr[0] == 'w' || charArr[0] == 'W') {
-                        for (int i = 0; i < charArr.length; i++) {
-                            if (charArr[i] != '.' || charArr[i] != ',' || charArr[i] != '!'
-                                    || charArr[i] != '?' || charArr[i] != symbol
-                                    || charArr[i] != ':' || charArr[i] != ';') {
-                                string.append(charArr[i]);
+                    // char[] charArr = .toCharArray();
+                    if (checker.charAt(0) == 'w' || checker.charAt(0) == 'W') {
+                        for (int i = 0; i < checker.length(); i++) {
+                            if (checker.charAt(i) != '.' & checker.charAt(i) != ','
+                                    & checker.charAt(i) != '!' & checker.charAt(i) != '?'
+                                    & checker.charAt(i) != symbol & checker.charAt(i) != ':'
+                                    & checker.charAt(i) != ';') {
+                                string.append(checker.charAt(i));
                             }
                         }
                         subResult[wordCounter] = string.toString().toLowerCase();
