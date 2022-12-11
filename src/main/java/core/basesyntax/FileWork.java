@@ -24,7 +24,7 @@ public class FileWork {
             }
             splitLine = wordsW.toString().trim().split(" ");
             Arrays.sort(splitLine);
-            if (addLineFromFile.isEmpty()) {
+            if (addLineFromFile.length() == 0) {
                 return new String[0];
             }
             return splitLine;
