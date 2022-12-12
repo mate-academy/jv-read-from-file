@@ -1,7 +1,6 @@
 package core.basesyntax;
 
 import java.io.*;
-
 import java.util.Arrays;
 
 public class FileWork {
@@ -42,7 +41,6 @@ public class FileWork {
                     }
                 }
             }
-            System.out.println(Arrays.toString(returnArray));
         } catch (IOException e) {
             throw new RuntimeException("Can't read file", e);
         }
