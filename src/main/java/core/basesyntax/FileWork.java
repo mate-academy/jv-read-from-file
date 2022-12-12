@@ -1,6 +1,10 @@
 package core.basesyntax;
 
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
@@ -9,7 +13,8 @@ public class FileWork {
         int index = 0;
         String[] returnArray;
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(file));
+            BufferedReader reader = null;
+            reader = new BufferedReader(new FileReader(file));
             StringBuilder builder = new StringBuilder();
             String value = reader.readLine();
             if (value == null) {
