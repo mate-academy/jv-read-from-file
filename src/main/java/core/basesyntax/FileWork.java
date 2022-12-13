@@ -1,11 +1,14 @@
 package core.basesyntax;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
-    final char CORRECT_CAPITAL_LETTER = 'W';
-    final char CORRECT_LETTER = 'w';
+    private static final char CORRECT_LETTER = 'w';
+
     public String[] readFromFile(String fileName) {
         //write your code here
         File file = new File(fileName);
@@ -17,21 +20,25 @@ public class FileWork {
                 return new String[0];
             }
             while (value != null) {
-                    String[] words = value.split("\\W+");
-                    for (String word : words) {
-                        if (word.length() > 0 && (word.charAt(0) == CORRECT_CAPITAL_LETTER || word.charAt(0) == CORRECT_LETTER)) {
-                            builder.append(word.toLowerCase()).append(" ");
-                            value = reader.readLine();
-                        }
-                    }
+                builder.append(value).append(" ");
+                value = reader.readLine();
+            }
+            String[] fullRead = builder.toString().toLowerCase().split("\\W+");
+            builder.setLength(0);
+            for (String word : fullRead) {
+                if (word.charAt(0) == CORRECT_LETTER) {
+                    builder.append(word).append(" ");
                 }
-
+            }
+            if (builder.length() > 0) {
+                String[] correctWords = builder.toString().split(" ");
+                Arrays.sort(correctWords);
+                return correctWords;
+            }
+            return new String[0];
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        String[]correctWords = builder.toString().split(" ");
-        Arrays.sort(correctWords);
-        return correctWords;
     }
 }
