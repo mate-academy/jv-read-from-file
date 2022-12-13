@@ -1,32 +1,37 @@
 package core.basesyntax;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Arrays;
 
 public class FileWork {
-    public String[] readFromFile(String fileName) throws FileNotFoundException {
-        try{
-            StringBuilder builder = new StringBuilder();
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            int value = reader.read();
-            while (value != -1) {
-                builder.append(value);
-            }
-            String fileTxt = builder.toString();
-            String[] separetedFileTxt = fileTxt.split(" ");
-            String[] answer = new String[]{};
-            for (String wWord : separetedFileTxt) {
-                if (wWord.charAt(0) == 'w' || wWord.charAt(0) == 'W'){
-            }
-        } catch (FileNotFoundException e){
-            throw new FileNotFoundException("File not found");
+
+    private static final String FIRST_LETTER = "w";
+
+    public String[] readFromFile(String fileName) {
+        StringBuilder builder = new StringBuilder();
+        File file = new File(fileName);
+        try {
+            builder.append(Files.readAllLines(file.toPath()));
         } catch (IOException e) {
-            throw new RuntimeException("IOExeption");
+            throw new RuntimeException();
+        }
+        String[] separatedFileTxt = builder.toString().toLowerCase().split("\\W+");
+        String[] answer = new String[separatedFileTxt.length];
+        int counter = 0;
+        for (String word : separatedFileTxt) {
+            if (word.startsWith(FIRST_LETTER)) {
+                answer[counter] = word;
+                counter++;
+            }
         }
 
+        if (answer == null) {
+            return new String[0];
+        }
+        Arrays.sort(answer);
         //write your code here
-        return null;
+        return answer;
     }
 }
