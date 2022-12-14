@@ -11,11 +11,11 @@ public class FileWork {
         File file = new File(fileName);
         String temp;
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            if (reader.toString().equals("") || reader.toString().length() == 0) {
-                return new String[0];
-            }
             StringBuilder builder = new StringBuilder();
             String value = reader.readLine();
+            if (value == null) {
+                return new String[0];
+            }
             while (value != null) {
                 builder.append(value).append(",");
                 value = reader.readLine();
@@ -31,6 +31,9 @@ public class FileWork {
             if (arr[i].charAt(0) == 'w') {
                 secondBuilder.append(arr[i]).append(" ");
             }
+        }
+        if (secondBuilder.toString().equals("")) {
+            return new String[0];
         }
         String[] result = secondBuilder.toString().split(" ");
         return result;
