@@ -33,7 +33,7 @@ public class FileWork {
         if (builder.isEmpty()) {
             return new String[0];
         }
-        String[] result = builder.toString().substring(0, builder.length() - 1).split(",");
+        String[] result = builder.substring(0, builder.length() - 1).split(",");
         Arrays.sort(result);
         return result;
     }
