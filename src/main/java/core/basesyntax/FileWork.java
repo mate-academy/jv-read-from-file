@@ -8,12 +8,10 @@ import java.util.Arrays;
 public class FileWork {
     private static final int LETTER_INDEX = 0;
     private static final char SPECIFIED_CHARACTER = 'w';
-    private StringBuilder stringBuilder;
 
     public String[] readFromFile(String fileName) {
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
-            stringBuilder = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String value = bufferedReader.readLine();
             while (value != null) {
                 stringBuilder.append(value).append(" ");
@@ -35,7 +33,7 @@ public class FileWork {
         if (builder.isEmpty()) {
             return new String[0];
         }
-        String[] result = builder.toString().split(",");
+        String[] result = builder.toString().substring(0, builder.length() - 1).split(",");
         Arrays.sort(result);
         return result;
     }
