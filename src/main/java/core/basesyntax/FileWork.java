@@ -30,7 +30,7 @@ public class FileWork {
                 builder.append(s).append(",");
             }
         }
-        if (builder.isEmpty()) {
+        if (builder.length() == 0) {
             return new String[0];
         }
         String[] result = builder.substring(0, builder.length() - 1).split(",");
