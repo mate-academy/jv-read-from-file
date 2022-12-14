@@ -17,7 +17,7 @@ public class FileWork {
             }
             String[] dataListUnsorted = data.split("[\\p{Punct}|\\p{Space}]");
             for (String element : dataListUnsorted) {
-                if (!element.equals("")){
+                if (!element.equals("")) {
                     if (element.toCharArray()[0] == SORTED_SYMBOL) {
                         String[] newArray = Arrays.copyOf(dataList, dataList.length + 1);
                         newArray[newArray.length - 1] = element;
