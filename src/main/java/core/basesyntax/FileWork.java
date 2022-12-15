@@ -5,14 +5,14 @@ import java.util.Arrays;
 
 public class FileWork {
     private static final String SPECIAL_LETTER = "w";
-    String[] resultArrOfWords = {};
-    String[] emptyArr = new String[0];
-    String[] splitArr;
-    String lowerStrOfWords;
-    String value;
-    String firstLetter;
-    String resultStrOfWords;
-    StringBuilder builder = new StringBuilder();
+    private String[] resultArrOfWords = {};
+    private String[] emptyArr = new String[0];
+    private String[] splitArr;
+    private String lowerStrOfWords;
+    private String value;
+    private String firstLetter;
+    private String resultStrOfWords;
+    private StringBuilder builder = new StringBuilder();
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
