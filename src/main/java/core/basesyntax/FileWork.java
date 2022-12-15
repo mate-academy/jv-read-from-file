@@ -1,7 +1,7 @@
 package core.basesyntax;
 
-import java.io.*;
 import java.util.Arrays;
+import java.io.*;
 
 public class FileWork {
     private static final String SPECIAL_LETTER = "w";
