@@ -8,11 +8,10 @@ import java.util.Arrays;
 
 public class FileWork {
     private static final String SPECIAL_LETTER = "w";
-    private final String[] emptyArr = new String[0];
-    private final StringBuilder builder = new StringBuilder();
-    private final StringBuilder builderResult = new StringBuilder();
-    String value;
-    int count = 0;
+    private String[] emptyArr = new String[0];
+    private StringBuilder builder = new StringBuilder();
+    private StringBuilder builderResult = new StringBuilder();
+    private int count = 0;
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
