@@ -4,6 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -25,7 +26,7 @@ public class FileWorkTest {
             new String[]{"was", "was", "whenever", "which", "which", "worse"};
 
     @BeforeClass
-    public static void beforeClass() throws Exception{
+    public static void beforeClass() throws Exception {
         Files.write(Path.of(EMPTY_FILE_NAME), "".getBytes(StandardCharsets.UTF_8));
         Files.write(Path.of(SECOND_FILE_NAME), (
                 "Beautiful two-bedroom city flat five minutes' walk from the cathedral.\n" +
