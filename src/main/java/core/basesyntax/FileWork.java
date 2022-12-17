@@ -59,7 +59,9 @@ public class FileWork {
             throw new RuntimeException(e);
         }
 
-        if (!filter.isEmpty()) {
+        if (filter.isEmpty()) {
+            return result;
+        } else {
             result = filter.toString().split("\\W+");
         }
 
