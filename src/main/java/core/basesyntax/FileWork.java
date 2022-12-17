@@ -10,10 +10,9 @@ public class FileWork {
 
     private final StringBuilder filter = new StringBuilder();
     private boolean isFiltering = false;
-    private String[] result = new String[0];
 
     public String[] readFromFile(String fileName) {
-        //write your code here
+        String[] result = new String[0];
         File file = new File(fileName);
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
