@@ -1,29 +1,37 @@
 package core.basesyntax;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class FileWork {
+    private static final String SPECIFIED_CHARACTER = "w";
+
     public String[] readFromFile(String fileName) {
-        fileName = fileName.toLowerCase();
-        fileName = fileName.replaceAll("[^a-zA-Z0]", " ");
-        String[] temp = fileName.split(" ");
-        List<String> tempList = Arrays.asList(temp);
-        ArrayList<String> stringList = new ArrayList<>();
-        for (String s : tempList) {
-            if (!s.equals("") && s.charAt(0) == 'w') {
-                stringList.add(s);
+        File file = new File(fileName);
+        List<String> resultList = new ArrayList<>();
+        List<String> strings;
+        try {
+            strings = Files.readAllLines(file.toPath());
+        } catch (IOException e) {
+            throw new RuntimeException("Can't read file", e);
+        }
+        for (String result : strings) {
+            String [] sorted = result.toLowerCase().split("\\W+");
+            for (int i = 0; i < sorted.length; i++) {
+                if (sorted[i].startsWith(SPECIFIED_CHARACTER)) {
+                    resultList.add(sorted[i]);
+                }
+            }
+            if (resultList.equals(null)) {
+                return new String[]{};
             }
         }
-        if (stringList.size() == 0) {
-            return new String[0];
-        }
-        String[] result = new String[stringList.size()];
-        for (int i = 0; i < stringList.size(); i++) {
-            result[i] = stringList.get(i);
-        }
-        //System.out.println(Arrays.toString(result));
-        return result;
+        String[] words = resultList.toArray(new String[]{});
+        Arrays.sort(words);
+        return words;
     }
 }
