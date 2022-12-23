@@ -1,18 +1,18 @@
 package core.basesyntax;
 
-import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
-    private final static int INDEX_OF_A = 65;
-    private final static int INDEX_OF_Z = 90;
-    private final static int INDEX_OF_a = 97;
-    private final static int INDEX_OF_z = 122;
-    private final static int INDEX_OF_SPACE = 32;
-    private final static int INDEX_OF_NEWLINE = 10;
-    private final static int END_OF_TEXT = -1;
+    private static final int INDEX_OF_A = 65;
+    private static final int INDEX_OF_Z = 90;
+    private static final int INDEX_OF_a = 97;
+    private static final int INDEX_OF_z = 122;
+    private static final int INDEX_OF_SPACE = 32;
+    private static final int INDEX_OF_NEWLINE = 10;
+    private static final int END_OF_TEXT = -1;
 
     public String [] readFromFile(String fileName) {
         StringBuilder stringBuilderBuffer = new StringBuilder();
@@ -21,8 +21,8 @@ public class FileWork {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             int value = reader.read();
             while (value != END_OF_TEXT) {
-                if((value >= INDEX_OF_A && value <= INDEX_OF_Z)
-                        || (value >=INDEX_OF_a && value <=INDEX_OF_z)
+                if ((value >= INDEX_OF_A && value <= INDEX_OF_Z)
+                        || (value >= INDEX_OF_a && value <= INDEX_OF_z)
                         || (value == INDEX_OF_SPACE)
                         || (value == INDEX_OF_NEWLINE)) {
                     if (value == INDEX_OF_NEWLINE) {
