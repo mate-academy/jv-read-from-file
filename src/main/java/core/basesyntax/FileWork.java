@@ -12,13 +12,11 @@ public class FileWork {
         int index = 0;
         String[] returnArray;
         try {
-            BufferedReader reader = null;
-            reader = new BufferedReader(new FileReader(file));
+            BufferedReader reader = new BufferedReader(new FileReader(file));
             StringBuilder builder = new StringBuilder();
             String value = reader.readLine();
             if (value == null) {
-                returnArray = new String[0];
-                return returnArray;
+                return  returnArray = new String[0];
             }
             while (value != null) {
                 builder.append(value).append(" ");
