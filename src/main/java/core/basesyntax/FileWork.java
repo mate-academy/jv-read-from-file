@@ -1,9 +1,9 @@
 package core.basesyntax;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.File;
 import java.util.Arrays;
 
 public class FileWork {
@@ -16,7 +16,7 @@ public class FileWork {
             StringBuilder builder = new StringBuilder();
             String value = reader.readLine();
             if (value == null) {
-                return  returnArray = new String[0];
+                return returnArray = new String[0];
             }
             while (value != null) {
                 builder.append(value).append(" ");
@@ -50,3 +50,6 @@ public class FileWork {
         return returnArray;
     }
 }
+
+
+
