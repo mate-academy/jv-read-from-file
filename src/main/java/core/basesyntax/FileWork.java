@@ -40,6 +40,7 @@ public class FileWork {
         String[] sortedWords = toStringArray(stringBuilder);
         return sortedWords;
     }
+
     private String[] toStringArray(StringBuilder stringBuilder) {
         int i = 0;
         String toString = stringBuilder.toString().toLowerCase();
