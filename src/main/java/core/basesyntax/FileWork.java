@@ -11,7 +11,7 @@ public class FileWork {
     private static final String COMMON_REGEX = "[., -?\\n]";
 
     public String[] readFromFile(String fileName) {
-        String result[] = new String[0];
+        String[] result = new String[0];
         StringBuilder stringBuilder = new StringBuilder();
         Path path = Paths.get(fileName);
         String textFromFile;
@@ -20,7 +20,7 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException("Can`t read from file " + path.getFileName(), e);
         }
-        String textArray[] = textFromFile.split(COMMON_REGEX);
+        String[] textArray = textFromFile.split(COMMON_REGEX);
         for (String item : textArray) {
             if ((item.length() != 0) && (item.substring(0, 1).equalsIgnoreCase(OUR_REGEX))) {
                 stringBuilder.append(item.toLowerCase()).append(" ");
