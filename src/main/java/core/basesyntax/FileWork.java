@@ -19,7 +19,7 @@ public class FileWork {
         try (BufferedReader bufferedReader = new BufferedReader(
                 new FileReader(new File(fileName)))) {
             value = bufferedReader.read();
-            if (value != -1) {
+            if (value == -1) {
                 return new String[]{};
             }
             while (value != -1) {
