@@ -14,7 +14,7 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         StringBuilder stringBuilder = new StringBuilder();
-        String line = "";
+        String line = null;
         try (BufferedReader bufferedReader = new BufferedReader(
                 new FileReader(new File(fileName)))) {
             line = bufferedReader.readLine();
