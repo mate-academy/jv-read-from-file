@@ -19,7 +19,7 @@ public class FileWork {
                 new FileReader(new File(fileName)))) {
             line = bufferedReader.readLine();
             if (line == null) {
-                return new String[0];
+                return wordsOfFile;
             }
             while (line != null) {
                 line = line.replaceAll(PUNCTUATION_MARK, SPACE_MARK).toLowerCase();
