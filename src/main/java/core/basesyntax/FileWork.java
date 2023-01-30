@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class FileWork {
     private static final String SPECIFIED_CHARACTER = "w";
-    private static final String PUNCTUATION_MARK = "\\p{Punct}";
+    private static final String PUNCTUATION_MARK = "\\W+";
     private static final String SPACE_MARK = " ";
     private String[] wordsOfFile;
 
