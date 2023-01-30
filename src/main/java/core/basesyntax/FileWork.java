@@ -19,9 +19,6 @@ public class FileWork {
         try (BufferedReader bufferedReader = new BufferedReader(
                 new FileReader(new File(fileName)))) {
             value = bufferedReader.read();
-            if (value == -1) {
-                return new String[]{};
-            }
             while (value != -1) {
                 stringBuilder.append((char) value);
                 value = bufferedReader.read();
@@ -40,7 +37,7 @@ public class FileWork {
         }
         wordsOfFile = stringBuilder.toString().split(SPACE_MARK);
         Arrays.sort(wordsOfFile);
-        return wordsOfFile;
+        return (!startWithLetter(stringBuilder.toString())) ? new String[]{} : wordsOfFile;
     }
 
     public boolean startWithLetter(String word) {
