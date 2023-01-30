@@ -32,14 +32,15 @@ public class FileWork {
         line = stringBuilder.toString();
         line = line.replaceAll(PUNCTUATION_MARK, SPACE_MARK).toLowerCase();
         wordsOfFile = line.split(SPACE_MARK);
-        Arrays.sort(wordsOfFile);
         stringBuilder.setLength(0);
         for (String word : wordsOfFile) {
             if (startWithLetter(word)) {
                 stringBuilder.append(word).append(SPACE_MARK);
             }
         }
-        return stringBuilder.toString().split(SPACE_MARK);
+        wordsOfFile = stringBuilder.toString().split(SPACE_MARK);
+        Arrays.sort(wordsOfFile);
+        return wordsOfFile;
     }
 
     public boolean startWithLetter(String word) {
