@@ -14,22 +14,24 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         StringBuilder stringBuilder = new StringBuilder();
+        int value;
         String line = null;
         try (BufferedReader bufferedReader = new BufferedReader(
                 new FileReader(new File(fileName)))) {
-            line = bufferedReader.readLine();
-            if (line == null) {
+            value = bufferedReader.read();
+            if (value != -1) {
                 return new String[]{};
             }
-            while (line != null) {
-                line = line.replaceAll(PUNCTUATION_MARK, SPACE_MARK).toLowerCase();
-                stringBuilder.append(line).append(SPACE_MARK);
-                line = bufferedReader.readLine();
+            while (value != -1) {
+                stringBuilder.append((char) value);
+                value = bufferedReader.read();
             }
         } catch (IOException exception) {
             throw new RuntimeException("Can't read file", exception);
         }
-        wordsOfFile = stringBuilder.toString().split(SPACE_MARK);
+        line = stringBuilder.toString();
+        line = line.replaceAll(PUNCTUATION_MARK, SPACE_MARK).toLowerCase();
+        wordsOfFile = line.split(SPACE_MARK);
         Arrays.sort(wordsOfFile);
         stringBuilder.setLength(0);
         for (String word : wordsOfFile) {
