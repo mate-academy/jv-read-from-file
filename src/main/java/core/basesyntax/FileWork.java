@@ -17,6 +17,7 @@ public class FileWork {
         String line = "";
         try (BufferedReader bufferedReader = new BufferedReader(
                 new FileReader(new File(fileName)))) {
+            line = bufferedReader.readLine();
             while (line != null) {
                 line = line.replaceAll(PUNCTUATION_MARK, SPACE_MARK).toLowerCase();
                 stringBuilder.append(line).append(SPACE_MARK);
