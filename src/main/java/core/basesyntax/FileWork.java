@@ -28,7 +28,7 @@ public class FileWork {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-        return res.isEmpty() ? null : 
-            Arrays.copyOf(res.stream().sorted().toArray(), res.size(), String[].class);
+        return Arrays.copyOf(res.stream().sorted().toArray(), 
+                res.size(), String[].class);
     }
 }
