@@ -18,8 +18,8 @@ public class FileWork {
                 if (line.trim().length() > 0) {
                     String[] tmp = line.split("\\W");
                     for (String word : tmp) {
-                        if (word.trim().length() > 0 && 
-                            word.trim().toLowerCase().charAt(0) == 'w') {
+                        if (word.trim().length() > 0 
+                            && word.trim().toLowerCase().charAt(0) == 'w') {
                             res.add(word.trim().toLowerCase());
                         }
                     }
