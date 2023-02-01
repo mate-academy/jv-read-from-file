@@ -19,7 +19,7 @@ public class FileWork {
                     String[] tmp = line.split("\\W");
                     for (String word : tmp) {
                         if (word.trim().length() > 0 
-                            && word.trim().toLowerCase().charAt(0) == 'w') {
+                                && word.trim().toLowerCase().charAt(0) == 'w') {
                             res.add(word.trim().toLowerCase());
                         }
                     }
