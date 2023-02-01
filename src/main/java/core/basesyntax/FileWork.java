@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
@@ -18,16 +18,17 @@ public class FileWork {
                 if (line.trim().length() > 0) {
                     String[] tmp = line.split("\\W");
                     for (String word : tmp) {
-                        if (word.trim().length() > 0 && word.trim().toLowerCase().charAt(0) == 'w') {
+                        if (word.trim().length() > 0 && 
+                            word.trim().toLowerCase().charAt(0) == 'w') {
                             res.add(word.trim().toLowerCase());
                         }
                     }
                 }
             }
-
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-        return res.isEmpty() ? null: Arrays.copyOf(res.stream().sorted().toArray(), res.size(), String[].class);
+        return res.isEmpty() ? null : 
+            Arrays.copyOf(res.stream().sorted().toArray(), res.size(), String[].class);
     }
 }
