@@ -10,7 +10,6 @@ import java.util.List;
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
-        //write your code here
         File file = new File(fileName);
         StringBuilder builder = new StringBuilder();
         String[] found;
