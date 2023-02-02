@@ -21,7 +21,7 @@ public class FileWork {
                 if (isLetter(nextChar)) {
                     builder.append((char) nextChar);
                 } else {
-                    if (!builder.isEmpty()
+                    if (builder.length() != 0
                             && (builder.charAt(0) == 'w' || builder.charAt(0) == 'W')) {
                         filteredWords.add(builder.toString().toLowerCase());
                     }
