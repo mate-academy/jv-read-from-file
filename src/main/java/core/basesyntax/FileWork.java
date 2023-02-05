@@ -8,9 +8,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class FileWork {
-    private final static String SPECIFIED_CHARACTER = "w";
+    private static final String SPECIFIED_CHARACTER = "w";
+
     public String[] readFromFile(String fileName) {
-        try{
+        try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
             StringBuilder builder = new StringBuilder();
             String value = reader.readLine();
@@ -19,14 +20,15 @@ public class FileWork {
                 value = reader.readLine();
             }
             String[] words = builder.toString().toLowerCase().split("\\W+");
-            List<String> wList = new ArrayList<>();
+
+            List<String> wordList = new ArrayList<>();
             for (String word : words) {
                 if (word.startsWith(SPECIFIED_CHARACTER)) {
-                    wList.add(word);
+                    wordList.add(word);
                 }
             }
-            Collections.sort(wList);
-            return wList.toArray(new String[0]);
+            Collections.sort(wordList);
+            return wordList.toArray(new String[0]);
 
         } catch (IOException e) {
             throw new RuntimeException("Can't reade from file!");
