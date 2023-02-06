@@ -11,7 +11,7 @@ public class FileWork {
         // Declare a File object to represent the file
         File file = new File(fileName);
         // Create a StringBuilder to store the cleaned words
-        StringBuilder sb = new StringBuilder();
+        StringBuilder buildResult = new StringBuilder();
         int count = 0;
         try {
             // Create a BufferedReader to read the file
@@ -45,7 +45,7 @@ public class FileWork {
                 // add it to the StringBuilder and increment the count
                 if (cleanedWord.length() > 1) {
                     count++;
-                    sb.append(cleanedWord + "\n");
+                    buildResult.append(cleanedWord + "\n");
                 }
             }
 
@@ -53,15 +53,15 @@ public class FileWork {
             throw new RuntimeException("Can't read file", e);
         }
         // If the StringBuilder is empty (i.e. no words were added to it), return an empty array
-        if (sb.length() < 1) {
+        if (buildResult.length() < 1) {
             return new String[0];
         }
         // Remove the final line separator from the StringBuilder
-        sb.substring(0, sb.length() - 1);
+        buildResult.substring(0, buildResult.length() - 1);
         // Initialize an array to hold the cleaned words
         String[] result = new String[count];
         // Split the StringBuilder into an array of strings using the line separator
-        result = sb.toString().split(System.lineSeparator());
+        result = buildResult.toString().split(System.lineSeparator());
         // Sort the array of strings alphabetically
         Arrays.sort(result);
         return result;
