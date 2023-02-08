@@ -15,11 +15,11 @@ public class FileWork {
                 return new String[] {};
             }
             int wordCount = 0;
-            while(value != null) {
+            while (value != null) {
                 stringBuilder.append(value.toLowerCase()).append(System.lineSeparator());
-                String [] words  =  value.split(" ");
-                for(String word: words) {
-                    if(word.charAt(0) == 'w' || word.charAt(0) == 'W') {
+                String [] words = value.split(" ");
+                for (String word: words) {
+                    if (word.charAt(0) == 'w' || word.charAt(0) == 'W') {
                         wordCount++;
                     }
                 }
