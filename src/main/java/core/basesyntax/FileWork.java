@@ -1,12 +1,10 @@
 package core.basesyntax;
 
-import javax.imageio.IIOException;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Locale;
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
