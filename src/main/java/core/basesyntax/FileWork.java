@@ -26,6 +26,7 @@ public class FileWork {
         }
         return getWordsWithLeadingLetterSorted(contentsBuilder.toString());
     }
+
     private String[] getWordsWithLeadingLetterSorted(String contents) {
         ArrayList<String> wordsWithLetter = new ArrayList<>();
         if (!contents.equals("")) {
