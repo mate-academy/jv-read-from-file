@@ -23,7 +23,7 @@ public class FileWork {
                 value = reader.readLine();
             }
         } catch (IOException e) {
-            throw new RuntimeException("Can't read file" + fileName, e);
+            throw new RuntimeException("Can't read file", e);
         }
         String[] words = builder.toString().toLowerCase().split(REGEX);
         StringBuilder wordsWithLetter = new StringBuilder();
