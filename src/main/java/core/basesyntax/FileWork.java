@@ -32,7 +32,7 @@ public class FileWork {
                 wordsWithLetter.append(word).append(WHITESPACE);
             }
         }
-        if (wordsWithLetter.isEmpty()) {
+        if (wordsWithLetter.length() == 0) {
             return new String[]{};
         }
         String[] result = wordsWithLetter.toString().split(WHITESPACE);
