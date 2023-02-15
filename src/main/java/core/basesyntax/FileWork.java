@@ -29,7 +29,7 @@ public class FileWork {
             result = builder.toString().split(WORDS_SEPARATOR);
             Arrays.sort(result);
             if (builder.toString().length() == 0) {
-                return new String[] {};
+                 return new String[] {};
             }
             return result;
         } catch (IOException e) {
