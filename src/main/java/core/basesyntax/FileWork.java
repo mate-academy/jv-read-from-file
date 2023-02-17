@@ -23,8 +23,7 @@ public class FileWork {
                 builderWordsAll.append(value).append(System.lineSeparator());
                 value = reader.readLine();
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException("Can't read file", e);
         }
         String[] words = builderWordsAll.toString().toLowerCase().split(NOTWORD);
