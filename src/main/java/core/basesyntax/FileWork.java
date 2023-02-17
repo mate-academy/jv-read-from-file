@@ -1,16 +1,17 @@
 package core.basesyntax;
 
-import java.util.Arrays;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class FileWork {
     private static final String WHITESPACE = " ";
     private static final String NOTWORD = "\\W+";
-    StringBuilder builderWordsW = new StringBuilder();
-    StringBuilder builderWordsAll = new StringBuilder();
-    int count = 0;
+    private StringBuilder builderWordsW = new StringBuilder();
+    private StringBuilder builderWordsAll = new StringBuilder();
+    private int count = 0;
+
     public String[] readFromFile(String fileName) {
         if ((fileName == "") || (fileName == null)) {
             return null;
@@ -19,8 +20,8 @@ public class FileWork {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String value = reader.readLine();
             while (value != null) {
-                    builderWordsAll.append(value).append(System.lineSeparator());
-                    value = reader.readLine();
+                builderWordsAll.append(value).append(System.lineSeparator());
+                value = reader.readLine();
             }
         }
         catch (IOException e) {
