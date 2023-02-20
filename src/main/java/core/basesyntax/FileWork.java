@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
-    public static Object readFromFile(String fileName) {
+    public String[] readFromFile(String fileName) {
         File file = new File(fileName);
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
