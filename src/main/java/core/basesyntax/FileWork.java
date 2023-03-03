@@ -13,7 +13,6 @@ public class FileWork {
         File file = new File(fileName);
         StringBuilder builder = new StringBuilder();
 
-
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             String value = bufferedReader.readLine();
 
