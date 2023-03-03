@@ -7,10 +7,8 @@ import java.io.IOException;
 
 
 public class FileWork {
-
     private static final int INDEX_OF_FIRST_LETTER = 0;
     private static final char FIRST_LETTER_OF_THE_WORD = 'w';
-
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
         StringBuilder builder = new StringBuilder();
