@@ -21,7 +21,8 @@ public class FileWork {
             String[] finalResult = fileToString.split("\\W+");
             StringBuilder result = new StringBuilder();
             for (String word : finalResult) {
-                if (word.startsWith(SPECIFIED_CHARACTER) || word.startsWith(SPECIFIED_LOWER_CHARACTER)) {
+                if (word.startsWith(SPECIFIED_CHARACTER)
+                        || word.startsWith(SPECIFIED_LOWER_CHARACTER)) {
                     result.append(word.toLowerCase()).append(" ");
                 }
             }
