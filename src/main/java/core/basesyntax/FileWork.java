@@ -3,10 +3,11 @@ package core.basesyntax;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class FileWork {
-    public String[] readFromFile(String fileName) {
-        StringBuilder stringBuilder = new StringBuilder();
+    public static String[] readFromFile(String fileName) {
+        StringBuilder resultString = new StringBuilder();
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line = reader.readLine();
@@ -15,7 +16,7 @@ public class FileWork {
                 String[] words = words(line);
                 for (String word : words) {
                     if (word.charAt(0) == 'w') {
-                        stringBuilder.append(word).append(" ");
+                        resultString.append(word).append(" ");
                     }
                 }
                 line = reader.readLine();
@@ -24,10 +25,12 @@ public class FileWork {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return stringBuilder.toString().split(" ");
+        String[] resultArray = resultString.toString().split(" ");
+        Arrays.sort(resultArray);
+        return resultArray;
     }
 
-    private String[] words(String line) {
+    private static String[] words(String line) {
         return line.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
     }
 }
