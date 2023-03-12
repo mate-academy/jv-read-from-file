@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
-    public static String[] readFromFile(String fileName) {
+    public String[] readFromFile(String fileName) {
         StringBuilder resultString = new StringBuilder();
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
@@ -22,15 +22,15 @@ public class FileWork {
                 line = reader.readLine();
             }
             reader.close();
+            String[] resultArray = resultString.toString().split(" ");
+            Arrays.sort(resultArray);
+            return resultArray;
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Can't read a file", e);
         }
-        String[] resultArray = resultString.toString().split(" ");
-        Arrays.sort(resultArray);
-        return resultArray;
     }
 
-    private static String[] words(String line) {
+    private String[] words(String line) {
         return line.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
     }
 }
