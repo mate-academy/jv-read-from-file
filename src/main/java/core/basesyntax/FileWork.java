@@ -11,7 +11,7 @@ public class FileWork {
         try {
             StringBuilder stringWithWords = new StringBuilder();
             String string = new String(Files.readAllBytes(file.toPath()));
-            String[] array = string.replaceAll("[^a-zA-Z ]", "")
+            String[] array = string.replaceAll("\\W", "")
                     .replaceAll("\n", " ")
                     .toLowerCase().split(" ");
             for (String word : array) {
