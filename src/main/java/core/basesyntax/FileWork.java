@@ -7,21 +7,24 @@ import java.util.Arrays;
 
 public class FileWork {
     public static String[] readFromFile(String fileName) {
+        File file = new File(fileName);
         try {
-            File file = new File(fileName);
-            StringBuilder result = new StringBuilder();
+            StringBuilder stringWithWords = new StringBuilder();
             String string = new String(Files.readAllBytes(file.toPath()));
             String[] array = string.replaceAll("[^a-zA-Z ]", "")
                     .replaceAll("\n", " ")
                     .toLowerCase().split(" ");
             for (String word : array) {
                 if (word.startsWith("w")) {
-                    result.append(word).append(" ");
+                    stringWithWords.append(word).append(" ");
                 }
             }
-            String[] arrayResult = result.toString().split(" ");
-            Arrays.sort(arrayResult);
-            return arrayResult;
+            String[] resultArray = stringWithWords.toString().split(" ");
+            Arrays.sort(resultArray);
+            if (resultArray[0].equals("")) {
+                return new String[0];
+            }
+            return resultArray;
         } catch (IOException e) {
             throw new RuntimeException("Can't read a file", e);
         }
