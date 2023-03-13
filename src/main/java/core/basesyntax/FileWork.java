@@ -1,36 +1,29 @@
 package core.basesyntax;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Arrays;
 
 public class FileWork {
-    public String[] readFromFile(String fileName) {
-        StringBuilder resultString = new StringBuilder();
+    public static String[] readFromFile(String fileName) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            String line = reader.readLine();
-
-            while (line != null) {
-                String[] words = words(line);
-                for (String word : words) {
-                    if (word.charAt(0) == 'w') {
-                        resultString.append(word).append(" ");
-                    }
+            File file = new File(fileName);
+            StringBuilder result = new StringBuilder();
+            String string = new String(Files.readAllBytes(file.toPath()));
+            String[] array = string.replaceAll("[^a-zA-Z ]", "")
+                    .replaceAll("\n", " ")
+                    .toLowerCase().split(" ");
+            for (String word : array) {
+                if (word.startsWith("w")) {
+                    result.append(word).append(" ");
                 }
-                line = reader.readLine();
             }
-            reader.close();
-            String[] resultArray = resultString.toString().split(" ");
-            Arrays.sort(resultArray);
-            return resultArray;
+            String[] arrayResult = result.toString().split(" ");
+            Arrays.sort(arrayResult);
+            return arrayResult;
         } catch (IOException e) {
             throw new RuntimeException("Can't read a file", e);
         }
-    }
-
-    private String[] words(String line) {
-        return line.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
     }
 }
