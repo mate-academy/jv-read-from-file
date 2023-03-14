@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.util.Arrays;
 
 public class FileWork {
-    public String[] readFromFile(String fileName) throws IOException {
+    public String[] readFromFile(String fileName) {
         try {
             File file = new File(fileName);
             String string = new String(Files.readAllBytes(file.toPath()));
