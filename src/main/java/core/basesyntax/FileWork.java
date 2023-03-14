@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.util.Arrays;
 
 public class FileWork {
-    public String[] readFromFile(String fileName) throws IOException {
+    public String[] readFromFile(String fileName) {
         File file = new File(fileName);
         try {
             String string = new String(Files.readAllBytes(file.toPath()));
@@ -17,7 +17,7 @@ public class FileWork {
                 if (word.toLowerCase().replaceAll("\\W", "").startsWith("w")) {
                     strongWords.append(word.toLowerCase()
                                     .replaceAll("\\W", ""))
-                                    .append(System.lineSeparator());
+                            .append(System.lineSeparator());
                 }
             }
             String[] requiredArray = strongWords.toString().split(System.lineSeparator());
