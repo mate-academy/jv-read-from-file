@@ -6,19 +6,22 @@ import java.nio.file.Files;
 import java.util.Arrays;
 
 public class FileWork {
-    public static String[] readFromFile(String fileName) {
-        File file = new File(fileName);
+    public static String[] readFromFile(String fileName)  throws IOException {
         try {
+            File file = new File(fileName);
             StringBuilder stringWithWords = new StringBuilder();
             String string = new String(Files.readAllBytes(file.toPath()));
+
             String[] array = string.replaceAll("\\W", "")
                     .replaceAll("\n", " ")
                     .toLowerCase().split(" ");
+
             for (String word : array) {
                 if (word.startsWith("w")) {
                     stringWithWords.append(word).append(" ");
                 }
             }
+
             String[] resultArray = stringWithWords.toString().split(" ");
             Arrays.sort(resultArray);
             if (resultArray[0].equals("")) {
