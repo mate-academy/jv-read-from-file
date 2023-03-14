@@ -6,27 +6,26 @@ import java.nio.file.Files;
 import java.util.Arrays;
 
 public class FileWork {
-    public String[] readFromFile(String fileName) {
+    public String[] readFromFile(String fileName) throws IOException {
+        File file = new File(fileName);
         try {
-            File file = new File(fileName);
             String string = new String(Files.readAllBytes(file.toPath()));
-            StringBuilder stringWords = new StringBuilder();
 
-            String[] array = string.replaceAll("\n", " ")
-                    .replaceAll("\\W", "")
-                    .toLowerCase()
-                    .split(" ");
+            String[] array = string.replaceAll("\n", " ").split(" ");
+            StringBuilder strongWords = new StringBuilder();
             for (String word : array) {
-                if (word.startsWith("w")) {
-                    stringWords.append(word).append(System.lineSeparator());
+                if (word.toLowerCase().replaceAll("\\W", "").startsWith("w")) {
+                    strongWords.append(word.toLowerCase()
+                                    .replaceAll("\\W", ""))
+                                    .append(System.lineSeparator());
                 }
             }
-            String[] arrayResult = stringWords.toString().split(System.lineSeparator());
-            Arrays.sort(arrayResult);
-            if (arrayResult[0].equals("")) {
+            String[] requiredArray = strongWords.toString().split(System.lineSeparator());
+            Arrays.sort(requiredArray);
+            if (requiredArray[0].equals("")) {
                 return new String[0];
             }
-            return arrayResult;
+            return requiredArray;
         } catch (IOException e) {
             throw new RuntimeException("Can't read a file", e);
         }
