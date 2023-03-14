@@ -6,28 +6,27 @@ import java.nio.file.Files;
 import java.util.Arrays;
 
 public class FileWork {
-    public static String[] readFromFile(String fileName)  throws IOException {
+    public String[] readFromFile(String fileName) throws IOException {
         try {
             File file = new File(fileName);
-            StringBuilder stringWithWords = new StringBuilder();
             String string = new String(Files.readAllBytes(file.toPath()));
+            StringBuilder stringWords = new StringBuilder();
 
-            String[] array = string.replaceAll("\\W", "")
-                    .replaceAll("\n", " ")
-                    .toLowerCase().split(" ");
-
+            String[] array = string.replaceAll("\n", " ")
+                    .replaceAll("\\W", "")
+                    .toLowerCase()
+                    .split(" ");
             for (String word : array) {
                 if (word.startsWith("w")) {
-                    stringWithWords.append(word).append(" ");
+                    stringWords.append(word).append(System.lineSeparator());
                 }
             }
-
-            String[] resultArray = stringWithWords.toString().split(" ");
-            Arrays.sort(resultArray);
-            if (resultArray[0].equals("")) {
+            String[] arrayResult = stringWords.toString().split(System.lineSeparator());
+            Arrays.sort(arrayResult);
+            if (arrayResult[0].equals("")) {
                 return new String[0];
             }
-            return resultArray;
+            return arrayResult;
         } catch (IOException e) {
             throw new RuntimeException("Can't read a file", e);
         }
