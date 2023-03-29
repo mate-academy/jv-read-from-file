@@ -1,8 +1,8 @@
 package core.basesyntax;
 
-import java.io.InputStream;
 import java.io.FileInputStream;
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
