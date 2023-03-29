@@ -1,6 +1,9 @@
 package core.basesyntax;
 
-import java.io.*;
+import java.io.InputStream;
+import java.io.FileInputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -27,7 +30,7 @@ public class FileWork {
             bufferedReader.close();
             Collections.sort(array);
             strings = array.toArray(new String[0]);
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new RuntimeException("Can't read file", e);
         }
         return strings;
