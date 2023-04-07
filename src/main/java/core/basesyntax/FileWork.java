@@ -22,8 +22,15 @@ public class FileWork {
                         word.append(exam).append(" ");
                     }
                 }
-                String[] total = word.toString().split(" ");
-                System.out.println(Arrays.toString(total));
+                String[] total = word.toString().split("\\W+");
+                StringBuilder builder = new StringBuilder();
+                for (String string : total) {
+                    if (string.startsWith("w")) {
+                        builder.append(string).append(" ");
+                    }
+                }
+                String[] result = builder.toString().toLowerCase().split(" ");
+                System.out.println(Arrays.toString(result));
 
             } catch (IOException e) {
                 throw new RuntimeException("cant read the file", e);
