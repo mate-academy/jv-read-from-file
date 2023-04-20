@@ -32,7 +32,8 @@ public class FileWork {
             String[] reverseWord = new String[wordStartWithLetterWLength];
             for (int i = test2Array.length - 1; i < test2Array.length; i--) {
                 test2Array[i] = reverseWord[i];
-            } return reverseWord;
+            }
+            return reverseWord;
         } catch (IOException e) {
             throw new RuntimeException();
         }
