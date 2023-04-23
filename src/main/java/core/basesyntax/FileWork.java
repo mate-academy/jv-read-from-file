@@ -4,38 +4,36 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class FileWork {
-    public String[] readFromFile(String fileName) {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            StringBuilder stringBuilder = new StringBuilder();
-            String value = reader.readLine();
 
-            if (value == null) {
+    public String[] readFromFile(String fileName) {
+        String[] wordsStartingWithW = new String[0];
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            File file = new File(fileName);
+            String value;
+            if (fileName.isEmpty()) {
                 return new String[0];
             }
-            while (value != null) {
-                stringBuilder.append(value);
-                value = reader.readLine();
-            }
-            String test2Readered = stringBuilder.toString();
-            String[] test2Array = test2Readered.split(" ");
-            int wordStartWithLetterWLength = 0;
-            String[] wordStartWithLetterW = new String[wordStartWithLetterWLength];
-            for (int i = 0; i < test2Array.length; i++) {
-                if (test2Array[i] == "w") {
-                    test2Array[i] = wordStartWithLetterW[i];
-                    wordStartWithLetterWLength++;
+            while ((value = reader.readLine()) != null) {
+                String[] words = value.split("\\s+");
+                for (String word : words) {
+                    word = word.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+                    if (word.startsWith("w")) {
+                        String[] newWordsStartingWithW = new String[wordsStartingWithW.length + 1];
+                        for (int i = 0; i < wordsStartingWithW.length; i++) {
+                            newWordsStartingWithW[i] = wordsStartingWithW[i];
+                        }
+                        newWordsStartingWithW[wordsStartingWithW.length] = word;
+                        wordsStartingWithW = newWordsStartingWithW;
+                    }
                 }
             }
-            String[] reverseWord = new String[wordStartWithLetterWLength];
-            for (int i = test2Array.length - 1; i < test2Array.length; i--) {
-                test2Array[i] = reverseWord[i];
-            }
-            return reverseWord;
+            Arrays.sort(wordsStartingWithW);
         } catch (IOException e) {
             throw new RuntimeException();
         }
+        return wordsStartingWithW;
     }
 }
