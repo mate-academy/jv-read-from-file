@@ -19,7 +19,8 @@ public class FileWork {
                 sb.append(line).append(" ");
             }
 
-            String[] words = pattern.matcher(sb.toString().toLowerCase()).replaceAll("").split("\\s+");
+            String[] words = pattern.matcher(sb.toString().toLowerCase())
+                    .replaceAll("").split("\\s+");
             String[] filteredWords = Arrays.stream(words)
                     .filter(word -> word.startsWith("w"))
                     .sorted()
