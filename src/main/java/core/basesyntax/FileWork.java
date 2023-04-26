@@ -14,8 +14,7 @@ public class FileWork {
     public String[] readFromFile(String fileName) {
         StringBuilder stringBuilder = new StringBuilder();
         File file = new File(fileName);
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             String line = bufferedReader.readLine();
             while (line != null) {
                 addSuitableWordsToBuilder(line, stringBuilder);
