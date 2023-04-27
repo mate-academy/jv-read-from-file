@@ -40,7 +40,7 @@ public class FileWork {
         if (resultString.isEmpty()) {
             return new String[0];
         }
-        String[] result = new String[counter];
+        String[] results = new String[counter];
         String[] builder = resultString.toString().toLowerCase().split(" ");
         for (String word : builder) {
             if (word.contains("!") || word.contains("?")) {
@@ -48,10 +48,10 @@ public class FileWork {
             } else if (word.endsWith(".")) {
                 word = word.substring(0, word.length() - 1);
             }
-            result[index] = word;
+            results[index] = word;
             index++;
         }
-        Arrays.sort(result);
-        return result;
+        Arrays.sort(results);
+        return results;
     }
 }
