@@ -14,8 +14,7 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(file));
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             int value = reader.read();
             while (value != - 1) {
                 builder.append((char) value);
