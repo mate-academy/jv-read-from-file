@@ -10,7 +10,6 @@ public class FileWork {
     private final StringBuilder builder = new StringBuilder();
     private final StringBuilder resultString = new StringBuilder();
     private final String[] emptyArray = new String[0];
-    private String[] result;
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
@@ -39,7 +38,7 @@ public class FileWork {
         if (resultString.toString().length() == 0) {
             return emptyArray;
         }
-        result = resultString.toString().split(" ");
+        String[] result = resultString.toString().split(" ");
         Arrays.sort(result);
         return result;
     }
