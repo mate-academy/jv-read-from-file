@@ -11,6 +11,7 @@ public class FileWork {
     private int index = 0;
     private final StringBuilder builder = new StringBuilder();
     private final StringBuilder resultString = new StringBuilder();
+    private final String[] emptyArray = new String[0];
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
@@ -24,7 +25,7 @@ public class FileWork {
             throw new RuntimeException(e);
         }
         if (builder.isEmpty()) {
-            return new String[0];
+            return emptyArray;
         }
         String text = builder.toString().toLowerCase();
         String[] splitText = text.split("\n");
@@ -38,10 +39,10 @@ public class FileWork {
             }
         }
         if (resultString.isEmpty()) {
-            return new String[0];
+            return emptyArray;
         }
         String[] results = new String[counter];
-        String[] builder = resultString.toString().toLowerCase().split(" ");
+        String[] builder = resultString.toString().split(" ");
         for (String word : builder) {
             if (word.contains("!") || word.contains("?")) {
                 word = word.substring(0, word.length() - 1);
