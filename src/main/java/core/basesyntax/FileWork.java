@@ -7,11 +7,10 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
-    private int counter = 0;
-    private int index = 0;
     private final StringBuilder builder = new StringBuilder();
     private final StringBuilder resultString = new StringBuilder();
     private final String[] emptyArray = new String[0];
+    private String[] result;
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
@@ -24,35 +23,24 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        if (builder.isEmpty()) {
+        if (builder.toString().length() == 0) {
             return emptyArray;
         }
-        String text = builder.toString().toLowerCase();
-        String[] splitText = text.split("\n");
-        for (String line : splitText) {
-            String[] lines = line.split(" ");
-            for (String word : lines) {
-                if (word.indexOf("w") == 0) {
-                    resultString.append(word).append(" ");
-                    counter++;
-                }
-            }
-        }
-        if (resultString.isEmpty()) {
+        String text = builder.toString().replaceAll("[!.,?\n]", " ").toLowerCase();
+        String[] splitText = text.split(" ");
+        if (splitText.length == 0) {
             return emptyArray;
         }
-        String[] results = new String[counter];
-        String[] builder = resultString.toString().split(" ");
-        for (String word : builder) {
-            if (word.contains("!") || word.contains("?")) {
-                word = word.substring(0, word.length() - 1);
-            } else if (word.endsWith(".")) {
-                word = word.substring(0, word.length() - 1);
+        for (String word : splitText) {
+            if (word.indexOf("w") == 0) {
+                resultString.append(word).append(" ");
             }
-            results[index] = word;
-            index++;
         }
-        Arrays.sort(results);
-        return results;
+        if (resultString.toString().length() == 0) {
+            return emptyArray;
+        }
+        result = resultString.toString().split(" ");
+        Arrays.sort(result);
+        return result;
     }
 }
