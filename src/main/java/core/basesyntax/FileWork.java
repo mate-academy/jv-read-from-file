@@ -9,6 +9,9 @@ public class FileWork {
     private static final String SPECIFIED_CHARACTER = "w";
 
     public String[] readFromFile(String fileName) {
+        if (fileName == null || fileName.isEmpty()) {
+            return new String[] {};
+        }
         StringBuilder strBuilder = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(
                 new FileReader(fileName))) {
@@ -25,6 +28,9 @@ public class FileWork {
             }
         } catch (IOException e) {
             throw new RuntimeException("Can't read file", e);
+        }
+        if (strBuilder.length() == 0) {
+            return new String[] {};
         }
         String[] wordsResult = strBuilder.toString().split(" ");
         Arrays.sort(wordsResult);
