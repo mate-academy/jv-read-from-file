@@ -1,7 +1,6 @@
 package core.basesyntax;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
@@ -12,12 +11,14 @@ public class FileWork {
     public String[] readFromFile(String fileName) {
         StringBuilder strBuilder = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(
-                new FileReader(new File(fileName)))) {
+                new FileReader(fileName))) {
             String value = bufferedReader.readLine();
             while (value != null) {
                 for (String word : value.toLowerCase().split(" ")) {
                     if (word.startsWith(SPECIFIED_CHARACTER)) {
-                        strBuilder.append(word.toLowerCase().replaceAll("[!?,.]", "")).append(" ");
+                        strBuilder.append(word.toLowerCase()
+                                .replaceAll("[!?,.:;]", ""))
+                                .append(" ");
                     }
                 }
                 value = bufferedReader.readLine();
