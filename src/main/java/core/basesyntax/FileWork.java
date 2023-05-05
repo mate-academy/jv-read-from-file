@@ -13,8 +13,7 @@ public class FileWork {
         StringBuilder currentWord = new StringBuilder();
         List<String> result = new ArrayList<>();
         try {
-            BufferedReader bufferedReader = new BufferedReader
-                    (new FileReader(fileName));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
             int value = bufferedReader.read();
             while (value != -1) {
                 currentWord.append((char) value);
