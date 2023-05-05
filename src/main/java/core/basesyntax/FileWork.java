@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class FileWork {
     private static final char SPECIFIED_CHARACTER = 'w';
@@ -37,15 +38,7 @@ public class FileWork {
             return new String[]{};
         }
         String[] result = builder1.toString().split("\\W+");
-        for (int i = 0; i < result.length; i++) {
-            for (int k = i + 1; k < result.length; k++) {
-                if (result[i].compareTo(result[k]) > 0) {
-                    String temp = result[i];
-                    result[i] = result[k];
-                    result[k] = temp;
-                }
-            }
-        }
+        Arrays.sort(result);
         return result;
     }
 }
