@@ -18,19 +18,19 @@ public class FileWork {
             throw new RuntimeException("List was not created", e);
         }
         String[] words = allText.split("\\W");
-        ArrayList<String> wList = new ArrayList<>();
+        ArrayList<String> arrayWords = new ArrayList<>();
         for (String word : words) {
             if (word.toLowerCase().startsWith("w")) {
-                wList.add(word.toLowerCase());
+                arrayWords.add(word.toLowerCase());
             }
         }
-        if (wList.size() == 0) {
+        if (arrayWords.size() == 0) {
             return new String[0];
         }
-        Collections.sort(wList);
+        Collections.sort(arrayWords);
         StringBuilder builder = new StringBuilder();
         String delimiter = ",";
-        for (String word : wList) {
+        for (String word : arrayWords) {
             builder.append(word).append(delimiter);
         }
         return builder.toString().split(delimiter);
