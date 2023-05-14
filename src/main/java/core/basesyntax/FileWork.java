@@ -1,3 +1,4 @@
+
 package core.basesyntax;
 
 import java.io.IOException;
@@ -5,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class FileWork {
@@ -16,7 +18,7 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException("List was not created", e);
         }
-        String[] words = allText.split("[^\\p{L}]");
+        String[] words = allText.split("\\W");
         ArrayList<String> wList = new ArrayList<>();
         for (String word : words) {
             if (word.toLowerCase().startsWith("w")) {
