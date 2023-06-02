@@ -30,6 +30,9 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException("Can't read file", e);
         }
+        if (localResult.length() == ZERO_INDEX) {
+            return new String[ZERO_INDEX];
+        }
         String[] result = localResult.toString().split(" ");
         Arrays.sort(result);
         return result;
