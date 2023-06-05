@@ -32,16 +32,16 @@ public class FileWork {
         String resultString = "";
         for (String word: words) {
             if (word.charAt(0) == 'w') {
-                resultString +=  word + " ";
+                resultString += word + " ";
             }
         }
         if (resultString.isEmpty()) {
             return new String[]{};
         }
-        String[] resultArray =  resultString.split("\\W+");
+        String[] resultArray = resultString.split("\\W+");
         for (int i = 0; i < resultArray.length; i++) {
             for (int j = i + 1; j < resultArray.length; j++) {
-                if (resultArray[i].compareTo(resultArray[j]) >0) {
+                if (resultArray[i].compareTo(resultArray[j]) > 0) {
                     String temp = resultArray[i];
                     resultArray[i] = resultArray[j];
                     resultArray[j] = temp;
