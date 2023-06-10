@@ -3,14 +3,13 @@ package core.basesyntax;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.List;
 
 public class FileWork {
     private static final String REGEX = "\\W+";
     private static final String WORD_SEPARATOR = " ";
     private static final String START_CHARACTER = "w";
+
     public String[] readFromFile(String fileName) {
         StringBuilder result = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
@@ -35,6 +34,5 @@ public class FileWork {
         String[] resultArray = result.toString().split(WORD_SEPARATOR);
         Arrays.sort(resultArray);
         return resultArray;
-
     }
 }
