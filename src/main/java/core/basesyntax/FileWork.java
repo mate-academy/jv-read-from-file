@@ -8,10 +8,10 @@ import java.util.Arrays;
 
 public class FileWork {
     public static final String[] EMPTY_STRING_ARRAY = new String[0];
+
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
         String sentence;
-        String sentenceWithWordsOfW;
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
             StringBuilder stringBuilder = new StringBuilder();
@@ -34,12 +34,12 @@ public class FileWork {
                 wordsW.append(value).append(" ");
             }
         }
-        sentenceWithWordsOfW = wordsW.toString();
-        String[] ArrayWordsWithW = sentenceWithWordsOfW.split(" ");
-        Arrays.sort(ArrayWordsWithW);
+        String sentenceWithWordsOfW = wordsW.toString();
+        String[] arrayWordsWithW = sentenceWithWordsOfW.split(" ");
+        Arrays.sort(arrayWordsWithW);
         if (sentenceWithWordsOfW.isEmpty()) {
             return EMPTY_STRING_ARRAY;
         }
-        return ArrayWordsWithW;
+        return arrayWordsWithW;
     }
 }
