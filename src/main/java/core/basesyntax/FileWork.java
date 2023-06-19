@@ -11,23 +11,18 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         int count = 0;
-        String[] result = new String[count];
+        String[] result = new String[0];
         File file = new File(fileName);
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String value = reader.readLine();
             while (value != null) {
                 String[] splitFile = value.toLowerCase().split("\\W+");
+                value = reader.readLine();
                 for (String i : splitFile) {
                     if (i.charAt(0) == SPECIFIED_CHARACTER) {
-                        count++;
-                    }
-                }
-                int temp = 0;
-                for (String i : splitFile) {
-                    if (i.charAt(0) == SPECIFIED_CHARACTER) {
-                        result[temp] = i;
-                        temp++;
+                        result = Arrays.copyOf(result, result.length + 1);
+                        result[count++] = i;
                     }
                 }
             }
