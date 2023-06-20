@@ -10,13 +10,9 @@ public class FileWork {
     private static final String SPECIFIED_CHARACTER = "w";
     private static final String REGEX_EXCEPTION = "\\W+";
 
-    private String name;
-
     public String[] readFromFile(String fileName) {
         //write your code here
         File file = new File(fileName);
-        String[] bufferString;
-        String result;
         String[] arrayWordsBeginsOnthW = null;
         if (file.exists()) {
             try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
