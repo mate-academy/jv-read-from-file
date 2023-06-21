@@ -7,10 +7,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FileWork {
-    private static final String CERTAIN_LETTER = "w";
     static final int RESULT_LENGTH = 1;
     static final int STRING_INDEX = 0;
     static final int FILE_LENGTH = 0;
+    private static final String CERTAIN_LETTER = "w";
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
