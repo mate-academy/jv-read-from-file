@@ -22,7 +22,8 @@ public class FileWork {
                     String cleanedWord = word.replaceAll("[^a-zA-Z]", "");
 
                     if (!cleanedWord.isEmpty() && cleanedWord.toLowerCase().startsWith("w")) {
-                        wordsStartsWithW = Arrays.copyOf(wordsStartsWithW, wordsStartsWithW.length + 1);
+                        wordsStartsWithW = Arrays.copyOf(wordsStartsWithW,
+                                wordsStartsWithW.length + 1);
                         wordsStartsWithW[wordsStartsWithW.length - 1] = cleanedWord.toLowerCase();
                     }
                 }
