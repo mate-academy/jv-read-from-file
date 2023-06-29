@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FileWork {
@@ -11,20 +12,22 @@ public class FileWork {
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
     public String[] readFromFile(String fileName) {
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             StringBuilder fileContent = new StringBuilder();
             String line;
-            while ((line = br.readLine()) != null) {
+            while ((line = bufferedReader.readLine()) != null) {
                 fileContent.append(line).append(LINE_SEPARATOR);
             }
-            String[] words = fileName.split("\\W+");
+            String[] words = fileContent.toString().toLowerCase().split("\\W+");
             List<String> filteredWords = new ArrayList<>();
             for (String word : words) {
                 if (word.startsWith(STARTING_LETTER)) {
                     filteredWords.add(word);
                 }
             }
-            return filteredWords.toArray(new String[0]);
+            String[] result = filteredWords.toArray(new String[0]);
+            Arrays.sort(result);
+            return result;
         } catch (IOException e) {
             throw new RuntimeException("can`t reach file: " + fileName, e);
         }
