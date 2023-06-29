@@ -3,6 +3,8 @@ package core.basesyntax;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
@@ -15,14 +17,13 @@ public class FileWork {
                 sb.append(line).append(" ");
             }
             String[] words = fileName.split("\\W+");
-            StringBuilder filteredWords = new StringBuilder();
+            List<String> filteredWords = new ArrayList<>();
             for (String word : words) {
-                if (word.toLowerCase().startsWith("w")) {
-                    filteredWords.append(word.toLowerCase()).append(" ");
+                if (word.startsWith("w")) {
+                    filteredWords.add(word);
                 }
             }
-            String[] result = filteredWords.toString().trim().split(" ");
-            return result;
+            return filteredWords.toArray(new String[0]);
         } catch (IOException e) {
             throw new RuntimeException("can`t reach file", e);
         } finally {
