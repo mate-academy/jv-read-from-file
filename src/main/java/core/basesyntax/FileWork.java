@@ -10,15 +10,15 @@ import java.util.List;
 public class FileWork {
 
     public String[] readFromFile(String fileName) {
-        List<String> listStartsFromW = new ArrayList<>();
+        List<String> listOfWordsStartsWithW = new ArrayList<>();
         String[] words = getLinesFromFile(fileName).toLowerCase().split("\\W+");
         for (String word: words) {
             if (word.startsWith("w")) {
-                listStartsFromW.add(word);
+                listOfWordsStartsWithW.add(word);
             }
         }
-        Collections.sort(listStartsFromW);
-        return listStartsFromW.toArray(new String[0]);
+        Collections.sort(listOfWordsStartsWithW);
+        return listOfWordsStartsWithW.toArray(new String[0]);
     }
 
     public static String getLinesFromFile(String filename) {
