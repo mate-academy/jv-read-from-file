@@ -11,7 +11,7 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         List<String> listStartsFromW = new ArrayList<>();
-        String[] words = linesFromFile(fileName).toLowerCase().split("\\W+");
+        String[] words = getLinesFromFile(fileName).toLowerCase().split("\\W+");
         for (String word: words) {
             if (word.startsWith("w")) {
                 listStartsFromW.add(word);
@@ -21,7 +21,7 @@ public class FileWork {
         return listStartsFromW.toArray(new String[0]);
     }
 
-    public static String linesFromFile(String filename) {
+    public static String getLinesFromFile(String filename) {
         try {
             List<String> listOfLines = Files.readAllLines(Path.of(filename));
             return String.valueOf(listOfLines);
