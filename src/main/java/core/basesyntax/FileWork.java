@@ -29,6 +29,7 @@ public class FileWork {
         Arrays.sort(resultArray);
         return resultArray;
     }
+
     public String stringFromFile(String fileName) {
         StringBuilder builder = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
