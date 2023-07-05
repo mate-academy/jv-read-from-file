@@ -15,10 +15,10 @@ public class FileWork {
             String lineValue = bufferedReader.readLine();
             while (lineValue != null) {
                 char targetChar = 'w';
-                String[] splittedWords = lineValue.split("\\W+");
+                String[] splitWords = lineValue.split("\\W+");
 
-                for (String splittedWord : splittedWords) {
-                    String word = splittedWord.toLowerCase();
+                for (String splitWord : splitWords) {
+                    String word = splitWord.toLowerCase();
                     char[] chars = word.toCharArray();
                     if (chars[0] == targetChar) {
                         stringBuilder.append(word).append(" ");
