@@ -13,7 +13,7 @@ public class FileWork {
         File file = new File(fileName);
         StringBuilder stringBuilder = new StringBuilder();
         String[] sortedArray;
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))){
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             String text = bufferedReader.readLine();
             while (text != null) {
                 String[] textArr = text.split("\\W+");
