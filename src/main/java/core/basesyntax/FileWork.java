@@ -10,22 +10,22 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
 
-        List<String> sortWords = new ArrayList<>();
+        List<String> sortWordss = new ArrayList<>();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String str;
             while ((str = bufferedReader.readLine()) != null) {
                 String[] words = str.toLowerCase().split("\\W+");
                 for (String word : words) {
                     if (word.startsWith("w")) {
-                        sortWords.add(word);
+                        sortWordss.add(word);
                     }
                 }
             }
         } catch (IOException e) {
             throw new RuntimeException("Can't read file", e);
         }
-        sortWords.sort(String::compareToIgnoreCase);
-        return sortWords.toArray(new String[0]);
+        sortWordss.sort(String::compareToIgnoreCase);
+        return sortWordss.toArray(new String[0]);
     }
 }
 
