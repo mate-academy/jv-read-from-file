@@ -29,7 +29,6 @@ public class FileWork {
                 }
                 line = bufferedReader.readLine();
             }
-
         } catch (FileNotFoundException e) {
             throw new RuntimeException("Can't open a file!", e);
         } catch (IOException e) {
