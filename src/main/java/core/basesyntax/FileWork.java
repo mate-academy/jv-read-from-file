@@ -28,22 +28,29 @@ public class FileWork {
         return resultStrArr;
     }
 
+    // Converts StringBuilder to
     public String[] convertTextToStringArray(StringBuilder text) {
         String[] resultStringArray = text.toString().split(" ");
-        StringBuilder collectedWWords = new StringBuilder();
+        StringBuilder collectedCharWords = new StringBuilder();
         for (String s : resultStringArray) {
             // Remove non-alphabetic characters
             String word = s.replaceAll("[^a-zA-Z]+", "");
-            if (!word.isEmpty() && Character.toLowerCase(word.charAt(0))
-                    == SPECIFIED_CHARACTER) {
-                collectedWWords.append(word).append(" ");
-            }
+            collectedCharWords.append(collectByCharWord(word));
         }
-        if (collectedWWords.length() > 0) {
-            resultStringArray = collectedWWords.toString().toLowerCase().split(" ");
+        if (collectedCharWords.length() > 0) {
+            resultStringArray = collectedCharWords.toString().toLowerCase().split(" ");
         } else {
             resultStringArray = new String[0];
         }
         return resultStringArray;
+    }
+
+    public String collectByCharWord(String word) {
+        StringBuilder collectByCharWord = new StringBuilder();
+        if (!word.isEmpty() && Character.toLowerCase(word.charAt(0))
+                == SPECIFIED_CHARACTER) {
+            collectByCharWord.append(word).append(" ");
+        }
+        return collectByCharWord.toString();
     }
 }
