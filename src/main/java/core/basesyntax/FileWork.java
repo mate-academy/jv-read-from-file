@@ -11,7 +11,6 @@ public class FileWork {
     public String[] readFromFile(String fileName) {
         String fileContent = getStringFromFile(fileName);
         String filterResultString;
-        String[] filterResultArray;
 
         if (fileContent.length() == 0) {
             return new String[0];
@@ -23,7 +22,7 @@ public class FileWork {
             return new String[0];
         }
 
-        filterResultArray = filterResultString.split(" ");
+        String[] filterResultArray = filterResultString.split(" ");
         Arrays.sort(filterResultArray);
 
         return filterResultArray;
