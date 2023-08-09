@@ -25,6 +25,6 @@ public class FileWork {
             e.printStackTrace();
         }
         filteredWords.sort(String::compareToIgnoreCase);
-        return new String[filteredWords.size()];
+        return filteredWords.toArray(new String[filteredWords.size()]);
     }
 }
