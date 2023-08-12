@@ -1,10 +1,16 @@
 package core.basesyntax;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class FileWork {
     private static final char LETTER_W = 'w';
+
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
         String[] result;
@@ -24,9 +30,7 @@ public class FileWork {
 
     private String getTextFromReader(BufferedReader reader) {
         StringBuilder result = new StringBuilder();
-        reader.lines().forEach(s -> {
-            result.append(s).append("\n");
-        });
+        reader.lines().forEach(s -> result.append(s).append("\n"));
         return result.toString();
     }
 
