@@ -38,7 +38,8 @@ public class FileWork {
             StringBuilder wordsWithoutSymbols = new StringBuilder();
 
             for (int i = START_INDEX; i < splittedWordWithW.length; i++) {
-                wordsWithoutSymbols.append(splittedWordWithW[i].replaceAll("[^A-Za-z0-9 ]","")).append(" ");
+                wordsWithoutSymbols.append(splittedWordWithW[i].
+                        replaceAll("[^A-Za-z0-9 ]","")).append(" ");
             }
 
             String[] result = wordsWithoutSymbols.toString().split(" ");
