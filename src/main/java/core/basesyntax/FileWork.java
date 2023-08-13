@@ -1,6 +1,9 @@
 package core.basesyntax;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
@@ -38,15 +41,15 @@ public class FileWork {
             StringBuilder wordsWithoutSymbols = new StringBuilder();
 
             for (int i = START_INDEX; i < splittedWordWithW.length; i++) {
-                wordsWithoutSymbols.append(splittedWordWithW[i].
-                        replaceAll("[^A-Za-z0-9 ]","")).append(" ");
+                wordsWithoutSymbols.append(splittedWordWithW[i]
+                        .replaceAll("[^A-Za-z0-9 ]","")).append(" ");
             }
 
             String[] result = wordsWithoutSymbols.toString().split(" ");
             Arrays.sort(result);
             return result;
 
-            } catch (IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException("can't read a file", e);
         }
     }
