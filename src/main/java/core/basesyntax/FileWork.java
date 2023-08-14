@@ -11,21 +11,20 @@ public class FileWork {
         ArrayList<String> words = new ArrayList<String>();
         try {
             BufferedReader file = new BufferedReader(new FileReader(fileName));
-            String line = "";
+            String line = file.readLine();
             while (line != null) {
-                line = file.readLine();
                 String[] splittedLine = line.split("\\W+");
                 for (String word : splittedLine) {
                     if (word.toLowerCase().startsWith("w")) {
                         words.add(word.toLowerCase());
                     }
                 }
-
+                line = file.readLine();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         words.sort(Comparator.naturalOrder());
-        return (String[]) words.toArray();
+        return words.toArray(new String[0]);
     }
 }
