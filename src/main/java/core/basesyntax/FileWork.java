@@ -8,7 +8,6 @@ import java.util.Collections;
 
 public class FileWork {
     private static final String SPLIT_PATTER = "\\W+";
-    String fix = "try fix";
 
     public String[] readFromFile(String fileName) {
         ArrayList<String> result = new ArrayList<>();
