@@ -32,6 +32,5 @@ public class FileWork {
         String[] wordsInNatureOrder = stringBuilder.toString().split(" ");
         Arrays.sort(wordsInNatureOrder, Comparator.naturalOrder());
         return wordsInNatureOrder.length > 1 ? wordsInNatureOrder : new String[0];
-
     }
 }
