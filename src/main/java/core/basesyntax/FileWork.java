@@ -16,15 +16,11 @@ public class FileWork {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String value = reader.readLine();
             while (value != null) {
-                wordsFromFile.append(value);
+                wordsFromFile.append(value).append(" ");
                 value = reader.readLine();
             }
         } catch (IndexOutOfBoundsException | IOException e) {
             throw new RuntimeException("Can't read file", e);
-        }
-
-        if (wordsFromFile.toString().isEmpty()) {
-            return new String[0];
         }
 
         String[] withoutPunctuation = wordsFromFile.toString().toLowerCase().split("\\W+");
@@ -34,6 +30,11 @@ public class FileWork {
                 result.append(s).append(" ");
             }
         }
+
+        if (result.toString().isEmpty()) {
+            return new String[] {};
+        }
+
         return result.toString().split(" ");
     }
 }
