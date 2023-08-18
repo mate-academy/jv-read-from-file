@@ -14,9 +14,9 @@ public class FileWork {
         List<String> result = new ArrayList<>();
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
-            String value = bufferedReader.readLine();
-            while (value != null) {
-                String[]words = fileName.split("\\W+");
+            String value;
+            while ((value = bufferedReader.readLine()) != null) {
+                String[]words = value.split("\\W+");
                 for (String word : words) {
                     if (word.toLowerCase().startsWith(SPECIFIED_CHARACTER)) {
                         result.add(word.toLowerCase());
@@ -29,4 +29,5 @@ public class FileWork {
         Collections.sort(result);
         return result.toArray(new String[]{});
     }
+
 }
