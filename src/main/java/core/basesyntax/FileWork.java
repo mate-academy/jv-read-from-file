@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
+    private static final char SPECIFIED_CHARACTER = 'w';
+
     public String[] readFromFile(String fileName) {
         StringBuilder stringBuilder = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
@@ -23,7 +25,7 @@ public class FileWork {
             StringBuilder resultW = new StringBuilder();
             for (int i = 0; i < result.length; i++) {
                 char[] charArray = result[i].toCharArray();
-                if (charArray[0] == 'w') {
+                if (charArray[0] == SPECIFIED_CHARACTER) {
                     resultW.append(result[i]).append(" ");
                 }
             }
