@@ -9,21 +9,21 @@ import java.util.List;
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
-            List<String> result = new ArrayList<>();
-            try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    String[] words = line.split("[\\p{Punct}\\s]+");
-                    for (String word : words) {
-                        if (word.toLowerCase().startsWith("w")) {
-                            result.add(word.toLowerCase());
-                        }
+        List<String> result = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] words = line.split("[\\p{Punct}\\s]+");
+                for (String word : words) {
+                    if (word.toLowerCase().startsWith("w")) {
+                        result.add(word.toLowerCase());
                     }
                 }
-            } catch (IOException e) {
-                System.out.println("An error occured: " + e.getMessage());
             }
-            Collections.sort(result);
-            return result.toArray(new String[0]);
+        } catch (IOException e) {
+            System.out.println("An error occured: " + e.getMessage());
+        }
+        Collections.sort(result);
+        return result.toArray(new String[0]);
     }
 }
