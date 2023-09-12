@@ -1,13 +1,17 @@
 package core.basesyntax;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
 public class FileWork {
     private static final String SPECIFIC_LETTER = "w";
+
     public String[] readFromFile(String fileName) {
-        //write your code here
         File file = new File(fileName);
 
         StringBuilder fileContent = new StringBuilder();
@@ -23,16 +27,20 @@ public class FileWork {
 
             bufferedReader.close();
         } catch (FileNotFoundException e) {
-            throw new RuntimeException("Can't reach the file " + fileName, e);
+            throw new RuntimeException("Can't find the file " + fileName, e);
         } catch (IOException e) {
             throw new RuntimeException("Can't read the file " + fileName, e);
         }
 
-        return findWordsStartWithSpecificLetter(fileContent.toString());
+        return findSpecificWords(fileContent.toString());
     }
 
-    private String[] findWordsStartWithSpecificLetter(String input) {
-        return Pattern.compile(SPECIFIC_LETTER + "\\w+" + "|" + SPECIFIC_LETTER.toUpperCase() + "\\w+")
+    private String[] findSpecificWords(String input) {
+        return Pattern.compile("\\b"
+                        + SPECIFIC_LETTER + "\\w+"
+                        + "|"
+                        + "\\b"
+                        + SPECIFIC_LETTER.toUpperCase() + "\\w+")
                 .matcher(input)
                 .results()
                 .map(MatchResult::group)
