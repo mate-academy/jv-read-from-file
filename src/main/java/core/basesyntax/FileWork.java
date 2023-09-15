@@ -7,6 +7,7 @@ import java.util.Arrays;
 
 public class FileWork {
     private static final String SEPARATOR_OF_WORDS = " ";
+
     public String[] readFromFile(String fileName) {
         //write your code here
         try {
@@ -20,8 +21,8 @@ public class FileWork {
             String [] words = builder.toString().toLowerCase().split("\\W+");
             StringBuilder resultBuilder = new StringBuilder();
             for (String word : words) {
-                if (word.charAt(0) == 'w')  {
-                   resultBuilder.append(word).append(SEPARATOR_OF_WORDS);
+                if (word.charAt(0) == 'w') {
+                    resultBuilder.append(word).append(SEPARATOR_OF_WORDS);
                 }
             }
             if (resultBuilder.toString().isEmpty()) {
