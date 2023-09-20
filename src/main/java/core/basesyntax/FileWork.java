@@ -1,4 +1,5 @@
 package core.basesyntax;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -38,7 +39,7 @@ public class FileWork {
 
     public String[] sortStringArray(String[] array) {
         for (int i = 0; i < array.length; ++i) {
-            for (int j = i+1; j < array.length; ++j) {
+            for (int j = i + 1; j < array.length; ++j) {
                 char[] comparedWord1 = array[i].toCharArray();
                 char[] comparedWord2 = array[j].toCharArray();
                 int c = 0;
@@ -48,7 +49,7 @@ public class FileWork {
                         array[i] = array[j];
                         array[j] = temp;
                         break;
-                    } else if (comparedWord1[c] < comparedWord2[c]){
+                    } else if (comparedWord1[c] < comparedWord2[c]) {
                         break;
                     }
                     ++c;
