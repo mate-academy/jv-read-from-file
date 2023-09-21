@@ -5,15 +5,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class FileWork {
     public static final String SPECIFIC_CHAR = "w";
 
     public String[] readFromFile(String fileName) {
-        //write your code here
-      //  return null;
         File file = new File(fileName);
         String readFrom = null;
         StringBuilder builder = new StringBuilder();
@@ -21,7 +18,7 @@ public class FileWork {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String value = reader.readLine();
-            while (value != null){
+            while (value != null) {
                 builder.append(value).append(System.lineSeparator());
                 value = reader.readLine();
             }
