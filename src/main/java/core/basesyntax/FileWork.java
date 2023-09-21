@@ -1,6 +1,9 @@
 package core.basesyntax;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class FileWork {
     public static final String SPECIFIC_CHAR = "w";
@@ -28,6 +31,20 @@ public class FileWork {
         if (readFrom.isEmpty()) {
             return new String[0];
         }
+
+        ArrayList<String> wordStartWithW = new ArrayList<>();
+
+        String [] readFromFile = readFrom.split("\\W+");
+
+        for (String word : readFromFile) {
+            word = word.toLowerCase();
+            if (word.startsWith(SPECIFIC_CHAR)) {
+                wordStartWithW.add(word);
+            }
+        }
+        Collections.sort(wordStartWithW);
+
+        return wordStartWithW.toArray(new String[0]);
 
     }
 }
