@@ -1,8 +1,11 @@
 package core.basesyntax;
 
+import java.io.File;
+
 public class FileWork {
     public String[] readFromFile(String fileName) {
-        //write your code here
+        File file = new File(fileName);
+
         return null;
     }
 }
