@@ -6,9 +6,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
-
     private static final String SEPARATOR_OF_WORDS = " ";
-
     public String[] readFromFile(String fileName) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
