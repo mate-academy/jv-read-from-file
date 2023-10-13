@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="core.basesyntax.FileWorkTest" time="0.084" errors="0" skipped="0">
+<testsuite tests="5" failures="0" name="core.basesyntax.FileWorkTest" time="0.072" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2022.3.1"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -65,9 +65,9 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase classname="core.basesyntax.FileWorkTest" name="readFromEmptyFile" time="0.044"/>
-  <testcase classname="core.basesyntax.FileWorkTest" name="getCamelCaseResultFromFile" time="0.029"/>
-  <testcase classname="core.basesyntax.FileWorkTest" name="getAdjacentWordsResultFromFile" time="0.005"/>
-  <testcase classname="core.basesyntax.FileWorkTest" name="getLowerCaseResultFromFile" time="0.003"/>
-  <testcase classname="core.basesyntax.FileWorkTest" name="getEmptyResultFromFile" time="0.003"/>
+  <testcase classname="core.basesyntax.FileWorkTest" name="readFromEmptyFile" time="0.049"/>
+  <testcase classname="core.basesyntax.FileWorkTest" name="getCamelCaseResultFromFile" time="0.017"/>
+  <testcase classname="core.basesyntax.FileWorkTest" name="getAdjacentWordsResultFromFile" time="0.002"/>
+  <testcase classname="core.basesyntax.FileWorkTest" name="getLowerCaseResultFromFile" time="0.002"/>
+  <testcase classname="core.basesyntax.FileWorkTest" name="getEmptyResultFromFile" time="0.002"/>
 </testsuite>
