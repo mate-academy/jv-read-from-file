@@ -1,8 +1,41 @@
 package core.basesyntax;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class FileWork {
     public String[] readFromFile(String fileName) {
-        //write your code here
-        return null;
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            StringBuilder content = new StringBuilder();
+            String line;
+
+            while ((line = reader.readLine()) != null){
+                content.append(line).append(" ");
+            }
+            reader.close();
+
+            String text = content.toString().toLowerCase();
+
+            Pattern pattern = Pattern.compile("\\b\\w+\\b");
+            Matcher matcher = pattern.matcher(text);
+
+            HashSet<String> filteredWords = new HashSet<>();
+            while(matcher.find()) {
+                String word = matcher.group();
+                if (word.startsWith("w")) {
+                    filteredWords.add(word);
+                }
+            }
+            String[] result = filteredWords.toArray(new String[0]);
+            return result;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new String[0];
+        }
     }
 }
