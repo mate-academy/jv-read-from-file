@@ -3,12 +3,11 @@ package core.basesyntax;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.text.Collator;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.List;
 import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
@@ -34,8 +33,10 @@ public class FileWork {
                     filteredWords.add(word);
                 }
             }
-            ArrayList<String> sortedWords = new ArrayList<>(filteredWords);
-            Collections.sort(sortedWords, Collator.getInstance());
+            List<String> sortedWords = filteredWords.stream()
+                    .distinct() // Remove duplicates
+                    .sorted()
+                    .collect(Collectors.toList());
 
         } catch (IOException e) {
             e.printStackTrace();
