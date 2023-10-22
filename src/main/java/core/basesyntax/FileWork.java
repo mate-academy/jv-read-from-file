@@ -14,7 +14,7 @@ public class FileWork {
             StringBuilder content = new StringBuilder();
             String line;
 
-            while ((line = reader.readLine()) != null){
+            while ((line = reader.readLine()) != null) {
                 content.append(line).append(" ");
             }
             reader.close();
@@ -25,7 +25,7 @@ public class FileWork {
             Matcher matcher = pattern.matcher(text);
 
             HashSet<String> filteredWords = new HashSet<>();
-            while(matcher.find()) {
+            while (matcher.find()) {
                 String word = matcher.group();
                 if (word.startsWith("w")) {
                     filteredWords.add(word);
