@@ -1,7 +1,7 @@
 package core.basesyntax;
 
-import java.io.File;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
@@ -33,7 +33,7 @@ public class FileWork {
                 builder.append(" ");
             }
         }
-        if(builder.toString().isEmpty()) {
+        if (builder.toString().isEmpty()) {
             return new String[0];
         }
         String [] wordStartsWithW = builder.toString().split(" ");
