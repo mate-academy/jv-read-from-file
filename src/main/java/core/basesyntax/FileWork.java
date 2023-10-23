@@ -9,6 +9,7 @@ import java.util.Arrays;
 public class FileWork {
     private static final String REG_EXP = "\\W+";
     private static final String START = "w";
+
     public String[] readFromFile(String fileName) {
         StringBuilder stringBuilder = new StringBuilder();
         try {
