@@ -1,7 +1,6 @@
 package core.basesyntax;
 
 import java.io.*;
-import java.nio.Buffer;
 import java.util.Arrays;
 
 public class FileWork {
