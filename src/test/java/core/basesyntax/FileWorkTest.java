@@ -28,24 +28,24 @@ public class FileWorkTest {
     public static void beforeClass() throws Exception{
         Files.write(Path.of(EMPTY_FILE_NAME), "".getBytes(StandardCharsets.UTF_8));
         Files.write(Path.of(SECOND_FILE_NAME), (
-            "Beautiful two-bedroom city flat five minutes' walk from the cathedral.\n" +
+                "Beautiful two-bedroom city flat five minutes' walk from the cathedral.\n" +
                 "Fully equipped kitchen, living room with a large sofa and chairs, big TV and balcony.\n" +
                 "The balcony has space for four people to sit and gets the sun in the mornings,\n" +
                 "and the flat is light and warm. The upstairs bedroom sleeps four people, with two double beds;\n" +
                 "the downstairs bedroom sleeps two in single beds.\n" +
                 "The flat is perfect for families and is near shops, bars and restaurants.\n").getBytes(StandardCharsets.UTF_8));
         Files.write(Path.of(THIRD_FILE_NAME), (
-            "Four-bedroom farmhouse in the countryside. All of the four double bedrooms are en suite.\n" +
+                "Four-bedroom farmhouse in the countryside. All of the four double bedrooms are en suite.\n" +
                 "Farm kitchen, tables and chairs outside. Great for groups of friends. The supermarket is half\n" +
                 "an hour by car and you can take a train from the village into the city. Escape from normal life\n" +
                 "for a few days.\n").getBytes(StandardCharsets.UTF_8));
         Files.write(Path.of(FOURS_FILE_NAME), (
-            "WWW? Four-bedroom farmhouse in the countryside. Wave! All of the four double bedrooms are en suite.\n" +
+                "WWW? Four-bedroom farmhouse in the countryside. Wave! All of the four double bedrooms are en suite.\n" +
                 "Farm kitchen, tables and chairs outside. Great for groups of friends. World and the supermarket is\n" +
                 "half an hour by car and you can take a train from wall the village into the city. Escape from normal\n" +
                 "life for a few days, width.\n").getBytes(StandardCharsets.UTF_8));
         Files.write(Path.of(FIFTH_FILE_NAME), (
-            "Whenever I have gone there, there have been either so many\n" +
+                "Whenever I have gone there, there have been either so many\n" +
                 "people that I have not been able to see the pictures, which\n" +
                 "was dreadful, or so many pictures that I have not been able to see the people, which was\n" +
                 "worse. The Grosvenor is really the only place.\"\n").getBytes(StandardCharsets.UTF_8));
