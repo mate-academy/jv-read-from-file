@@ -6,21 +6,20 @@ import java.nio.file.Path;
 import java.util.Arrays;
 
 public class FileWork {
-    private String inputString;
+    private static final String SPECIFIED_CHARACTER = "w";
     private String[] result;
     private StringBuilder stringBuilder = new StringBuilder();
     private int wordsStartsWithW = 0;
 
     public String[] readFromFile(String fileName) throws IOException {
         try {
-            inputString = Files.readString(Path.of(fileName));
+            result = Files.readString(Path.of(fileName)).split("[^A-Za-z0-9]+");
         } catch (IOException e) {
             throw new IOException("Can't read the file");
         }
-        result = inputString.split("[^A-Za-z0-9]+");
         for (String word : result) {
-            if (word.startsWith("w")
-                    || word.startsWith("W")) {
+            if (word.startsWith(SPECIFIED_CHARACTER)
+                    || word.startsWith(SPECIFIED_CHARACTER.toUpperCase())) {
                 stringBuilder.append(word.toLowerCase()).append(" ");
                 wordsStartsWithW++;
             }
