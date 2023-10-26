@@ -20,9 +20,7 @@ public class FileWork {
             String string = strings.toString().toLowerCase();
             String[] strings1 = string.split("\\W+");
             Arrays.sort(strings1);
-            if (strings1.length == 0) {
-                return new String[0];
-            }
+
             for (int i = 1; i < strings1.length; i++) {
                 if (strings1[i].charAt(0) == 'w') {
                     stringBuilder.append(strings1[i]).append(" ");
