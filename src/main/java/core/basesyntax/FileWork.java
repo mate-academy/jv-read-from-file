@@ -20,7 +20,7 @@ public class FileWork {
                     .sorted()
                     .toArray(String[]::new);
         } catch (IOException e) {
-            throw new RuntimeException("Cannot read the file", e);
+            throw new RuntimeException("Can't read the file", e);
         }
     }
 }
