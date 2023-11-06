@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class FileWork {
-    private static final String regexpForDividingWords = "\\\\W+";
+    private static final String regexpForDividingWords = "\\W+";
 
     public String[] readFromFile(String fileName) {
         //write your code here
