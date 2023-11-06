@@ -31,8 +31,9 @@ public class FileWork {
         String[] words = sentence.split(regexpForDividingWords);
         List<String> filteredWords = new ArrayList<>();
         for (String word : words) {
-            if (checkIfStartsW(word))
+            if (checkIfStartsW(word)) {
                 filteredWords.add(word.toLowerCase());
+            }
         }
         return filteredWords;
     }
