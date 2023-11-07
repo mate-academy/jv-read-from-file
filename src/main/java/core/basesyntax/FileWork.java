@@ -1,6 +1,8 @@
 package core.basesyntax;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
@@ -21,6 +23,9 @@ public class FileWork {
             }
             resultArray = stringBuilder.toString().split(",");
             Arrays.sort(resultArray);
+            if (resultArray.length == 1) {
+                return new String[0];
+            }
             return resultArray;
         } catch (IOException e) {
             throw new RuntimeException("Can't read file", e);
