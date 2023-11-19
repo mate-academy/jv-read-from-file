@@ -9,8 +9,9 @@ import java.util.Arrays;
 public class FileWork {
     private static final char FILTER_CHARACTER = 'w';
     private int matchCounter = 0;
+
     public String[] readFromFile(String fileName) {
-        StringBuilder stringBuilder= new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String line = bufferedReader.readLine();
             while (line != null) {
@@ -27,7 +28,8 @@ public class FileWork {
         }
         String[] result = new String[matchCounter];
         int index = 0;
-        for (String word : stringBuilder.toString().split(" ")) {
+        for (String word : stringBuilder.toString()
+                .split(" ")) {
             result[index++] = word;
         }
         Arrays.sort(result);
@@ -37,7 +39,7 @@ public class FileWork {
     private void matcher(String line, StringBuilder stringBuilder) {
         for (String word : line.split(" ")) {
             word = word.toLowerCase();
-             word = word.replaceAll("[^a-zA-Z]", "");
+            word = word.replaceAll("[^a-zA-Z]", "");
             if (word.charAt(0) == FILTER_CHARACTER) {
                 stringBuilder
                         .append(word.trim())
