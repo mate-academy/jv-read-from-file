@@ -24,8 +24,11 @@ public class FileWork {
         File file = new File(correctPath);
         StringBuilder stringBuilder = new StringBuilder();
 
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(file));
+        if (!file.exists()) {
+            throw new RuntimeException("File does not exist: " + correctPath);
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             int value = reader.read();
             while (value != END_OF_FILE) {
                 if (value < UPPERCASE_A || (value > UPPERCASE_Z
