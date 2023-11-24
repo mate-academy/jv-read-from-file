@@ -50,8 +50,8 @@ public class FileWork {
             }
         }
         String onlyWordWithW = stringBuilder.toString();
-        String[] resultArray = onlyWordWithW.split(" ");
+        String[] result = onlyWordWithW.split(" ");
         String[] emptyArray = {};
-        return (resultArray[EMPTY_RESULT_INDEX].isEmpty()) ? emptyArray : resultArray;
+        return (result[EMPTY_RESULT_INDEX].isEmpty()) ? emptyArray : result;
     }
 }
