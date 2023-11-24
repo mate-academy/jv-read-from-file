@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.Arrays;
 
 public class FileWork {
@@ -18,14 +17,12 @@ public class FileWork {
     private static final int EMPTY_RESULT_INDEX = 0;
 
     public String[] readFromFile(String fileName) {
-        int lastIndex = fileName.lastIndexOf("\\");
-        String correctPath = Paths.get("./") + fileName.substring(lastIndex + 1);
-        int indexOf = 0;
-        File file = new File(correctPath);
+        File file = new File(fileName);
         StringBuilder stringBuilder = new StringBuilder();
+        int indexOf = 0;
 
         if (!file.exists()) {
-            throw new RuntimeException("File does not exist: " + correctPath);
+            throw new RuntimeException("File does not exist: " + fileName);
         }
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
