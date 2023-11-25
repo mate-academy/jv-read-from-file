@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
+    private static final String FILTER_LETTER = "w";
+
     public String[] readFromFile(String fileName) {
         StringBuilder builder = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
@@ -20,9 +22,8 @@ public class FileWork {
         String[] text = builder.toString().split("\\W+");
         StringBuilder stringBuilder = new StringBuilder();
         for (String word : text) {
-            if (word.toLowerCase().startsWith("w")) {
+            if (word.toLowerCase().startsWith(FILTER_LETTER)) {
                 stringBuilder.append(word.toLowerCase()).append(" ");
-
             }
         }
         if (stringBuilder.toString().isEmpty()) {
