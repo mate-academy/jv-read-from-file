@@ -18,7 +18,6 @@ public class FileWork {
         }
 
         List<String> list = Arrays.asList(content.split("[^a-zA-Z]"));
-
         list = list
                 .stream()
                 .map(String::toLowerCase)
