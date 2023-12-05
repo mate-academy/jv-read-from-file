@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.List;
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
@@ -16,25 +17,14 @@ public class FileWork {
             throw new RuntimeException(e);
         }
 
-        content = content.replaceAll("\n", " ");
-        String[] str = content.toLowerCase().split(" ");
+        List<String> list = Arrays.asList(content.split("[^a-zA-Z]"));
 
-        int couter = 0;
-        for (String i : str) {
-            if (i.startsWith("w")) {
-                couter++;
-            }
-        }
+        list = list
+                .stream()
+                .map(String::toLowerCase)
+                .filter(x -> x.startsWith("w"))
+                .sorted().toList();
 
-        String[] result = new String[couter];
-
-        for (String i : str) {
-            if (i.startsWith("w") && couter >= 0) {
-                result[couter - 1] = i.replaceAll("[^a-z]", "");
-                couter--;
-            }
-        }
-        Arrays.sort(result);
-        return result;
+        return list.toArray(new String[0]);
     }
 }
