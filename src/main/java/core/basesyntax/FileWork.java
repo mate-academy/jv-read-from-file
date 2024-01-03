@@ -17,6 +17,10 @@ public class FileWork {
                 value = reader.read();
             }
             String words = stringBuilder.toString();
+            if (words.isEmpty()) {
+                String[] isEmpty = {};
+                return isEmpty;
+            }
             String[] split = words.split("\\W+");
             int amountOfCurrentWords = 0;
             for (int i = 0; i < split.length; i++) {
