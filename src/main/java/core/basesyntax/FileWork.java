@@ -37,6 +37,10 @@ public class FileWork {
                 }
             }
 
+            if (results.length() == 0) {
+                return new String[0];
+            }
+
             String result = results.toString();
             this.results = result.split(" ");
             Arrays.sort(this.results);
