@@ -12,6 +12,7 @@ public class FileWorkTest {
     private static final String TEMP_DIRECTORY = System.getProperty("java.io.tmpdir") + "/";
     private static final String EMPTY_FILE_NAME = TEMP_DIRECTORY + "test1";
     private static final String SECOND_FILE_NAME = TEMP_DIRECTORY + "test2";
+
     private static final String THIRD_FILE_NAME = TEMP_DIRECTORY + "test3";
     private static final String FOURS_FILE_NAME = TEMP_DIRECTORY + "test4";
     private static final String FIFTH_FILE_NAME = TEMP_DIRECTORY + "test5";
