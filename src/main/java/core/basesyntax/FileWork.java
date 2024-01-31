@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class FileWork {
@@ -13,18 +14,22 @@ public class FileWork {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                String[] separatedWords = line.split("[^a-zA-Z]");
+
+                String[] separatedWords = line.split("\\s+");
+
                 for (String word : separatedWords) {
-                    if (!word.isEmpty()) {
-                        totalResult.add(word.toLowerCase());
+
+                    word = word.replaceAll("[^a-zA-Z]", "").toLowerCase();
+
+                    if (!word.isEmpty() && word.startsWith("w")) {
+                        totalResult.add(word);
                     }
                 }
             }
-
+            Collections.sort(totalResult);
+            return totalResult.toArray(new String[0]);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("File is don`t open: " + fileName, e);
         }
-        totalResult.sort(String::compareToIgnoreCase);
-        return totalResult.toArray(new String[0]);
     }
 }
