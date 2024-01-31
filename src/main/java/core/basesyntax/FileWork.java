@@ -21,7 +21,7 @@ public class FileWork {
 
                     word = word.replaceAll("[^a-zA-Z]", "").toLowerCase();
 
-                    if (!word.isEmpty() && word.startsWith("w")) {
+                    if (word.startsWith("w")) {
                         totalResult.add(word);
                     }
                 }
