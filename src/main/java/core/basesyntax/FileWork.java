@@ -17,44 +17,41 @@ public class FileWork {
     private static final String SEPARATOR = " ";
 
     public String[] readFromFile(String fileName) {
-        StringBuilder builder = new StringBuilder();
-        try {
-            FileReader fileReader = new FileReader(fileName);
-            BufferedReader reader = new BufferedReader(fileReader);
-            int value = reader.read();
+        StringBuilder stringFromFile = new StringBuilder();
+        try (FileReader fileReader = new FileReader(fileName);
+                BufferedReader readerFileName = new BufferedReader(fileReader)) {
+            int value = readerFileName.read();
             while (value != -1) {
                 if (value == SPACE_SYMBOL || (value >= CAP_LETTER_A && value <= CAP_LETTER_Z)
                         || (value >= SMALL_LETTER_A && value <= SMALL_LETTER_Z)) {
-                    builder.append((char)value);
-                    value = reader.read();
+                    stringFromFile.append((char)value);
+                    value = readerFileName.read();
                 } else if (value == NEW_LINE) {
                     value = SPACE_SYMBOL;
                 } else {
-                    value = reader.read();
+                    value = readerFileName.read();
                 }
             }
-            fileReader.close();
-            reader.close();
         } catch (Exception e) {
             throw new RuntimeException(EXCEPTION_MESSAGE, e);
         }
-        String[] sortedArray = searchNeededWords(builder.toString().split(SEPARATOR));
+        String[] sortedArray = searchNeededWords(stringFromFile.toString().split(SEPARATOR));
         Arrays.sort(sortedArray);
         return sortedArray;
     }
 
     private static String[] searchNeededWords(String[] words) {
-        StringBuilder builder = new StringBuilder();
+        StringBuilder filteredString = new StringBuilder();
         for (String neededWords : words) {
             if (!neededWords.isEmpty()
                     && neededWords.toLowerCase().toCharArray()
                     [INDEX_OF_BEGIN_ARRAY] == STARTING_LETTER) {
-                builder.append(neededWords).append(SEPARATOR);
+                filteredString.append(neededWords).append(SEPARATOR);
             }
         }
-        if (builder.isEmpty()) {
+        if (filteredString.isEmpty()) {
             return new String[] {};
         }
-        return builder.toString().toLowerCase().split(SEPARATOR);
+        return filteredString.toString().toLowerCase().split(SEPARATOR);
     }
 }
