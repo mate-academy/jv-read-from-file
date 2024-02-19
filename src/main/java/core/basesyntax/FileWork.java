@@ -13,17 +13,13 @@ public class FileWork {
         try {
             allLines = Files.readAllLines(Path.of(fileName));
         } catch (IOException e) {
-            throw new RuntimeException("Can`t read from file", e);
+            throw new RuntimeException("Can't read from file", e);
         }
-        StringBuilder stringBuilder = new StringBuilder();
-        for (String line : allLines) {
-            stringBuilder.append(line).append(" ");
-        }
-        String result = stringBuilder.toString().toLowerCase();
-        String[] words = result.split("\\W");
+        String result = String.join(" ", allLines).toLowerCase();
+        String[] words = result.split("\\W+");
         List<String> filteredWords = new ArrayList<>();
         for (String word : words) {
-            if (word.matches("[w][a-z]+")) {
+            if (word.matches("^w[a-z]+")) {
                 filteredWords.add(word);
             }
         }
