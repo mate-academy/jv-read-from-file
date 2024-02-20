@@ -33,7 +33,7 @@ public class FileWork {
                 stringBuilder.append(word).append(SPACE);
             }
         }
-        if (stringBuilder.length() == 0) {
+        if (stringBuilder.isEmpty()) {
             return new String[0];
         }
         words = stringBuilder.toString().split(SPACE);
