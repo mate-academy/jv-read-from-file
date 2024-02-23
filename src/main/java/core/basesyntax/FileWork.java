@@ -28,6 +28,6 @@ public class FileWork {
         }
         String[] resultArray = wordsStartingWithW.toArray(new String[0]);
         Arrays.sort(resultArray);
-        return  resultArray;
+        return resultArray;
     }
 }
