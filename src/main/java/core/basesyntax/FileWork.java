@@ -13,16 +13,13 @@ public class FileWork {
             
             String content = Files.readString(Paths.get(fileName));
             
-            
             String[] words = content.split("\\W+");
-            
             
             List<String> filteredWords = Arrays.stream(words)
                     .filter(word -> word.toLowerCase().startsWith("w"))
                     .map(String::toLowerCase)
                     .sorted()
                     .collect(Collectors.toList());
-            
             
             return filteredWords.toArray(new String[0]);
         } catch (IOException e) {
