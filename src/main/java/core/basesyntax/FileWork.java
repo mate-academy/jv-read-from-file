@@ -41,8 +41,8 @@ public class FileWork {
         if (wordsWithFirstW.toString().isEmpty()) {
             return new String[0];
         }
-        String[] wWords = wordsWithFirstW.toString().toLowerCase().split(" ");
-        Arrays.sort(wWords);
-        return wWords;
+        String[] wwords = wordsWithFirstW.toString().toLowerCase().split(" ");
+        Arrays.sort(wwords);
+        return wwords;
     }
 }
