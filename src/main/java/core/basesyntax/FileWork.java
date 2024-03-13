@@ -10,8 +10,12 @@ public class FileWork {
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
         StringBuilder builder = new StringBuilder();
+        String stringEndsWithPoint = ".";
+        String stringEndsWithQuestionmark = "?";
+        String stringEndsWithExclemationmark = "!";
+        String startWithW = "w"; //constant fields
 
-        try {
+        try { //file to String
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String value = reader.readLine();
             while (value != null) {
@@ -23,32 +27,37 @@ public class FileWork {
         }
 
         String stringFromFile = builder.toString().toLowerCase().replace("\n"," ");
-
-        String[] stringTableFromFile = stringFromFile.split(" ");
+        String[] stringTableFromFile = stringFromFile.split(" ");//String to table
 
         int counter = 0;
 
-        for (int i = 0; i < stringTableFromFile.length; i++) {
-            if (stringTableFromFile[i].startsWith("w")) {
+        for (int i = 0; i < stringTableFromFile.length; i++) { //Counter for final table
+            if (stringTableFromFile[i].startsWith(startWithW)) {
                 counter++;
             }
         }
 
         String[] finalString = new String[counter];
         int finalStringCounter = 0;
-        for (int i = 0; i < stringTableFromFile.length; i++) {
+
+        for (int i = 0; i < stringTableFromFile.length; i++) { //filling new table
             String temporary = stringTableFromFile[i].trim();
-            if (temporary.startsWith("w")) {
-                if (temporary.endsWith("!")
-                        || temporary.endsWith("?")
-                        || temporary.endsWith(".")) {
-                    finalString[finalStringCounter++] = temporary.substring(0, temporary.length() - 1);
+            if (temporary.startsWith(startWithW)) {
+                if (
+                        temporary.endsWith(stringEndsWithPoint)
+                        || temporary.endsWith(stringEndsWithExclemationmark)
+                        || temporary.endsWith(stringEndsWithQuestionmark)
+                ) {
+                    finalString[finalStringCounter++] =
+                            temporary.substring(0, temporary.length() - 1);
                 } else {
-                    finalString[finalStringCounter++] = temporary;
+                    finalString[finalStringCounter++] =
+                            temporary;
                 }
             }
         }
-        Arrays.sort(finalString);
+        Arrays.sort(finalString);//sorting table
+
         return finalString;
     }
 }
