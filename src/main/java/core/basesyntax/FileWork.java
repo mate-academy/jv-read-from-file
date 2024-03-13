@@ -26,7 +26,8 @@ public class FileWork {
             throw new RuntimeException(e);
         }
 
-        String stringFromFile = builder.toString().toLowerCase().replace("\n"," ");
+        String stringFromFile = builder.toString().toLowerCase()
+                .replace(System.lineSeparator()," ");
         String[] stringTableFromFile = stringFromFile.split(" ");//String to table
 
         int counter = 0;
