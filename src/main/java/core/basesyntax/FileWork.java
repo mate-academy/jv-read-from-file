@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
+
 public class FileWork {
     public String[] readFromFile(String fileName) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -15,9 +16,11 @@ public class FileWork {
                 stringBuilder.append(value).append(" ");
                 value = bufferedReader.readLine();
             }
+            
         } catch (IOException e){
             throw new RuntimeException("Can`t read file", e);
         }
+        
         if (stringBuilder.length() == 0) {
             return new String[0];
         }
