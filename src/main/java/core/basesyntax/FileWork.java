@@ -17,7 +17,7 @@ public class FileWork {
                 value = bufferedReader.readLine();
             }
             
-        } catch (IOException e){
+        } catch (IOException e) {
             throw new RuntimeException("Can`t read file", e);
         }
         
@@ -26,12 +26,12 @@ public class FileWork {
         }
         String[] words = stringBuilder.toString().toLowerCase().split("\\W+");
         Arrays.sort(words);
-        for (String word : words){
-            if (word.charAt(0) == 'w'){
+        for (String word : words) {
+            if (word.charAt(0) == 'w') {
                 resultBuilder.append(word).append(" ");
             }
         }
-        if (resultBuilder.length() == 0){
+        if (resultBuilder.length() == 0) {
             return new String[0];
         }
         return resultBuilder.toString().split(" ");
