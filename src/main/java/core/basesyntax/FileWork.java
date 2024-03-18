@@ -1,4 +1,4 @@
-package org.example;
+package core.basesyntax;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
