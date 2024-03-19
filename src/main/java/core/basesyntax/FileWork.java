@@ -3,6 +3,8 @@ package core.basesyntax;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
+
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
@@ -22,7 +24,7 @@ public class FileWork {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Can't open that file" + fileName + e);
 
         }
 
@@ -30,6 +32,7 @@ public class FileWork {
             return new String[0];
         } else {
             String[] splitBuilder = stringBuilder.toString().split(" ");
+            Arrays.sort(splitBuilder);
             return splitBuilder;
         }
     }
