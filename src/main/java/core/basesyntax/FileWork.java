@@ -1,8 +1,38 @@
 package core.basesyntax;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
+
 public class FileWork {
     public String[] readFromFile(String fileName) {
-        //write your code here
-        return null;
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] split = line.split(" ");
+                for (String word : split) {
+                    String cleanWord = word.toLowerCase().replaceAll("[^a-zA-Z]", "");
+                    if (cleanWord.startsWith("w")) {
+                        stringBuilder.append(cleanWord).append(" ");
+                    }
+
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Can't open that file" + fileName + e);
+
+        }
+
+        if (stringBuilder.length() == 0) {
+            return new String[0];
+        } else {
+            String[] splitBuilder = stringBuilder.toString().split(" ");
+            Arrays.sort(splitBuilder);
+            return splitBuilder;
+        }
     }
 }
