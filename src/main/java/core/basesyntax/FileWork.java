@@ -24,7 +24,8 @@ public class FileWork {
             throw new RuntimeException("Cannot read file", e);
         }
 
-        String[] splitedStringWithRegexp = stringAccumulator.toString().split(REGEXP_STRING_PATTERN);
+        String[] splitedStringWithRegexp = stringAccumulator.toString()
+                .split(REGEXP_STRING_PATTERN);
         return sortStringsArray(filterStringsArrayForFirstChar(splitedStringWithRegexp));
     }
 
@@ -38,7 +39,7 @@ public class FileWork {
         return filteredString.isEmpty() ? new String[0] : filteredString.toString().split(" ");
     }
 
-    private String[] sortStringsArray (String[] array) {
+    private String[] sortStringsArray(String[] array) {
         for (int i = 0; i < array.length - 1; i++) {
             for (int j = i + 1; j < array.length; j++) {
                 if (array[i].compareTo(array[j]) > 0) {
