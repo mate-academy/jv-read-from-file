@@ -1,27 +1,44 @@
 package core.basesyntax;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Pattern;
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
-        String[] words = fileName.split(" ");
-        String[] filteredWords = new String[words.length];
-        int count = 0;
+        String fileContent = readFileContent(fileName);
+        if (fileContent.isEmpty()) {
+            return new String[0];
+        }
+
+        String[] words = fileContent.split("\\s+");
+        List<String> filteredWords = new ArrayList<>();
+        Pattern punctuationPattern = Pattern.compile("\\p{Punct}");
+
         for (String word : words) {
             if (word.toLowerCase().startsWith("w")) {
-                String filteredWord = word.replaceAll("\\p{Punct}", "");
-                // Convert to lowercase
+                String filteredWord = punctuationPattern.matcher(word).replaceAll("");
                 filteredWord = filteredWord.toLowerCase();
-                // Add the filtered word to the array
-                filteredWords[count++] = filteredWord;
+                filteredWords.add(filteredWord);
             }
         }
 
-        // Sort the filtered words
-        Arrays.sort(filteredWords, 0, count);
-
-        // Resize the array to remove null elements
-        return Arrays.copyOf(filteredWords, count);
+        String[] result = filteredWords.toArray(new String[0]);
+        Arrays.sort(result);
+        return result;
     }
 
+    private String readFileContent(String fileName) {
+        try {
+            return Files.readString(Path.of(fileName), StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
 }
