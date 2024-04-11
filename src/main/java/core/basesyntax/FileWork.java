@@ -21,9 +21,11 @@ public class FileWork {
                         builder.append(word).append(" ");
                     }
                 }
+
                 if (builder.isEmpty()) {
                     return new String[0];
                 }
+
                 String[] sortedWords = builder.toString().split(" ");
                 Arrays.sort(sortedWords);
 
