@@ -7,14 +7,14 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
-    private final static String DEFAULT_DELIMETER = " ";
+    private static final String DEFAULT_DELIMETER = " ";
 
     public String[] readFromFile(String fileName) {
         String text = getText(fileName);
         if (text.length() == 0) {
             return new String[] {};
         }
-        String trimmedText = getTrimmedTextText(text);
+        String trimmedText = getTrimmedText(text);
         String[] words = getWords(trimmedText);
         String[] fileredWords = filteredWords(words, 'w');
         Arrays.sort(fileredWords);
@@ -46,7 +46,7 @@ public class FileWork {
         return trimmedText.split(DEFAULT_DELIMETER);
     }
 
-    private String getTrimmedTextText(String text) {
+    private String getTrimmedText(String text) {
         return text
                 .toLowerCase()
                 .trim()
