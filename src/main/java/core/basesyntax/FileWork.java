@@ -50,11 +50,11 @@ public class FileWork {
         return text
                 .toLowerCase()
                 .trim()
-                .replace('?',  ' ')
-                .replace('!',  ' ')
-                .replace(';',  ' ')
-                .replace('.',  ' ')
-                .replace(',',  ' ')
+                .replace('?', ' ')
+                .replace('!', ' ')
+                .replace(';', ' ')
+                .replace('.', ' ')
+                .replace(',', ' ')
                 .trim().replaceAll("  ", " ");
     }
 
