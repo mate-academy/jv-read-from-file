@@ -29,7 +29,6 @@ public class FileWork {
                 wordsStartingWithW.add(word);
             }
         }
-        // Сортировка массива перед возвратом
         String[] sortedWords = wordsStartingWithW.toArray(new String[0]);
         Arrays.sort(sortedWords);
         return sortedWords;
