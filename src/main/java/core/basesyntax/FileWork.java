@@ -22,7 +22,7 @@ public class FileWork {
         }
         String text = content.toString().trim();
         String cleanedText = text.replaceAll("[^a-zA-Z\\s]", "").toLowerCase();
-        String[] words = cleanedText.split("\\s+"); // Используем \\s+ для разделения по пробелам
+        String[] words = cleanedText.split("\\s+");
         List<String> wordsStartingWithW = new ArrayList<>();
         for (String word : words) {
             if (!word.isEmpty() && (word.charAt(0) == 'w' || word.charAt(0) == 'W')) {
