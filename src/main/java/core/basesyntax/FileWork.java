@@ -17,7 +17,6 @@ public class FileWork {
         }
 
         String[] words = content.split("\\W+");
-
         List<String> filteredWords = new ArrayList<>();
 
         for (String word : words) {
