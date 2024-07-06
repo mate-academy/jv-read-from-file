@@ -6,7 +6,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class FileWork {
     public String[] readFromFile(String fileName) {
         String content;
