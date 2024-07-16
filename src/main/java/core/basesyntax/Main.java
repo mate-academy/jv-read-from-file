@@ -11,8 +11,8 @@ public class Main {
     public static void main(String[] args){
         getNameFile();
         FileWork fileWork = new FileWork();
-        for (int i = 0; i < strings.length; i++) {
-            fileWork.readFromFile(strings[i]);
+        for (String string : strings) {
+            fileWork.readFromFile(string);
         }
     }
 
