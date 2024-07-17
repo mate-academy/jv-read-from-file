@@ -12,16 +12,26 @@ public class Main {
         getNameFile();
         FileWork fileWork = new FileWork();
         for (String string : strings) {
-            fileWork.readFromFile(string);
+            String[] strings1 = fileWork.readFromFile(string);
+            System.out.println("File " + string);
+            if (strings1 != null){
+                for (String name :
+                        strings1) {
+                    System.out.println(name);
+                }
+            }else {
+                System.out.println("Null....");
+            }
         }
+
     }
 
     private static void getNameFile(){
         File file = parentDir.toFile();
-        int num = 0;
+        int number = 0;
         for (File files : file.listFiles()) {
-            strings[num] = files.getName();
-            num++;
+            strings[number] = files.getPath();
+            number++;
         }
     }
 }
