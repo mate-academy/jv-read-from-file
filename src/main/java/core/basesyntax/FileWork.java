@@ -1,6 +1,7 @@
 package core.basesyntax;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,12 +15,13 @@ public class FileWork {
     private static final List<String> RESULT = new ArrayList<>();
 
     public String[] readFromFile(String fileName) {
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
+        File file = new File(fileName);
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                String[] words = PATTERN.split(line.toLowerCase());
+                String[] words = PATTERN.split(line.toLowerCase().trim());
                 for (String word : words) {
-                    if (word.startsWith(CHARACTER)) {
+                    if (!word.isEmpty() && word.startsWith(CHARACTER)) {
                         RESULT.add(word);
                     }
                 }
