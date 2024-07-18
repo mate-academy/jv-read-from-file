@@ -1,6 +1,9 @@
 package core.basesyntax;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -12,7 +15,6 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
-
         if (!file.exists()) {
             return null;
         }
