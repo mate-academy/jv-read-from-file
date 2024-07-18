@@ -12,9 +12,9 @@ import java.util.regex.Pattern;
 public class FileWork {
     private static final String CHARACTER = "w";
     private static final Pattern PATTERN = Pattern.compile("\\W+");
-    private static final List<String> RESULT = new ArrayList<>();
 
     public String[] readFromFile(String fileName) {
+        List<String> result = new ArrayList<>();
         File file = new File(fileName);
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             String line;
@@ -22,15 +22,16 @@ public class FileWork {
                 String[] words = PATTERN.split(line.toLowerCase().trim());
                 for (String word : words) {
                     if (!word.isEmpty() && word.startsWith(CHARACTER)) {
-                        RESULT.add(word);
+                        result.add(word);
                     }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
+            return new String[0];
         }
 
-        Collections.sort(RESULT);
-        return RESULT.toArray(new String[0]);
+        Collections.sort(result);
+        return result.toArray(new String[0]);
     }
 }
