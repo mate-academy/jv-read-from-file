@@ -21,7 +21,7 @@ public class FileWork {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] words = PATTERN.split(line.toLowerCase());
-                for (String word: words) {
+                for (String word : words) {
                     if (word.startsWith(CHARACTER)) {
                         RESULT.add(word);
                     }
