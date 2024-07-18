@@ -14,12 +14,7 @@ public class FileWork {
     private static final List<String> RESULT = new ArrayList<>();
 
     public String[] readFromFile(String fileName) {
-        File file = new File(fileName);
-        if (!file.exists()) {
-            return null;
-        }
-
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] words = PATTERN.split(line.toLowerCase());
