@@ -12,7 +12,7 @@ public class FileWork {
         StringBuilder textFromFile = new StringBuilder();
         StringBuilder resultText = new StringBuilder();
         try (FileReader fileReader = new FileReader(myFile);
-             BufferedReader reader = new BufferedReader(fileReader)) {
+                BufferedReader reader = new BufferedReader(fileReader)) {
             String value = reader.readLine();
             if (value == null || value.isEmpty()) {
                 return new String[0];
