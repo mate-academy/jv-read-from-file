@@ -41,5 +41,4 @@ public class FileWork {
             throw new RuntimeException("Can't read from file", e);
         }
     }
-//end
 }
