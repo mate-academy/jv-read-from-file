@@ -42,6 +42,9 @@ public class FileWork {
                 result.append(newWord).append(" ");
             }
         }
+        if (result.isEmpty()) {
+            return new String[0];
+        }
         String[] resultString = result.toString().split(" ");
         Arrays.sort(resultString);
         return resultString;
