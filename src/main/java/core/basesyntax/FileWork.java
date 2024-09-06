@@ -3,32 +3,25 @@ package core.basesyntax;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
-        List<String> wordsList = new ArrayList<>();
-
         try {
-            List<String> lines = Files.readAllLines(Paths.get(fileName));
+            String content = new String(Files.readAllBytes(Paths.get(fileName)));
 
-            for (String line : lines) {
-                String[] words = line.toLowerCase().split("\\W+");
+            String[] words = content.toLowerCase().split("[\\W]+");
 
-                for (String word : words) {
-                    if (word.startsWith("W")) {
-                        wordsList.add(word);
-                    }
-                }
-            }
+            List<String> filteredWords = Arrays.stream(words)
+                    .filter(word -> word.startsWith("w"))
+                    .sorted()
+                    .collect(Collectors.toList());
+
+            return filteredWords.toArray(new String[0]);
         } catch (IOException e) {
-            System.out.println("Can't filter file w/ name - " + fileName);
+            throw new RuntimeException("Can't filter the file");
         }
-        String[] result = wordsList.toArray(new String[0]);
-        Arrays.sort(result);
-
-        return result;
     }
 }
