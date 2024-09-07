@@ -7,17 +7,11 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        String text = "Beautiful two-bedroom city flat five minutes'"
-                + " walk from the cathedral.\n"
-                + "Fully equipped kitchen, living room with a large "
-                + "sofa and chairs, big TV and balcony.\n"
-                + "The balcony has space for four people to sit and "
-                + "gets the sun in the mornings,\n"
-                + "and the flat is light and warm. The upstairs bedroom"
-                + " sleeps four people, with two double beds;\n"
-                + "the downstairs bedroom sleeps two in single beds.\n"
-                + "The flat is perfect for families and is near shops,"
-                + "bars and restaurants.";
+        String text = "Whenever I have gone there, there have been either so many\n"
+                + "people that I have not been able to see the pictures, which\n"
+                + "was dreadful, or so many pictures that I have not been able to "
+                + "see the people, which was\n"
+                + "worse. The Grosvenor is really the only place.";
         BufferedWriter writer = null;
         String filePath = null;
         try {
@@ -28,7 +22,7 @@ public class Main {
             File file = new File(filePath);
             file.createNewFile();
 
-            writer = new BufferedWriter(new FileWriter(file, true));
+            writer = new BufferedWriter(new FileWriter(file));
             writer.write(text.toLowerCase());
         } catch (IOException e) {
             throw new RuntimeException("Can't create file", e);

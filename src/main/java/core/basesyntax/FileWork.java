@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class FileWork {
     private static final String SPECIFIED_CHARACTER = "w";
@@ -42,6 +43,7 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException("We could not open file", e);
         }
+        Arrays.sort(result);
         return result;
     }
 }
