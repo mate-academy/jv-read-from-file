@@ -15,27 +15,27 @@ public class FileWork {
     public String[] readFromFile(String fileName) {
         String[] result = new String[0];
         StringBuilder stringBuilder = new StringBuilder();
-        String word = null;
-        int value;
         int count = 0;
+        String[] words = null;
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] words = line.toLowerCase().split("[\\s,!.?]+");
-                for (int i = 0; i < words.length; i++) {
-                    if (startWithLetter(words[i])) {
-                        count++;
-                    }
-                }
-                result = new String[count];
-                int c = 0;
-                for (int i = 0; i < words.length; i++) {
-                    if (startWithLetter(words[i])) {
-                        result[c] = words[i];
-                        c++;
-                    }
-                }
+                stringBuilder.append(line).append(" ");
+            }
 
+            words = stringBuilder.toString().split("[\\s,!.?]+");
+            for (int i = 0; i < words.length; i++) {
+                if (startWithLetter(words[i])) {
+                    count++;
+                }
+            }
+            result = new String[count];
+            int c = 0;
+            for (int i = 0; i < words.length; i++) {
+                if (startWithLetter(words[i])) {
+                    result[c] = words[i];
+                    c++;
+                }
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException("File was not found", e);

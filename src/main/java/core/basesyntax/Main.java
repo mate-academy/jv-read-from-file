@@ -7,19 +7,24 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        String text = "Four-bedroom farmhouse in the countryside. "
-                + "All of the four double bedrooms are en suite.\n"
-                + "Farm kitchen, tables and chairs outside. Great "
-                + "for groups of friends. The supermarket is half\n"
-                + "an hour by car and you can take a train from the "
-                + "village into the city. Escape from normal life\n"
-                + "for a few days.\n";
+        String text = "Beautiful two-bedroom city flat five minutes'"
+                + " walk from the cathedral.\n"
+                + "Fully equipped kitchen, living room with a large "
+                + "sofa and chairs, big TV and balcony.\n"
+                + "The balcony has space for four people to sit and "
+                + "gets the sun in the mornings,\n"
+                + "and the flat is light and warm. The upstairs bedroom"
+                + " sleeps four people, with two double beds;\n"
+                + "the downstairs bedroom sleeps two in single beds.\n"
+                + "The flat is perfect for families and is near shops,"
+                + "bars and restaurants.";
         BufferedWriter writer = null;
+        String filePath = null;
         try {
             File folder = new File("myFolder2");
             folder.mkdir();
 
-            String filePath = "myFolder2" + File.separator + "text.txt";
+            filePath = "myFolder2" + File.separator + "text.txt";
             File file = new File(filePath);
             file.createNewFile();
 
@@ -37,7 +42,7 @@ public class Main {
             }
         }
         FileWork fileWork = new FileWork();
-        String[] result = fileWork.readFromFile("text.txt");
+        String[] result = fileWork.readFromFile(filePath);
         for (int i = 0; i < result.length; i++) {
             System.out.println(result[i]);
         }
