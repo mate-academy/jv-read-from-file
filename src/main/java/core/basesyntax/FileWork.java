@@ -24,7 +24,7 @@ public class FileWork {
                 stringBuilder.append(line).append(" ");
             }
 
-            words = stringBuilder.toString().split("[\\s,!.?]+");
+            words = stringBuilder.toString().toLowerCase().split("[\\s,!.?]+");
             for (int i = 0; i < words.length; i++) {
                 if (startWithLetter(words[i])) {
                     count++;
