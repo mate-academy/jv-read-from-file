@@ -1,10 +1,14 @@
 package core.basesyntax;
 
 public class Main {
-    public static void main(String[] split) {
-        String fileForRead = "fileForRead.txt";
+    public static void main(String[] args) {
+        String file = "file.txt";
 
         FileWork fileWork = new FileWork();
-        fileWork.readFromFile(fileForRead);
+        String[] words = fileWork.readFromFile(file);
+
+        for (String word : words) {
+            System.out.println(word);
+        }
     }
 }
