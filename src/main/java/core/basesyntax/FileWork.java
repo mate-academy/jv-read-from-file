@@ -18,7 +18,7 @@ public class FileWork {
 
             for (int i = 0; i < words.length; i++) {
                 if (words[i].startsWith(SPECIFIED_CHARACTER)) {
-                    if (i < words.length) {
+                    if (i < words.length - 1) {
                         result.append(words[i]).append(" ");
                     } else {
                         result.append(words[i]);
@@ -28,13 +28,12 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException("Can't read a file", e);
         }
-        if (result.isEmpty()) {
+        if (result.length() == 0) {
             return new String[0];
         }
 
         String[] resultArray = result.toString().split(" ");
         Arrays.sort(resultArray);
         return resultArray;
-
     }
 }
