@@ -18,7 +18,11 @@ public class FileWork {
 
             for (int i = 0; i < words.length; i++) {
                 if (words[i].startsWith(SPECIFIED_CHARACTER)) {
-                    result.append(words[i]).append(" ");
+                    if (i < words.length) {
+                        result.append(words[i]).append(" ");
+                    } else {
+                        result.append(words[i]);
+                    }
                 }
             }
         } catch (IOException e) {
