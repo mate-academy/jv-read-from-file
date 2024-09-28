@@ -1,15 +1,15 @@
 package core.basesyntax;
 
-import java.io.IOException;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Arrays;
 
 public class FileWork {
-
     public String[] readFromFile(String fileName) {
         try {
             String content = new String(Files.readAllBytes(new File(fileName).toPath()));
+
             String[] words = content.toLowerCase().split("[^a-z]+");
 
             int count = 0;
@@ -29,6 +29,7 @@ public class FileWork {
             }
 
             Arrays.sort(filteredWords);
+
             return filteredWords;
 
         } catch (IOException e) {
