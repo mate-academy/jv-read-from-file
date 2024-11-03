@@ -9,8 +9,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FileWork {
-    private final static String PUNCTUALITY_REG_EX = "[\\p{Punct}\\s]+";
-    private final static String W_WORD_REG_EX = "\\b[wW]\\w*";
+    private static final String PUNCTUALITY_REG_EX = "[\\p{Punct}\\s]+";
+    private static final String W_WORD_REG_EX = "\\b[wW]\\w*";
 
     public String[] readFromFile(String fileName) {
         try {
