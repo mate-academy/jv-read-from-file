@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,7 +17,9 @@ public class FileWork {
         try {
             File file = new File(fileName);
             List<String> lines = Files.readAllLines(file.toPath());
-            return getArrayOfNeededWords(lines);
+            String[] resultArr = getArrayOfNeededWords(lines);
+            Arrays.sort(resultArr);
+            return resultArr;
         } catch (IOException e) {
             throw new RuntimeException("Can`t read file", e);
         }
