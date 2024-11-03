@@ -51,7 +51,7 @@ public class FileWork {
         List<String> words = List.of(line.split(PUNCTUALITY_REG_EX));
         List<String> formattedWords = new ArrayList<>();
         for (String word : words) {
-            formattedWords.add(wordFormatter(word));
+            formattedWords.add(wordFormatter(word).toLowerCase());
         }
         return formattedWords;
     }
