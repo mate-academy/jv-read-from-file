@@ -25,7 +25,7 @@ public class FileWork {
         if (str.isEmpty()) {
             return new String[0];
         }
-        String[] toArray = str.split(" ");
+        String[] toArray = str.trim().split("\\W+");
         StringBuilder stringBuilder1 = new StringBuilder();
         for (int i = 0; i < toArray.length; i++) {
             char[] symbols = toArray[i].toCharArray();
@@ -34,7 +34,8 @@ public class FileWork {
                     for (int k = 0; k < symbols.length; k++) {
                         if (symbols[k] != '.' && symbols[k] != ','
                                 && symbols[k] != '?'
-                        && symbols[k] != '!') {
+                        && symbols[k] != '!' && symbols[k] != '\r'
+                        && symbols[k] != '\n') {
                             stringBuilder1.append(symbols[k]);
                         }
                     }
