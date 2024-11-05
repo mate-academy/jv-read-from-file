@@ -1,6 +1,10 @@
 package core.basesyntax;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
@@ -32,10 +36,10 @@ public class FileWork {
             for (int j = 0; j < symbols.length; j++) {
                 if (symbols[0] == 'w' || symbols[0] == 'W') {
                     for (int k = 0; k < symbols.length; k++) {
-                        if (symbols[k] != '.' && symbols[k] != ','
+                            if (symbols[k] != '.' && symbols[k] != ','
                                 && symbols[k] != '?'
-                        && symbols[k] != '!' && symbols[k] != '\r'
-                        && symbols[k] != '\n') {
+                                && symbols[k] != '!' && symbols[k] != '\r'
+                                    && symbols[k] != '\n') {
                             stringBuilder1.append(symbols[k]);
                         }
                     }
