@@ -1,8 +1,47 @@
 package core.basesyntax;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
+
 public class FileWork {
     public String[] readFromFile(String fileName) {
-        //write your code here
-        return null;
+        File file = new File(fileName);
+        StringBuilder builder = new StringBuilder();
+        if (file.length() == 0) {
+            return new String[0];
+        }
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String value = reader.readLine();
+            while (value != null) {
+                builder.append(value).append(System.lineSeparator());
+                value = reader.readLine();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Can't read the file", e);
+        }
+        String[] splitContent = builder.toString().split("\\W+");
+        int counter = 0;
+        for (String word : splitContent) {
+            if (word.charAt(0) == 'w') {
+                counter++;
+            }
+        }
+        if (counter == 0) {
+            return new String[0];
+        }
+        String[] result = new String[counter];
+        counter = 0;
+        for (String word : splitContent) {
+            if (word.charAt(0) == 'w') {
+                result[counter] = word.toLowerCase();
+                counter++;
+            }
+        }
+        Arrays.sort(result);
+        return result;
     }
 }
