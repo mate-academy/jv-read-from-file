@@ -1,13 +1,14 @@
 package core.basesyntax;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.File;
 import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
-import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class FileWork {
     public String[] readFromFile(String fileName) throws FileNotFoundException {
@@ -21,12 +22,12 @@ public class FileWork {
 
         try {
             List<String> stringList = Files.readAllLines(file.toPath());
-            for(String string : stringList) {
+            for (String string : stringList) {
                 matcher = pattern.matcher(string);
                 result = matcher.replaceAll("").toLowerCase();
                 arrayString = result.split(" ");
-                for(int i = 0; i < arrayString.length; i++) {
-                    if(arrayString[i].charAt(0) == 'w') {
+                for (int i = 0; i < arrayString.length; i++) {
+                    if (arrayString[i].charAt(0) == 'w') {
                         resultList.add(arrayString[i]);
                     }
                 }

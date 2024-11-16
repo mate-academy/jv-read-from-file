@@ -7,7 +7,7 @@ public class Main {
 
         FileWork fileWork = new FileWork();
         try {
-         fileWork.readFromFile("C:\\Users\\ShayolGull\\IdeaProjects\\jv-read-from-file\\src\\test.txt");
+            fileWork.readFromFile("test.txt");
         } catch (FileNotFoundException e) {
             System.out.println("Cannot read file");
         }
