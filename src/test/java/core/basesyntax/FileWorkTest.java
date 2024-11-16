@@ -24,7 +24,7 @@ public class FileWorkTest {
         new String[]{"wall", "wave", "width", "world", "www"};
     private static final String[] RESULT_FROM_ADJACENT_WORDS_CASE =
         new String[]{"was", "was", "whenever", "which", "which", "worse"};
-/*
+
     @BeforeClass
     public static void beforeClass() throws Exception{
         Files.write(Path.of(EMPTY_FILE_NAME), "".getBytes(StandardCharsets.UTF_8));
@@ -116,5 +116,5 @@ public class FileWorkTest {
        } catch (FileNotFoundException e) {
            System.out.println("Can't read data from file");
        }
-    }*/
+    }
 }
