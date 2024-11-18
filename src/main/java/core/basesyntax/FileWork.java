@@ -5,11 +5,7 @@ import java.util.Arrays;
 
 public class FileWork {
 
-    public static void main(String[] args) {
-        readFromFile("test1");
-    }
-
-    public static String[] readFromFile(String fileName) {
+    public String[] readFromFile(String fileName) {
         File file = new File(fileName);
         StringBuilder builder = new StringBuilder();
         if (file.length() == 0) {
