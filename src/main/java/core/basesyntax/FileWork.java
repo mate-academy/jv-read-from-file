@@ -23,7 +23,6 @@ public class FileWork {
                 index++;
             }
           }
-        
         return filteredWords;
     }
 }
