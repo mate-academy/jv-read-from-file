@@ -6,7 +6,6 @@ import java.io.IOException;
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
-
         StringBuilder stringBuilder = new StringBuilder();
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
@@ -15,14 +14,14 @@ public class FileWork {
                 stringBuilder.append(line).append(" ");
                 line = bufferedReader.readLine();
             }
-            } catch (IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException("Can't read a file", e);
         }
 
-            String[] split = stringBuilder.toString().split("\\W+");
+        String[] split = stringBuilder.toString().split("\\W+");
 
-            int count = 0;
-            for (String word : split) {
+        int count = 0;
+        for (String word : split) {
             if (word.toLowerCase().startsWith("w")) {
                 count++;
             }
