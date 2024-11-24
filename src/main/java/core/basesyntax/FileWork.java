@@ -17,12 +17,12 @@ public class FileWork {
 
         String[] filteredWords = new String[count];
         int index = 0;
-            for (String word : split) {
+        for (String word : split) {
             if (word.toLowerCase().startsWith("w")) {
                 filteredWords[index] = word.toLowerCase();
                 index++;
             }
-          }
+        }
         return filteredWords;
     }
 }
