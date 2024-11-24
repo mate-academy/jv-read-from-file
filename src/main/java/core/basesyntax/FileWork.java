@@ -3,16 +3,16 @@ package core.basesyntax;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
         StringBuilder stringBuilder = new StringBuilder();
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
-            String line = bufferedReader.readLine();
-            while (line != null) {
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
                 stringBuilder.append(line).append(" ");
-                line = bufferedReader.readLine();
             }
         } catch (IOException e) {
             throw new RuntimeException("Can't read a file", e);
@@ -39,6 +39,8 @@ public class FileWork {
                 index++;
             }
         }
+
+        Arrays.sort(filteredWords);
         return filteredWords;
     }
 }
