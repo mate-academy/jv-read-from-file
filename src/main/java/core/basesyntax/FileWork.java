@@ -5,8 +5,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class FileWork {
+    private static final Logger LOGGER = Logger.getLogger(FileWork.class.getName());
+
     public String[] readFromFile(String fileName) {
         ArrayList<String> words = new ArrayList<>();
 
@@ -16,13 +20,13 @@ public class FileWork {
                 String[] lineWords = line.toLowerCase().split("\\W+");
 
                 for (String word : lineWords) {
-                    if (!word.isEmpty() && word.startsWith("w")) {
+                    if (word.startsWith("w")) {
                         words.add(word);
                     }
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Error occurred while reading the file: " + fileName, e);
         }
 
         String[] result = words.toArray(new String[0]);
