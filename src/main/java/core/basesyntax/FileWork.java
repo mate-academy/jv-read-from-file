@@ -32,5 +32,3 @@ public class FileWork {
             throw new RuntimeException("An error occurred", e);
         }
     }
-}
-
