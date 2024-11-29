@@ -9,8 +9,6 @@ import java.util.List;
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
-        //write your code here
-        return null;
         try {
             List<String> lines = Files.readAllLines(Path.of(fileName));
             List<String> wordsStartingWithW = new ArrayList<>();
@@ -32,3 +30,4 @@ public class FileWork {
             throw new RuntimeException("An error occurred", e);
         }
     }
+}
