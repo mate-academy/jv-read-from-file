@@ -28,7 +28,5 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException("An error occurred", e);
         }
-        return new String[0];
     }
-  }
 }
