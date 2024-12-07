@@ -19,13 +19,12 @@ public class FileWork {
             }
             System.out.println(stringBuilder);
 
-            String[] array = Arrays.stream(stringBuilder.toString().split("\\s+"))
+            return Arrays.stream(stringBuilder.toString().split("\\s+"))
                     .map(s -> s.replaceAll(String.valueOf(onlyLettersAndNumbers), "").toLowerCase())
                     .filter(s -> !s.isEmpty() && s.charAt(0) == 'w')
                     .sorted()
                     .toArray(String[]::new);
 
-            return array;
         } catch (IOException e) {
             throw new RuntimeException("Cannot read from file: " + fileName + e);
         }
