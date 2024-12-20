@@ -10,7 +10,6 @@ public class FileWork {
     private static final String SPECIFIED_CHARACTER = "w";
 
     public String[] readFromFile(String fileName) {
-        //write your code here
         File inputFile = new File(fileName);
         String lineFromFile;
         StringBuilder stringWithSpecChar = new StringBuilder();
