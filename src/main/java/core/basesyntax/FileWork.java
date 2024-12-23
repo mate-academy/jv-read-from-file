@@ -1,46 +1,29 @@
 package core.basesyntax;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 
 public class FileWork {
 
     public String[] readFromFile(String fileName) {
-        String[] finalWords;
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
-            String result = bufferedReader.readLine();
-            System.out.println(result);
-            String[] words = result.split("\\W+");
-            int count = 0;
-            for (String s : words) {
-                String first = s.toLowerCase().substring(0,1);
-                if (first.equals("w")) {
-                    count++;
-                }
-            }
-            finalWords = new String[count];
-            count = 0;
-            ArrayList<String> list = new ArrayList<>();
-            for (String s : words) {
-                System.out.println(s);
-                String first = s.toLowerCase().substring(0,1);
-                if (first.equals("w")) {
-                    list.add(s.toLowerCase());
-                }
-            }
-            Collections.sort(list);
-            System.out.println(list);
-            for (String s : list) {
-                System.out.println(s);
-                finalWords[count] = s;
-                count++;
-            }
+
+        List<String> result;
+        try {
+            result = Files.readAllLines(Paths.get(fileName));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return finalWords;
+
+        List<String> sortedResult = new ArrayList<>();
+        for (String s : result) {
+            sortedResult.addAll(Arrays.stream(s.split("\\W+"))
+                    .map(String::toLowerCase)
+                    .filter(word -> word.startsWith("w"))
+                    .toList());
+        }
+        Collections.sort(sortedResult);
+        return sortedResult.toArray(new String[0]);
     }
 }
