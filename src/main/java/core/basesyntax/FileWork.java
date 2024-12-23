@@ -2,25 +2,9 @@ package core.basesyntax;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 public class FileWork {
-
-    public static void main ( String[] args ) throws FileNotFoundException {
-
-        File file = new File ("file.txt");
-        String fileName = file.getName();
-
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))){
-            bufferedWriter.write("Width world Wide web company");
-        } catch (IOException e){
-            throw new RuntimeException(e);
-        }
-        FileWork fileWork = new FileWork();
-        System.out.println( Arrays.toString ( fileWork.readFromFile ( fileName ) ) );
-
-    }
 
     public String[] readFromFile(String fileName) {
         String[] finalWords;
@@ -47,7 +31,7 @@ public class FileWork {
             }
             Collections.sort(list);
             System.out.println(list);
-            for(String s : list){
+            for (String s : list) {
                 System.out.println(s);
                 finalWords[count] = s;
                 count++;
