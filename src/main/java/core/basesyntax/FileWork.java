@@ -8,7 +8,7 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         String[] finalWords;
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader (fileName))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String result = bufferedReader.readLine();
             System.out.println(result);
             String[] words = result.split("\\W+");
