@@ -14,14 +14,14 @@ public class FileWork {
 
         List<String> result;
         try {
-            result = Files.readAllLines( Paths.get(fileName));
+            result = Files.readAllLines(Paths.get(fileName));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        List<String> sortedResult = new ArrayList<> ();
+        List<String> sortedResult = new ArrayList<>();
         for (String s : result) {
-            sortedResult.addAll( Arrays.stream(s.split("\\W+"))
+            sortedResult.addAll(Arrays.stream(s.split("\\W+"))
                     .map(String::toLowerCase)
                     .filter(word -> word.startsWith("w"))
                     .toList());
