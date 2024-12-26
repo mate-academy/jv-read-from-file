@@ -24,11 +24,13 @@ public class FileWork {
                         continue;
                     }
                     if (word.toLowerCase().startsWith("w")) {
-                        String cleanWord = word.replaceAll("^[^a-zA-Z]+|[^a-zA-Z]+$", "").toLowerCase();
+                        String cleanWord = word.replaceAll("^[^a-zA-Z]+|[^a-zA-Z]+$",
+                                "").toLowerCase();
 
                         if (!cleanWord.isEmpty()) {
                             if (count == filteredWords.length) {
-                                filteredWords = Arrays.copyOf(filteredWords, filteredWords.length * 2);
+                                filteredWords = Arrays.copyOf(filteredWords,
+                                        filteredWords.length * 2);
                             }
 
                             filteredWords[count++] = cleanWord;
@@ -36,7 +38,6 @@ public class FileWork {
                     }
                 }
             }
-
 
         } catch (IOException e) {
             throw new RuntimeException("Can't read data from file: " + fileName, e);
