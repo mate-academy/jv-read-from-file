@@ -31,7 +31,7 @@ public class FileWork {
         }
         int specifiedCharWordsCounter = 0;
         for (String stringStartedAtW : stringArray) {
-            if(stringStartedAtW.charAt(0) == SPECIFIED_CHARACTER) {
+            if (stringStartedAtW.charAt(0) == SPECIFIED_CHARACTER) {
                 specifiedCharWordsCounter++;
             }
         }
@@ -48,6 +48,6 @@ public class FileWork {
         }
         Arrays.sort(filteredArray);
 
-    return filteredArray;
+        return filteredArray;
     }
 }
