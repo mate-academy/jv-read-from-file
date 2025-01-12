@@ -32,6 +32,8 @@ public class FileWork {
                     case '.', ',', '!', '?':
                         resultList[i] = resultList[i].substring(0, resultList[i].length() - 1);
                         break;
+                    default:
+                        break;
                 }
             }
 
