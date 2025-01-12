@@ -7,12 +7,11 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
-    private static final StringBuilder fileLinesSplitter = new StringBuilder();
-    private static final StringBuilder wordWithWSplitter = new StringBuilder();
-
     public String[] readFromFile(String fileName) {
         //write your code here
+        StringBuilder wordWithWSplitter = new StringBuilder();
         File myFile = new File(fileName);
+
         try {
             if (myFile.length() == 0) {
                 return new String[0];
@@ -44,6 +43,8 @@ public class FileWork {
     }
 
     private String[] splitFileLines(File myFile) {
+        StringBuilder fileLinesSplitter = new StringBuilder();
+
         try (BufferedReader reader = new BufferedReader(new FileReader(myFile))) {
             String lineReader = reader.readLine();
             while (lineReader != null && !lineReader.isEmpty()) {
