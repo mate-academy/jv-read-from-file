@@ -8,20 +8,21 @@ import java.util.Collections;
 import java.util.List;
 
 public class FileWork {
-    public String[] readFromFile(String fileName) {
+    public String[] readFromFile(String filePath) {
+
         List<String> wordsStartingWithW = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                for (String word : line.toLowerCase().replaceAll("[^a-z\\s]", "").split("\\s+")) {
-                    if (word.startsWith("w")) {
-                        wordsStartingWithW.add(word);
+                String[] words = line.split("\\W+");
+                for (String word : words)  {
+                    if (word.toLowerCase().startsWith("w")) {
+                        wordsStartingWithW.add(word.toLowerCase());
                     }
                 }
             }
         } catch (IOException e) {
-            //noinspection CallToPrintStackTrace
-            e.printStackTrace();
+            System.out.println("Problem read file: " + e.getMessage());
         }
         if (wordsStartingWithW.isEmpty()) {
             return new String[0];
@@ -31,7 +32,6 @@ public class FileWork {
 
         }
 
-    public String[] readFromFile() {
-        return new String[0];
     }
-}
+
+
