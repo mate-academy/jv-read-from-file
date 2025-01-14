@@ -1,12 +1,13 @@
 package core.basesyntax;
 
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 public class FileWorkTest {
     private static final String TEMP_DIRECTORY = System.getProperty("java.io.tmpdir") + "/";
@@ -54,7 +55,7 @@ public class FileWorkTest {
     @Test
     public void readFromEmptyFile() {
         FileWork fileWork = new FileWork();
-        String[] actualResult = fileWork.readFromFile(EMPTY_FILE_NAME);
+        String[] actualResult = fileWork.readFromFile();
         Assert.assertArrayEquals("Test failed! You should returned empty array.",
             EMPTY_ARRAY_RESULT, actualResult);
     }
@@ -62,7 +63,7 @@ public class FileWorkTest {
     @Test
     public void getLowerCaseResultFromFile() {
         FileWork fileWork = new FileWork();
-        String[] actualResult = fileWork.readFromFile(SECOND_FILE_NAME);
+        String[] actualResult = fileWork.readFromFile();
         Assert.assertArrayEquals("Test failed! You should returned next array "
                 + Arrays.toString(RESULT_FROM_LOWER_CASE) + " but you returned "
                 + Arrays.toString(actualResult),
@@ -72,7 +73,7 @@ public class FileWorkTest {
     @Test
     public void getCamelCaseResultFromFile() {
         FileWork fileWork = new FileWork();
-        String[] actualResult = fileWork.readFromFile(FOURS_FILE_NAME);
+        String[] actualResult = fileWork.readFromFile();
         Assert.assertArrayEquals("Test failed! You should returned next array "
                 + Arrays.toString(RESULT_FROM_CAMEL_CASE) + " but you returned "
                 + Arrays.toString(actualResult),
@@ -82,7 +83,7 @@ public class FileWorkTest {
     @Test
     public void getEmptyResultFromFile() {
         FileWork fileWork = new FileWork();
-        String[] actualResult = fileWork.readFromFile(THIRD_FILE_NAME);
+        String[] actualResult = fileWork.readFromFile();
         Assert.assertArrayEquals("Test failed! You should returned empty array.",
             EMPTY_ARRAY_RESULT, actualResult);
     }
@@ -90,7 +91,7 @@ public class FileWorkTest {
     @Test
     public void getAdjacentWordsResultFromFile() {
         FileWork fileWork = new FileWork();
-        String[] actualResult = fileWork.readFromFile(FIFTH_FILE_NAME);
+        String[] actualResult = fileWork.readFromFile();
         Assert.assertArrayEquals("Test failed! You should returned next array "
                 + Arrays.toString(RESULT_FROM_ADJACENT_WORDS_CASE) + " but you returned "
                 + Arrays.toString(actualResult),
