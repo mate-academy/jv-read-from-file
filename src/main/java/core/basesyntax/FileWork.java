@@ -1,7 +1,11 @@
 package core.basesyntax;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
@@ -20,6 +24,9 @@ public class FileWork {
             e.printStackTrace();
         }
         Collections.sort(wordsStartingWithW);
-        return wordsStartingWithW.isEmpty() ? new String[0] : wordsStartingWithW.toArray(new String[0]);
+        if (wordsStartingWithW.isEmpty()) {
+            return new String[0];
+        }
+        return wordsStartingWithW.toArray(new String[0]);
     }
 }
