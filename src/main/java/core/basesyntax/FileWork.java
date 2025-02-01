@@ -8,24 +8,21 @@ import java.util.Collections;
 import java.util.List;
 
 public class FileWork {
-    public String[] readFromFile(String fileName) throws IOException {
+    public String[] readFromFile(String fileName) {
         List<String> filterWords = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String line;
+            String line = "";
             while ((line = reader.readLine()) != null) {
                 String[] words = line.split("\\s+");
                 for (String word : words) {
-                    String cleanedWord = word.replaceAll("[^-zA-Z]", "").toLowerCase();
+                    String cleanedWord = word.replaceAll("[^a-zA-Z]", "").toLowerCase();
                     if (cleanedWord.startsWith("w")) {
                         filterWords.add(cleanedWord);
-                        
                     }
                 }
             }
-        }
-
-        catch (IOException e) {
+        } catch (IOException e) {
             System.err.println("Error reading file: " + e.getMessage());
             return new String[0];
         }
@@ -33,6 +30,4 @@ public class FileWork {
         Collections.sort(filterWords);
         return filterWords.toArray(new String[0]);
     }
-
-    public static void main(String[] args){}
 }
