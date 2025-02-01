@@ -19,6 +19,7 @@ public class FileWork {
                     String cleanedWord = word.replaceAll("[^-zA-Z]", "").toLowerCase();
                     if (cleanedWord.startsWith("w")) {
                         filterWords.add(cleanedWord);
+                        
                     }
                 }
             }
