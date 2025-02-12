@@ -21,7 +21,7 @@ public class FileWork {
             }
             Collections.sort(result);
         } catch (IOException e) {
-            System.out.println("Błąd odczytu pliku: " + e.getMessage());
+            System.out.println("Error reading file: " + e.getMessage());
         }
         return result;
     }
@@ -31,6 +31,4 @@ public class FileWork {
         List<String> filteredWords = readAndFilterWords(filePath);
         System.out.println(filteredWords);
     }
-
-
 }
