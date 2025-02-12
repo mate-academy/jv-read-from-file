@@ -31,4 +31,6 @@ public class FileWork {
         List<String> filteredWords = readAndFilterWords(filePath);
         System.out.println(filteredWords);
     }
+
+
 }
