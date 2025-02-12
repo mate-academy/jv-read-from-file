@@ -32,4 +32,3 @@ public class FileWork {
         System.out.println(filteredWords);
     }
 }
-
