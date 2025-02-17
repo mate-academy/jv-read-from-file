@@ -13,7 +13,7 @@ public class FileWork {
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
 
-        System.out.println("🔍 Full path: " + file.getAbsolutePath());
+        System.out.println(" Full path: " + file.getAbsolutePath());
 
         List<String> words = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -28,10 +28,10 @@ public class FileWork {
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println("❌ File not found: " + fileName);
+            System.out.println("File not found: " + fileName);
             return new String[0];
         } catch (IOException e) {
-            throw new RuntimeException("❌ Error reading file: " + fileName, e);
+            throw new RuntimeException("Error reading file: " + fileName, e);
         }
 
         Collections.sort(words);
