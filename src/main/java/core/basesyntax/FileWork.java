@@ -10,8 +10,6 @@ import java.util.Locale;
 public class FileWork {
 
     public String[] readFromFile(String fileName) {
-
-
         String[] arrayWordFromFile = new String[5];
         int i = 0;
 
@@ -25,8 +23,6 @@ public class FileWork {
                     if (filterWord.startsWith("w")) {
                         arrayWordFromFile[i] = filterWord;
                         i++;
-                    } else if (fileName == null) {
-                        return null;
                     }
                 }
             }
