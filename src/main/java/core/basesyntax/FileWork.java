@@ -10,6 +10,9 @@ import java.util.Locale;
 public class FileWork {
 
     public String[] readFromFile(String fileName) {
+        if (fileName == null) {
+            return null;
+        }
         String[] arrayWordFromFile = new String[5];
         int i = 0;
 
@@ -35,3 +38,4 @@ public class FileWork {
         }
     }
 }
+
