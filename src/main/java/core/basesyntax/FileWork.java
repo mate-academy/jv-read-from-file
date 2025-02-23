@@ -30,10 +30,10 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-            Collections.sort(result);
-            return result.toArray(new String[0]);
-        }
+        Collections.sort(result);
+        return result.toArray(new String[0]);
     }
+}
 
 
 
