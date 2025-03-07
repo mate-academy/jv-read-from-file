@@ -12,6 +12,7 @@ public class FileWork {
 
     public List<String> readFromFile(String fileName) {
         List<String> result = new ArrayList<>();
+
         try {
             String content = Files.readString(Path.of(fileName));
             String[] works = content.replaceAll("[^a-zA-Z ]", "").split("\\s+");
