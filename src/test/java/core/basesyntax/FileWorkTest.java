@@ -100,6 +100,7 @@ public class FileWorkTest {
                 + Arrays.toString(actualResult),
             RESULT_FROM_ADJACENT_WORDS_CASE, actualResult);
     }
+
 }
 
 

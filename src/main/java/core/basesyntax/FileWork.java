@@ -24,6 +24,7 @@ public class FileWork {
         } catch (IOException e) {
             System.err.println("Error reading the file: " + e.getMessage());
         }
+
         return result;
     }
     public static void main(String[] args) {
