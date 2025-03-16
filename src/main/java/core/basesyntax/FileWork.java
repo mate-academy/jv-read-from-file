@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 
-
 public class FileWork {
     public String[] readFromFile(String fileName) {
 
