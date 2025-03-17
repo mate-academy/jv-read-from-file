@@ -21,7 +21,8 @@ public class FileWork {
             throw new RuntimeException("Can't read file!", e);
         }
 
-        String[] words = stringBuilder.toString().replaceAll("\\p{Punct}", "").toLowerCase().trim().split("\\s+");
+        String[] words = stringBuilder.toString().replaceAll("\\p{Punct}", "")
+                .toLowerCase().trim().split("\\s+");
         StringBuilder result = new StringBuilder();
         for (String word : words) {
             if (!word.isEmpty() && word.charAt(0) == 'w') {
