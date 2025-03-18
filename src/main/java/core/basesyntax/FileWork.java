@@ -13,7 +13,7 @@ public class FileWork {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line = reader.readLine();
             while (line != null) {
-                builder.append(line);
+                builder.append(line).append(" ");
                 line = reader.readLine();
             }
         } catch (IOException e) {
