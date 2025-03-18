@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 
-
 public class FileWork {
 
     public String[] readFromFile(String fileName) {
@@ -15,8 +14,8 @@ public class FileWork {
             String line = reader.readLine();
             while (line != null) {
                 builder.append(line);
-                line = reader.readLine(); }
-
+                line = reader.readLine();
+            }
         } catch (IOException e) {
             throw new RuntimeException("Can't read from file", e);
         }
