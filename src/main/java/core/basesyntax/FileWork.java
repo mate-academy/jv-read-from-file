@@ -1,12 +1,10 @@
 package core.basesyntax;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+
 
 public class FileWork {
 
@@ -17,7 +15,7 @@ public class FileWork {
             String line = reader.readLine();
             while (line != null) {
                 builder.append(line);
-                line = reader.readLine();}
+                line = reader.readLine(); }
 
         } catch (IOException e) {
             throw new RuntimeException("Can't read from file", e);
