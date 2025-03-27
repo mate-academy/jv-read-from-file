@@ -23,9 +23,9 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        String[] final_arr = newWorlds.toArray(new String[0]);
-        Arrays.sort(final_arr);
+        String[] finalArr = newWorlds.toArray(new String[0]);
+        Arrays.sort(finalArr);
 
-        return final_arr;
+        return finalArr;
     }
 }
