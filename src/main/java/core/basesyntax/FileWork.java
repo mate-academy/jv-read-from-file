@@ -2,8 +2,8 @@ package core.basesyntax;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.Arrays;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
