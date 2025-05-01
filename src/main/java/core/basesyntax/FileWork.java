@@ -21,7 +21,8 @@ public class FileWork {
             }
             String[] arrayString = stringBuilderFile.toString().split("\\W+");
             for (String word : arrayString) {
-                if (!word.isEmpty() && word.toLowerCase().toCharArray()[FIRST_SYMBOL] == SPECIFIED_CHARACTER) {
+                if (!word.isEmpty()
+                        && word.toLowerCase().toCharArray()[FIRST_SYMBOL] == SPECIFIED_CHARACTER) {
                     stringBuilderResult.append(word.toLowerCase()).append(" ");
                 }
             }
