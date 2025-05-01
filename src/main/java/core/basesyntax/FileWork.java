@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
+    private static final char SPECIFIED_CHARACTER = 'w';
+    private static final int FIRST_SYMBOL = 0;
+
     public String[] readFromFile(String fileName) {
         StringBuilder stringBuilderFile = new StringBuilder();
         StringBuilder stringBuilderResult = new StringBuilder();
@@ -18,7 +21,7 @@ public class FileWork {
             }
             String[] arrayString = stringBuilderFile.toString().split("\\W+");
             for (String word : arrayString) {
-                if (!word.isEmpty() && word.toLowerCase().toCharArray()[0] == 'w') {
+                if (!word.isEmpty() && word.toLowerCase().toCharArray()[FIRST_SYMBOL] == SPECIFIED_CHARACTER) {
                     stringBuilderResult.append(word.toLowerCase()).append(" ");
                 }
             }
