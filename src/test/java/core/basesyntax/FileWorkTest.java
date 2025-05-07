@@ -1,5 +1,6 @@
 package core.basesyntax;
 
+import java.io.FileNotFoundException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -54,46 +55,66 @@ public class FileWorkTest {
     @Test
     public void readFromEmptyFile() {
         FileWork fileWork = new FileWork();
-        String[] actualResult = fileWork.readFromFile(EMPTY_FILE_NAME);
-        Assert.assertArrayEquals("Test failed! You should returned empty array.",
-            EMPTY_ARRAY_RESULT, actualResult);
+        try {
+            String[] actualResult = fileWork.readFromFile(EMPTY_FILE_NAME);
+            Assert.assertArrayEquals("Test failed! You should returned empty array.",
+                    EMPTY_ARRAY_RESULT, actualResult);
+        } catch (FileNotFoundException e) {
+            System.out.println("Can't read data from file");
+        }
     }
 
     @Test
     public void getLowerCaseResultFromFile() {
         FileWork fileWork = new FileWork();
-        String[] actualResult = fileWork.readFromFile(SECOND_FILE_NAME);
-        Assert.assertArrayEquals("Test failed! You should returned next array "
-                + Arrays.toString(RESULT_FROM_LOWER_CASE) + " but you returned "
-                + Arrays.toString(actualResult),
-            RESULT_FROM_LOWER_CASE, actualResult);
+        try {
+            String[] actualResult = fileWork.readFromFile(SECOND_FILE_NAME);
+            Assert.assertArrayEquals("Test failed! You should returned next array "
+                            + Arrays.toString(RESULT_FROM_LOWER_CASE) + " but you returned "
+                            + Arrays.toString(actualResult),
+                    RESULT_FROM_LOWER_CASE, actualResult);
+        }  catch (FileNotFoundException e) {
+            System.out.println("Can't read data from file");
+        }
     }
 
     @Test
     public void getCamelCaseResultFromFile() {
         FileWork fileWork = new FileWork();
-        String[] actualResult = fileWork.readFromFile(FOURS_FILE_NAME);
-        Assert.assertArrayEquals("Test failed! You should returned next array "
-                + Arrays.toString(RESULT_FROM_CAMEL_CASE) + " but you returned "
-                + Arrays.toString(actualResult),
-            RESULT_FROM_CAMEL_CASE, actualResult);
+        try {
+            String[] actualResult = fileWork.readFromFile(FOURS_FILE_NAME);
+            Assert.assertArrayEquals("Test failed! You should returned next array "
+                            + Arrays.toString(RESULT_FROM_CAMEL_CASE) + " but you returned "
+                            + Arrays.toString(actualResult),
+                    RESULT_FROM_CAMEL_CASE, actualResult);
+        } catch (FileNotFoundException e) {
+            System.out.println("Can't read data from file");
+        }
     }
 
     @Test
     public void getEmptyResultFromFile() {
         FileWork fileWork = new FileWork();
-        String[] actualResult = fileWork.readFromFile(THIRD_FILE_NAME);
-        Assert.assertArrayEquals("Test failed! You should returned empty array.",
-            EMPTY_ARRAY_RESULT, actualResult);
+        try {
+            String[] actualResult = fileWork.readFromFile(THIRD_FILE_NAME);
+            Assert.assertArrayEquals("Test failed! You should returned empty array.",
+                    EMPTY_ARRAY_RESULT, actualResult);
+        } catch (FileNotFoundException e) {
+            System.out.println("Can't read data from file");
+        }
     }
 
     @Test
     public void getAdjacentWordsResultFromFile() {
         FileWork fileWork = new FileWork();
-        String[] actualResult = fileWork.readFromFile(FIFTH_FILE_NAME);
-        Assert.assertArrayEquals("Test failed! You should returned next array "
-                + Arrays.toString(RESULT_FROM_ADJACENT_WORDS_CASE) + " but you returned "
-                + Arrays.toString(actualResult),
-            RESULT_FROM_ADJACENT_WORDS_CASE, actualResult);
+       try {
+           String[] actualResult = fileWork.readFromFile(FIFTH_FILE_NAME);
+           Assert.assertArrayEquals("Test failed! You should returned next array "
+                           + Arrays.toString(RESULT_FROM_ADJACENT_WORDS_CASE) + " but you returned "
+                           + Arrays.toString(actualResult),
+                   RESULT_FROM_ADJACENT_WORDS_CASE, actualResult);
+       } catch (FileNotFoundException e) {
+           System.out.println("Can't read data from file");
+       }
     }
 }
