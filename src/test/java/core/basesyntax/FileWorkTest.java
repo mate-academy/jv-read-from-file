@@ -73,6 +73,7 @@ public class FileWorkTest {
     public void getCamelCaseResultFromFile() {
         FileWork fileWork = new FileWork();
         String[] actualResult = fileWork.readFromFile(FOURS_FILE_NAME);
+
         Assert.assertArrayEquals("Test failed! You should returned next array "
                 + Arrays.toString(RESULT_FROM_CAMEL_CASE) + " but you returned "
                 + Arrays.toString(actualResult),
