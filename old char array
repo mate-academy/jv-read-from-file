@@ -1,0 +1,23 @@
+public class MakeAbbr {
+  public static String makeAbbr(String fullName) {
+    // write your code below this line
+    String full = fullName;
+    StringBuilder result = new StringBuilder();
+    do {
+      if (full.indexOf(" ") > 0)
+      {
+        char[] chars = full.toCharArray();
+        result.append(chars[0]);
+        full = full.substring(full.indexOf(" ")+1);
+      }
+      else {
+        char[] chars = full.toCharArray();
+        result.append(chars[0]);
+        break;}
+    } while (full != null);
+
+    String result1 = result.toString();
+    return result1.toUpperCase();
+    // write your code above this line
+  }
+}
