@@ -1,5 +1,6 @@
 package core.basesyntax;
 
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -54,13 +55,18 @@ public class FileWorkTest {
     @Test
     public void readFromEmptyFile() {
         FileWork fileWork = new FileWork();
-        String[] actualResult = fileWork.readFromFile(EMPTY_FILE_NAME);
+        String[] actualResult = new String[0];
+        try {
+            actualResult = fileWork.readFromFile(EMPTY_FILE_NAME);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Assert.assertArrayEquals("Test failed! You should returned empty array.",
             EMPTY_ARRAY_RESULT, actualResult);
     }
 
     @Test
-    public void getLowerCaseResultFromFile() {
+    public void getLowerCaseResultFromFile() throws IOException {
         FileWork fileWork = new FileWork();
         String[] actualResult = fileWork.readFromFile(SECOND_FILE_NAME);
         Assert.assertArrayEquals("Test failed! You should returned next array "
@@ -70,7 +76,7 @@ public class FileWorkTest {
     }
 
     @Test
-    public void getCamelCaseResultFromFile() {
+    public void getCamelCaseResultFromFile() throws IOException {
         FileWork fileWork = new FileWork();
         String[] actualResult = fileWork.readFromFile(FOURS_FILE_NAME);
         Assert.assertArrayEquals("Test failed! You should returned next array "
@@ -80,7 +86,7 @@ public class FileWorkTest {
     }
 
     @Test
-    public void getEmptyResultFromFile() {
+    public void getEmptyResultFromFile() throws IOException {
         FileWork fileWork = new FileWork();
         String[] actualResult = fileWork.readFromFile(THIRD_FILE_NAME);
         Assert.assertArrayEquals("Test failed! You should returned empty array.",
@@ -88,7 +94,7 @@ public class FileWorkTest {
     }
 
     @Test
-    public void getAdjacentWordsResultFromFile() {
+    public void getAdjacentWordsResultFromFile() throws IOException {
         FileWork fileWork = new FileWork();
         String[] actualResult = fileWork.readFromFile(FIFTH_FILE_NAME);
         Assert.assertArrayEquals("Test failed! You should returned next array "
