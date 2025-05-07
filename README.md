@@ -14,10 +14,11 @@ Examples:
 Result: ["web", "wide", "width", "world"]
 
 "WWW? Four-bedroom farmhouse in the countryside. Wave! All of the four double bedrooms are en suite."
-Result: ["wave", "www"]
+Result: ["wave", "www"]  
 ```
 
 Hint: try to split Strings with a regular expression that includes whitespace and punctuation characters.
 Here is a good [article](https://stackoverflow.com/questions/13225175/java-string-split-with-a-regex).
 
 #### [Try to avoid these common mistakes, while solving task](./checklist.md)
+ 
