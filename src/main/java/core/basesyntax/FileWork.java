@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileWork {
-    public String[] readFromFile(String fileName) throws IOException {
+    public String[] readFromFile(String fileName) {
         List<String> result = new ArrayList<>();
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
