@@ -4,8 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class FileWork {
 
@@ -25,7 +24,7 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException("Can't read file", e);
         }
-
+        Collections.sort(result);
         return result.toArray(new String[0]);
     }
 }
