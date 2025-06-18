@@ -1,17 +1,17 @@
 package core.basesyntax;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
 
-
 public class FileWork {
     public String[] readFromFile(String fileName) {
-        final int ARR_SIZE = getSizeForArray(fileName);
-        String[] wordsWithW = new String[ARR_SIZE];
+        final int arrSize = getSizeForArray(fileName);
+        String[] wordsWithW = new String[arrSize];
 
-        if (ARR_SIZE == 0) {
+        if (arrSize == 0) {
             return wordsWithW;
         }
 
