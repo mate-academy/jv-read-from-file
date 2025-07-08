@@ -17,7 +17,9 @@ public class FileWork {
             while ((line = bufferedReader.readLine()) != null) {
                 String[] words = line.split("\\s+");
                 for (String word : words) {
-                    String cleanedWord = word.replaceAll("^[^A-Za-z0-9]+|[^A-Za-z0-9]+$", "").toLowerCase();
+                    String cleanedWord = word
+                            .replaceAll("^[^A-Za-z0-9]+|[^A-Za-z0-9]+$", "")
+                            .toLowerCase();
                     if (cleanedWord.startsWith(START_LETTER)) {
                         filteredWords.add(cleanedWord);
                     }
