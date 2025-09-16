@@ -1,8 +1,8 @@
 package core.basesyntax;
 
 import java.io.File;
-import java.nio.file.Files;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Arrays;
 
 public class FileWork {
