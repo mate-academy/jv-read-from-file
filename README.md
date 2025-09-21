@@ -8,7 +8,7 @@ All words should be lowercase.
 
 If the file does not contain the necessary words, return an empty array.
 
-Examples:
+Examples: 
 ```
 "Width world Wide web"
 Result: ["web", "wide", "width", "world"]
