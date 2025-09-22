@@ -1,6 +1,9 @@
 package core.basesyntax;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
@@ -29,6 +32,7 @@ public class FileWork {
         Arrays.sort(resultArray);;
         return resultArray;
     }
+
     public int readFromFileCountHelper(String fileName) {
         int count = 0;
         try {
@@ -37,16 +41,16 @@ public class FileWork {
             String value = br.readLine();
             while (value != null) {
                 String[] resultarr = value.split(" ");
-                    for (int i = 0; i < resultarr.length; i++) {
-                        if (resultarr[i].charAt(0) == 'w' ||  resultarr[i].charAt(0) == 'W') {
-                            count++;
-                        }
+                for (int i = 0; i < resultarr.length; i++) {
+                    if (resultarr[i].charAt(0) == 'w' || resultarr[i].charAt(0) == 'W') {
+                        count++;
                     }
-                    value = br.readLine();
                 }
+                value = br.readLine();
+            }
             br.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
         return count;
     }
