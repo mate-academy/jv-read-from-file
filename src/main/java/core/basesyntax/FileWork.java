@@ -6,14 +6,13 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 public class FileWork {
-    private final String SPECIFIED_CHAR = "w";
+    private static final String SPECIFIED_CHAR = "w";
 
     public String[] readFromFile(String fileName) {
         File file = new File(fileName);
-        String fileContent;
+        final String fileContent;
         try {
             fileContent = Files.readString(file.toPath());
         } catch (IOException e) {
@@ -22,10 +21,13 @@ public class FileWork {
         String[] fileContentArr = fileContent.split("\\s+");
         List<String> filteredWords = new ArrayList<>();
         for (String word : fileContentArr) {
-            if (word.startsWith(SPECIFIED_CHAR)) {
-                filteredWords.add(word.replaceAll("\\p{Punct}", "").toLowerCase());
+            String cleanedWord = word.replaceAll("\\p{Punct}", "").toLowerCase();
+            if (word.toLowerCase().startsWith(SPECIFIED_CHAR)) {
+                filteredWords.add(cleanedWord);
             }
         }
-        return filteredWords.toArray(new String[0]);
+        String[] naturalOrderedWords = filteredWords.toArray(new String[0]);
+        Arrays.sort(naturalOrderedWords);
+        return naturalOrderedWords;
     }
 }
