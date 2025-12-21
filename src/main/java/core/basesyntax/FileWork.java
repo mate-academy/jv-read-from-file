@@ -6,7 +6,6 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.TreeSet;
 
-
 public class FileWork {
     public String[] readFromFile(String fileName) {
         Path pathOfTest = Path.of(fileName);
