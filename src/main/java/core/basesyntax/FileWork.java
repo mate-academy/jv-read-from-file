@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class FileWork {
@@ -26,6 +27,7 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        Collections.sort(words);
         return words.toArray(new String[0]);
     }
 }
