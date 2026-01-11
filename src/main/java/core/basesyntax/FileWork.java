@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class FileWork {
+    private static final String SUPPLY = "supply";
+    private static final String BUY = "buy";
     public String[] readFromFile(String fileName) {
         ArrayList<String> list = new ArrayList<>();
 
