@@ -6,7 +6,7 @@ public class FileWork {
 
     public String[] readFromFile(String fileName) {
         if (fileName == null || fileName.isEmpty()) {
-            return new String[]{fileName};
+            return new String[0];
         }
         String[] words = fileName.split("\\W+");
         StringBuilder stringBuilder = new StringBuilder();
