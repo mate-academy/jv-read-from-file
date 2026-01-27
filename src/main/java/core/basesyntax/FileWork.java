@@ -12,8 +12,8 @@ public class FileWork {
         String[] words = fileName.split("\\W+");
         StringBuilder stringBuilder = new StringBuilder();
 
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
-            for (String word : words){
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
+            for (String word : words) {
                 if (!word.isEmpty() && word.toLowerCase().startsWith(SPECIFIED_CHARACTER)) {
                     stringBuilder.append(word.toLowerCase()).append(" ");
                 }
@@ -21,7 +21,7 @@ public class FileWork {
         } catch (IOException e) {
             return new String[0];
         }
-        String result[] = stringBuilder.toString().trim().split("\\s+");
+        String[] result = stringBuilder.toString().trim().split("\\s+");
         Arrays.sort(result);
         return result;
     }
