@@ -23,7 +23,7 @@ public class FileWork {
         } catch (IOException e) {
             return new String[0];
         }
-        if (stringBuilder.isEmpty()){
+        if (stringBuilder.isEmpty()) {
             return new String[0];
         }
         String[] result = stringBuilder.toString().trim().split("\\s+");
