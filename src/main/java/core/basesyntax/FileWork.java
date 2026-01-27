@@ -9,13 +9,15 @@ public class FileWork {
     private static final String SPECIFIED_CHARACTER = "w";
 
     public String[] readFromFile(String fileName) {
-        String[] words = fileName.split("\\W+");
         StringBuilder stringBuilder = new StringBuilder();
-
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
-            for (String word : words) {
-                if (!word.isEmpty() && word.toLowerCase().startsWith(SPECIFIED_CHARACTER)) {
-                    stringBuilder.append(word.toLowerCase()).append(" ");
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] words = line.split("\\W+");
+                for (String word : words) {
+                    if (!word.isEmpty() && word.toLowerCase().startsWith(SPECIFIED_CHARACTER)) {
+                        stringBuilder.append(word.toLowerCase()).append(" ");
+                    }
                 }
             }
         } catch (IOException e) {
