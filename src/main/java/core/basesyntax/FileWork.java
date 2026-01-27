@@ -5,6 +5,9 @@ public class FileWork {
     private static final String CHARACTER = "W";
 
     public String[] readFromFile(String fileName) {
+        if (fileName == null || fileName.isEmpty()) {
+            return new String[]{fileName};
+        }
         String[] words = fileName.split("\\W+");
         StringBuilder stringBuilder = new StringBuilder();
         char letter;
