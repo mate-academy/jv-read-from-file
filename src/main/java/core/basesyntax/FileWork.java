@@ -1,11 +1,10 @@
 package core.basesyntax;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
-
-
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
@@ -22,12 +21,9 @@ public class FileWork {
                     if (!word.isEmpty()) {
                         String lower = word.toLowerCase();
                         if (lower.charAt(0) == 'w') {
-                            result.add(word);
+                            result.add(lower);
                         }
-
-
                     }
-
                 }
             }
 
