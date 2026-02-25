@@ -10,20 +10,20 @@ import java.util.List;
 public class FileWork {
     public String[] readFromFile(String fileName) {
         List<String> resultList = new ArrayList<>();
-    try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-    String line;
-    while ((line = br.readLine()) != null) {
-        String[] words = line.split("[^a-zA-Z]+");
-        for (String word : words) {
-            word = word.toLowerCase();
-            if (word.startsWith("w")) {
-                resultList.add(word);
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] words = line.split("[^a-zA-Z]+");
+                for (String word : words) {
+                    word = word.toLowerCase();
+                    if (word.startsWith("w")) {
+                        resultList.add(word);
+                    }
+                }
             }
+        } catch (IOException e) {
+            throw new RuntimeException("Cant read", e);
         }
-    }
-    } catch (IOException e) {
-        throw new RuntimeException("Cant read", e);
-    }
         Collections.sort(resultList);
         return resultList.toArray(new String[0]);
     }
