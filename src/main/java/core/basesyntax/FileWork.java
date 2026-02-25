@@ -1,6 +1,5 @@
 package core.basesyntax;
 
-import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,13 +9,12 @@ import java.util.List;
 
 public class FileWork {
     public String[] readFromFile(String fileName) {
-        //write your code here
         List<String> resultList = new ArrayList<>();
     try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
     String line;
     while ((line = br.readLine()) != null) {
         String[] words = line.split("[^a-zA-Z]+");
-        for(String word: words) {
+        for (String word : words) {
             word = word.toLowerCase();
             if (word.startsWith("w")) {
                 resultList.add(word);
