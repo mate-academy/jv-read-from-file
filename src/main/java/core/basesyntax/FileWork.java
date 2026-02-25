@@ -27,9 +27,6 @@ public class FileWork {
         throw new RuntimeException("Cant read", e);
     }
         Collections.sort(resultList);
-
-        // 7. По заданию нам нужно вернуть обычный массив String[], а не List.
-        // Эта команда превращает список в массив и возвращает его.
         return resultList.toArray(new String[0]);
     }
 }
