@@ -18,7 +18,7 @@ public class FileWork {
         String[] words = line.split("[^a-zA-Z]+");
         for(String word: words) {
             word = word.toLowerCase();
-            if (!word.isEmpty() && word.startsWith("w")) {
+            if (word.startsWith("w")) {
                 resultList.add(word);
             }
         }
