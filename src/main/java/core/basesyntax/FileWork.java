@@ -27,7 +27,7 @@ public class FileWork {
         String[] words = stb.toString().toLowerCase().split("\\W+");
 
         for (String word : words) {
-            if (word.charAt(0) == target.charAt(0)) {
+            if (!word.isEmpty() && word.charAt(0) == target.charAt(0)) {
                 countOfWords++;
             }
         }
@@ -36,7 +36,7 @@ public class FileWork {
 
         int count = 0;
         for (int i = 0; i < words.length; i++) {
-            if (words[i].charAt(0) == target.charAt(0)) {
+            if (!words[i].isEmpty() && words[i].charAt(0) == target.charAt(0)) {
                 result[count] = words[i];
                 count++;
             }
