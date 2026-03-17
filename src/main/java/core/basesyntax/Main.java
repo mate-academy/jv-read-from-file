@@ -1,11 +1,13 @@
 package core.basesyntax;
 
 public class Main {
+
     public static void main(String[] args) {
-        FileWork fileWork = new FileWork();
+        FileMateAcademy fileMateAcademy = new FileMateAcademy();
 
-        String path = "src/main/resources/fileName.txt";
+        String [] text = new String []{"WWW? Four-bedroom farmhouse in the countryside. " +
+                "Wave! All of the four double bedrooms are en suite."};
 
-        fileWork.readFromFile(path);
+        fileMateAcademy.writeToFile(text);
     }
 }
