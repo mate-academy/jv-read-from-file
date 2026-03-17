@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
-    public String[] readFromFile(String fileName) throws IOException {
+    public String[] readFromFile(String fileName) {
         File file = new File(fileName);
         StringBuilder stb = new StringBuilder();
         int countOfWords = 0;
@@ -21,7 +21,7 @@ public class FileWork {
                 value = reader.read();
             }
         } catch (IOException e) {
-            throw new IOException("Can`t read file", e);
+            throw new RuntimeException("Can't read file", e);
         }
 
         String[] words = stb.toString().toLowerCase().split("\\W+");
