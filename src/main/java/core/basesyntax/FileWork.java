@@ -1,6 +1,5 @@
 package core.basesyntax;
 
-import javax.imageio.IIOException;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -22,7 +21,7 @@ public class FileWork {
             int count = 0;
             for (String word : words) {
                 if (word.startsWith("w")) {
-                    count ++;
+                    count++;
                 }
             }
             String[] result = new String[count];
@@ -36,8 +35,7 @@ public class FileWork {
             return result;
         } catch (FileNotFoundException e) {
             throw new RuntimeException("Can't find file ", e);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException("Can't read file", e);
         }
     }
