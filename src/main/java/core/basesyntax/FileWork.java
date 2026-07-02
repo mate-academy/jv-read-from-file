@@ -22,7 +22,7 @@ public class FileWork {
         } catch (IOException e) {
             throw new RuntimeException("Input not correct", e);
         }
-        StringBuilder wWords = new StringBuilder();
+        StringBuilder targetWords = new StringBuilder();
         String[] result = null;
         for (String word : splitWords) {
             if (word.startsWith("w")) {
@@ -33,10 +33,10 @@ public class FileWork {
                         }
                 }
                 word = new String(letters).trim();
-                wWords.append(word).append(" ");
+                targetWords.append(word).append(" ");
             }
-            if (!wWords.isEmpty()) {
-            result = wWords.toString().split(" ");
+            if (!targetWords.isEmpty()) {
+            result = targetWords.toString().split(" ");
             } else {
                 result = new String[0];
             }
