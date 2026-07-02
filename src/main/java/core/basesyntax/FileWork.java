@@ -28,15 +28,15 @@ public class FileWork {
             if (word.startsWith("w")) {
                 char[] letters = word.toCharArray();
                 for (int i = 0; i < letters.length; i++) {
-                        if (!Character.isLetter(letters[i])) {
-                            letters[i] = ' ';
-                        }
+                    if (!Character.isLetter(letters[i])) {
+                        letters[i] = ' ';
+                    }
                 }
                 word = new String(letters).trim();
                 targetWords.append(word).append(" ");
             }
             if (!targetWords.isEmpty()) {
-            result = targetWords.toString().split(" ");
+                result = targetWords.toString().split(" ");
             } else {
                 result = new String[0];
             }
