@@ -1,6 +1,9 @@
 package core.basesyntax;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class FileWork {
@@ -25,9 +28,9 @@ public class FileWork {
             if (word.startsWith("w")) {
                 char[] letters = word.toCharArray();
                 for (int i = 0; i < letters.length; i++) {
-                    if (!Character.isLetter(letters[i])) {
-                        letters[i] = ' ';
-                    }
+                        if (!Character.isLetter(letters[i])) {
+                            letters[i] = ' ';
+                        }
                 }
                 word = new String(letters).trim();
                 wWords.append(word).append(" ");
@@ -38,7 +41,7 @@ public class FileWork {
                 result = new String[0];
             }
         }
-        if(result != null) {
+        if (result != null) {
             Arrays.sort(result);
         }
         return result;
