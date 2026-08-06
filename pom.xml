@@ -46,14 +46,7 @@
                     <linkXRef>false</linkXRef>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>25</source>
-                    <target>25</target>
-                </configuration>
-            </plugin>
+            <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-compiler-plugin</artifactId> <version>3.8.1</version> <configuration> <!-- Use the project's jdk.version property or the explicit release number --> <release>${jdk.version}</release> <encoding>${project.build.sourceEncoding}</encoding> </configuration> </plugin>
         </plugins>
         <pluginManagement>
             <plugins>
