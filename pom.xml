@@ -25,6 +25,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -46,7 +47,20 @@
                     <linkXRef>false</linkXRef>
                 </configuration>
             </plugin>
+
+            <!-- Fixed compiler plugin: use the jdk.version property and set plugin version -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
         </plugins>
+
         <pluginManagement>
             <plugins>
                 <plugin>
