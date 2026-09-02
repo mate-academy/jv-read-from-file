@@ -26,19 +26,17 @@ public class FileWorkTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception{
-        Files.write(Path.of(EMPTY_FILE_NAME), "".getBytes(StandardCharsets.UTF_8));
-        Files.write(Path.of(SECOND_FILE_NAME), (
-            "Beautiful two-bedroom city flat five minutes' walk from the cathedral.\n" +
-                "Fully equipped kitchen, living room with a large sofa and chairs, big TV and balcony.\n" +
-                "The balcony has space for four people to sit and gets the sun in the mornings,\n" +
-                "and the flat is light and warm. The upstairs bedroom sleeps four people, with two double beds;\n" +
-                "the downstairs bedroom sleeps two in single beds.\n" +
-                "The flat is perfect for families and is near shops, bars and restaurants.\n").getBytes(StandardCharsets.UTF_8));
-        Files.write(Path.of(THIRD_FILE_NAME), (
-            "Four-bedroom farmhouse in the countryside. All of the four double bedrooms are en suite.\n" +
-                "Farm kitchen, tables and chairs outside. Great for groups of friends. The supermarket is half\n" +
-                "an hour by car and you can take a train from the village into the city. Escape from normal life\n" +
-                "for a few days.\n").getBytes(StandardCharsets.UTF_8));
+        Files.writeString(Path.of(EMPTY_FILE_NAME), "");
+        Files.writeString(Path.of(SECOND_FILE_NAME), "Beautiful two-bedroom city flat five minutes' walk from the cathedral.\n" +
+                                                 "Fully equipped kitchen, living room with a large sofa and chairs, big TV and balcony.\n" +
+                                                 "The balcony has space for four people to sit and gets the sun in the mornings,\n" +
+                                                 "and the flat is light and warm. The upstairs bedroom sleeps four people, with two double beds;\n" +
+                                                 "the downstairs bedroom sleeps two in single beds.\n" +
+                                                 "The flat is perfect for families and is near shops, bars and restaurants.\n");
+        Path path = Files.writeString(Path.of(THIRD_FILE_NAME), "Four-bedroom farmhouse in the countryside. All of the four double bedrooms are en suite.\n" +
+                                                                "Farm kitchen, tables and chairs outside. Great for groups of friends. The supermarket is half\n" +
+                                                                "an hour by car and you can take a train from the village into the city. Escape from normal life\n" +
+                                                                "for a few days.\n");
         Files.write(Path.of(FOURS_FILE_NAME), (
             "WWW? Four-bedroom farmhouse in the countryside. Wave! All of the four double bedrooms are en suite.\n" +
                 "Farm kitchen, tables and chairs outside. Great for groups of friends. World and the supermarket is\n" +
@@ -53,7 +51,7 @@ public class FileWorkTest {
 
     @Test
     public void readFromEmptyFile() {
-        FileWork fileWork = new FileWork();
+        WordExtractor fileWork = new WordExtractor();
         String[] actualResult = fileWork.readFromFile(EMPTY_FILE_NAME);
         Assert.assertArrayEquals("Test failed! You should returned empty array.",
             EMPTY_ARRAY_RESULT, actualResult);
@@ -61,7 +59,7 @@ public class FileWorkTest {
 
     @Test
     public void getLowerCaseResultFromFile() {
-        FileWork fileWork = new FileWork();
+        WordExtractor fileWork = new WordExtractor();
         String[] actualResult = fileWork.readFromFile(SECOND_FILE_NAME);
         Assert.assertArrayEquals("Test failed! You should returned next array "
                 + Arrays.toString(RESULT_FROM_LOWER_CASE) + " but you returned "
@@ -71,7 +69,7 @@ public class FileWorkTest {
 
     @Test
     public void getCamelCaseResultFromFile() {
-        FileWork fileWork = new FileWork();
+        WordExtractor fileWork = new WordExtractor();
         String[] actualResult = fileWork.readFromFile(FOURS_FILE_NAME);
         Assert.assertArrayEquals("Test failed! You should returned next array "
                 + Arrays.toString(RESULT_FROM_CAMEL_CASE) + " but you returned "
@@ -81,7 +79,7 @@ public class FileWorkTest {
 
     @Test
     public void getEmptyResultFromFile() {
-        FileWork fileWork = new FileWork();
+        WordExtractor fileWork = new WordExtractor();
         String[] actualResult = fileWork.readFromFile(THIRD_FILE_NAME);
         Assert.assertArrayEquals("Test failed! You should returned empty array.",
             EMPTY_ARRAY_RESULT, actualResult);
@@ -89,7 +87,7 @@ public class FileWorkTest {
 
     @Test
     public void getAdjacentWordsResultFromFile() {
-        FileWork fileWork = new FileWork();
+        WordExtractor fileWork = new WordExtractor();
         String[] actualResult = fileWork.readFromFile(FIFTH_FILE_NAME);
         Assert.assertArrayEquals("Test failed! You should returned next array "
                 + Arrays.toString(RESULT_FROM_ADJACENT_WORDS_CASE) + " but you returned "
