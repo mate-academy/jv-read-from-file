@@ -28,8 +28,6 @@ public class FileWork {
                 }
             }
 
-            git commit -m 'finished hw/reading-and-flittering'
-
             result = new String[counter];
             counter = 0;
 
