@@ -1,6 +1,9 @@
 package core.basesyntax;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,7 +12,7 @@ public class FileWork {
     private static final String REGEX = "[\\s\\p{Punct}]+";
 
     private void processWords(String[] words, List<String> resultList) {
-        if  (words == null) {
+        if (words == null) {
             return;
         }
         for (String word : words) {
@@ -37,7 +40,6 @@ public class FileWork {
             Collections.sort(resultList);
             return resultList.toArray(new String[0]);
         } catch (IOException | RuntimeException e) {
-            e.printStackTrace();
             return new String[0];
         }
     }
